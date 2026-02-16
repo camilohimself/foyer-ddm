@@ -1,0 +1,282 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Stats from '~/components/widgets/Stats.astro';
+
+const metadata = {
+  title: 'Foyer de Charité Dents-du-Midi — Retraites spirituelles à Bex, Suisse',
+  ignoreTitleTemplate: true,
+  description: 'Retraites spirituelles de 1 à 6 jours face aux Alpes. Silence, enseignements, accompagnement spirituel dans un cadre exceptionnel à Bex, Suisse.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero : Vue Dents-du-Midi + Accroche -->
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Découvrir nos retraites',
+        href: '/retraites',
+        icon: 'tabler:arrow-right',
+      },
+      {
+        text: 'Voir le programme 2026',
+        href: '/programme',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Un lieu de silence<br />
+      <span class="text-accent-400">face aux Alpes</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Depuis 1970, le Foyer de Charité Dents-du-Midi accueille ceux qui cherchent le silence, la réflexion et la prière.
+      Retraites de 1 à 6 jours dans un cadre exceptionnel à Bex, Suisse.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600/5"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Stats : Chiffres clés -->
+  <Stats
+    stats={[
+      { title: 'ans d\'accueil', amount: '55+' },
+      { title: 'retraites en 2026', amount: '17' },
+      { title: 'par jour (suggéré)', amount: 'CHF 120' },
+      { title: 'Foyer en Suisse', amount: 'Seul' },
+    ]}
+  />
+
+  <!-- 6 Packages en cartes -->
+  <Features2
+    title="Nos retraites spirituelles"
+    subtitle="Six formats adaptés à chaque besoin : de la journée découverte à la retraite de 6 jours"
+    tagline="Nos offres"
+    items={[
+      {
+        title: 'Retraites de 6 jours',
+        description: 'Six jours pour cheminer dans le mystère de la foi. Silence, enseignements et accompagnement spirituel. Dès CHF 720.-',
+        icon: 'tabler:sunset-2',
+        callToAction: { text: 'En savoir plus', href: '/retraites/6-jours' },
+      },
+      {
+        title: 'Week-ends 3 jours',
+        description: 'Une pause au coeur de votre quotidien. Idéal pour une première retraite ou un temps liturgique fort. Dès CHF 360.-',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'En savoir plus', href: '/retraites/week-end' },
+      },
+      {
+        title: 'Couples',
+        description: 'Donnez du souffle à votre couple. Accueil des enfants de 4 à 12 ans avec animation dédiée.',
+        icon: 'tabler:hearts',
+        callToAction: { text: 'En savoir plus', href: '/retraites/couples' },
+      },
+      {
+        title: 'Familles',
+        description: 'La foi en famille, une aventure. Programme adapté petits et grands, thématiques actuelles.',
+        icon: 'tabler:home-heart',
+        callToAction: { text: 'En savoir plus', href: '/retraites/familles' },
+      },
+      {
+        title: 'Journées',
+        description: 'Une halte de quelques heures : café, conférences, repas et Eucharistie. CHF 50.- tout compris.',
+        icon: 'tabler:sun',
+        callToAction: { text: 'En savoir plus', href: '/retraites/journees' },
+      },
+      {
+        title: 'Préparation au mariage',
+        description: 'Préparez votre mariage dans un cadre exceptionnel. CHF 200.- par couple, hébergement possible.',
+        icon: 'tabler:rings',
+        callToAction: { text: 'En savoir plus', href: '/retraites/preparation-mariage' },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Prochaines dates -->
+  <Steps
+    title="Prochaines retraites 2026"
+    subtitle="Inscrivez-vous dès maintenant pour réserver votre place"
+    items={[
+      {
+        title: '20-22 février — <span class="font-medium">«Ayons des faces de ressuscités»</span>',
+        description: 'Week-end 3 jours avec François-Xavier Amherdt. Entrée en Carême.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: '10 mars — <span class="font-medium">«Silence, libération, prière»</span>',
+        description: 'Journée de ressourcement avec Jeff Roux. CHF 50.- tout compris.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: '13-15 mars — <span class="font-medium">«En famille, vivre l\'hymne à l\'amour»</span>',
+        description: 'Week-end couples avec Elodie et Philibert Goulet. Accueil des enfants.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: 'Voir tout le programme',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+    callToAction={{
+      text: 'Programme complet 2026',
+      href: '/programme',
+      icon: 'tabler:arrow-right',
+    }}
+  />
+
+  <!-- Une retraite, c'est quoi ? -->
+  <Content
+    isReversed
+    tagline="Découvrir"
+    title="Une retraite, c'est quoi ?"
+    items={[
+      {
+        title: 'Un temps de silence',
+        description: 'Se retirer du bruit du quotidien pour retrouver l\'essentiel, dans un cadre de paix face aux montagnes.',
+      },
+      {
+        title: 'Des enseignements',
+        description: 'Deux conférences quotidiennes par des prédicateurs de qualité : prêtres, théologiens, couples animateurs.',
+      },
+      {
+        title: 'Un accompagnement',
+        description: 'Possibilité d\'accompagnement spirituel individuel. Eucharistie quotidienne. Temps de prière personnelle.',
+      },
+    ]}
+    callToAction={{
+      text: 'Découvrir nos retraites',
+      href: '/retraites',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Un lieu pour se retrouver
+      </h3>
+      Ce qui se vit dans ce Foyer est l'écho vivant et vibrant de la grâce de Dieu. La petite communauté accueille
+      ceux qui, attirés par le Seigneur, éprouvent le besoin de s'arrêter, de réfléchir, de prier pour redonner
+      vigueur et élan à leur métier de vivre.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Le Foyer en bref -->
+  <Content
+    tagline="Le Foyer"
+    title="Le seul Foyer de Charité en Suisse"
+    items={[
+      {
+        title: 'Fondé en 1970',
+        description: 'Plus de 55 ans d\'accueil et de retraites spirituelles dans le Chablais vaudois.',
+      },
+      {
+        title: 'Un cadre exceptionnel',
+        description: 'Ancien hôtel face aux Dents-du-Midi, 7 hectares de prairie et forêt, chapelle avec vue sur les Alpes.',
+      },
+      {
+        title: 'Pension complète',
+        description: 'Hébergement en chambres, cuisine maison, accueil chaleureux par la communauté du Foyer.',
+      },
+    ]}
+    callToAction={{
+      text: 'En savoir plus sur le Foyer',
+      href: '/le-foyer',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Bex, aux portes du Valais
+      </h3>
+      Un écrin de verdure face aux montagnes des Dents-du-Midi, à quelques kilomètres des rives du lac Léman.
+      Un lieu qui ouvre aux profondeurs et donne saveur à la vie.
+    </Fragment>
+  </Content>
+
+  <!-- Témoignages -->
+  <Testimonials
+    title="Ce qu'ils en disent"
+    subtitle="Paroles de retraitants"
+    tagline="Témoignages"
+    testimonials={[
+      {
+        testimonial: 'Toute ma reconnaissance pour l\'accueil chaleureux et le silence tellement habité de l\'Essentiel.',
+        name: 'R.B.',
+        job: 'Retraitant',
+      },
+      {
+        testimonial: 'La beauté simple de ce lieu sait si bien chanter Dieu !',
+        name: 'P. et R.G.',
+        job: 'Retraitants',
+      },
+      {
+        testimonial: 'Quand je suis entré au Foyer, j\'ai ressenti un immense sentiment de paix, comme dans une cathédrale. J\'ai découvert que le silence, c\'est Quelqu\'un !',
+        name: 'François',
+        job: 'Retraitant',
+      },
+      {
+        testimonial: 'Ses paroles nous ont touchés en profondeur et nous ne lirons jamais plus la Parole du Seigneur comme avant !',
+        name: 'Claire et Pierre',
+        job: 'Retraitants couples',
+      },
+      {
+        testimonial: 'Merci de si bien nous accueillir, nous les assoiffés de l\'Essentiel !',
+        name: 'Jacques',
+        job: 'Retraitant',
+      },
+      {
+        testimonial: 'J\'ouvrirai une école de vie intérieure et j\'écrirai sur la porte : école d\'art.',
+        name: 'Monique D.',
+        job: 'Retraitante (citant Max Jacob)',
+      },
+    ]}
+    callToAction={{
+      text: 'Tous les témoignages',
+      href: '/temoignages',
+    }}
+  />
+
+  <!-- CTA bannière -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Réserver ma retraite',
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
+      },
+      {
+        text: 'Voir le programme',
+        href: '/programme',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Prenez le temps de <span class="text-accent-400">vous retrouver</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Retraites de 1 à 6 jours dans un cadre exceptionnel face aux Alpes.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

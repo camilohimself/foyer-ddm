@@ -1,0 +1,69 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+
+const metadata = {
+  title: 'Votre séjour — Foyer de Charité Dents-du-Midi',
+  description: 'Informations pratiques pour votre séjour : chambres, journée type, tarifs et accès.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero
+    tagline="Informations pratiques"
+    title="Votre séjour au Foyer"
+    subtitle="Tout ce qu'il faut savoir pour préparer votre retraite : hébergement, tarifs, journée type et accès."
+  />
+
+  <!-- Hub des informations -->
+  <Features
+    id="infos-pratiques"
+    title="Informations <span class='text-accent-400'>pratiques</span>"
+    subtitle="Découvrez tous les aspects pratiques de votre séjour au Foyer de Charité."
+    columns={2}
+    items={[
+      {
+        title: 'Chambres',
+        description:
+          'Chambres individuelles ou doubles, literie et linge fournis, cadre calme face aux montagnes dans un ancien hôtel rénové.',
+        icon: 'tabler:bed',
+        callToAction: {
+          text: 'En savoir plus',
+          href: '/sejour/chambres',
+        },
+      },
+      {
+        title: 'Journée type',
+        description:
+          'De 8h à 21h : louange, conférences, adoration, eucharistie, prière. Un rythme équilibré entre enseignements, prière et temps personnels.',
+        icon: 'tabler:clock',
+        callToAction: {
+          text: 'Découvrir le programme',
+          href: '/sejour/journee-type',
+        },
+      },
+      {
+        title: 'Tarifs',
+        description:
+          'Participation libre d\'environ CHF 120.-/jour. Personne n\'est refusé pour des raisons financières. Pension complète incluse.',
+        icon: 'tabler:coin',
+        callToAction: {
+          text: 'Voir les tarifs',
+          href: '/sejour/tarifs',
+        },
+      },
+      {
+        title: 'Accès',
+        description:
+          'Route de Gryon 22, 1880 Bex. À 50 min de Lausanne, 1h05 de Fribourg, 1h25 de Genève. Parking disponible sur place.',
+        icon: 'tabler:map-pin',
+        callToAction: {
+          text: 'Comment venir',
+          href: '/sejour/acces',
+        },
+      },
+    ]}
+  />
+</Layout>

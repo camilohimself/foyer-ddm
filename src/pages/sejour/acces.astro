@@ -1,0 +1,198 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+
+const metadata = {
+  title: 'Accès — Foyer de Charité Dents-du-Midi',
+  description: 'Route de Gryon 22, 1880 Bex. À 50 min de Lausanne, 1h25 de Genève. Plan d\'accès et horaires.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero tagline="Itinéraire">
+    <Fragment slot="title">
+      Comment <span class="text-accent-400">venir</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">Situé à Bex, dans le Chablais vaudois, aux portes du Valais.</Fragment>
+  </Hero>
+
+  <!-- Adresse -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 max-w-4xl">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-4 text-primary-600">
+        Notre <span class="text-accent-400">adresse</span>
+      </h2>
+      <div class="text-lg text-muted space-y-2">
+        <p class="font-semibold text-primary-600">Foyer de Charité "Dents-du-Midi"</p>
+        <p>Route de Gryon 22</p>
+        <p>CH-1880 Bex</p>
+        <p class="mt-4">
+          <a href="tel:+41244632222" class="text-accent-400 hover:underline font-semibold"
+            >+41 (0)24 463 22 22</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- Carte Google Maps -->
+    <div class="mt-8 rounded-lg overflow-hidden shadow-lg">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2750.9!2d7.0195!3d46.2586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ea1f2f2f2f2f2%3A0x0!2zNDbCsDE1JzMxLjAiTiA3wrAwMScxMC4yIkU!5e0!3m2!1sfr!2sch!4v1234567890"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Carte d'accès au Foyer de Charité Dents-du-Midi"></iframe>
+    </div>
+  </section>
+
+  <!-- Temps de trajet -->
+  <Features
+    id="temps-trajet"
+    tagline="Depuis les grandes villes"
+    title="Temps de <span class='text-accent-400'>trajet</span>"
+    subtitle="Le Foyer est facilement accessible en voiture depuis les principales villes de Suisse romande."
+    items={[
+      {
+        title: 'Lausanne',
+        description: '50 minutes',
+        icon: 'tabler:car',
+      },
+      {
+        title: 'Fribourg',
+        description: '1h05',
+        icon: 'tabler:car',
+      },
+      {
+        title: 'Genève',
+        description: '1h25',
+        icon: 'tabler:car',
+      },
+      {
+        title: 'Bâle',
+        description: '2h15',
+        icon: 'tabler:car',
+      },
+      {
+        title: 'Chamonix (France)',
+        description: '1h15',
+        icon: 'tabler:car',
+      },
+      {
+        title: 'Sion (Valais)',
+        description: '40 minutes',
+        icon: 'tabler:car',
+      },
+    ]}
+  />
+
+  <!-- Itinéraire détaillé -->
+  <Content
+    isReversed
+    image={{
+      src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Route vers le Foyer',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Itinéraire <span class="text-accent-400">en voiture</span>
+      </h2>
+      <div class="space-y-4 text-muted">
+        <div>
+          <h3 class="font-semibold text-primary-600 mb-2">Depuis l'autoroute A9</h3>
+          <ol class="list-decimal list-inside space-y-2 ml-4">
+            <li>Sortir à <strong>Bex, sortie n°19</strong></li>
+            <li>Suivre la direction <strong>"Bex - Gryon - Villars"</strong> à chaque giratoire</li>
+            <li>Longer les voies du tram pendant environ <strong>2 km</strong></li>
+            <li>
+              Après le pont, un <strong>panneau lumineux</strong> indique l'entrée du Foyer sur votre droite
+            </li>
+            <li>Suivre l'allée jusqu'au parking</li>
+          </ol>
+        </div>
+
+        <div class="mt-6 p-4 bg-accent-50 rounded-lg">
+          <p class="text-sm font-semibold text-primary-600">
+            <svg class="inline w-5 h-5 mr-2 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Conseil : Soyez attentif au panneau lumineux après le pont, il est facilement visible.
+          </p>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Transports en commun -->
+  <Content
+    items={[
+      {
+        title: 'Train + bus',
+        description: 'Gare de Bex (ligne Lausanne-St-Maurice), puis bus jusqu\'à proximité du Foyer',
+        icon: 'tabler:train',
+      },
+      {
+        title: 'Co-voiturage',
+        description: 'N\'hésitez pas à proposer ou demander du co-voiturage lors de votre inscription',
+        icon: 'tabler:car-garage',
+      },
+      {
+        title: 'Service navette',
+        description: 'Une navette depuis la gare de Bex peut être organisée sur demande pour les groupes',
+        icon: 'tabler:bus',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Transports en commun',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Transports <span class="text-accent-400">en commun</span>
+      </h2>
+      <p class="text-muted mb-4">
+        Le Foyer est accessible en transports publics via la gare de Bex, bien desservie sur la ligne Lausanne -
+        St-Maurice - Brigue.
+      </p>
+      <p class="text-muted">
+        Pour les horaires et connexions, consultez <a
+          href="https://www.cff.ch"
+          target="_blank"
+          rel="noopener"
+          class="text-accent-400 hover:underline">CFF.ch</a
+        > ou contactez-nous pour organiser une navette.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Parking -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 max-w-4xl text-center bg-surface-alt">
+    <h3 class="text-xl font-bold text-primary-600 mb-4">
+      Parking <span class="text-accent-400">gratuit</span>
+    </h3>
+    <p class="text-muted">
+      Un parking gratuit est disponible sur place pour les retraitants. Vous pouvez stationner votre véhicule
+      pendant toute la durée de votre séjour.
+    </p>
+  </section>
+</Layout>

@@ -1,0 +1,181 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+
+const metadata = {
+  title: 'Tarifs — Foyer de Charité Dents-du-Midi',
+  description: 'Participation libre d\'environ CHF 120.-/jour. Personne n\'est refusé pour des raisons financières.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero tagline="Participation financière">
+    <Fragment slot="title">
+      Tarifs et <span class="text-accent-400">conditions</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Une participation libre basée sur la générosité de chacun. Personne n'est refusé pour des raisons financières.
+    </Fragment>
+  </Hero>
+
+  <!-- Note importante -->
+  <section class="px-4 py-8 sm:px-6 mx-auto lg:px-8 max-w-4xl">
+    <div class="bg-accent-50 border-l-4 border-accent-400 p-6 rounded-lg">
+      <p class="text-lg font-semibold text-primary-600 mb-2">Principe de participation</p>
+      <p class="text-muted">
+        Nous vous invitons à donner <strong>±CHF 120.- par jour et par adulte</strong>. Cette participation permet de
+        couvrir les frais d'hébergement, de nourriture et de fonctionnement du Foyer.
+      </p>
+      <p class="text-muted mt-3 font-semibold">
+        Personne n'est refusé pour des raisons financières. Si votre situation ne vous permet pas de donner ce
+        montant, contactez-nous.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tableau des tarifs -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl bg-surface-alt">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Tarifs <span class="text-accent-400">indicatifs</span>
+      </h2>
+      <p class="text-muted">Montants suggérés selon le type de séjour</p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full bg-white rounded-lg shadow-lg">
+        <thead class="bg-primary-600 text-white">
+          <tr>
+            <th class="px-6 py-4 text-left font-semibold">Format</th>
+            <th class="px-6 py-4 text-left font-semibold">Durée</th>
+            <th class="px-6 py-4 text-left font-semibold">Tarif indicatif</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-primary-600">Journée</td>
+            <td class="px-6 py-4 text-muted">1 jour (9h30-16h30)</td>
+            <td class="px-6 py-4 text-accent-400 font-semibold">CHF 50.-</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-primary-600">Week-end 3 jours</td>
+            <td class="px-6 py-4 text-muted">2 nuits</td>
+            <td class="px-6 py-4 text-accent-400 font-semibold">~CHF 360.-</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-primary-600">Retraite 6 jours</td>
+            <td class="px-6 py-4 text-muted">5 nuits</td>
+            <td class="px-6 py-4 text-accent-400 font-semibold">~CHF 720.-</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-primary-600">Préparation mariage</td>
+            <td class="px-6 py-4 text-muted">2 jours</td>
+            <td class="px-6 py-4 text-accent-400 font-semibold">CHF 200.-/couple</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Ce qui est inclus -->
+  <Features
+    id="inclus"
+    tagline="Inclus dans la participation"
+    title="Les tarifs <span class='text-accent-400'>comprennent</span>"
+    items={[
+      {
+        title: 'Hébergement',
+        description: 'Chambre individuelle ou double, literie et linge fournis',
+        icon: 'tabler:bed',
+      },
+      {
+        title: 'Pension complète',
+        description: 'Petit-déjeuner, déjeuner, dîner et collations (thé/café)',
+        icon: 'tabler:tools-kitchen-2',
+      },
+      {
+        title: 'Enseignements',
+        description: 'Conférences spirituelles par le prédicateur de la retraite',
+        icon: 'tabler:book-2',
+      },
+      {
+        title: 'Accompagnement',
+        description: 'Possibilité d\'entretiens individuels avec l\'équipe',
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: 'Cadre et silence',
+        description: 'Accès au parc de 7 hectares, chapelle, crypte',
+        icon: 'tabler:trees',
+      },
+      {
+        title: 'Documents',
+        description: 'Supports de retraite et documentation spirituelle',
+        icon: 'tabler:files',
+      },
+    ]}
+  />
+
+  <!-- Moyens de paiement -->
+  <Content
+    isReversed
+    image={{
+      src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Paiement',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Modalités de <span class="text-accent-400">paiement</span>
+      </h2>
+      <div class="space-y-4 text-muted">
+        <p><strong>Moyens de paiement acceptés :</strong></p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Carte bancaire</li>
+          <li>Twint</li>
+          <li>Espèces (CHF ou EUR acceptés)</li>
+          <li>Virement bancaire (avant ou après le séjour)</li>
+        </ul>
+        <p class="text-sm italic">Note : Les chèques ne sont pas acceptés.</p>
+
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+          <p class="font-semibold text-primary-600 mb-2">Coordonnées bancaires (PostFinance) :</p>
+          <p class="text-sm">
+            <strong>FOYER DENTS DU MIDI 1880 BEX</strong><br />
+            IBAN : <span class="font-mono">CH49 0900 0000 1001 2392 5</span>
+          </p>
+        </div>
+
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+          <p class="font-semibold text-primary-600 mb-2">Coordonnées bancaires (BCV) :</p>
+          <p class="text-sm">
+            IBAN : <span class="font-mono">CH83 0076 7000 C054 3798 0</span><br />
+            SWIFT : <span class="font-mono">BCVLCH2LXXX</span>
+          </p>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Reçu fiscal -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 max-w-4xl text-center">
+    <div class="bg-surface-alt p-8 rounded-lg">
+      <h3 class="text-xl font-bold text-primary-600 mb-4">
+        Dons et <span class="text-accent-400">reçu fiscal</span>
+      </h3>
+      <p class="text-muted mb-4">
+        Si vous souhaitez faire un don au-delà de la participation au séjour, un reçu fiscal peut vous être délivré
+        sur demande.
+      </p>
+      <p class="text-sm text-muted italic">Le Foyer de Charité est une association à but non lucratif.</p>
+    </div>
+  </section>
+</Layout>

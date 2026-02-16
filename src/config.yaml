@@ -1,0 +1,66 @@
+site:
+  name: Foyer de Charité Dents-du-Midi
+  site: 'https://foyer-dents-du-midi.ch'
+  base: '/'
+  trailingSlash: false
+
+metadata:
+  title:
+    default: Foyer de Charité Dents-du-Midi — Retraites spirituelles à Bex
+    template: '%s — Foyer de Charité Dents-du-Midi'
+  description: 'Retraites spirituelles face aux Alpes. Séjours de 1 à 6 jours dans un cadre exceptionnel à Bex, Suisse. Silence, enseignements, accompagnement spirituel.'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: Foyer de Charité Dents-du-Midi
+    images:
+      - url: '~/assets/images/default.png'
+        width: 1200
+        height: 628
+    type: website
+    locale: fr_CH
+
+i18n:
+  language: fr
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 6
+
+    post:
+      isEnabled: true
+      permalink: '/actualites/%slug%'
+      robots:
+        index: true
+
+    list:
+      isEnabled: true
+      pathname: 'actualites'
+      robots:
+        index: true
+
+    category:
+      isEnabled: false
+      pathname: 'categorie'
+      robots:
+        index: false
+
+    tag:
+      isEnabled: false
+      pathname: 'tag'
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: false
+    relatedPostsCount: 4
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null
+
+ui:
+  theme: 'light:only'

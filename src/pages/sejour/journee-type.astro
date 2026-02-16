@@ -1,0 +1,145 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+
+const metadata = {
+  title: 'Journée type — Foyer de Charité Dents-du-Midi',
+  description: 'Découvrez le déroulement d\'une journée de retraite au Foyer : prière, conférences, eucharistie, silence.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero tagline="Rythme de vie">
+    <Fragment slot="title">
+      Une journée au <span class="text-accent-400">Foyer</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Un rythme équilibré entre enseignements spirituels, temps de prière, repas partagés et moments personnels.
+    </Fragment>
+  </Hero>
+
+  <!-- Programme de la journée -->
+  <Steps
+    title="Le rythme d'une <span class='text-accent-400'>journée de retraite</span>"
+    subtitle="Chaque journée suit un cadre structuré qui alterne moments communautaires et temps personnels, dans le silence et le recueillement."
+    items={[
+      {
+        title: '8h00 — Lever',
+        description: 'Début de la journée en douceur. Temps personnel pour la toilette et la préparation.',
+        icon: 'tabler:sunrise',
+      },
+      {
+        title: '8h30 — Louange du matin',
+        description: 'Prière communautaire pour ouvrir la journée et se mettre en présence de Dieu.',
+        icon: 'tabler:heart',
+      },
+      {
+        title: '8h50 — Petit déjeuner',
+        description: 'Repas pris en silence ou dans un partage fraternel, selon le type de retraite.',
+        icon: 'tabler:coffee',
+      },
+      {
+        title: '9h45 — Conférence',
+        description: 'Enseignement spirituel donné par le prédicateur de la retraite.',
+        icon: 'tabler:book-2',
+      },
+      {
+        title: '11h00 — Adoration',
+        description: 'Temps de prière silencieuse devant le Saint-Sacrement.',
+        icon: 'tabler:candle',
+      },
+      {
+        title: '12h30 — Repas',
+        description: 'Déjeuner en silence, temps de partage ou d\'écoute selon le programme.',
+        icon: 'tabler:tools-kitchen-2',
+      },
+      {
+        title: '15h00 — Thé',
+        description: 'Pause conviviale avec thé, café et collation.',
+        icon: 'tabler:cup',
+      },
+      {
+        title: '15h30 — Conférence',
+        description: 'Deuxième enseignement de la journée, souvent en lien avec celui du matin.',
+        icon: 'tabler:book',
+      },
+      {
+        title: '17h30 — Eucharistie',
+        description: 'Célébration de la messe, sommet de la journée spirituelle.',
+        icon: 'tabler:star',
+      },
+      {
+        title: '19h00 — Repas',
+        description: 'Dîner en commun, dans le silence ou la convivialité.',
+        icon: 'tabler:tools-kitchen',
+      },
+      {
+        title: '20h30 — Prière du soir',
+        description: 'Prière communautaire pour clôturer la journée et rendre grâce.',
+        icon: 'tabler:moon',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80',
+      alt: 'Journée au Foyer',
+    }}
+  />
+
+  <!-- Temps libres -->
+  <Content
+    isReversed
+    items={[
+      {
+        title: 'Temps personnels',
+        description: 'Entre les temps communautaires, moments libres pour la prière, la méditation ou la marche',
+        icon: 'tabler:walk',
+      },
+      {
+        title: 'Entretiens individuels',
+        description: 'Possibilité de rencontrer le prédicateur ou un membre de l\'équipe',
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: 'Parc et jardins',
+        description: '7 hectares pour se promener, prier dehors ou simplement contempler',
+        icon: 'tabler:trees',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Parc du Foyer',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Des espaces de <span class="text-accent-400">liberté</span>
+      </h2>
+      <p class="text-muted mb-4">
+        Entre les temps communautaires, chacun est libre d'organiser ses moments personnels : prière dans la crypte,
+        marche dans le parc, lecture, repos, ou simplement contemplation.
+      </p>
+      <p class="text-muted">
+        Le silence est encouragé pour favoriser l'intériorité et l'écoute de Dieu, mais des temps de partage fraternel
+        sont aussi prévus.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Citation -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl bg-surface-special">
+    <blockquote class="text-center">
+      <p class="text-xl md:text-2xl font-medium text-primary-600 mb-6 italic">
+        "J'ai découvert que le silence, c'est <span class="text-accent-400">Quelqu'un</span> !"
+      </p>
+      <cite class="text-muted">— François, retraitant</cite>
+    </blockquote>
+  </section>
+</Layout>

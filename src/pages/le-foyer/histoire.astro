@@ -1,0 +1,137 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: '55 ans d\'histoire — Foyer de Charité Dents-du-Midi',
+  description: 'De 1970 à aujourd\'hui, l\'histoire du seul Foyer de Charité en Suisse.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero tagline="Histoire">
+    <Fragment slot="title">
+      55 ans <span class="text-accent-400">d'histoire</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">De 1970 à aujourd'hui, l'histoire du seul Foyer de Charité en Suisse.</Fragment>
+  </Hero>
+
+  <!-- Chronologie -->
+  <Steps
+    title="Une histoire de <span class='text-accent-400'>foi et d'accueil</span>"
+    items={[
+      {
+        title: '1969',
+        description:
+          'Le Père Renirkens anime des Retraites de Chrétienté en Suisse et cherche un lieu permanent pour accueillir.',
+        icon: 'tabler:search',
+      },
+      {
+        title: 'Janvier 1970',
+        description:
+          'Marthe Robin, depuis son village de la Drôme, appelle à fonder un Foyer de Charité en Suisse. Elle ne quittera jamais son village, mais son rayonnement spirituel traverse les frontières.',
+        icon: 'tabler:phone-call',
+      },
+      {
+        title: '30 avril 1970',
+        description:
+          'Signature de l\'acte d\'achat de l\'hôtel "Les Dents-du-Midi" à Bex. Un ancien établissement hôtelier devient un lieu de ressourcement spirituel.',
+        icon: 'tabler:writing-sign',
+      },
+      {
+        title: '1er mai 1970',
+        description:
+          'Première Eucharistie célébrée au Foyer. Le lieu est consacré à sa nouvelle mission d\'accueil spirituel.',
+        icon: 'tabler:building',
+      },
+      {
+        title: '21 septembre 1970',
+        description:
+          'Première retraite spirituelle au Foyer. Début d\'une longue tradition d\'accueil qui se poursuit aujourd\'hui.',
+        icon: 'tabler:book-2',
+      },
+      {
+        title: '21 octobre 1971',
+        description:
+          'Anne-Marie Gavray rejoint l\'équipe du Foyer. Elle y consacrera 51 ans de sa vie, jusqu\'en 2022, incarnant la fidélité à la mission.',
+        icon: 'tabler:heart',
+      },
+      {
+        title: '1972',
+        description:
+          'Début des travaux d\'aménagement : modernisation de la cuisine et création de la chapelle avec vue sur les Alpes.',
+        icon: 'tabler:tools',
+      },
+      {
+        title: '1975',
+        description:
+          'Fête des 5 ans du Foyer. Aménagement de la crypte pour la prière et l\'adoration. Le lieu s\'enracine dans sa vocation.',
+        icon: 'tabler:cake',
+      },
+      {
+        title: '1980',
+        description:
+          'Fête des 10 ans. Mgr Henri Schwery, évêque de Sion, qualifie le Foyer de "poumon spirituel du diocèse".',
+        icon: 'tabler:brand-airbnb',
+      },
+      {
+        title: '1989',
+        description:
+          'L\'abbé Jean-René Fracheboud rejoint le Foyer. Il y servira jusqu\'en 2023, marquant profondément la vie spirituelle du lieu.',
+        icon: 'tabler:user-plus',
+      },
+      {
+        title: '2023',
+        description:
+          'Le Père Guy Luisier prend la direction du Foyer, succédant à l\'abbé Fracheboud. Une nouvelle étape s\'ouvre.',
+        icon: 'tabler:user-star',
+      },
+      {
+        title: '2025',
+        description:
+          '55 ans d\'existence. Le Foyer poursuit sa mission d\'accueil, de prière et de ressourcement spirituel, fidèle à l\'inspiration de Marthe Robin.',
+        icon: 'tabler:confetti',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Histoire du Foyer',
+    }}
+  />
+
+  <!-- Citation -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl bg-surface-special">
+    <blockquote class="text-center">
+      <p class="text-xl md:text-2xl font-medium text-primary-600 mb-6 italic">
+        "Le Foyer de Charité Dents-du-Midi est le <span class="text-accent-400">poumon spirituel du diocèse</span>."
+      </p>
+      <cite class="text-muted">— Mgr Henri Schwery, Évêque de Sion (1980)</cite>
+    </blockquote>
+  </section>
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Découvrir les retraites',
+        href: '/retraites',
+      },
+      {
+        text: 'L\'équipe aujourd\'hui',
+        href: '/le-foyer/equipe',
+      },
+    ]}
+  >
+    <Fragment slot="title">Une histoire qui continue</Fragment>
+
+    <Fragment slot="subtitle">
+      55 ans après sa fondation, le Foyer de Charité Dents-du-Midi poursuit sa mission d'accueil spirituel. Venez
+      vivre cette expérience.
+    </Fragment>
+  </CallToAction>
+</Layout>

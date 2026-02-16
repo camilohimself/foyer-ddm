@@ -1,0 +1,63 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: fr
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "events"
+    label: "Événements / Retraites"
+    folder: "src/data/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date de début", name: "dateStart", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false }
+      - { label: "Date de fin", name: "dateEnd", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false, required: false }
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options:
+          - { label: "Retraite 6 jours", value: "6-jours" }
+          - { label: "Week-end 3 jours", value: "week-end" }
+          - { label: "Couples", value: "couples" }
+          - { label: "Familles", value: "familles" }
+          - { label: "Journée", value: "journees" }
+          - { label: "Préparation mariage", value: "mariage" }
+      - { label: "Prédicateur", name: "preacher", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Prix indicatif", name: "price", widget: "string", required: false }
+      - { label: "Variante", name: "variant", widget: "string", required: false, hint: "Ex: Raquettes, Randonnées, Trois Jours Saints" }
+      - { label: "Inscriptions ouvertes", name: "registrationOpen", widget: "boolean", default: true }
+      - { label: "Contenu", name: "body", widget: "markdown", required: false }
+
+  - name: "testimonials"
+    label: "Témoignages"
+    folder: "src/data/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nom", name: "name", widget: "string" }
+      - { label: "Citation", name: "quote", widget: "text" }
+      - { label: "Type de retraite", name: "retreatType", widget: "string", required: false }
+      - { label: "Année", name: "year", widget: "number", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown", required: false }
+
+  - name: "actualites"
+    label: "Actualités"
+    folder: "src/data/post"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date de publication", name: "publishDate", widget: "datetime" }
+      - { label: "Brouillon", name: "draft", widget: "boolean", default: false }
+      - { label: "Extrait", name: "excerpt", widget: "text", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Catégorie", name: "category", widget: "string", required: false }
+      - { label: "Auteur", name: "author", widget: "string", default: "Foyer de Charité" }
+      - { label: "Contenu", name: "body", widget: "markdown" }

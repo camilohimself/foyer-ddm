@@ -1,0 +1,194 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Trois jours pour tous',
+  description: 'Week-ends spirituels de 3 jours au Foyer Dents-du-Midi. Idéal première retraite. Dès CHF 360.-',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero>
+    <Fragment slot="title">
+      Trois jours <span class="text-accent-400">pour tous</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Une pause au cœur de votre quotidien ! Trois jours pour vivre une halte spirituelle ou oser une première retraite.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600/5"></div>
+    </Fragment>
+  </Hero>
+
+  <Content
+    tagline="Le format"
+    title="Une première retraite accessible"
+    items={[
+      {
+        title: 'Vendredi 18h30 → Dimanche 15h',
+        description: '2 nuits en pension complète.',
+      },
+      {
+        title: 'Temps liturgiques forts',
+        description: 'Entrée en Carême, Trois Jours Saints, thématiques bibliques.',
+      },
+      {
+        title: 'Idéal première retraite',
+        description: 'Format accessible pour découvrir l\'expérience d\'une retraite en Foyer de Charité.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Une halte spirituelle
+      </h3>
+      Trois jours pour souffler, se ressourcer, approfondir sa foi. Un format idéal pour celles et ceux qui hésitent
+      à s'engager dans une retraite plus longue ou qui souhaitent vivre un temps liturgique fort.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <Steps
+    title="Prochaines dates 2026"
+    items={[
+      {
+        title: '20-22 février',
+        description: '«Ayons des faces de ressuscités»',
+        icon: 'tabler:star',
+      },
+      {
+        description: 'François-Xavier Amherdt. Week-end de Carême.',
+      },
+      {
+        title: '2-5 avril',
+        description: '«Guetteurs de l\'Aube»',
+        icon: 'tabler:sunrise',
+      },
+      {
+        description: 'Corinne Gossauer, Guy Luisier. Trois Jours Saints.',
+      },
+      {
+        title: '1-3 mai',
+        description: '«Elisabeth et Marie, une rencontre et nos rencontres»',
+        icon: 'tabler:flower',
+      },
+      {
+        description: 'Corinne Gossauer.',
+      },
+    ]}
+  />
+
+  <Content
+    tagline="Une journée type"
+    title="Le rythme d'un week-end"
+    items={[
+      {
+        title: 'Vendredi soir',
+        description: 'Arrivée 18h30, accueil, repas du soir, premier enseignement, prière du soir.',
+      },
+      {
+        title: 'Samedi',
+        description: 'Laudes 7h, petit déjeuner, enseignement, Eucharistie, repas de midi, temps libre, enseignement, repas du soir, vêpres.',
+      },
+      {
+        title: 'Dimanche',
+        description: 'Laudes, petit déjeuner, enseignement final, Eucharistie, repas de midi, départ 15h.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Un rythme qui nourrit
+      </h3>
+      Prière, enseignements, silence et temps personnel. Chaque journée est rythmée pour permettre l'intériorisation
+      et la rencontre avec Dieu.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <Testimonials
+    title="Ils ont vécu un week-end"
+    testimonials={[
+      {
+        testimonial: `Ses paroles nous ont touchés en profondeur.`,
+        name: 'Claire et Pierre',
+        job: 'Couple retraitant',
+      },
+      {
+        testimonial: `Merci de si bien nous accueillir, nous les assoiffés de l'Essentiel !`,
+        name: 'Jacques',
+        job: 'Retraitant',
+      },
+      {
+        testimonial: `Quand je suis entré au Foyer, j'ai ressenti un immense sentiment de paix.`,
+        name: 'François',
+        job: 'Retraitant',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Testimonials>
+
+  <Content
+    tagline="Participation financière"
+    title="Tarifs et inscription"
+    items={[
+      {
+        title: 'CHF 360.- suggéré',
+        description: 'Soit CHF 120.- par jour. Pension complète incluse (hébergement, 3 repas par jour).',
+      },
+      {
+        title: 'Personne n\'est refusé',
+        description: 'Chacun évalue sa participation selon ses moyens. Personne n\'est refusé pour raisons financières.',
+      },
+      {
+        title: 'Inscription',
+        description: 'Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Une proposition accessible
+      </h3>
+      Le prix suggéré permet au Foyer de fonctionner. Si vos moyens sont limités, n'hésitez pas à nous en parler.
+      L'essentiel est que vous puissiez vivre cette retraite.
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Réserver mon week-end',
+        href: '/contact/inscription',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        text: 'Voir toutes les retraites',
+        href: '/retraites',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Prêt à vivre <span class="text-accent-400">trois jours</span> de ressourcement ?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Inscrivez-vous dès maintenant ou contactez-nous pour toute question.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

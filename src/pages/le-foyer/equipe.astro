@@ -1,0 +1,160 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+
+const metadata = {
+  title: 'L\'équipe — Foyer de Charité Dents-du-Midi',
+  description: 'Découvrez l\'équipe du Foyer : prêtre, intendant, communauté et bénévoles au service de l\'accueil.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero
+    tagline="Présentation"
+    title="L'équipe du Foyer"
+    subtitle="Une communauté de prêtres, laïcs et bénévoles au service de l'accueil et du ressourcement spirituel."
+  />
+
+  <!-- Équipe principale -->
+  <Content
+    isReversed
+    image={{
+      src: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Équipe du Foyer',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Les membres de <span class="text-accent-400">la communauté</span>
+      </h2>
+      <div class="space-y-4 text-muted">
+        <div>
+          <h3 class="text-lg font-semibold text-primary-600">P. Guy Luisier</h3>
+          <p class="text-sm">Prêtre du Foyer (depuis 2023)</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-primary-600">Olivier Sudan</h3>
+          <p class="text-sm">Intendant</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-primary-600">Giovanna Tassano</h3>
+          <p class="text-sm">Membre de l'équipe (venue du Foyer de la Flatière)</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-primary-600">Sandra, Cristina, Monika</h3>
+          <p class="text-sm">Employées de maison et cuisinières</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-primary-600">Georges Mariétan</h3>
+          <p class="text-sm">Président de l'Association</p>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Structure de gouvernance -->
+  <Features
+    id="gouvernance"
+    tagline="Gouvernance"
+    title="Une structure <span class='text-accent-400'>collaborative</span>"
+    subtitle="Le Foyer est animé par différents organes qui travaillent en synergie pour sa mission spirituelle et son bon fonctionnement."
+    items={[
+      {
+        title: 'Trio de direction',
+        description: 'Prêtre du Foyer + Intendant + Président de l\'Association',
+        icon: 'tabler:users-group',
+      },
+      {
+        title: 'Comité de l\'Association',
+        description: 'Organe de gouvernance de l\'association du Foyer',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'Conseil pastoral',
+        description: 'Accompagnement spirituel et orientation pastorale',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        title: 'Équipe communautaire',
+        description: 'Membres vivant et travaillant au quotidien au Foyer',
+        icon: 'tabler:home',
+      },
+      {
+        title: 'Amis du Foyer',
+        description: 'Réseau de bénévoles soutenant la mission par leur engagement',
+        icon: 'tabler:friends',
+      },
+      {
+        title: 'Personnel',
+        description: 'Équipe salariée : cuisine, entretien, accueil',
+        icon: 'tabler:tool',
+      },
+    ]}
+  />
+
+  <!-- Citation -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl bg-surface-special">
+    <blockquote class="text-center">
+      <p class="text-xl md:text-2xl font-medium text-primary-600 mb-6 italic">
+        "Par leur vie fraternelle et leur accueil, par leur prière et leur travail, ils essaient de vivre concrètement
+        l'amour de Dieu, afin d'être des <span class="text-accent-400">'visages de son Amour'</span>."
+      </p>
+      <cite class="text-muted">— Charte des Foyers de Charité</cite>
+    </blockquote>
+  </section>
+
+  <!-- Devenir bénévole -->
+  <Content
+    isReversed
+    items={[
+      {
+        title: 'Engagement spirituel',
+        description: 'Une semaine de service après avoir vécu une retraite',
+        icon: 'tabler:heart',
+      },
+      {
+        title: 'Missions variées',
+        description: 'Service des retraitants, lingerie, jardinage, peinture',
+        icon: 'tabler:list-check',
+      },
+      {
+        title: 'Dès 15 ans',
+        description: 'Ouvert aux jeunes et adultes de tous âges',
+        icon: 'tabler:users',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
+      alt: 'Bénévoles au Foyer',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Rejoindre les <span class="text-accent-400">Amis du Foyer</span>
+      </h2>
+      <p class="text-muted mb-4">
+        Vous pouvez contribuer à la vie du Foyer en offrant une semaine de service bénévole. Une expérience de partage
+        et de fraternité au cœur de la communauté.
+      </p>
+      <div class="mt-6">
+        <a
+          href="/soutenir"
+          class="inline-block bg-accent-400 text-white font-semibold py-3 px-6 rounded-lg hover:bg-accent-500 transition-colors duration-200"
+        >
+          En savoir plus
+        </a>
+      </div>
+    </Fragment>
+  </Content>
+</Layout>

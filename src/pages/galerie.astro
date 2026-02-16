@@ -1,0 +1,123 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Galerie photos — Foyer de Charité Dents-du-Midi',
+  description: 'Découvrez le Foyer de Charité en images : bâtiment, parc, chapelle, vie communautaire.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero tagline="Images">
+    <Fragment slot="title">
+      Galerie <span class="text-accent-400">photos</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">Découvrez le Foyer de Charité en images.</Fragment>
+  </Hero>
+
+  <!-- Placeholder Content -->
+  <Content
+    isReversed
+    image={{
+      src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Vue sur les Dents-du-Midi',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Photos à <span class="text-accent-400">venir</span>
+      </h2>
+      <div class="space-y-4 text-muted">
+        <p>
+          Nous préparons actuellement une galerie de photos pour vous permettre de découvrir le Foyer en images :
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Le bâtiment et son parc de 7 hectares</li>
+          <li>La chapelle avec vue sur les Dents-du-Midi</li>
+          <li>Les chambres et espaces de vie</li>
+          <li>La vie communautaire et les moments de prière</li>
+          <li>Les paysages environnants</li>
+        </ul>
+        <p class="mt-6">
+          En attendant, n'hésitez pas à nous contacter pour toute question ou pour recevoir plus d'informations sur
+          le Foyer.
+        </p>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Aperçu visuel -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-7xl">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Aperçu du <span class="text-accent-400">cadre</span>
+      </h2>
+      <p class="text-muted">Un lieu de paix au cœur des Alpes vaudoises</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <img
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+          alt="Paysage montagneux"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-4 bg-white">
+          <p class="text-sm font-semibold text-primary-600">Vue sur les Alpes</p>
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <img
+          src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+          alt="Parc et verdure"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-4 bg-white">
+          <p class="text-sm font-semibold text-primary-600">Parc de 7 hectares</p>
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <img
+          src="https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+          alt="Chapelle"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-4 bg-white">
+          <p class="text-sm font-semibold text-primary-600">Chapelle du Foyer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Découvrir les retraites',
+        href: '/retraites',
+      },
+      {
+        text: 'Nous contacter',
+        href: '/contact',
+      },
+    ]}
+  >
+    <Fragment slot="title">Venez découvrir le Foyer en personne</Fragment>
+
+    <Fragment slot="subtitle">
+      La meilleure façon de découvrir le Foyer est de venir y vivre une retraite. Inscrivez-vous dès maintenant.
+    </Fragment>
+  </CallToAction>
+</Layout>

@@ -1,0 +1,177 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Week-end familles',
+  description: 'Week-ends spirituels pour familles au Foyer Dents-du-Midi. Programme adapté petits et grands.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero>
+    <Fragment slot="title">
+      La foi <span class="text-accent-400">en famille</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Un week-end pour vivre la foi ensemble, petits et grands. Thématiques actuelles et moments de partage.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600/5"></div>
+    </Fragment>
+  </Hero>
+
+  <Content
+    tagline="Le format"
+    title="Vivre la foi en famille"
+    items={[
+      {
+        title: 'Programme adapté',
+        description: 'Activités pour les enfants et les adultes, temps de partage en famille.',
+      },
+      {
+        title: 'Thématiques actuelles',
+        description: 'Laudato Si, écologie intégrale, vie en famille.',
+      },
+      {
+        title: 'Participation libre',
+        description: 'Les parents évaluent eux-mêmes leur participation financière.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Ensemble, petits et grands
+      </h3>
+      Des week-ends conçus pour toute la famille. Chacun vit des temps adaptés à son âge, et des moments forts
+      sont partagés ensemble : repas, célébrations, activités communes.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <Steps
+    title="Prochaine date 2026"
+    items={[
+      {
+        title: '29 mai - 1 juin',
+        description: 'Week-end familles Ascension',
+        icon: 'tabler:home-heart',
+      },
+      {
+        description: 'Christian et Marie-France Thurre. Week-end prolongé.',
+      },
+    ]}
+  />
+
+  <Content
+    tagline="Une journée type"
+    title="Le rythme d'un week-end famille"
+    items={[
+      {
+        title: 'Jeudi soir',
+        description: 'Arrivée, accueil des familles, installation, repas du soir, veillée d\'ouverture.',
+      },
+      {
+        title: 'Vendredi et samedi',
+        description: 'Prière du matin en famille, ateliers par âge, temps en famille, activités créatives, jeux, Eucharistie, veillées.',
+      },
+      {
+        title: 'Dimanche',
+        description: 'Prière, dernière activité en famille, Eucharistie, repas de midi, départ.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Chacun à son rythme
+      </h3>
+      Les enfants vivent des activités adaptées à leur âge (ateliers, jeux, prière). Les parents participent
+      à des temps de réflexion et de partage. Et régulièrement, toute la famille se retrouve.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <Testimonials
+    title="Ils ont vécu un week-end famille"
+    testimonials={[
+      {
+        testimonial: `La beauté simple de ce lieu sait si bien chanter Dieu !`,
+        name: 'P. et R.G.',
+        job: 'Famille retraitante',
+      },
+      {
+        testimonial: `Merci de si bien nous accueillir, nous les assoiffés de l'Essentiel !`,
+        name: 'Jacques',
+        job: 'Père de famille',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Testimonials>
+
+  <Content
+    tagline="Participation financière"
+    title="Tarifs et inscription"
+    items={[
+      {
+        title: 'Participation libre',
+        description: 'Les parents évaluent eux-mêmes leur participation financière selon leurs moyens.',
+      },
+      {
+        title: 'Suggestion indicative',
+        description: 'CHF 100-150.- par adulte et par jour, CHF 50.- par enfant et par jour. Mais c\'est vous qui décidez.',
+      },
+      {
+        title: 'Personne n\'est refusé',
+        description: 'L\'essentiel est que les familles puissent vivre ce temps ensemble. Le reste s\'arrange.',
+      },
+      {
+        title: 'Inscription',
+        description: 'Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne. Précisez l\'âge et le nombre d\'enfants.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Accessible à toutes les familles
+      </h3>
+      Le principe de la participation libre permet à chaque famille de participer selon ses moyens.
+      Personne n'est refusé pour raisons financières.
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Vivre la foi en famille',
+        href: '/contact/inscription',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        text: 'Voir toutes les retraites',
+        href: '/retraites',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Prêt à vivre un <span class="text-accent-400">week-end en famille</span> ?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Inscrivez-vous dès maintenant ou contactez-nous pour toute question. N'oubliez pas de préciser l'âge de vos enfants.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

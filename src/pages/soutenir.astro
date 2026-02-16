@@ -1,0 +1,213 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Soutenir le Foyer — Foyer de Charité Dents-du-Midi',
+  description: 'Soutenez le Foyer par la prière, le bénévolat ou un don financier.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero tagline="Engagement">
+    <Fragment slot="title">
+      Soutenir le <span class="text-accent-400">Foyer</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Trois manières de contribuer à la mission du Foyer : prière, bénévolat et soutien financier.
+    </Fragment>
+  </Hero>
+
+  <!-- Trois formes de soutien -->
+  <Features
+    id="soutien"
+    title="Comment <span class='text-accent-400'>nous soutenir</span>"
+    subtitle="Chacun peut contribuer selon ses moyens et ses charismes à la mission du Foyer de Charité."
+    items={[
+      {
+        title: 'Prière',
+        description: 'Communier à la prière quotidienne du Foyer et porter dans votre cœur sa mission spirituelle',
+        icon: 'tabler:heart',
+      },
+      {
+        title: 'Bénévolat',
+        description:
+          'Offrir une semaine de service (dès 15 ans, après une retraite) : service, lingerie, jardinage, peinture',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        title: 'Dons financiers',
+        description:
+          'Soutenir les travaux d\'amélioration, le fonctionnement courant et les salaires du personnel',
+        icon: 'tabler:coin',
+      },
+    ]}
+  />
+
+  <!-- Prière -->
+  <Content
+    isReversed
+    image={{
+      src: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Prière',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Soutien par la <span class="text-accent-400">prière</span>
+      </h2>
+      <div class="space-y-4 text-muted">
+        <p>
+          Le premier soutien que vous pouvez apporter au Foyer est votre prière. Communiez spirituellement à la vie
+          de prière de la communauté et portez dans votre cœur la mission d'accueil et d'évangélisation du Foyer.
+        </p>
+        <p>
+          Vous pouvez demander à recevoir régulièrement des intentions de prière et des nouvelles du Foyer en nous
+          contactant.
+        </p>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Bénévolat -->
+  <Content
+    items={[
+      {
+        title: 'Semaine de service',
+        description: 'Une semaine complète d\'engagement au service des retraitants et de la communauté',
+        icon: 'tabler:calendar-week',
+      },
+      {
+        title: 'Missions variées',
+        description: 'Service des retraitants, lingerie, jardinage, peinture, entretien',
+        icon: 'tabler:list-check',
+      },
+      {
+        title: 'Dès 15 ans',
+        description: 'Ouvert aux jeunes et adultes de tous âges, après avoir vécu une retraite',
+        icon: 'tabler:users',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
+      alt: 'Bénévolat',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Bénévolat et <span class="text-accent-400">service</span>
+      </h2>
+      <div class="space-y-4 text-muted">
+        <p>
+          Après avoir vécu une retraite au Foyer, vous pouvez offrir une semaine de service bénévole. Une expérience
+          de partage, de fraternité et de don de soi au cœur de la communauté.
+        </p>
+        <p>
+          Le réseau des "Amis du Foyer" rassemble tous ceux qui soutiennent activement la mission par leur
+          engagement concret et leur présence.
+        </p>
+        <div class="mt-6">
+          <a
+            href="/contact"
+            class="inline-block bg-accent-400 text-white font-semibold py-3 px-6 rounded-lg hover:bg-accent-500 transition-colors duration-200"
+          >
+            Devenir bénévole
+          </a>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Dons financiers -->
+  <Content
+    isReversed
+    image={{
+      src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Soutien financier',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Soutien <span class="text-accent-400">financier</span>
+      </h2>
+      <div class="space-y-4 text-muted">
+        <p>
+          Le Foyer de Charité fonctionne grâce à la générosité des retraitants et des donateurs. Vos dons permettent
+          de financer :
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Les travaux d'amélioration et de rénovation du bâtiment</li>
+          <li>Le fonctionnement courant (chauffage, électricité, nourriture)</li>
+          <li>Les salaires du personnel (cuisinières, entretien)</li>
+          <li>L'accueil de personnes en difficulté financière</li>
+        </ul>
+
+        <div class="mt-6 p-4 bg-accent-50 rounded-lg">
+          <p class="text-sm font-semibold text-primary-600 mb-3">Coordonnées bancaires (PostFinance) :</p>
+          <p class="text-sm">
+            <strong>FOYER DENTS DU MIDI 1880 BEX</strong><br />
+            IBAN : <span class="font-mono">CH49 0900 0000 1001 2392 5</span>
+          </p>
+        </div>
+
+        <p class="text-sm italic mt-4">
+          Un reçu fiscal peut vous être délivré sur demande. Le Foyer est une association à but non lucratif.
+        </p>
+
+        <p class="text-sm mt-4">
+          <strong>Legs testamentaires :</strong> Le Foyer accepte les legs testamentaires. Pour plus d'informations,
+          contactez-nous.
+        </p>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Citation -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl bg-surface-special">
+    <blockquote class="text-center">
+      <p class="text-xl md:text-2xl font-medium text-primary-600 mb-6 italic">
+        "Hommes et femmes, prêtres et laïcs, mettent en commun leurs biens, leurs compétences et leurs charismes,
+        afin d'être des <span class="text-accent-400">'visages de son Amour'</span>."
+      </p>
+      <cite class="text-muted">— Charte des Foyers de Charité</cite>
+    </blockquote>
+  </section>
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Nous contacter',
+        href: '/contact',
+      },
+      {
+        text: 'Découvrir le Foyer',
+        href: '/le-foyer',
+      },
+    ]}
+  >
+    <Fragment slot="title">Merci de votre soutien</Fragment>
+
+    <Fragment slot="subtitle">
+      Chaque geste, chaque prière, chaque heure donnée contribue à la mission du Foyer. Merci d'être à nos côtés.
+    </Fragment>
+  </CallToAction>
+</Layout>

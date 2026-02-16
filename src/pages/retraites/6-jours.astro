@@ -1,0 +1,246 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Retraites de six jours',
+  description: 'Retraites spirituelles de 6 jours au Foyer de Charité Dents-du-Midi. Silence, enseignements, accompagnement spirituel. Dès CHF 720.-',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero>
+    <Fragment slot="title">
+      Retraites de <span class="text-accent-400">six jours</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Six jours pour cheminer dans le mystère de la foi en approfondissant un thème particulier. Le format historique des Foyers de Charité.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600/5"></div>
+    </Fragment>
+  </Hero>
+
+  <Content
+    tagline="Le format"
+    title="Un itinéraire spirituel complet"
+    items={[
+      {
+        title: 'Dimanche 18h30 → Samedi 10h',
+        description: '5 nuits en pension complète dans un cadre de silence face aux Dents-du-Midi.',
+      },
+      {
+        title: '2 enseignements quotidiens',
+        description: 'Conférences par des prédicateurs de qualité : prêtres, théologiens, auteurs spirituels.',
+      },
+      {
+        title: 'Accompagnement spirituel',
+        description: 'Possibilité d\'accompagnement individuel. Eucharistie quotidienne. Adoration.',
+      },
+      {
+        title: 'Variantes saisonnières',
+        description: 'Raquettes en hiver, randonnées en été, retraite pascale «oasis».',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Un itinéraire spirituel
+      </h3>
+      Six jours pour cheminer dans le mystère de la foi en approfondissant un thème particulier selon la retraite choisie :
+      un témoin de la foi, des paroles bibliques, un temps de l'année liturgique, un aspect fondamental de la foi chrétienne...
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <Steps
+    title="Prochaines dates 2026"
+    items={[
+      {
+        title: '1-7 février',
+        description: '«Dieu est-il si invisible que ça ?»',
+        icon: 'tabler:snowflake',
+      },
+      {
+        description: 'Guy Luisier, Pascal Dorsaz. Variante raquettes.',
+      },
+      {
+        title: '12-18 avril',
+        description: '«Vers quel Emmaüs allons-nous ?»',
+        icon: 'tabler:egg',
+      },
+      {
+        description: 'Guy Luisier. Retraite pascale «oasis».',
+      },
+      {
+        title: '5-11 juillet',
+        description: '«Mon cœur a frémi de paroles bonnes»',
+        icon: 'tabler:sun',
+      },
+      {
+        description: 'Thierry Collaud.',
+      },
+      {
+        title: '12-18 juillet',
+        description: '«Ce Samaritain est de ma famille !»',
+        icon: 'tabler:heart',
+      },
+      {
+        description: 'Guy Luisier.',
+      },
+      {
+        title: '9-15 août',
+        description: '«Cheminer avec Matthieu et quelques témoins»',
+        icon: 'tabler:mountain',
+      },
+      {
+        description: 'Barbara Francey, Guy Luisier. Variante randonnées.',
+      },
+      {
+        title: '16-22 août',
+        description: '«Les mots qui blessent, la Parole qui guérit»',
+        icon: 'tabler:leaf',
+      },
+      {
+        description: 'Joël Pralong.',
+      },
+    ]}
+  />
+
+  <Content
+    tagline="Une journée type"
+    title="Le rythme d'une retraite de 6 jours"
+    items={[
+      {
+        title: '7h00 — Laudes',
+        description: 'Prière du matin en communauté.',
+      },
+      {
+        title: '8h00 — Petit déjeuner',
+        description: 'Silence.',
+      },
+      {
+        title: '9h30 — Premier enseignement',
+        description: 'Conférence du prédicateur.',
+      },
+      {
+        title: '11h45 — Eucharistie',
+        description: 'Messe quotidienne.',
+      },
+      {
+        title: '13h00 — Repas de midi',
+        description: 'Silence.',
+      },
+      {
+        title: '14h30-17h30 — Temps libre',
+        description: 'Promenade, lecture, accompagnement spirituel, adoration.',
+      },
+      {
+        title: '17h30 — Deuxième enseignement',
+        description: 'Conférence du prédicateur.',
+      },
+      {
+        title: '19h00 — Repas du soir',
+        description: 'Silence.',
+      },
+      {
+        title: '20h30 — Vêpres',
+        description: 'Prière du soir en communauté.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Un rythme qui nourrit
+      </h3>
+      Prière, enseignements, silence et temps personnel. Chaque journée est rythmée pour permettre l'intériorisation
+      et la rencontre avec Dieu.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <Testimonials
+    title="Ils ont vécu une retraite de 6 jours"
+    testimonials={[
+      {
+        testimonial: `Toute ma reconnaissance pour l'accueil chaleureux et le silence tellement habité de l'Essentiel.`,
+        name: 'R.B.',
+        job: 'Retraitant',
+      },
+      {
+        testimonial: `La beauté simple de ce lieu sait si bien chanter Dieu !`,
+        name: 'P. et R.G.',
+        job: 'Couple retraitant',
+      },
+      {
+        testimonial: `Quand je suis entré au Foyer, j'ai ressenti un immense sentiment de paix.`,
+        name: 'François',
+        job: 'Retraitant',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Testimonials>
+
+  <Content
+    tagline="Participation financière"
+    title="Tarifs et inscription"
+    items={[
+      {
+        title: 'CHF 720.- suggéré',
+        description: 'Soit CHF 120.- par jour. Pension complète incluse (hébergement, 3 repas par jour).',
+      },
+      {
+        title: 'Personne n\'est refusé',
+        description: 'Chacun évalue sa participation selon ses moyens. Personne n\'est refusé pour raisons financières.',
+      },
+      {
+        title: 'Inscription',
+        description: 'Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Une proposition accessible
+      </h3>
+      Le prix suggéré permet au Foyer de fonctionner. Si vos moyens sont limités, n'hésitez pas à nous en parler.
+      L'essentiel est que vous puissiez vivre cette retraite.
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Réserver ma retraite de 6 jours',
+        href: '/contact/inscription',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        text: 'Voir toutes les retraites',
+        href: '/retraites',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Prêt à vivre <span class="text-accent-400">six jours</span> face aux Dents-du-Midi ?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Inscrivez-vous dès maintenant ou contactez-nous pour toute question.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

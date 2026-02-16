@@ -1,0 +1,220 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features from '~/components/widgets/Features.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Préparation au mariage',
+  description: 'Préparation au mariage au Foyer Dents-du-Midi. CHF 200.- par couple. En partenariat avec le Diocèse de Sion.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero>
+    <Fragment slot="title">
+      Préparation au <span class="text-accent-400">mariage</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Préparez votre mariage autrement. Deux jours pour aborder les thèmes essentiels de l'engagement, dans un cadre exceptionnel.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600/5"></div>
+    </Fragment>
+  </Hero>
+
+  <Content
+    tagline="Le format"
+    title="Un week-end pour se préparer"
+    items={[
+      {
+        title: 'Samedi 9h30-18h30, Dimanche 8h30-16h30',
+        description: 'Deux jours complets d\'échanges et de réflexion.',
+      },
+      {
+        title: 'CHF 200.- par couple',
+        description: 'Paiement par TWINT. Hébergement possible sur place (frais en sus).',
+      },
+      {
+        title: 'Diocèse de Sion',
+        description: 'En partenariat avec le Diocèse de Sion. Couples animateurs et prêtre.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Préparer votre engagement
+      </h3>
+      Un week-end pour approfondir les dimensions essentielles du mariage chrétien : dialogue, pardon,
+      éducation, foi, vie conjugale. Animé par des couples expérimentés et un prêtre.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <Steps
+    title="Prochaines dates 2026"
+    items={[
+      {
+        title: '21-22 mars 2026',
+        description: 'Première session 2026',
+        icon: 'tabler:rings',
+      },
+      {
+        description: 'Inscription ouverte.',
+      },
+      {
+        title: '26-27 septembre 2026',
+        description: 'Deuxième session 2026',
+        icon: 'tabler:rings',
+      },
+      {
+        description: 'Inscription ouverte.',
+      },
+    ]}
+  />
+
+  <Content
+    tagline="Le programme"
+    title="Thèmes abordés durant le week-end"
+    items={[
+      {
+        title: 'Le sacrement du mariage',
+        description: 'Sens spirituel et théologique de l\'engagement. Préparation liturgique de la célébration.',
+      },
+      {
+        title: 'Dialogue et communication',
+        description: 'Apprendre à se parler, s\'écouter, se comprendre. Exercices pratiques en couple.',
+      },
+      {
+        title: 'Pardon et réconciliation',
+        description: 'Gérer les conflits, demander pardon, reconstruire après les blessures.',
+      },
+      {
+        title: 'Vie conjugale et affectivité',
+        description: 'Corps, affectivité, sexualité dans le mariage chrétien.',
+      },
+      {
+        title: 'Education et transmission',
+        description: 'Projet éducatif, transmission de la foi aux enfants.',
+      },
+      {
+        title: 'Vie matérielle et spirituelle',
+        description: 'Budget, organisation du foyer, place de la prière dans le couple.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Un programme complet
+      </h3>
+      Tous les aspects du mariage sont abordés : spirituels, humains, pratiques. Avec des temps d'enseignement,
+      de dialogue à deux et de partage en groupe.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <Features
+    title="Informations pratiques"
+    subtitle="Liens utiles pour préparer votre mariage"
+    items={[
+      {
+        title: 'Diocèse de Sion',
+        description: 'Information sur le sacrement du mariage dans le diocèse.',
+        icon: 'tabler:external-link',
+      },
+      {
+        title: 'Suisse Romande',
+        description: 'Portail de la pastorale familiale en Suisse Romande.',
+        icon: 'tabler:external-link',
+      },
+      {
+        title: 'Canton de Vaud',
+        description: 'Informations pour les mariages dans le canton de Vaud.',
+        icon: 'tabler:external-link',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Features>
+
+  <Testimonials
+    title="Ils ont préparé leur mariage au Foyer"
+    testimonials={[
+      {
+        testimonial: `Ses paroles nous ont touchés en profondeur.`,
+        name: 'Claire et Pierre',
+        job: 'Futurs mariés',
+      },
+      {
+        testimonial: `La beauté simple de ce lieu sait si bien chanter Dieu !`,
+        name: 'P. et R.G.',
+        job: 'Couple marié',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Testimonials>
+
+  <Content
+    tagline="Participation financière"
+    title="Tarifs et inscription"
+    items={[
+      {
+        title: 'CHF 200.- par couple',
+        description: 'Paiement par TWINT le jour même. Comprend les enseignements, les repas du samedi et dimanche midi.',
+      },
+      {
+        title: 'Hébergement possible',
+        description: 'Vous pouvez dormir sur place du samedi au dimanche (frais supplémentaires). A préciser lors de l\'inscription.',
+      },
+      {
+        title: 'Inscription obligatoire',
+        description: 'Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne. Places limitées.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Un prix accessible
+      </h3>
+      CHF 200.- pour deux jours de préparation complète, avec couples animateurs et prêtre.
+      Un investissement essentiel pour bien commencer votre vie conjugale.
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Préparer notre mariage',
+        href: '/contact/inscription',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        text: 'Voir toutes les retraites',
+        href: '/retraites',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Prêt à préparer votre <span class="text-accent-400">mariage</span> ?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Inscrivez-vous dès maintenant. Places limitées. Précisez si vous souhaitez dormir sur place.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

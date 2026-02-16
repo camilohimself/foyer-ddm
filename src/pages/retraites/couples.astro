@@ -1,0 +1,185 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Trois jours pour couples',
+  description: 'Week-ends spirituels pour couples au Foyer Dents-du-Midi. Accueil des enfants. Animation par des couples.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero>
+    <Fragment slot="title">
+      Trois jours pour <span class="text-accent-400">couples</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Donnez du souffle à votre couple. Un temps idéal pour approfondir un dialogue, une réflexion spirituelle et pratique sur la vie conjugale.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600/5"></div>
+    </Fragment>
+  </Hero>
+
+  <Content
+    tagline="Le format"
+    title="Un temps pour votre couple"
+    items={[
+      {
+        title: 'Vendredi 18h30 → Dimanche 15h',
+        description: '2 nuits en pension complète pour le couple.',
+      },
+      {
+        title: 'Accueil des enfants',
+        description: 'Enfants de 4 à 12 ans accueillis avec encadrement et animation spirituelle. Jeunes dès 15 ans peuvent aider.',
+      },
+      {
+        title: 'Couples animateurs',
+        description: 'Animé par des couples expérimentés et un prêtre. Dialogue et réflexion conjugale.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Dialogue et spiritualité conjugale
+      </h3>
+      Un week-end conçu pour les couples, avec ou sans enfants. Réflexion sur les défis concrets du mariage,
+      enseignements spirituels, temps de dialogue à deux et partage en groupe.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <Steps
+    title="Prochaines dates 2026"
+    items={[
+      {
+        title: '13-15 mars',
+        description: '«En famille, vivre l\'hymne à l\'amour (1Co 13)»',
+        icon: 'tabler:hearts',
+      },
+      {
+        description: 'Elodie et Philibert Goulet, Guy Luisier. Accueil enfants.',
+      },
+      {
+        title: '24-26 avril',
+        description: '«Unis par l\'amour, fortifiés par la foi»',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        description: 'Bertrand et Françoise Georges. Accueil enfants.',
+      },
+    ]}
+  />
+
+  <Content
+    tagline="Une journée type"
+    title="Le rythme du week-end couples"
+    items={[
+      {
+        title: 'Vendredi soir',
+        description: 'Arrivée 18h30, accueil, installation des enfants, repas du soir, premier enseignement.',
+      },
+      {
+        title: 'Samedi',
+        description: 'Enseignements couple, Eucharistie, temps de dialogue à deux, animation pour les enfants, partage en groupe.',
+      },
+      {
+        title: 'Dimanche',
+        description: 'Dernier enseignement, Eucharistie, repas de midi en famille, départ 15h.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Parents sereins, enfants contents
+      </h3>
+      Pendant que vous approfondissez votre dialogue conjugal, vos enfants vivent un programme adapté :
+      jeux, temps spirituels, activités créatives. Ils sont entre de bonnes mains.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <Testimonials
+    title="Ils ont vécu un week-end couple"
+    testimonials={[
+      {
+        testimonial: `Ses paroles nous ont touchés en profondeur.`,
+        name: 'Claire et Pierre',
+        job: 'Couple retraitant',
+      },
+      {
+        testimonial: `P. et R.G.`,
+        name: 'P. et R.G.',
+        job: 'Couple retraitant',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Testimonials>
+
+  <Content
+    tagline="Participation financière"
+    title="Tarifs et inscription"
+    items={[
+      {
+        title: 'CHF 360.- suggéré par adulte',
+        description: 'Soit CHF 120.- par jour et par personne. Pension complète incluse.',
+      },
+      {
+        title: 'Accueil enfants',
+        description: 'Enfants de 4 à 12 ans : hébergement et animation inclus dans la participation du couple.',
+      },
+      {
+        title: 'Personne n\'est refusé',
+        description: 'Chacun évalue sa participation selon ses moyens. Personne n\'est refusé pour raisons financières.',
+      },
+      {
+        title: 'Inscription',
+        description: 'Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne. Précisez l\'âge des enfants.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Une proposition accessible
+      </h3>
+      Le prix suggéré permet au Foyer de fonctionner. Si vos moyens sont limités, n'hésitez pas à nous en parler.
+      L'essentiel est que vous puissiez vivre ce week-end en couple.
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Nous inscrire en couple',
+        href: '/contact/inscription',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        text: 'Voir toutes les retraites',
+        href: '/retraites',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Prêt à vivre <span class="text-accent-400">trois jours</span> en couple ?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Inscrivez-vous dès maintenant ou contactez-nous pour toute question. N'oubliez pas de préciser l'âge de vos enfants.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

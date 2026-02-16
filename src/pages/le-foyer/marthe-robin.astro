@@ -1,0 +1,185 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Marthe Robin — Foyer de Charité Dents-du-Midi',
+  description: 'Marthe Robin, fondatrice des Foyers de Charité avec le père Georges Finet, une figure spirituelle du XXe siècle.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero tagline="Fondatrice">
+    <Fragment slot="title">
+      Marthe Robin et les <span class="text-accent-400">Foyers de Charité</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Figure spirituelle majeure du XXe siècle, Marthe Robin a inspiré la création de 77 Foyers de Charité dans le
+      monde.
+    </Fragment>
+  </Hero>
+
+  <!-- Biographie -->
+  <Content
+    isReversed
+    image={{
+      src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Portrait spirituel',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Une vie de <span class="text-accent-400">foi et de souffrance</span>
+      </h2>
+      <div class="space-y-4 text-muted">
+        <p>
+          Marthe Robin (1902-1981) est une figure spirituelle française du XXe siècle. Fille d'agriculteurs, elle est
+          frappée par la maladie dès sa jeunesse et ne quittera plus son village de Châteauneuf-de-Galaure dans la
+          Drôme.
+        </p>
+        <p>
+          Malgré ses souffrances, Marthe Robin a reçu plus de 100'000 personnes au cours de sa vie. Son rayonnement
+          spirituel a inspiré des milliers de personnes à travers le monde.
+        </p>
+        <p>
+          Elle n'a pas quitté son village pendant plus de 50 ans, mais son influence a traversé les frontières. C'est
+          depuis son lit de souffrance qu'elle a inspiré la création des Foyers de Charité, dont celui des Dents-du-Midi
+          en 1970.
+        </p>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Citation de Marthe Robin -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl bg-surface-special">
+    <blockquote class="text-center">
+      <p class="text-xl md:text-2xl font-medium text-primary-600 mb-6 italic leading-relaxed">
+        "Chercher Dieu c'est la foi<br />
+        le trouver, c'est l'espérance<br />
+        le connaître, c'est l'amour<br />
+        le sentir, c'est la paix<br />
+        le goûter, c'est la joie<br />
+        le posséder, c'est <span class="text-accent-400">l'ivresse</span>"
+      </p>
+      <cite class="text-muted">— Marthe Robin</cite>
+    </blockquote>
+  </section>
+
+  <!-- Dates clés -->
+  <Features
+    id="dates-cles"
+    tagline="Dates clés"
+    title="Les étapes d'une <span class='text-accent-400'>vie spirituelle</span>"
+    items={[
+      {
+        title: '13 mars 1902',
+        description: 'Naissance à Châteauneuf-de-Galaure (Drôme, France)',
+        icon: 'tabler:baby-carriage',
+      },
+      {
+        title: '1925',
+        description: 'Acte d\'abandon total à Dieu, tournant spirituel décisif',
+        icon: 'tabler:heart',
+      },
+      {
+        title: '1930',
+        description: 'Première expression de l\'idée de "Foyer de lumière et d\'amour"',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: '1934',
+        description: 'Création d\'une école dans le village, premier fruit de son rayonnement',
+        icon: 'tabler:school',
+      },
+      {
+        title: '10 février 1936',
+        description: 'Rencontre décisive avec l\'abbé Georges Finet, futur co-fondateur des Foyers',
+        icon: 'tabler:users',
+      },
+      {
+        title: '6 février 1981',
+        description: 'Décès à Châteauneuf-de-Galaure, après une vie d\'offrande',
+        icon: 'tabler:rosette',
+      },
+    ]}
+  />
+
+  <!-- Les Foyers de Charité aujourd'hui -->
+  <Content
+    items={[
+      {
+        title: '77 Foyers dans le monde',
+        description: 'Présents sur 5 continents, les Foyers accueillent des milliers de retraitants chaque année',
+        icon: 'tabler:world',
+      },
+      {
+        title: 'Une même inspiration',
+        description: 'Tous animés par le charisme de Marthe Robin et du père Georges Finet',
+        icon: 'tabler:flame',
+      },
+      {
+        title: 'Réseau international',
+        description: 'Une famille spirituelle unie par la prière et la mission d\'évangélisation',
+        icon: 'tabler:link',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Réseau des Foyers de Charité',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Une famille <span class="text-accent-400">mondiale</span>
+      </h2>
+      <p class="text-muted mb-4">
+        Aujourd'hui, 77 Foyers de Charité dans le monde poursuivent la mission inspirée par Marthe Robin : accueillir,
+        écouter, et accompagner vers une rencontre profonde avec Dieu.
+      </p>
+      <div class="mt-6">
+        <a
+          href="https://www.lesfoyersdecharite.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center text-accent-400 hover:underline font-semibold"
+        >
+          Découvrir le réseau international
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
+        </a>
+      </div>
+    </Fragment>
+  </Content>
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Vivre une retraite',
+        href: '/retraites',
+      },
+      {
+        text: 'Notre histoire',
+        href: '/le-foyer/histoire',
+      },
+    ]}
+  >
+    <Fragment slot="title">Découvrir l'héritage de Marthe Robin</Fragment>
+
+    <Fragment slot="subtitle">
+      Venez vivre l'expérience d'une retraite spirituelle au Foyer de Charité Dents-du-Midi, dans l'esprit de Marthe
+      Robin.
+    </Fragment>
+  </CallToAction>
+</Layout>

@@ -1,0 +1,167 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Le Foyer de Charité — Dents-du-Midi',
+  description: 'Le seul Foyer de Charité en Suisse. Un lieu de ressourcement spirituel depuis 1970.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero
+    tagline="Présentation"
+    actions={[
+      { variant: 'primary', text: 'Découvrir les retraites', href: '/retraites' },
+      { text: 'Notre équipe', href: '/le-foyer/equipe' },
+    ]}
+  >
+    <Fragment slot="title">
+      Le Foyer de Charité <span class="text-accent-400">Dents-du-Midi</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Le seul Foyer de Charité en Suisse. Un lieu de ressourcement spirituel depuis 1970.
+    </Fragment>
+  </Hero>
+
+  <!-- Un lieu d'exception -->
+  <Content
+    isReversed
+    image={{
+      src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Paysage des Dents-du-Midi',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Un écrin de <span class="text-accent-400">verdure</span>
+      </h2>
+      <p class="text-muted mb-4">
+        En Suisse romande, aux confins sud-est du canton de Vaud dans le Chablais vaudois, Bex est une charmante petite
+        bourgade sise au pied des montagnes, dans un écrin de verdure, à quelques kilomètres des rives du lac Léman et
+        aux portes du Valais.
+      </p>
+      <p class="text-muted">
+        Il est un autre lieu dans cette commune de Bex, qui ouvre aux profondeurs et donne saveur à la vie : le Foyer
+        de Charité Dents-du-Midi : un ancien hôtel transformé en 1970 en espace de ressourcement spirituel, relié à la
+        grande famille des Foyers de Charité, créés en France par Marthe Robin et le père Georges Finet.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Chiffres clés -->
+  <Features
+    id="features"
+    tagline="En chiffres"
+    title="55 ans au service de <span class='text-accent-400'>l'essentiel</span>"
+    items={[
+      {
+        title: '55+ ans',
+        description: 'D\'histoire et d\'accueil spirituel depuis 1970',
+        icon: 'tabler:calendar-event',
+      },
+      {
+        title: 'Seul en Suisse',
+        description: 'L\'unique Foyer de Charité en Suisse',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: '7 hectares',
+        description: 'De parc et jardins pour se ressourcer',
+        icon: 'tabler:trees',
+      },
+      {
+        title: 'Vue sur les Alpes',
+        description: 'Chapelle face aux Dents-du-Midi',
+        icon: 'tabler:mountain',
+      },
+      {
+        title: '17 retraites',
+        description: 'Programmées en 2026',
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Équipe dédiée',
+        description: 'Prêtre, intendant, communauté et bénévoles',
+        icon: 'tabler:users',
+      },
+    ]}
+  />
+
+  <!-- Citation -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl bg-surface-special">
+    <blockquote class="text-center">
+      <p class="text-xl md:text-2xl font-medium text-primary-600 mb-6 italic">
+        "Hommes et femmes, prêtres et laïcs, mettent en commun leurs biens, leurs compétences et leurs charismes. Par
+        leur vie fraternelle et leur accueil, par leur prière et leur travail, ils essaient de vivre concrètement
+        l'amour de Dieu, afin d'être des <span class="text-accent-400">'visages de son Amour'</span>."
+      </p>
+      <cite class="text-muted">— Charte des Foyers de Charité</cite>
+    </blockquote>
+  </section>
+
+  <!-- En savoir plus -->
+  <Content
+    items={[
+      {
+        title: 'L\'équipe',
+        description: 'Découvrez les membres de la communauté et l\'équipe qui anime le Foyer au quotidien.',
+        icon: 'tabler:users',
+      },
+      {
+        title: '55 ans d\'histoire',
+        description: 'De 1970 à aujourd\'hui, retracez l\'histoire du seul Foyer de Charité de Suisse.',
+        icon: 'tabler:history',
+      },
+      {
+        title: 'Marthe Robin',
+        description: 'Fondatrice des Foyers de Charité avec le père Georges Finet, une figure spirituelle du XXe siècle.',
+        icon: 'tabler:heart',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Équipe du Foyer',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Pour aller <span class="text-accent-400">plus loin</span>
+      </h2>
+    </Fragment>
+  </Content>
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'L\'équipe',
+        href: '/le-foyer/equipe',
+      },
+      {
+        text: 'Notre histoire',
+        href: '/le-foyer/histoire',
+      },
+      {
+        text: 'Marthe Robin',
+        href: '/le-foyer/marthe-robin',
+      },
+    ]}
+  >
+    <Fragment slot="title">Découvrez le Foyer de Charité</Fragment>
+
+    <Fragment slot="subtitle">
+      Son équipe, son histoire et l'héritage spirituel de Marthe Robin qui guide notre mission depuis 55 ans.
+    </Fragment>
+  </CallToAction>
+</Layout>
