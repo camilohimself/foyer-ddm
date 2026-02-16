@@ -101,10 +101,7 @@ export const footerData = {
   secondaryLinks: [
     { text: 'Réseau des Foyers de Charité', href: 'https://www.lesfoyersdecharite.com/' },
   ],
-  socialLinks: [
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-  ],
+  socialLinks: [],
   footNote: `
     &copy; 2026 Foyer de Charité Dents-du-Midi · Tous droits réservés
   `,

@@ -2,7 +2,7 @@
 ---
 
 <style is:inline>
-  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap');
 
   :root {
     --aw-font-sans: 'Raleway', sans-serif;
@@ -14,12 +14,26 @@
     --aw-color-accent: rgb(241 154 12);
 
     --aw-color-text-heading: rgb(17 47 65);
-    --aw-color-text-default: rgb(56 56 68);
-    --aw-color-text-muted: rgb(107 107 123);
+    --aw-color-text-default: rgb(42 42 54);
+    --aw-color-text-muted: rgb(82 82 100);
     --aw-color-bg-page: rgb(255 255 255);
+  }
 
-    ::selection {
-      background-color: rgb(241 154 12 / 30%);
-    }
+  ::selection {
+    background-color: rgb(241 154 12 / 30%);
+  }
+
+  /* Renforcer le poids de base */
+  body {
+    font-weight: 500;
+  }
+
+  /* Alternance sections plus marquée */
+  .bg-surface-alt {
+    background-color: #F0F2F5 !important;
+  }
+
+  .bg-surface-special {
+    background-color: #E4E9F2 !important;
   }
 </style>

@@ -37,8 +37,8 @@ export default {
         },
         surface: {
           DEFAULT: '#FFFFFF',
-          alt: '#F7F7F7',
-          special: '#EEF1F8',
+          alt: '#F0F2F5',
+          special: '#E4E9F2',
         },
         default: 'var(--aw-color-text-default)',
         muted: 'var(--aw-color-text-muted)',
