@@ -43,7 +43,15 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-700 via-primary-600 to-primary-500"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/hero-mountains.jpg"
+          alt=""
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
     </Fragment>
   </Hero>
 
@@ -253,6 +261,7 @@ const metadata = {
 
   <!-- CTA bannière -->
   <CallToAction
+    isDark
     actions={[
       {
         variant: 'primary',
