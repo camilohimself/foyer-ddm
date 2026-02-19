@@ -101,3 +101,28 @@
 .dd *:first-child {
   margin-top: 0;
 }
+
+/* Wizard multi-step form */
+.wizard-step {
+  display: none;
+}
+
+.wizard-step.active {
+  display: block;
+  animation: slideIn 400ms ease both;
+}
+
+.wizard-step.exiting {
+  animation: slideOut 300ms ease both;
+}
+
+/* Radio card styles */
+.radio-card input[type='radio']:checked + label {
+  border-color: #F09A0A;
+  background-color: #FFF8E8;
+  box-shadow: 0 0 0 1px #F09A0A;
+}
+
+.radio-card input[type='radio']:focus + label {
+  box-shadow: 0 0 0 2px #FDD98A;
+}

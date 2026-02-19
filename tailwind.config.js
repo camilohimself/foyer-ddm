@@ -59,12 +59,22 @@ export default {
 
       animation: {
         fade: 'fadeInUp 1s both',
+        'slide-in': 'slideIn 400ms ease both',
+        'slide-out': 'slideOut 300ms ease both',
       },
 
       keyframes: {
         fadeInUp: {
           '0%': { opacity: 0, transform: 'translateY(2rem)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        slideIn: {
+          '0%': { opacity: 0, transform: 'translateX(30px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
+        },
+        slideOut: {
+          '0%': { opacity: 1, transform: 'translateX(0)' },
+          '100%': { opacity: 0, transform: 'translateX(-30px)' },
         },
       },
     },

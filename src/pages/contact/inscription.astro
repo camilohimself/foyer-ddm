@@ -1,264 +1,728 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
+import { getCollection } from 'astro:content';
 
 const metadata = {
-  title: 'S\'inscrire à une retraite',
-  description: 'Remplissez le formulaire d\'inscription. Vous recevrez une confirmation par email sous 48h.',
+  title: "S'inscrire à une retraite",
+  description: "Remplissez le formulaire d'inscription en 3 étapes. Vous recevrez une confirmation par email sous 48h.",
 };
+
+// TODO:OASIS — Remplacer par GET /api/events quand l'API sera disponible
+const allEvents = await getCollection('event');
+const events = allEvents
+  .filter((e) => e.data.registrationOpen)
+  .sort((a, b) => a.data.dateStart.localeCompare(b.data.dateStart));
+
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long' });
+}
+
+function formatEventLabel(event: (typeof events)[0]): string {
+  const start = formatDate(event.data.dateStart);
+  const end = event.data.dateEnd ? formatDate(event.data.dateEnd) : '';
+  const dateRange = end ? `${start} – ${end}` : start;
+  const variant = event.data.variant ? ` (${event.data.variant})` : '';
+  return `${dateRange} — «${event.data.title}»${variant}`;
+}
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Section -->
   <Hero
     tagline="Inscription"
     title="S'inscrire à une retraite"
-    subtitle="Remplissez le formulaire ci-dessous. Vous recevrez une confirmation par email sous 48h."
+    subtitle="Complétez votre inscription en 3 étapes simples. Vous recevrez une confirmation par email sous 48h."
   />
 
-  <!-- Formulaire d'inscription -->
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
-    <div class="mb-8 text-center">
-      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">Formulaire d'inscription</h2>
-      <p class="text-muted">
-        Complétez ce formulaire pour vous inscrire à une retraite. Nous vous contacterons rapidement pour confirmer
-        votre inscription.
-      </p>
+
+    <!-- Progress Bar -->
+    <div class="mb-12" id="wizard-progress">
+      <div class="flex items-center justify-center max-w-md mx-auto">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-center">
+          <div
+            id="progress-circle-1"
+            class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-accent-400 text-white shadow-md shadow-accent-400/30"
+          >1</div>
+          <span class="text-xs mt-2 font-medium text-accent-400" id="progress-label-1">Retraite</span>
+        </div>
+        <!-- Line 1-2 -->
+        <div class="flex-1 h-0.5 mx-3 bg-gray-200 transition-all duration-300" id="progress-line-1"></div>
+        <!-- Step 2 -->
+        <div class="flex flex-col items-center">
+          <div
+            id="progress-circle-2"
+            class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-gray-200 text-gray-500"
+          >2</div>
+          <span class="text-xs mt-2 font-medium text-gray-400" id="progress-label-2">Vos infos</span>
+        </div>
+        <!-- Line 2-3 -->
+        <div class="flex-1 h-0.5 mx-3 bg-gray-200 transition-all duration-300" id="progress-line-2"></div>
+        <!-- Step 3 -->
+        <div class="flex flex-col items-center">
+          <div
+            id="progress-circle-3"
+            class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-gray-200 text-gray-500"
+          >3</div>
+          <span class="text-xs mt-2 font-medium text-gray-400" id="progress-label-3">Confirmation</span>
+        </div>
+      </div>
     </div>
 
+    <!-- Single form wrapping all steps (Netlify Forms compatibility) -->
     <form
       name="inscription"
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
-      class="bg-white shadow-lg rounded-lg p-8 space-y-6"
+      id="wizard-form"
+      class="bg-white shadow-xl rounded-2xl p-8 md:p-12"
     >
       <input type="hidden" name="form-name" value="inscription" />
       <p class="hidden">
-        <label>
-          Don't fill this out if you're human: <input name="bot-field" />
-        </label>
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
       </p>
 
-      <!-- Informations personnelles -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label for="prenom" class="block text-sm font-medium text-primary-600 mb-2">
-            Prénom <span class="text-accent-400">*</span>
+      <!-- ============================================ -->
+      <!-- STEP 1 — Retraite & Profil                  -->
+      <!-- ============================================ -->
+      <div id="wizard-step-1" class="wizard-step active" data-step="1">
+        <h2 class="text-2xl font-bold text-primary-600 mb-2">Choisissez votre retraite</h2>
+        <p class="text-muted mb-8">Sélectionnez la retraite et indiquez votre profil de participant.</p>
+
+        <!-- Retraite -->
+        <div class="mb-6">
+          <label for="retraite" class="block text-sm font-medium text-primary-600 mb-2">
+            Retraite <span class="text-accent-400">*</span>
           </label>
-          <input
-            type="text"
-            id="prenom"
-            name="prenom"
+          <select
+            id="retraite"
+            name="retraite"
             required
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-            placeholder="Votre prénom"
-          />
-        </div>
-
-        <div>
-          <label for="nom" class="block text-sm font-medium text-primary-600 mb-2">
-            Nom <span class="text-accent-400">*</span>
-          </label>
-          <input
-            type="text"
-            id="nom"
-            name="nom"
-            required
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-            placeholder="Votre nom"
-          />
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label for="email" class="block text-sm font-medium text-primary-600 mb-2">
-            Email <span class="text-accent-400">*</span>
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-            placeholder="votre.email@exemple.ch"
-          />
-        </div>
-
-        <div>
-          <label for="telephone" class="block text-sm font-medium text-primary-600 mb-2">
-            Téléphone <span class="text-accent-400">*</span>
-          </label>
-          <input
-            type="tel"
-            id="telephone"
-            name="telephone"
-            required
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-            placeholder="+41 XX XXX XX XX"
-          />
-        </div>
-      </div>
-
-      <!-- Choix de la retraite -->
-      <div>
-        <label for="retraite" class="block text-sm font-medium text-primary-600 mb-2">
-          Retraite choisie <span class="text-accent-400">*</span>
-        </label>
-        <select
-          id="retraite"
-          name="retraite"
-          required
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-        >
-          <option value="">Sélectionnez une retraite</option>
-          <option value="1-7-fev-6j">1-7 février — «Dieu est-il si invisible que ça ?» (6 jours)</option>
-          <option value="12-fev-journee">12 février — «Prier avec l'icône de la Trinité» (Journée)</option>
-          <option value="20-22-fev-3j">20-22 février — «Ayons des faces de ressuscités» (3 jours)</option>
-          <option value="10-mars-journee">10 mars — «Silence, libération, prière» (Journée)</option>
-          <option value="13-15-mars-couples">13-15 mars — «En famille, vivre l'hymne à l'amour» (Couples)</option>
-          <option value="21-22-mars-mariage">21-22 mars — Préparation au mariage</option>
-          <option value="2-5-avril-3j">2-5 avril — «Guetteurs de l'Aube» (Trois Jours Saints)</option>
-          <option value="12-18-avril-6j">12-18 avril — «Vers quel Emmaüs allons-nous ?» (6 jours)</option>
-          <option value="23-avril-journee">23 avril — «Avec Maurice Zundel» (Journée)</option>
-          <option value="24-26-avril-couples">24-26 avril — «Unis par l'amour, fortifiés par la foi» (Couples)</option>
-          <option value="1-3-mai-3j">1-3 mai — «Élisabeth et Marie» (3 jours)</option>
-          <option value="12-mai-journee">12 mai — «Prier avec les fables de La Fontaine» (Journée)</option>
-          <option value="29mai-1juin-familles">29 mai - 1 juin — Week-end familles Ascension</option>
-          <option value="5-11-juil-6j">5-11 juillet — «Mon cœur a frémi de paroles bonnes» (6 jours)</option>
-          <option value="12-18-juil-6j">12-18 juillet — «Ce Samaritain est de ma famille !» (6 jours)</option>
-          <option value="9-15-aout-6j">9-15 août — «Cheminer avec Matthieu» (6 jours)</option>
-          <option value="16-22-aout-6j">16-22 août — «Les mots qui blessent, la Parole qui guérit» (6 jours)</option>
-          <option value="6-sept-journee">6 septembre — Journée du Foyer (Journée)</option>
-          <option value="26-27-sept-mariage">26-27 septembre — Préparation au mariage</option>
-        </select>
-      </div>
-
-      <!-- Hébergement -->
-      <div>
-        <label class="block text-sm font-medium text-primary-600 mb-3">
-          Hébergement <span class="text-accent-400">*</span>
-        </label>
-        <div class="space-y-2">
-          <div class="flex items-center">
-            <input
-              type="radio"
-              id="chambre-individuelle"
-              name="hebergement"
-              value="Chambre individuelle"
-              required
-              class="w-4 h-4 text-accent-400 focus:ring-accent-400"
-            />
-            <label for="chambre-individuelle" class="ml-3 text-gray-700">Chambre individuelle</label>
-          </div>
-          <div class="flex items-center">
-            <input
-              type="radio"
-              id="chambre-double"
-              name="hebergement"
-              value="Chambre double"
-              class="w-4 h-4 text-accent-400 focus:ring-accent-400"
-            />
-            <label for="chambre-double" class="ml-3 text-gray-700">Chambre double</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Régime alimentaire -->
-      <div>
-        <label class="block text-sm font-medium text-primary-600 mb-3">Régime alimentaire</label>
-        <div class="space-y-2">
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="vegetarien"
-              name="regime-vegetarien"
-              value="Végétarien"
-              class="w-4 h-4 text-accent-400 focus:ring-accent-400 rounded"
-            />
-            <label for="vegetarien" class="ml-3 text-gray-700">Végétarien</label>
-          </div>
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="sans-gluten"
-              name="regime-sans-gluten"
-              value="Sans gluten"
-              class="w-4 h-4 text-accent-400 focus:ring-accent-400 rounded"
-            />
-            <label for="sans-gluten" class="ml-3 text-gray-700">Sans gluten</label>
-          </div>
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="autre-regime"
-              name="regime-autre"
-              value="Autre"
-              class="w-4 h-4 text-accent-400 focus:ring-accent-400 rounded"
-            />
-            <label for="autre-regime" class="ml-3 text-gray-700">Autre (précisez dans le message)</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Nombre de personnes -->
-      <div>
-        <label for="nombre-personnes" class="block text-sm font-medium text-primary-600 mb-2">
-          Nombre de personnes <span class="text-accent-400">*</span>
-        </label>
-        <input
-          type="number"
-          id="nombre-personnes"
-          name="nombre-personnes"
-          min="1"
-          max="10"
-          value="1"
-          required
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-        />
-      </div>
-
-      <!-- Message -->
-      <div>
-        <label for="message" class="block text-sm font-medium text-primary-600 mb-2">Message</label>
-        <textarea
-          id="message"
-          name="message"
-          rows="5"
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-          placeholder="Questions, besoins spécifiques, précisions sur votre régime alimentaire..."></textarea>
-      </div>
-
-      <!-- Conditions -->
-      <div class="flex items-start">
-        <input
-          type="checkbox"
-          id="conditions"
-          name="conditions"
-          required
-          class="mt-1 w-4 h-4 text-accent-400 focus:ring-accent-400 rounded"
-        />
-        <label for="conditions" class="ml-3 text-sm text-gray-700">
-          J'accepte les conditions de séjour et comprends que ma demande sera confirmée sous 48h par email. <span
-            class="text-accent-400">*</span
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
           >
-        </label>
+            <option value="">Sélectionnez une retraite</option>
+            {events.map((event) => (
+              <option value={event.id}>{formatEventLabel(event)}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Type participant — radio cards -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-primary-600 mb-3">
+            Type de participant <span class="text-accent-400">*</span>
+          </label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="radio-card">
+              <input type="radio" id="type-individuel" name="type-participant" value="Individuel" required class="sr-only" />
+              <label for="type-individuel" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
+                <span class="block text-2xl mb-1">🙋</span>
+                <span class="text-sm font-medium text-primary-600">Individuel</span>
+              </label>
+            </div>
+            <div class="radio-card">
+              <input type="radio" id="type-couple" name="type-participant" value="Couple" class="sr-only" />
+              <label for="type-couple" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
+                <span class="block text-2xl mb-1">💑</span>
+                <span class="text-sm font-medium text-primary-600">Couple</span>
+              </label>
+            </div>
+            <div class="radio-card">
+              <input type="radio" id="type-famille" name="type-participant" value="Famille" class="sr-only" />
+              <label for="type-famille" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
+                <span class="block text-2xl mb-1">👨‍👩‍👧‍👦</span>
+                <span class="text-sm font-medium text-primary-600">Famille</span>
+              </label>
+            </div>
+            <div class="radio-card">
+              <input type="radio" id="type-enfants" name="type-participant" value="Enfant(s) seul(s)" class="sr-only" />
+              <label for="type-enfants" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
+                <span class="block text-2xl mb-1">👦</span>
+                <span class="text-sm font-medium text-primary-600">Enfant(s)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nombre adultes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="nombre-adultes" class="block text-sm font-medium text-primary-600 mb-2">
+              Nombre d'adultes <span class="text-accent-400">*</span>
+            </label>
+            <input
+              type="number"
+              id="nombre-adultes"
+              name="nombre-adultes"
+              min="1"
+              max="10"
+              value="1"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+            />
+          </div>
+          <!-- Nombre enfants (conditionnel) -->
+          <div id="enfants-wrapper" class="hidden">
+            <label for="nombre-enfants" class="block text-sm font-medium text-primary-600 mb-2">
+              Nombre d'enfants
+            </label>
+            <input
+              type="number"
+              id="nombre-enfants"
+              name="nombre-enfants"
+              min="0"
+              max="10"
+              value="0"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+            />
+          </div>
+        </div>
       </div>
 
-      <!-- Submit Button -->
-      <div class="pt-4">
+      <!-- ============================================ -->
+      <!-- STEP 2 — Informations personnelles           -->
+      <!-- ============================================ -->
+      <div id="wizard-step-2" class="wizard-step" data-step="2">
+        <h2 class="text-2xl font-bold text-primary-600 mb-2">Vos informations</h2>
+        <p class="text-muted mb-8">Renseignez vos coordonnées et préférences de séjour.</p>
+
+        <!-- Prénom / Nom -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="prenom" class="block text-sm font-medium text-primary-600 mb-2">
+              Prénom <span class="text-accent-400">*</span>
+            </label>
+            <input
+              type="text"
+              id="prenom"
+              name="prenom"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+              placeholder="Votre prénom"
+            />
+          </div>
+          <div>
+            <label for="nom" class="block text-sm font-medium text-primary-600 mb-2">
+              Nom <span class="text-accent-400">*</span>
+            </label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+              placeholder="Votre nom"
+            />
+          </div>
+        </div>
+
+        <!-- Email / Téléphone -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="email" class="block text-sm font-medium text-primary-600 mb-2">
+              Email <span class="text-accent-400">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+              placeholder="votre.email@exemple.ch"
+            />
+          </div>
+          <div>
+            <label for="telephone" class="block text-sm font-medium text-primary-600 mb-2">
+              Téléphone <span class="text-accent-400">*</span>
+            </label>
+            <input
+              type="tel"
+              id="telephone"
+              name="telephone"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+              placeholder="+41 XX XXX XX XX"
+            />
+          </div>
+        </div>
+
+        <!-- Adresse / NPA Ville -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="adresse" class="block text-sm font-medium text-primary-600 mb-2">
+              Adresse
+            </label>
+            <input
+              type="text"
+              id="adresse"
+              name="adresse"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+              placeholder="Rue et numéro"
+            />
+          </div>
+          <div>
+            <label for="npa-ville" class="block text-sm font-medium text-primary-600 mb-2">
+              NPA / Ville
+            </label>
+            <input
+              type="text"
+              id="npa-ville"
+              name="npa-ville"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+              placeholder="1880 Bex"
+            />
+          </div>
+        </div>
+
+        <!-- Hébergement — radio cards -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-primary-600 mb-3">
+            Hébergement <span class="text-accent-400">*</span>
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="radio-card">
+              <input type="radio" id="chambre-individuelle" name="hebergement" value="Chambre individuelle" required class="sr-only" />
+              <label for="chambre-individuelle" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
+                <span class="block text-xl mb-1">🛏️</span>
+                <span class="text-sm font-medium text-primary-600">Individuelle</span>
+              </label>
+            </div>
+            <div class="radio-card">
+              <input type="radio" id="chambre-double" name="hebergement" value="Chambre double" class="sr-only" />
+              <label for="chambre-double" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
+                <span class="block text-xl mb-1">🛏️🛏️</span>
+                <span class="text-sm font-medium text-primary-600">Double</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Régime alimentaire -->
+        <div class="mb-6">
+          <label for="regime" class="block text-sm font-medium text-primary-600 mb-2">
+            Régime alimentaire
+          </label>
+          <select
+            id="regime"
+            name="regime"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+          >
+            <option value="Aucun">Aucun régime particulier</option>
+            <option value="Sans gluten">Sans gluten</option>
+            <option value="Sans lactose">Sans lactose</option>
+            <option value="Végétarien">Végétarien</option>
+            <option value="Autre">Autre (précisez dans le message)</option>
+          </select>
+        </div>
+
+        <!-- Comment connu -->
+        <div class="mb-6">
+          <label for="comment-connu" class="block text-sm font-medium text-primary-600 mb-2">
+            Comment avez-vous connu le Foyer ?
+          </label>
+          <select
+            id="comment-connu"
+            name="comment-connu"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+          >
+            <option value="">—</option>
+            <option value="Bouche à oreille">Bouche à oreille</option>
+            <option value="Paroisse">Paroisse</option>
+            <option value="Réseaux sociaux">Réseaux sociaux</option>
+            <option value="Internet">Internet / recherche</option>
+            <option value="Brochure">Brochure / flyer</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+
+        <!-- Mode d'arrivée -->
+        <div class="mb-6">
+          <label for="mode-arrivee" class="block text-sm font-medium text-primary-600 mb-2">
+            Mode d'arrivée
+          </label>
+          <select
+            id="mode-arrivee"
+            name="mode-arrivee"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+          >
+            <option value="Propres moyens">Propres moyens</option>
+            <option value="Transports publics">Transports publics</option>
+            <option value="Covoiturage">Covoiturage souhaité</option>
+          </select>
+        </div>
+
+        <!-- Autorisation photos -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-primary-600 mb-3">
+            Autorisation photos / vidéos
+          </label>
+          <div class="flex gap-6">
+            <div class="flex items-center">
+              <input type="radio" id="photos-oui" name="autorisation-photos" value="Oui" class="w-4 h-4 text-accent-400 focus:ring-accent-400" />
+              <label for="photos-oui" class="ml-2 text-sm text-gray-700">Oui, j'autorise</label>
+            </div>
+            <div class="flex items-center">
+              <input type="radio" id="photos-non" name="autorisation-photos" value="Non" class="w-4 h-4 text-accent-400 focus:ring-accent-400" />
+              <label for="photos-non" class="ml-2 text-sm text-gray-700">Non</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label for="message" class="block text-sm font-medium text-primary-600 mb-2">
+            Message libre
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+            placeholder="Questions, besoins spécifiques, précisions..."
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- STEP 3 — Récapitulatif & Confirmation        -->
+      <!-- ============================================ -->
+      <div id="wizard-step-3" class="wizard-step" data-step="3">
+        <h2 class="text-2xl font-bold text-primary-600 mb-2">Récapitulatif</h2>
+        <p class="text-muted mb-8">Vérifiez vos informations avant de confirmer votre inscription.</p>
+
+        <!-- Recap container (populated by JS via safe DOM methods) -->
+        <div id="recap-content" class="mb-8 rounded-xl border border-gray-200 overflow-hidden">
+        </div>
+
+        <!-- RGPD -->
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start">
+            <input
+              type="checkbox"
+              id="rgpd"
+              name="rgpd"
+              required
+              class="mt-1 w-4 h-4 text-accent-400 focus:ring-accent-400 rounded"
+            />
+            <label for="rgpd" class="ml-3 text-sm text-gray-700">
+              J'accepte que mes données personnelles soient traitées dans le cadre de cette inscription, conformément au RGPD.
+              Elles ne seront pas transmises à des tiers. <span class="text-accent-400">*</span>
+            </label>
+          </div>
+
+          <div class="flex items-start">
+            <input
+              type="checkbox"
+              id="conditions"
+              name="conditions"
+              required
+              class="mt-1 w-4 h-4 text-accent-400 focus:ring-accent-400 rounded"
+            />
+            <label for="conditions" class="ml-3 text-sm text-gray-700">
+              J'accepte les conditions de séjour et comprends que mon inscription sera confirmée par email sous 48h.
+              <span class="text-accent-400">*</span>
+            </label>
+          </div>
+        </div>
+
+        <p class="text-xs text-gray-500 mb-6">
+          Vos données personnelles sont utilisées uniquement pour le traitement de votre inscription et la gestion de votre séjour au Foyer de Charité des Dents-du-Midi.
+        </p>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Navigation buttons                           -->
+      <!-- ============================================ -->
+      <div class="flex justify-between items-center mt-10 pt-6 border-t border-gray-100">
         <button
-          type="submit"
-          class="w-full bg-accent-400 text-white font-semibold py-4 px-6 rounded-lg hover:bg-accent-500 transition-colors duration-200 shadow-lg"
+          type="button"
+          id="btn-prev"
+          class="hidden px-6 py-3 rounded-xl border border-gray-300 text-primary-600 font-medium hover:bg-gray-50 transition-colors"
         >
-          Envoyer ma demande d'inscription
+          ← Précédent
         </button>
+
+        <div class="ml-auto">
+          <button
+            type="button"
+            id="btn-next"
+            class="px-8 py-3 rounded-xl bg-accent-400 text-white font-semibold shadow-lg shadow-accent-400/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent-400/40 transition-all duration-200"
+          >
+            Suivant →
+          </button>
+
+          <button
+            type="submit"
+            id="btn-submit"
+            class="hidden px-8 py-3 rounded-xl bg-accent-400 text-white font-semibold shadow-lg shadow-accent-400/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent-400/40 transition-all duration-200"
+          >
+            Confirmer mon inscription
+          </button>
+        </div>
       </div>
 
-      <p class="text-xs text-gray-500 text-center mt-4">
+      <p class="text-xs text-gray-500 text-center mt-6">
         <span class="text-accent-400">*</span> Champs obligatoires
       </p>
     </form>
   </section>
 </Layout>
+
+<script is:inline>
+(function initWizard() {
+  var TOTAL_STEPS = 3;
+  var state = { currentStep: 1 };
+
+  var steps = [];
+  for (var i = 1; i <= TOTAL_STEPS; i++) {
+    steps[i] = document.getElementById('wizard-step-' + i);
+  }
+
+  var btnPrev = document.getElementById('btn-prev');
+  var btnNext = document.getElementById('btn-next');
+  var btnSubmit = document.getElementById('btn-submit');
+
+  // --- Progress bar update ---
+  function updateProgress(step) {
+    for (var i = 1; i <= TOTAL_STEPS; i++) {
+      var circle = document.getElementById('progress-circle-' + i);
+      var label = document.getElementById('progress-label-' + i);
+      var line = i < TOTAL_STEPS ? document.getElementById('progress-line-' + i) : null;
+
+      if (i < step) {
+        circle.className = 'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-primary-600 text-white';
+        circle.textContent = '\u2713';
+        label.className = 'text-xs mt-2 font-medium text-primary-600';
+        if (line) line.className = 'flex-1 h-0.5 mx-3 transition-all duration-300 bg-primary-600';
+      } else if (i === step) {
+        circle.className = 'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-accent-400 text-white shadow-md shadow-accent-400/30';
+        circle.textContent = i;
+        label.className = 'text-xs mt-2 font-medium text-accent-400';
+        if (line) line.className = 'flex-1 h-0.5 mx-3 transition-all duration-300 bg-gray-200';
+      } else {
+        circle.className = 'w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-gray-200 text-gray-500';
+        circle.textContent = i;
+        label.className = 'text-xs mt-2 font-medium text-gray-400';
+        if (line) line.className = 'flex-1 h-0.5 mx-3 transition-all duration-300 bg-gray-200';
+      }
+    }
+  }
+
+  // --- Show step ---
+  function goToStep(n) {
+    if (n < 1 || n > TOTAL_STEPS) return;
+
+    var current = steps[state.currentStep];
+    current.classList.remove('active');
+
+    state.currentStep = n;
+    var target = steps[n];
+    target.classList.add('active');
+
+    btnPrev.classList.toggle('hidden', n === 1);
+    btnNext.classList.toggle('hidden', n === TOTAL_STEPS);
+    btnSubmit.classList.toggle('hidden', n !== TOTAL_STEPS);
+
+    updateProgress(n);
+
+    document.getElementById('wizard-progress').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (n === TOTAL_STEPS) buildRecap();
+  }
+
+  // --- Validation ---
+  function validateStep(n) {
+    var stepEl = steps[n];
+    var requiredFields = stepEl.querySelectorAll('[required]');
+    var valid = true;
+
+    // Clear previous errors
+    stepEl.querySelectorAll('.wizard-error').forEach(function(el) { el.remove(); });
+    stepEl.querySelectorAll('.border-red-400').forEach(function(el) {
+      el.classList.remove('border-red-400', 'ring-2', 'ring-red-200');
+    });
+
+    var checkedRadioGroups = {};
+
+    requiredFields.forEach(function(field) {
+      if (field.type === 'radio') {
+        if (checkedRadioGroups[field.name]) return;
+        checkedRadioGroups[field.name] = true;
+
+        var group = stepEl.querySelectorAll('input[name="' + field.name + '"]');
+        var anyChecked = false;
+        group.forEach(function(r) { if (r.checked) anyChecked = true; });
+        if (!anyChecked) {
+          valid = false;
+          var wrapper = field.closest('.mb-6');
+          if (wrapper && !wrapper.querySelector('.wizard-error')) {
+            var err = document.createElement('p');
+            err.className = 'wizard-error text-red-500 text-sm mt-2';
+            err.textContent = 'Veuillez faire un choix.';
+            wrapper.appendChild(err);
+          }
+        }
+      } else if (field.type === 'checkbox') {
+        if (!field.checked) {
+          valid = false;
+          field.classList.add('border-red-400', 'ring-2', 'ring-red-200');
+          var parent = field.closest('.flex');
+          if (parent && !parent.querySelector('.wizard-error')) {
+            var err = document.createElement('p');
+            err.className = 'wizard-error text-red-500 text-sm mt-1';
+            err.textContent = 'Ce champ est obligatoire.';
+            parent.appendChild(err);
+          }
+        }
+      } else if (!field.checkValidity()) {
+        valid = false;
+        field.classList.add('border-red-400', 'ring-2', 'ring-red-200');
+        var err = document.createElement('p');
+        err.className = 'wizard-error text-red-500 text-sm mt-1';
+        err.textContent = field.validationMessage || 'Ce champ est obligatoire.';
+        field.parentNode.appendChild(err);
+      }
+    });
+
+    return valid;
+  }
+
+  // --- Build recap with safe DOM methods ---
+  var fieldLabels = {
+    'retraite': 'Retraite',
+    'type-participant': 'Type de participant',
+    'nombre-adultes': "Nombre d'adultes",
+    'nombre-enfants': "Nombre d'enfants",
+    'prenom': 'Prénom',
+    'nom': 'Nom',
+    'email': 'Email',
+    'telephone': 'Téléphone',
+    'adresse': 'Adresse',
+    'npa-ville': 'NPA / Ville',
+    'hebergement': 'Hébergement',
+    'regime': 'Régime alimentaire',
+    'comment-connu': 'Comment connu',
+    'mode-arrivee': "Mode d'arrivée",
+    'autorisation-photos': 'Autorisation photos',
+    'message': 'Message'
+  };
+
+  var fieldOrder = [
+    'retraite', 'type-participant', 'nombre-adultes', 'nombre-enfants',
+    'prenom', 'nom', 'email', 'telephone', 'adresse', 'npa-ville',
+    'hebergement', 'regime', 'comment-connu', 'mode-arrivee', 'autorisation-photos', 'message'
+  ];
+
+  function getDisplayValue(name, value) {
+    if (name === 'retraite') {
+      var select = document.getElementById('retraite');
+      var opt = select.options[select.selectedIndex];
+      return opt ? opt.textContent : value;
+    }
+    return value;
+  }
+
+  function buildRecap() {
+    var form = document.getElementById('wizard-form');
+    var container = document.getElementById('recap-content');
+
+    // Clear previous content safely
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+
+    var dl = document.createElement('dl');
+    var even = false;
+
+    fieldOrder.forEach(function(name) {
+      var value = '';
+      var el = form.elements[name];
+      if (!el) return;
+
+      if (el.value !== undefined) {
+        value = el.value;
+      }
+
+      // Skip empty optional fields
+      if (!value || value === '') {
+        return;
+      }
+
+      // Skip nombre-enfants if hidden
+      if (name === 'nombre-enfants') {
+        var wrapper = document.getElementById('enfants-wrapper');
+        if (wrapper && wrapper.classList.contains('hidden')) return;
+        if (value === '0') return;
+      }
+
+      var displayValue = getDisplayValue(name, value);
+      var labelText = fieldLabels[name] || name;
+
+      var row = document.createElement('div');
+      row.className = 'flex flex-col sm:flex-row sm:justify-between px-5 py-3 border-b border-gray-100' + (even ? ' bg-gray-50' : '');
+
+      var dt = document.createElement('dt');
+      dt.className = 'text-sm font-medium text-primary-600';
+      dt.textContent = labelText;
+
+      var dd = document.createElement('dd');
+      dd.className = 'text-sm text-gray-700 sm:text-right mt-1 sm:mt-0';
+      dd.textContent = displayValue;
+
+      row.appendChild(dt);
+      row.appendChild(dd);
+      dl.appendChild(row);
+
+      even = !even;
+    });
+
+    container.appendChild(dl);
+  }
+
+  // --- Conditional fields (enfants) ---
+  function handleConditionalFields() {
+    var typeRadios = document.querySelectorAll('input[name="type-participant"]');
+    var enfantsWrapper = document.getElementById('enfants-wrapper');
+
+    typeRadios.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        var val = this.value;
+        if (val === 'Famille' || val === 'Enfant(s) seul(s)') {
+          enfantsWrapper.classList.remove('hidden');
+        } else {
+          enfantsWrapper.classList.add('hidden');
+          document.getElementById('nombre-enfants').value = '0';
+        }
+      });
+    });
+  }
+
+  // --- Event listeners ---
+  btnNext.addEventListener('click', function() {
+    if (validateStep(state.currentStep)) {
+      goToStep(state.currentStep + 1);
+    }
+  });
+
+  btnPrev.addEventListener('click', function() {
+    goToStep(state.currentStep - 1);
+  });
+
+  document.getElementById('wizard-form').addEventListener('submit', function(e) {
+    if (!validateStep(3)) {
+      e.preventDefault();
+    }
+    // TODO:OASIS — Intercepter ici pour POST /api/inscriptions au lieu de Netlify Forms
+  });
+
+  // Init
+  handleConditionalFields();
+  updateProgress(1);
+
+  // View Transitions compat
+  document.addEventListener('astro:after-swap', initWizard);
+})();
+</script>
