@@ -11,9 +11,9 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Stats from '~/components/widgets/Stats.astro';
 
 const metadata = {
-  title: 'Foyer de Charité Dents-du-Midi — Retraites spirituelles à Bex, Suisse',
+  title: 'Retraites spirituelles en Suisse — Foyer de Charité Dents-du-Midi, Bex',
   ignoreTitleTemplate: true,
-  description: 'Retraites spirituelles de 1 à 6 jours face aux Alpes. Silence, enseignements, accompagnement spirituel dans un cadre exceptionnel à Bex, Suisse.',
+  description: 'Retraites spirituelles en Suisse romande de 1 à 6 jours face aux Alpes. Silence, enseignements, accompagnement spirituel. Le seul Foyer de Charité en Suisse, à Bex (VD).',
 };
 
 // --- Prochaines retraites (dynamique depuis la collection events) ---
@@ -68,8 +68,8 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     actions={[
       {
         variant: 'primary',
-        text: 'Découvrir nos retraites',
-        href: '/retraites',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
         icon: 'tabler:arrow-right',
       },
       {
@@ -79,20 +79,20 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     ]}
   >
     <Fragment slot="title">
-      Un lieu de silence<br />
+      Retraites spirituelles en Suisse<br />
       <span class="text-accent-400">face aux Alpes</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Depuis 1970, le Foyer de Charité Dents-du-Midi accueille ceux qui cherchent le silence, la réflexion et la prière.
-      Retraites de 1 à 6 jours dans un cadre exceptionnel à Bex, Suisse.
+      Depuis 1970, le Foyer de Charité Dents-du-Midi accueille ceux qui cherchent le silence et la prière.
+      Retraites de 1 à 6 jours dans un cadre exceptionnel à Bex, Suisse romande.
     </Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0">
         <img
           src="/images/hero-mountains.jpg"
-          alt=""
+          alt="Vue sur les Dents-du-Midi depuis le Foyer de Charité à Bex, Suisse"
           class="w-full h-full object-cover"
           loading="eager"
         />

@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://foyer-dents-du-midi.ch/sitemap-index.xml

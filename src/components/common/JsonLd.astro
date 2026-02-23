@@ -1,0 +1,109 @@
+---
+/**
+ * JSON-LD Structured Data — Organization + BreadcrumbList
+ * Injecté dans <head> via Layout.astro sur CHAQUE page.
+ * Les Event schemas sont ajoutés directement dans les pages concernées.
+ */
+
+const siteUrl = 'https://foyer-dents-du-midi.ch';
+
+// --- Organization (toujours présent) ---
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ReligiousOrganization',
+  name: 'Foyer de Charité Dents-du-Midi',
+  alternateName: 'Foyer de Charité des Dents-du-Midi',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo-bex-small.png`,
+  description: 'Retraites spirituelles de 1 à 6 jours face aux Alpes. Le seul Foyer de Charité en Suisse, fondé en 1970 à Bex.',
+  foundingDate: '1970',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Route de Gryon 22',
+    addressLocality: 'Bex',
+    postalCode: '1880',
+    addressRegion: 'Vaud',
+    addressCountry: 'CH',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 46.2586,
+    longitude: 7.0195,
+  },
+  telephone: '+41244632222',
+  email: 'info@foyer-dents-du-midi.ch',
+  sameAs: [],
+  areaServed: {
+    '@type': 'GeoCircle',
+    geoMidpoint: {
+      '@type': 'GeoCoordinates',
+      latitude: 46.5,
+      longitude: 6.6,
+    },
+    geoRadius: '200000',
+  },
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Les Foyers de Charité',
+    url: 'https://www.lesfoyersdecharite.com',
+  },
+};
+
+// --- Breadcrumbs (auto-générés depuis l'URL) ---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const pathSegments = pathname.split('/').filter(Boolean);
+
+const breadcrumbLabels: Record<string, string> = {
+  retraites: 'Retraites',
+  '6-jours': 'Retraites de 6 jours',
+  'week-end': 'Week-ends 3 jours',
+  couples: 'Couples',
+  familles: 'Familles',
+  journees: 'Journées',
+  'preparation-mariage': 'Préparation au mariage',
+  programme: 'Programme 2026',
+  'le-foyer': 'Le Foyer',
+  histoire: 'Histoire',
+  equipe: 'Équipe',
+  'marthe-robin': 'Marthe Robin',
+  sejour: 'Séjour',
+  chambres: 'Chambres',
+  'journee-type': 'Journée type',
+  tarifs: 'Tarifs',
+  acces: 'Accès',
+  contact: 'Contact',
+  inscription: 'Inscription',
+  temoignages: 'Témoignages',
+  soutenir: 'Soutenir',
+  galerie: 'Galerie',
+  actualites: 'Actualités',
+};
+
+const breadcrumbItems = [
+  { name: 'Accueil', url: siteUrl },
+  ...pathSegments.map((seg, i) => ({
+    name: breadcrumbLabels[seg] || seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' '),
+    url: `${siteUrl}/${pathSegments.slice(0, i + 1).join('/')}`,
+  })),
+];
+
+const breadcrumbSchema = breadcrumbItems.length > 1
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbItems.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: item.name,
+        item: item.url,
+      })),
+    }
+  : null;
+
+// --- Assemble ---
+const schemas = [organizationSchema, breadcrumbSchema].filter(Boolean);
+---
+
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}
