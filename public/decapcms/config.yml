@@ -7,13 +7,14 @@ public_folder: '/_astro'
 
 collections:
   - name: 'post'
-    label: 'Post'
-    folder: 'src/content/post'
+    label: 'Article / Message'
+    folder: 'src/data/post'
     create: true
+    slug: '{{slug}}'
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Excerpt', name: 'excerpt', widget: 'string' }
-      - { label: 'Category', name: 'category', widget: 'string' }
+      - { label: 'Titre', name: 'title', widget: 'string' }
+      - { label: 'Résumé', name: 'excerpt', widget: 'string' }
+      - { label: 'Catégorie', name: 'category', widget: 'string', default: 'Message du Foyer' }
       - {
           label: 'Tags',
           name: 'tags',
@@ -23,7 +24,38 @@ collections:
           collapsed: false,
           field: { label: 'Tag', name: 'tag', widget: 'string' },
         }
-      - { label: 'Image', name: 'image', widget: 'string' }
-      - { label: 'Publish Date', name: 'publishDate', widget: 'datetime', required: false }
-      - { label: 'Author', name: 'author', widget: 'string' }
-      - { label: 'Content', name: 'body', widget: 'markdown' }
+      - { label: 'Image', name: 'image', widget: 'string', required: false }
+      - { label: 'Date de publication', name: 'publishDate', widget: 'datetime', required: false }
+      - { label: 'Auteur', name: 'author', widget: 'string', default: 'P. Guy Luisier' }
+      - { label: 'Contenu', name: 'body', widget: 'markdown' }
+
+  - name: 'event'
+    label: 'Événement / Retraite'
+    folder: 'src/data/events'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - { label: 'Titre', name: 'title', widget: 'string' }
+      - { label: 'Date début', name: 'dateStart', widget: 'date', format: 'YYYY-MM-DD' }
+      - { label: 'Date fin', name: 'dateEnd', widget: 'date', format: 'YYYY-MM-DD', required: false }
+      - {
+          label: 'Type',
+          name: 'type',
+          widget: 'select',
+          options: ['6-jours', 'week-end', 'couples', 'familles', 'journees', 'mariage'],
+        }
+      - { label: 'Prédicateur', name: 'preacher', widget: 'string' }
+      - { label: 'Prix', name: 'price', widget: 'string', required: false }
+      - { label: 'Variante', name: 'variant', widget: 'string', required: false }
+      - { label: 'Inscriptions ouvertes', name: 'registrationOpen', widget: 'boolean', default: true }
+      - { label: 'Description', name: 'body', widget: 'markdown', required: false }
+
+  - name: 'testimonial'
+    label: 'Témoignage'
+    folder: 'src/data/testimonials'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: 'Nom', name: 'name', widget: 'string' }
+      - { label: 'Citation', name: 'quote', widget: 'text' }
+      - { label: 'Type de retraite', name: 'retreatType', widget: 'string', required: false }

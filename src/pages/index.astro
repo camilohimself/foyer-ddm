@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
 
 import Hero from '~/components/widgets/Hero.astro';
 import Features2 from '~/components/widgets/Features2.astro';
@@ -14,6 +15,51 @@ const metadata = {
   ignoreTitleTemplate: true,
   description: 'Retraites spirituelles de 1 à 6 jours face aux Alpes. Silence, enseignements, accompagnement spirituel dans un cadre exceptionnel à Bex, Suisse.',
 };
+
+// --- Prochaines retraites (dynamique depuis la collection events) ---
+const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
+const allEvents = await getCollection('event');
+const upcomingEvents = allEvents
+  .filter((e) => e.data.dateStart >= today)
+  .sort((a, b) => a.data.dateStart.localeCompare(b.data.dateStart))
+  .slice(0, 3);
+
+const formatDate = (dateStr: string) => {
+  const d = new Date(dateStr + 'T12:00:00');
+  return d.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long' });
+};
+
+const formatDateRange = (start: string, end?: string) => {
+  if (!end) return formatDate(start);
+  const s = new Date(start + 'T12:00:00');
+  const e = new Date(end + 'T12:00:00');
+  if (s.getMonth() === e.getMonth()) {
+    return `${s.getDate()}-${e.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long' })}`;
+  }
+  return `${formatDate(start)} - ${formatDate(end)}`;
+};
+
+const stepsItems = [
+  ...upcomingEvents.map((event) => ({
+    title: `${formatDateRange(event.data.dateStart, event.data.dateEnd)} — <span class="font-medium">«${event.data.title}»</span>`,
+    description: `${event.data.preacher}${event.data.variant ? ` · ${event.data.variant}` : ''}${event.data.price ? ` · ${event.data.price}` : ''}`,
+    icon: 'tabler:calendar' as const,
+  })),
+  {
+    title: 'Voir tout le programme',
+    description: '',
+    icon: 'tabler:arrow-right' as const,
+  },
+];
+
+// --- Témoignages (dynamique depuis la collection testimonials) ---
+const allTestimonials = await getCollection('testimonial');
+const shuffled = [...allTestimonials].sort(() => Math.random() - 0.5);
+const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
+  testimonial: t.data.quote,
+  name: t.data.name,
+  job: t.data.retreatType || 'Retraitant(e)',
+}));
 ---
 
 <Layout metadata={metadata}>
@@ -59,7 +105,7 @@ const metadata = {
   <Stats
     stats={[
       { title: 'ans d\'accueil', amount: '55+' },
-      { title: 'retraites en 2026', amount: '17' },
+      { title: 'retraites en 2026', amount: '20' },
       { title: 'par jour (suggéré)', amount: 'CHF 120' },
       { title: 'Foyer en Suisse', amount: 'Seul' },
     ]}
@@ -114,31 +160,11 @@ const metadata = {
     </Fragment>
   </Features2>
 
-  <!-- Prochaines dates -->
+  <!-- Prochaines dates (dynamique) -->
   <Steps
     title="Prochaines retraites 2026"
     subtitle="Inscrivez-vous dès maintenant pour réserver votre place"
-    items={[
-      {
-        title: '20-22 février — <span class="font-medium">«Ayons des faces de ressuscités»</span>',
-        description: 'Week-end 3 jours avec François-Xavier Amherdt. Entrée en Carême.',
-        icon: 'tabler:calendar',
-      },
-      {
-        title: '10 mars — <span class="font-medium">«Silence, libération, prière»</span>',
-        description: 'Journée de ressourcement avec Jeff Roux. CHF 50.- tout compris.',
-        icon: 'tabler:calendar',
-      },
-      {
-        title: '13-15 mars — <span class="font-medium">«En famille, vivre l\'hymne à l\'amour»</span>',
-        description: 'Week-end couples avec Elodie et Philibert Goulet. Accueil des enfants.',
-        icon: 'tabler:calendar',
-      },
-      {
-        title: 'Voir tout le programme',
-        icon: 'tabler:arrow-right',
-      },
-    ]}
+    items={stepsItems}
     callToAction={{
       text: 'Programme complet 2026',
       href: '/programme',
@@ -216,43 +242,12 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <!-- Témoignages -->
+  <!-- Témoignages (dynamique) -->
   <Testimonials
     title="Ce qu'ils en disent"
     subtitle="Paroles de retraitants"
     tagline="Témoignages"
-    testimonials={[
-      {
-        testimonial: 'Toute ma reconnaissance pour l\'accueil chaleureux et le silence tellement habité de l\'Essentiel.',
-        name: 'R.B.',
-        job: 'Retraitant',
-      },
-      {
-        testimonial: 'La beauté simple de ce lieu sait si bien chanter Dieu !',
-        name: 'P. et R.G.',
-        job: 'Retraitants',
-      },
-      {
-        testimonial: 'Quand je suis entré au Foyer, j\'ai ressenti un immense sentiment de paix, comme dans une cathédrale. J\'ai découvert que le silence, c\'est Quelqu\'un !',
-        name: 'François',
-        job: 'Retraitant',
-      },
-      {
-        testimonial: 'Ses paroles nous ont touchés en profondeur et nous ne lirons jamais plus la Parole du Seigneur comme avant !',
-        name: 'Claire et Pierre',
-        job: 'Retraitants couples',
-      },
-      {
-        testimonial: 'Merci de si bien nous accueillir, nous les assoiffés de l\'Essentiel !',
-        name: 'Jacques',
-        job: 'Retraitant',
-      },
-      {
-        testimonial: 'J\'ouvrirai une école de vie intérieure et j\'écrirai sur la porte : école d\'art.',
-        name: 'Monique D.',
-        job: 'Retraitante (citant Max Jacob)',
-      },
-    ]}
+    testimonials={selectedTestimonials}
     callToAction={{
       text: 'Tous les témoignages',
       href: '/temoignages',

@@ -38,6 +38,10 @@ export const headerData = {
       ],
     },
     {
+      text: 'Actualités',
+      href: getPermalink('/actualites'),
+    },
+    {
       text: 'Témoignages',
       href: getPermalink('/temoignages'),
     },
@@ -86,6 +90,7 @@ export const footerData = {
         { text: 'Notre histoire', href: getPermalink('/le-foyer/histoire') },
         { text: 'Marthe Robin', href: getPermalink('/le-foyer/marthe-robin') },
         { text: 'Témoignages', href: getPermalink('/temoignages') },
+        { text: 'Actualités', href: getPermalink('/actualites') },
       ],
     },
     {

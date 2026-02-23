@@ -1,0 +1,32 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import { blogPostRobots, getStaticPathsBlogPost } from '~/utils/blog';
+
+import Layout from '~/layouts/PageLayout.astro';
+import SinglePost from '~/components/blog/SinglePost.astro';
+
+export const getStaticPaths = (async () => {
+  return await getStaticPathsBlogPost();
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { post } = Astro.props as Props;
+
+const url = new URL(Astro.request.url);
+
+const metadata = {
+  title: post.title,
+  description: post.excerpt,
+  robots: {
+    index: blogPostRobots?.index,
+    follow: blogPostRobots?.follow,
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <SinglePost post={{ ...post }} url={url}>
+    <post.Content />
+  </SinglePost>
+</Layout>

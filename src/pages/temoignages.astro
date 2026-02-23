@@ -3,11 +3,20 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getCollection } from 'astro:content';
 
 const metadata = {
   title: 'Témoignages — Foyer de Charité Dents-du-Midi',
   description: 'Paroles de ceux qui ont vécu une retraite au Foyer de Charité Dents-du-Midi.',
 };
+
+// Charger tous les témoignages depuis la collection
+const allTestimonials = await getCollection('testimonial');
+const testimonialsList = allTestimonials.map((t) => ({
+  testimonial: t.data.quote,
+  name: t.data.name,
+  job: t.data.retreatType || 'Retraitant(e)',
+}));
 ---
 
 <Layout metadata={metadata}>
@@ -18,45 +27,11 @@ const metadata = {
     subtitle="Paroles de ceux qui ont vécu une retraite au Foyer de Charité Dents-du-Midi."
   />
 
-  <!-- Témoignages -->
+  <!-- Témoignages (dynamique — les 17 témoignages) -->
   <Testimonials
     title="Ils ont vécu <span class='text-accent-400'>l'expérience</span>"
     subtitle="Des retraitants partagent ce qu'ils ont vécu au Foyer : paix, silence, rencontre avec l'Essentiel."
-    testimonials={[
-      {
-        testimonial:
-          'Toute ma reconnaissance pour l\'accueil chaleureux et le silence tellement habité de l\'Essentiel.',
-        name: 'R.B.',
-        job: 'Retraitant',
-      },
-      {
-        testimonial: 'La beauté simple de ce lieu sait si bien chanter Dieu !',
-        name: 'P. et R.G.',
-        job: 'Couple de retraitants',
-      },
-      {
-        testimonial: 'Merci de si bien nous accueillir, nous les assoiffés de l\'Essentiel !',
-        name: 'Jacques',
-        job: 'Retraitant',
-      },
-      {
-        testimonial:
-          'Quand je suis entré au Foyer, j\'ai ressenti un immense sentiment de paix, comme dans une cathédrale. J\'ai découvert que le silence, c\'est Quelqu\'un !',
-        name: 'François',
-        job: 'Retraitant',
-      },
-      {
-        testimonial:
-          'Ses paroles nous ont touchés en profondeur et nous ne lirons jamais plus la Parole du Seigneur comme avant !',
-        name: 'Claire et Pierre',
-        job: 'Couple de retraitants',
-      },
-      {
-        testimonial: 'J\'ouvrirai une école de vie intérieure et j\'écrirai sur la porte : école d\'art.',
-        name: 'Monique D.',
-        job: 'Retraitante',
-      },
-    ]}
+    testimonials={testimonialsList}
   />
 
   <!-- Citation forte -->
