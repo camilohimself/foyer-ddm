@@ -11,7 +11,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Stats from '~/components/widgets/Stats.astro';
 
 import fddmChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
-import fddmFacadeEte from '~/assets/images/fddm-facade-ete.jpg';
+import fddmTableeTerrasse from '~/assets/images/fddm-tablee-terrasse.jpg';
 
 const metadata = {
   title: 'Retraites spirituelles en Suisse — Foyer de Charité Dents-du-Midi, Bex',
@@ -94,8 +94,8 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     <Fragment slot="bg">
       <div class="absolute inset-0">
         <img
-          src="/images/fddm-automne.jpg"
-          alt="Le Foyer de Charité Dents-du-Midi à Bex, en automne face aux montagnes"
+          src="/images/fddm-lune-dents-du-midi.jpg"
+          alt="Pleine lune sur les Dents-du-Midi au coucher du soleil, alpenglow"
           class="w-full h-full object-cover"
           loading="eager"
         />
@@ -222,8 +222,8 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     tagline="Le Foyer"
     title="Le seul Foyer de Charité en Suisse"
     image={{
-      src: fddmFacadeEte,
-      alt: 'Le bâtiment du Foyer de Charité Dents-du-Midi en été',
+      src: fddmTableeTerrasse,
+      alt: 'Grande tablée en terrasse du Foyer, repas partagé avec vue sur les montagnes',
     }}
     items={[
       {

@@ -1,7 +1,10 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
+
+import imgPaellaMontagnes from '~/assets/images/fddm-paella-montagnes.jpg';
 
 const metadata = {
   title: 'Votre séjour — Foyer de Charité Dents-du-Midi',
@@ -28,6 +31,31 @@ const metadata = {
       </div>
     </Fragment>
   </Hero>
+
+  <!-- Accueil et cuisine -->
+  <Content
+    isReversed
+    image={{
+      src: imgPaellaMontagnes,
+      alt: 'Le cuisinier du Foyer prépare une paella en plein air, avec les Dents-du-Midi en arrière-plan',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Accueillis comme <span class="text-accent-400">chez soi</span>
+      </h3>
+      <div class="space-y-4 text-muted">
+        <p>
+          Les repas sont préparés par la communauté avec soin. Cuisine maison, produits de saison,
+          et parfois des surprises en plein air face aux montagnes.
+        </p>
+        <p>
+          Tout est compris dans la participation : chambre, repas, enseignements et accompagnement.
+          Vous n'avez qu'à venir.
+        </p>
+      </div>
+    </Fragment>
+  </Content>
 
   <!-- Hub des informations -->
   <Features
