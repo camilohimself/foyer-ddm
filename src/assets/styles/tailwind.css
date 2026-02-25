@@ -126,6 +126,27 @@
   margin-top: 0;
 }
 
+/* Sections sombres (isDark=true) : surcharge des variables couleur texte */
+.dark {
+  --aw-color-text-heading: rgb(255 255 255);
+  --aw-color-text-default: rgb(229 231 235);
+  --aw-color-text-muted: rgb(191 195 209);
+  --aw-color-text-page: rgb(255 255 255);
+  color: rgb(229 231 235);
+}
+
+.dark .text-secondary {
+  color: var(--aw-color-accent);
+}
+
+.dark .btn {
+  @apply border-gray-400/30 text-white hover:bg-white/10 hover:border-gray-300/50;
+}
+
+.dark .btn-tertiary {
+  @apply text-gray-300 hover:text-white;
+}
+
 /* Wizard multi-step form */
 .wizard-step {
   display: none;
