@@ -2,7 +2,7 @@
 
 **Stack** : Astro 5 + AstroWind (vendored) + Tailwind 3 + Decap CMS + Netlify
 **Repo** : `git@github.com:camilohimself/foyer-ddm.git`
-**Build** : `npm run build` → `dist/` (static, no SSR) — 32 pages, ~6s
+**Build** : `npm run build` → `dist/` (static, no SSR) — 32 pages, ~7s
 **Dev** : `npm run dev` (localhost:4321)
 
 ## Design System
@@ -15,29 +15,45 @@
 
 ## Images — Etat au 25 fev 2026
 
-**20 photos reelles** du Foyer integrees (0 Unsplash restant, 0 photo inutilisee).
+**32 photos reelles** du Foyer integrees (0 Unsplash, 0 stock restant sur pages modifiees).
 - `src/assets/images/fddm-*.jpg` — traitees par Astro Image (WebP auto, srcsets)
 - `public/images/fddm-*.jpg` — hero backgrounds (chargement eager, pas de pipeline)
-- 41 images WebP generees au build
+- 51 images WebP generees au build
+- Catalogue source : `03_SITE-WEB/ASSETS/CHOIX-PHOTOS-DRIVE/` (47 photos auditees)
 
 ### Hero photos (toutes les pages)
 | Page | Photo hero |
 |------|-----------|
-| index (homepage) | fddm-automne |
+| index (homepage) | fddm-lune-dents-du-midi |
 | retraites/index | fddm-chapelle-etoile |
-| retraites/6-jours | fddm-croix-sommet |
+| retraites/6-jours | fddm-croix-sommet-hiver |
 | retraites/week-end | fddm-chapelle-tournesols |
 | retraites/couples | fddm-couple-marche |
 | retraites/familles | fddm-sentier-groupe |
-| retraites/journees | fddm-bougie-nuit |
+| retraites/journees | fddm-feu-de-camp |
 | retraites/preparation-mariage | fddm-couple-mains |
 | sejour/index | fddm-facade-ete |
-| programme | fddm-dents-du-midi-printemps |
+| programme | fddm-contemplation-dents-du-midi |
 | temoignages | fddm-autel-hiver |
-| contact/inscription | fddm-randonneurs-neige |
+| contact/inscription | fddm-raquettes-dents-du-midi |
 | le-foyer/index | fddm-automne-2 |
 | soutenir | fddm-bougies-priere |
-| galerie | fddm-randonneurs-crete |
+| galerie | fddm-randonnee-alpage |
+
+### Content images ajoutees (25 fev)
+| Page | Photo content | Sujet |
+|------|--------------|-------|
+| index (homepage) | fddm-tablee-terrasse | Repas convivial en terrasse |
+| retraites/index | fddm-enseignement-alpage | Enseignement en cercle sur alpage |
+| retraites/familles | fddm-enfants-parachute | Enfants jeu parachute |
+| sejour/index | fddm-paella-montagnes | Cuisine plein air + DDM |
+| le-foyer/index | fddm-messe-plein-air | Messe en plein air alpage |
+| le-foyer/index | fddm-lavement-pieds | Lavement pieds Jeudi Saint |
+
+### Photos a remplacer (toujours stock/basse qualite)
+- `fddm-couple-marche` (hero couples) — demander photo couple authentique
+- `fddm-couple-mains` (hero mariage) — idem
+- `fddm-bougies-priere` (hero soutenir) — potentiellement stock
 
 ### Pattern hero
 ```astro
@@ -93,7 +109,7 @@ src/
 │   └── widgets/        # Hero, Features, Content, Steps, Testimonials, CallToAction...
 ├── layouts/            # PageLayout, Layout, MarkdownLayout, LandingLayout
 ├── assets/
-│   ├── images/         # 20 photos fddm-* + 3 logos logo-ddm-*
+│   ├── images/         # 32 photos fddm-* + 3 logos logo-ddm-*
 │   └── styles/tailwind.css  # Custom utilities (.btn-*, .wizard-step, .radio-card, header states)
 ```
 
