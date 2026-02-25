@@ -6,6 +6,8 @@ import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
+import imgChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
+
 const metadata = {
   title: 'Journée spirituelle en Suisse — CHF 50 tout compris',
   description: 'Journée de ressourcement spirituel en Suisse romande. CHF 50.- tout compris : conférences, repas, Eucharistie. Foyer de Charité Dents-du-Midi, Bex.',
@@ -21,13 +23,25 @@ const metadata = {
       Une halte de quelques heures. Quelques heures pour prier, se laisser inspirer, respirer...
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-700 via-primary-600 to-primary-500"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-bougie-nuit.jpg"
+          alt="Bougie dans la nuit, lumière d'une journée de retraite"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
     </Fragment>
   </Hero>
 
   <Content
     tagline="Le format"
     title="Une journée pour respirer"
+    image={{
+      src: imgChapelleTournesols,
+      alt: 'Le tabernacle fleuri de tournesols dans la chapelle du Foyer',
+    }}
     items={[
       {
         title: '9h30 → 16h30',

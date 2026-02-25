@@ -6,6 +6,8 @@ import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
+import imgMarcheGroupe from '~/assets/images/fddm-marche-groupe.jpg';
+
 const metadata = {
   title: 'Retraite spirituelle en famille — Week-end en Suisse',
   description: 'Week-end spirituel pour familles en Suisse romande. Programme adapté petits et grands. Foyer de Charité Dents-du-Midi, Bex, face aux Alpes.',
@@ -21,13 +23,25 @@ const metadata = {
       Un week-end pour vivre la foi ensemble, petits et grands. Thématiques actuelles et moments de partage.
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-700 via-primary-600 to-primary-500"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-sentier-groupe.jpeg"
+          alt="Groupe en marche sur un sentier, retraite en famille au Foyer"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
     </Fragment>
   </Hero>
 
   <Content
     tagline="Le format"
     title="Vivre la foi en famille"
+    image={{
+      src: imgMarcheGroupe,
+      alt: 'Groupe marchant ensemble, la foi en famille au Foyer de Charité',
+    }}
     items={[
       {
         title: 'Programme adapté',

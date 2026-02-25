@@ -6,6 +6,8 @@ import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
+import imgAutelHiver from '~/assets/images/fddm-autel-hiver.jpg';
+
 const metadata = {
   title: 'Retraite spirituelle de 6 jours en Suisse — Silence et enseignements',
   description: 'Retraite spirituelle de 6 jours en Suisse romande. Silence, enseignements, accompagnement individuel face aux Alpes. Dès CHF 720.- au Foyer de Charité, Bex.',
@@ -21,13 +23,25 @@ const metadata = {
       Six jours pour cheminer dans le mystère de la foi en approfondissant un thème particulier. Le format historique des Foyers de Charité.
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-700 via-primary-600 to-primary-500"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-croix-sommet.jpg"
+          alt="Croix au sommet des montagnes, symbole du chemin spirituel de 6 jours"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
     </Fragment>
   </Hero>
 
   <Content
     tagline="Le format"
     title="Un itinéraire spirituel complet"
+    image={{
+      src: imgAutelHiver,
+      alt: "L'autel de la chapelle en hiver, lieu de recueillement quotidien",
+    }}
     items={[
       {
         title: 'Dimanche 18h30 → Samedi 10h',

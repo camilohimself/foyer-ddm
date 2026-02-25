@@ -33,7 +33,19 @@ function formatEventLabel(event: (typeof events)[0]): string {
     tagline="Inscription"
     title="S'inscrire à une retraite"
     subtitle="Complétez votre inscription en 3 étapes simples. Vous recevrez une confirmation par email sous 48h."
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-randonneurs-neige.jpg"
+          alt="Randonneurs dans la neige, inscrivez-vous à une retraite"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
 
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
 

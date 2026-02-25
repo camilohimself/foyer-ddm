@@ -6,6 +6,8 @@ import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
+import imgCoupleMains from '~/assets/images/fddm-couple-mains.jpg';
+
 const metadata = {
   title: 'Retraite spirituelle pour couples — Week-end en Suisse',
   description: 'Week-end spirituel pour couples en Suisse romande. Accueil des enfants dès 4 ans. Animation par des couples. Foyer de Charité Dents-du-Midi, Bex.',
@@ -21,13 +23,25 @@ const metadata = {
       Donnez du souffle à votre couple. Un temps idéal pour approfondir un dialogue, une réflexion spirituelle et pratique sur la vie conjugale.
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-700 via-primary-600 to-primary-500"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-couple-marche.jpg"
+          alt="Couple en marche dans la nature, retraite pour couples au Foyer"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
     </Fragment>
   </Hero>
 
   <Content
     tagline="Le format"
     title="Un temps pour votre couple"
+    image={{
+      src: imgCoupleMains,
+      alt: "Mains jointes d'un couple, symbole d'engagement et de tendresse",
+    }}
     items={[
       {
         title: 'Vendredi 18h30 → Dimanche 15h',

@@ -5,6 +5,8 @@ import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
+import imgAutomne from '~/assets/images/fddm-automne.jpg';
+
 const metadata = {
   title: 'Retraites spirituelles en Suisse — 6 formats',
   description: 'Retraites spirituelles en Suisse romande : 6 jours, week-ends, couples, familles, journées et préparation au mariage. Foyer de Charité Dents-du-Midi, Bex.',
@@ -21,7 +23,15 @@ const metadata = {
       Trouvez la formule qui vous correspond.
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-700 via-primary-600 to-primary-500"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-chapelle-etoile.jpg"
+          alt="La chapelle du Foyer illuminée, porte d'entrée vers les retraites spirituelles"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
     </Fragment>
   </Hero>
 
@@ -75,6 +85,10 @@ const metadata = {
   <Content
     tagline="Comment choisir ?"
     title="Quelle retraite est faite pour vous ?"
+    image={{
+      src: imgAutomne,
+      alt: 'Le Foyer de Charité en automne, un cadre de paix pour choisir sa retraite',
+    }}
     items={[
       {
         title: 'Première fois ?',

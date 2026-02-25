@@ -25,7 +25,19 @@ const testimonialsList = allTestimonials.map((t) => ({
     tagline="Expériences"
     title="Témoignages"
     subtitle="Paroles de ceux qui ont vécu une retraite au Foyer de Charité Dents-du-Midi."
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-autel-hiver.jpg"
+          alt="L'autel de la chapelle en hiver, paroles de retraitants"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
 
   <!-- Témoignages (dynamique — les 17 témoignages) -->
   <Testimonials

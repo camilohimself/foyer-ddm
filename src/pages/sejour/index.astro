@@ -15,7 +15,19 @@ const metadata = {
     tagline="Informations pratiques"
     title="Votre séjour au Foyer"
     subtitle="Tout ce qu'il faut savoir pour préparer votre retraite : hébergement, tarifs, journée type et accès."
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-facade-ete.jpg"
+          alt="La façade du Foyer de Charité en été, votre lieu de séjour"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
 
   <!-- Hub des informations -->
   <Features

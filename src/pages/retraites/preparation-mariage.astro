@@ -7,6 +7,8 @@ import Features from '~/components/widgets/Features.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
+import imgChapelleCroix from '~/assets/images/fddm-chapelle-croix.jpg';
+
 const metadata = {
   title: 'Préparation au mariage chrétien — Week-end en Suisse',
   description: 'Préparation au mariage chrétien en Suisse romande. CHF 200.- par couple. En partenariat avec le Diocèse de Sion. Foyer de Charité, Bex.',
@@ -22,13 +24,25 @@ const metadata = {
       Préparez votre mariage autrement. Deux jours pour aborder les thèmes essentiels de l'engagement, dans un cadre exceptionnel.
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-700 via-primary-600 to-primary-500"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-couple-mains.jpg"
+          alt="Mains jointes d'un couple, préparation au mariage au Foyer"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
     </Fragment>
   </Hero>
 
   <Content
     tagline="Le format"
     title="Un week-end pour se préparer"
+    image={{
+      src: imgChapelleCroix,
+      alt: 'La croix dans la chapelle du Foyer, lieu de préparation au sacrement du mariage',
+    }}
     items={[
       {
         title: 'Samedi 9h30-18h30, Dimanche 8h30-16h30',
