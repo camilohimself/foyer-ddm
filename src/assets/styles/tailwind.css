@@ -64,9 +64,33 @@
   color: white;
 }
 
+/* Desktop: dropdown menus always dark text (white/90 background) */
+#header .dropdown-menu a {
+  color: var(--aw-color-text-default);
+}
+
+#header .dropdown-menu a:hover {
+  color: var(--aw-color-accent-400);
+}
+
+/* Mobile expanded: dark text on white bg-page */
+#header.expanded a,
+#header.expanded button {
+  color: var(--aw-color-text-default);
+}
+
+#header.expanded .btn-primary {
+  color: white;
+}
+
+/* Mobile: hamburger lines dark (header is on white bg on mobile) */
+#header [data-aw-toggle-menu] span[aria-hidden] {
+  @apply bg-gray-900;
+}
+
 #header.expanded nav {
   position: fixed;
-  top: 70px;
+  top: 90px;
   left: 0;
   right: 0;
   bottom: 70px !important;

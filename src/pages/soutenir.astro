@@ -5,6 +5,10 @@ import Features from '~/components/widgets/Features.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
+import imgBougiesPriere from '~/assets/images/fddm-bougies-priere.jpg';
+import imgMarcheGroupe from '~/assets/images/fddm-marche-groupe.jpg';
+import imgPaquesCroix from '~/assets/images/fddm-paques-croix.jpeg';
+
 const metadata = {
   title: 'Soutenir le Foyer — Foyer de Charité Dents-du-Midi',
   description: 'Soutenez le Foyer par la prière, le bénévolat ou un don financier.',
@@ -53,8 +57,8 @@ const metadata = {
   <Content
     isReversed
     image={{
-      src: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Prière',
+      src: imgBougiesPriere,
+      alt: 'Bougies de prière dans la chapelle du Foyer',
     }}
   >
     <Fragment slot="content">
@@ -98,8 +102,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-      alt: 'Bénévolat',
+      src: imgMarcheGroupe,
+      alt: 'Bénévoles et retraitants en marche dans la montagne',
     }}
   >
     <Fragment slot="content">
@@ -135,8 +139,8 @@ const metadata = {
   <Content
     isReversed
     image={{
-      src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Soutien financier',
+      src: imgPaquesCroix,
+      alt: 'La croix de Pâques fleurie — soutenir l\'oeuvre du Foyer',
     }}
   >
     <Fragment slot="content">

@@ -3,6 +3,11 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
+
+import imgAutomne2 from '~/assets/images/fddm-automne-2.jpg';
+import imgFacadeEte from '~/assets/images/fddm-facade-ete.jpg';
+import imgChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
 
 const metadata = {
   title: 'Galerie photos — Foyer de Charité Dents-du-Midi',
@@ -24,8 +29,8 @@ const metadata = {
   <Content
     isReversed
     image={{
-      src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Vue sur les Dents-du-Midi',
+      src: imgAutomne2,
+      alt: 'Le Foyer dans son parc en automne',
     }}
   >
     <Fragment slot="content">
@@ -66,32 +71,38 @@ const metadata = {
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="overflow-hidden rounded-lg shadow-lg">
-        <img
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-          alt="Paysage montagneux"
+        <Image
+          src={imgAutomne2}
+          alt="Le Foyer dans son parc en automne"
           class="w-full h-64 object-cover"
+          width={800}
+          height={256}
         />
         <div class="p-4 bg-white">
-          <p class="text-sm font-semibold text-primary-600">Vue sur les Alpes</p>
+          <p class="text-sm font-semibold text-primary-600">Le Foyer en automne</p>
         </div>
       </div>
 
       <div class="overflow-hidden rounded-lg shadow-lg">
-        <img
-          src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-          alt="Parc et verdure"
+        <Image
+          src={imgFacadeEte}
+          alt="La façade du Foyer en été"
           class="w-full h-64 object-cover"
+          width={800}
+          height={256}
         />
         <div class="p-4 bg-white">
-          <p class="text-sm font-semibold text-primary-600">Parc de 7 hectares</p>
+          <p class="text-sm font-semibold text-primary-600">La façade en été</p>
         </div>
       </div>
 
       <div class="overflow-hidden rounded-lg shadow-lg">
-        <img
-          src="https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-          alt="Chapelle"
+        <Image
+          src={imgChapelleTournesols}
+          alt="Le tabernacle fleuri de tournesols"
           class="w-full h-64 object-cover"
+          width={800}
+          height={256}
         />
         <div class="p-4 bg-white">
           <p class="text-sm font-semibold text-primary-600">Chapelle du Foyer</p>

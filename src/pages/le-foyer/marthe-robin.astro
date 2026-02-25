@@ -4,6 +4,8 @@ import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import fddmBougiesPriere from '~/assets/images/fddm-bougies-priere.jpg';
+import fddmCroixSommet from '~/assets/images/fddm-croix-sommet.jpg';
 
 const metadata = {
   title: 'Marthe Robin — Foyer de Charité Dents-du-Midi',
@@ -28,8 +30,8 @@ const metadata = {
   <Content
     isReversed
     image={{
-      src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Portrait spirituel',
+      src: fddmBougiesPriere,
+      alt: 'Bougies de priere dans la chapelle',
     }}
   >
     <Fragment slot="content">
@@ -133,8 +135,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Réseau des Foyers de Charité',
+      src: fddmCroixSommet,
+      alt: 'Croix au sommet face aux Alpes — le reseau des Foyers de Charite',
     }}
   >
     <Fragment slot="content">

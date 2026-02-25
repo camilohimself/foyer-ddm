@@ -3,6 +3,8 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
+import fddmEquipe from '~/assets/images/fddm-equipe.jpg';
+import fddmMarcheGroupe from '~/assets/images/fddm-marche-groupe.jpg';
 
 const metadata = {
   title: 'L\'équipe — Foyer de Charité Dents-du-Midi',
@@ -22,8 +24,8 @@ const metadata = {
   <Content
     isReversed
     image={{
-      src: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
-      alt: 'Équipe du Foyer',
+      src: fddmEquipe,
+      alt: 'L\'equipe du Foyer de Charite Dents-du-Midi',
     }}
   >
     <Fragment slot="content">
@@ -135,8 +137,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-      alt: 'Bénévoles au Foyer',
+      src: fddmMarcheGroupe,
+      alt: 'Groupe de retraitants en marche dans les montagnes',
     }}
   >
     <Fragment slot="content">

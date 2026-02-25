@@ -3,6 +3,8 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
+import fddmRandonneursCrete from '~/assets/images/fddm-randonneurs-crete.jpg';
+import fddmSentierGroupe from '~/assets/images/fddm-sentier-groupe.jpeg';
 
 const metadata = {
   title: 'Accès — Foyer de Charité Dents-du-Midi',
@@ -96,8 +98,8 @@ const metadata = {
   <Content
     isReversed
     image={{
-      src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Route vers le Foyer',
+      src: fddmRandonneursCrete,
+      alt: 'Randonneurs sur les crêtes face aux Dents-du-Midi',
     }}
   >
     <Fragment slot="content">
@@ -158,8 +160,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
-      alt: 'Transports en commun',
+      src: fddmSentierGroupe,
+      alt: 'Groupe sur un sentier alpin près du Foyer',
     }}
   >
     <Fragment slot="content">

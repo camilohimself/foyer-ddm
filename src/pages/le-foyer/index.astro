@@ -4,6 +4,8 @@ import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import fddmFacadeEte from '~/assets/images/fddm-facade-ete.jpg';
+import fddmChapelleHiver from '~/assets/images/fddm-chapelle-hiver.jpg';
 
 const metadata = {
   title: 'Le Foyer de Charité — Dents-du-Midi',
@@ -33,8 +35,8 @@ const metadata = {
   <Content
     isReversed
     image={{
-      src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Paysage des Dents-du-Midi',
+      src: fddmFacadeEte,
+      alt: 'Facade du Foyer de Charite Dents-du-Midi en ete',
     }}
   >
     <Fragment slot="content">
@@ -129,8 +131,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Équipe du Foyer',
+      src: fddmChapelleHiver,
+      alt: 'Interieur de la chapelle du Foyer en hiver',
     }}
   >
     <Fragment slot="content">

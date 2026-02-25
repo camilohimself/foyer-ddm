@@ -4,6 +4,8 @@ import Hero from '~/components/widgets/Hero.astro';
 import Contact from '~/components/widgets/Contact.astro';
 import Content from '~/components/widgets/Content.astro';
 
+import imgBougieNuit from '~/assets/images/fddm-bougie-nuit.jpg';
+
 const metadata = {
   title: 'Contactez-nous — Foyer de Charité Dents-du-Midi',
   description: 'N\'hésitez pas à nous écrire ou nous appeler. Nous serons heureux de répondre à vos questions.',
@@ -85,8 +87,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Contact Foyer de Charité',
+      src: imgBougieNuit,
+      alt: 'Lumière dans la nuit — contactez le Foyer de Charité',
     }}
   >
     <Fragment slot="content">
