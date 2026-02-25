@@ -5,7 +5,8 @@ import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import fddmFacadeEte from '~/assets/images/fddm-facade-ete.jpg';
-import fddmChapelleHiver from '~/assets/images/fddm-chapelle-hiver.jpg';
+import fddmMessePleinAir from '~/assets/images/fddm-messe-plein-air.jpg';
+import fddmLavementPieds from '~/assets/images/fddm-lavement-pieds.jpg';
 
 const metadata = {
   title: 'Le Foyer de Charité — Dents-du-Midi',
@@ -123,6 +124,28 @@ const metadata = {
     </blockquote>
   </section>
 
+  <!-- Vie spirituelle -->
+  <Content
+    isReversed
+    image={{
+      src: fddmMessePleinAir,
+      alt: 'Célébration eucharistique en plein air sur un alpage, prêtre et retraitants face aux montagnes',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Prier au grand <span class="text-accent-400">air</span>
+      </h2>
+      <p class="text-muted mb-4">
+        La vie au Foyer ne s'arrête pas aux murs du bâtiment. Randonnées, célébrations en plein air,
+        moments de partage au cœur de la nature — les montagnes font partie du chemin.
+      </p>
+      <p class="text-muted">
+        L'Eucharistie, célébrée chaque jour, prend parfois des couleurs d'alpage.
+      </p>
+    </Fragment>
+  </Content>
+
   <!-- En savoir plus -->
   <Content
     items={[
@@ -143,8 +166,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: fddmChapelleHiver,
-      alt: 'Interieur de la chapelle du Foyer en hiver',
+      src: fddmLavementPieds,
+      alt: 'Lavement des pieds lors du Jeudi Saint dans la chapelle du Foyer',
     }}
   >
     <Fragment slot="content">
