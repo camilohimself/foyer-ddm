@@ -17,10 +17,10 @@ const metadata = {
 <Layout metadata={metadata}>
   <Hero>
     <Fragment slot="title">
-      Trois jours <span class="text-accent-400">pour tous</span>
+      Trois jours <span class="text-accent-400">pour s'arrêter</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Une pause au cœur de votre quotidien ! Trois jours pour vivre une halte spirituelle ou oser une première retraite.
+      Une halte au cœur de votre quotidien. Trois jours pour vivre le silence, la prière, et peut-être oser une première retraite.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -37,23 +37,23 @@ const metadata = {
 
   <Content
     tagline="Le format"
-    title="Une première retraite accessible"
+    title="Un premier pas"
     image={{
       src: imgChapelleHiver,
       alt: 'La chapelle du Foyer en hiver, un lieu de paix pour une première retraite',
     }}
     items={[
       {
-        title: 'Vendredi 18h30 → Dimanche 15h',
-        description: '2 nuits en pension complète.',
+        title: 'Du vendredi soir au dimanche après-midi',
+        description: 'L\'accueil, les repas et le cadre de silence sont assurés par la communauté du Foyer.',
       },
       {
         title: 'Temps liturgiques forts',
         description: 'Entrée en Carême, Trois Jours Saints, thématiques bibliques.',
       },
       {
-        title: 'Idéal première retraite',
-        description: 'Format accessible pour découvrir l\'expérience d\'une retraite en Foyer de Charité.',
+        title: 'Un premier pas',
+        description: 'Vous n\'avez jamais vécu de retraite ? Ce format est fait pour vous.',
       },
     ]}
   >
@@ -61,8 +61,7 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
         Une halte spirituelle
       </h3>
-      Trois jours pour souffler, se ressourcer, approfondir sa foi. Un format idéal pour celles et ceux qui hésitent
-      à s'engager dans une retraite plus longue ou qui souhaitent vivre un temps liturgique fort.
+      Trois jours pour souffler, écouter, approfondir sa foi. Un format idéal pour celles et ceux qui souhaitent découvrir l'expérience d'une retraite ou vivre un temps liturgique fort.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-surface-alt"></div>
@@ -119,10 +118,9 @@ const metadata = {
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Un rythme qui nourrit
+        Le rythme de trois jours
       </h3>
-      Prière, enseignements, silence et temps personnel. Chaque journée est rythmée pour permettre l'intériorisation
-      et la rencontre avec Dieu.
+      Prière, enseignements, silence et temps personnel. Chaque journée suit un rythme qui laisse place à l'intériorité et à la rencontre.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-surface-special"></div>
@@ -130,7 +128,7 @@ const metadata = {
   </Content>
 
   <Testimonials
-    title="Ils ont vécu un week-end"
+    title="Paroles après trois jours de silence"
     testimonials={[
       {
         testimonial: `Ses paroles nous ont touchés en profondeur.`,
@@ -155,29 +153,28 @@ const metadata = {
   </Testimonials>
 
   <Content
-    tagline="Participation financière"
-    title="Tarifs et inscription"
+    tagline="Participation"
+    title="Une question de confiance"
     items={[
       {
         title: 'CHF 360.- suggéré',
-        description: 'Soit CHF 120.- par jour. Pension complète incluse (hébergement, 3 repas par jour).',
+        description: 'Soit environ CHF 120.- par jour. L\'accueil, les repas et l\'hébergement sont compris.',
       },
       {
-        title: 'Personne n\'est refusé',
-        description: 'Chacun évalue sa participation selon ses moyens. Personne n\'est refusé pour raisons financières.',
+        title: 'Aucun obstacle financier',
+        description: 'Chacun donne selon ses moyens. Aucune situation financière ne doit vous empêcher de vivre cette retraite.',
       },
       {
-        title: 'Inscription',
+        title: 'S\'inscrire',
         description: 'Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne.',
       },
     ]}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Une proposition accessible
+        Donner selon ses moyens
       </h3>
-      Le prix suggéré permet au Foyer de fonctionner. Si vos moyens sont limités, n'hésitez pas à nous en parler.
-      L'essentiel est que vous puissiez vivre cette retraite.
+      Le Foyer vit de la générosité de chacun. Le montant suggéré couvre les frais de fonctionnement. Si vos moyens sont limités, n'hésitez pas à nous en parler. L'essentiel est que vous puissiez vivre cette retraite.
     </Fragment>
   </Content>
 
@@ -186,21 +183,21 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Réserver mon week-end',
+        text: 'S\'inscrire',
         href: '/contact/inscription',
         icon: 'tabler:calendar-check',
       },
       {
-        text: 'Voir toutes les retraites',
+        text: 'Découvrir les autres retraites',
         href: '/retraites',
       },
     ]}
   >
     <Fragment slot="title">
-      Prêt à vivre <span class="text-accent-400">trois jours</span> de ressourcement ?
+      Trois jours pour <span class="text-accent-400">s'arrêter</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Inscrivez-vous dès maintenant ou contactez-nous pour toute question.
+      Le Foyer vous accueille. Inscrivez-vous ou contactez-nous pour toute question.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-primary-600"></div>

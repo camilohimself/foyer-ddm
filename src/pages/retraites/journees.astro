@@ -9,18 +9,18 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import imgChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
 
 const metadata = {
-  title: 'Journée spirituelle en Suisse — CHF 50 tout compris',
-  description: 'Journée de ressourcement spirituel en Suisse romande. CHF 50.- tout compris : conférences, repas, Eucharistie. Foyer de Charité Dents-du-Midi, Bex.',
+  title: 'Journée spirituelle en Suisse — Foyer de Charité, Bex',
+  description: 'Journée spirituelle en Suisse romande. Enseignements, repas partagé et Eucharistie. Une porte d\'entrée pour découvrir le Foyer de Charité Dents-du-Midi, Bex.',
 };
 ---
 
 <Layout metadata={metadata}>
   <Hero>
     <Fragment slot="title">
-      Journées de <span class="text-accent-400">ressourcement</span>
+      Une journée au <span class="text-accent-400">Foyer</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Une halte de quelques heures. Quelques heures pour prier, se laisser inspirer, respirer...
+      Quelques heures pour se poser, écouter, prier. Une porte d'entrée toute simple.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -37,35 +37,35 @@ const metadata = {
 
   <Content
     tagline="Le format"
-    title="Une journée pour respirer"
+    title="Une porte d'entrée"
     image={{
       src: imgChapelleTournesols,
       alt: 'Le tabernacle fleuri de tournesols dans la chapelle du Foyer',
     }}
     items={[
       {
-        title: '9h30 → 16h30',
-        description: 'Une journée complète : café d\'accueil, 2 conférences, repas de midi, Eucharistie, boisson au départ.',
+        title: 'De 9h30 à 16h30',
+        description: 'Café d\'accueil, deux enseignements, repas partagé et Eucharistie.',
       },
       {
-        title: 'CHF 50.- tout compris',
-        description: 'Prix très accessible incluant tout : conférences, repas et boissons.',
+        title: 'CHF 50.-',
+        description: 'L\'accueil, les enseignements et le repas sont compris.',
       },
       {
         title: 'Thèmes variés',
         description: 'Art, culture, spiritualité. Icônes, Maurice Zundel, La Fontaine, témoins de la foi.',
       },
       {
-        title: 'Idéal découverte',
-        description: 'Pas d\'engagement long. Parfait pour une première approche du Foyer.',
+        title: 'Sans engagement',
+        description: 'Vous ne connaissez pas le Foyer ? Cette journée est faite pour vous.',
       },
     ]}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Une halte accessible
+        Quelques heures suffisent
       </h3>
-      Pas besoin de plusieurs jours pour se ressourcer. Une journée suffit pour découvrir le Foyer,
+      Pas besoin de plusieurs jours. Une journée suffit pour découvrir le Foyer,
       rencontrer d'autres chercheurs de sens, et repartir nourri.
     </Fragment>
     <Fragment slot="bg">
@@ -157,8 +157,8 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
         Un rythme équilibré
       </h3>
-      Deux enseignements approfondis encadrent la journée. Entre les deux, temps de prière, de silence,
-      de repas partagé. Une respiration complète en une seule journée.
+      Deux enseignements encadrent la journée. Entre les deux : prière, silence, repas partagé.
+      Une respiration complète en quelques heures.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-surface-special"></div>
@@ -166,7 +166,7 @@ const metadata = {
   </Content>
 
   <Testimonials
-    title="Ils ont vécu une journée"
+    title="Paroles après une journée"
     testimonials={[
       {
         testimonial: `Toute ma reconnaissance pour l'accueil chaleureux et le silence tellement habité de l'Essentiel.`,
@@ -191,29 +191,29 @@ const metadata = {
   </Testimonials>
 
   <Content
-    tagline="Participation financière"
-    title="Tarifs et inscription"
+    tagline="Participation"
+    title="Un prix simple"
     items={[
       {
-        title: 'CHF 50.- tout compris',
-        description: 'Café d\'accueil, 2 conférences, repas de midi, Eucharistie, boisson au départ.',
+        title: 'CHF 50.-',
+        description: 'Café d\'accueil, deux enseignements, repas de midi, Eucharistie, boisson au départ.',
       },
       {
         title: 'Prix fixe',
-        description: 'Contrairement aux retraites longues, le prix des journées est fixe et très accessible.',
+        description: 'Contrairement aux retraites de plusieurs jours, le prix des journées est fixe.',
       },
       {
-        title: 'Inscription recommandée',
-        description: 'Pour l\'organisation du repas, merci de vous inscrire par téléphone au +41 24 463 18 78 ou via le formulaire en ligne.',
+        title: 'S\'inscrire',
+        description: 'Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne.',
       },
     ]}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Un prix unique
+        CHF 50.- la journée
       </h3>
-      CHF 50.- pour une journée complète avec repas et enseignements de qualité. Un rapport exceptionnel
-      pour découvrir le Foyer et se ressourcer.
+      L'accueil, les enseignements, le repas de midi et les boissons sont compris.
+      Pour l'organisation du repas, merci de vous inscrire à l'avance.
     </Fragment>
   </Content>
 
@@ -222,21 +222,21 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Participer à une journée',
+        text: 'S\'inscrire à une journée',
         href: '/contact/inscription',
         icon: 'tabler:calendar-check',
       },
       {
-        text: 'Voir toutes les retraites',
+        text: 'Découvrir les autres retraites',
         href: '/retraites',
       },
     ]}
   >
     <Fragment slot="title">
-      Prêt à vivre une <span class="text-accent-400">journée</span> au Foyer ?
+      Une journée pour <span class="text-accent-400">commencer</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Inscrivez-vous dès maintenant ou contactez-nous pour toute question.
+      Le Foyer vous accueille. Inscrivez-vous ou contactez-nous pour toute question.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-primary-600"></div>

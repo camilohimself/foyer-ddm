@@ -41,8 +41,8 @@ const testimonialsList = allTestimonials.map((t) => ({
 
   <!-- Témoignages (dynamique — les 17 témoignages) -->
   <Testimonials
-    title="Ils ont vécu <span class='text-accent-400'>l'expérience</span>"
-    subtitle="Des retraitants partagent ce qu'ils ont vécu au Foyer : paix, silence, rencontre avec l'Essentiel."
+    title="Paroles de <span class='text-accent-400'>retraitants</span>"
+    subtitle="Ce qui se vit ici ne s'explique pas toujours. Parfois, ce sont ceux qui l'ont vécu qui en parlent le mieux."
     testimonials={testimonialsList}
   />
 
@@ -62,7 +62,7 @@ const testimonialsList = allTestimonials.map((t) => ({
     actions={[
       {
         variant: 'primary',
-        text: 'Vivre l\'expérience',
+        text: 'Découvrir les retraites',
         href: '/retraites',
       },
       {
@@ -71,10 +71,10 @@ const testimonialsList = allTestimonials.map((t) => ({
       },
     ]}
   >
-    <Fragment slot="title">À votre tour de vivre cette expérience</Fragment>
+    <Fragment slot="title">Les portes sont <span class="text-accent-400">ouvertes</span></Fragment>
 
     <Fragment slot="subtitle">
-      Rejoignez ceux qui ont découvert la paix et le silence habité de l'Essentiel. Inscrivez-vous à une retraite.
+      Le Foyer vous accueille. Inscrivez-vous ou contactez-nous pour toute question.
     </Fragment>
   </CallToAction>
 </Layout>

@@ -17,10 +17,10 @@ const metadata = {
 <Layout metadata={metadata}>
   <Hero>
     <Fragment slot="title">
-      Trois jours pour <span class="text-accent-400">couples</span>
+      Trois jours <span class="text-accent-400">à deux</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Donnez du souffle à votre couple. Un temps idéal pour approfondir un dialogue, une réflexion spirituelle et pratique sur la vie conjugale.
+      Un temps pour se retrouver dans la prière et le dialogue. Un week-end qui fait du bien au couple.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -37,31 +37,31 @@ const metadata = {
 
   <Content
     tagline="Le format"
-    title="Un temps pour votre couple"
+    title="Se retrouver à deux"
     image={{
       src: imgCoupleMains,
       alt: "Mains jointes d'un couple, symbole d'engagement et de tendresse",
     }}
     items={[
       {
-        title: 'Vendredi 18h30 → Dimanche 15h',
-        description: '2 nuits en pension complète pour le couple.',
+        title: 'Du vendredi soir au dimanche après-midi',
+        description: "L'accueil et les repas sont assurés par la communauté du Foyer.",
       },
       {
-        title: 'Accueil des enfants',
-        description: 'Enfants de 4 à 12 ans accueillis avec encadrement et animation spirituelle. Jeunes dès 15 ans peuvent aider.',
+        title: 'Vos enfants sont accueillis',
+        description: 'Les enfants de 4 à 12 ans vivent un programme adapté : jeux, temps spirituels, activités créatives. Les jeunes dès 15 ans peuvent aider.',
       },
       {
         title: 'Couples animateurs',
-        description: 'Animé par des couples expérimentés et un prêtre. Dialogue et réflexion conjugale.',
+        description: 'Animé par des couples expérimentés et un prêtre. Des témoignages et des échanges qui nourrissent.',
       },
     ]}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Dialogue et spiritualité conjugale
+        Dialogue et vie spirituelle
       </h3>
-      Un week-end conçu pour les couples, avec ou sans enfants. Réflexion sur les défis concrets du mariage,
+      Un week-end pour les couples, avec ou sans enfants. Réflexion sur les défis concrets de la vie conjugale,
       enseignements spirituels, temps de dialogue à deux et partage en groupe.
     </Fragment>
     <Fragment slot="bg">
@@ -122,7 +122,7 @@ const metadata = {
   </Content>
 
   <Testimonials
-    title="Ils ont vécu un week-end couple"
+    title="Paroles de couples"
     testimonials={[
       {
         testimonial: `Ses paroles nous ont touchés en profondeur.`,
@@ -142,32 +142,32 @@ const metadata = {
   </Testimonials>
 
   <Content
-    tagline="Participation financière"
-    title="Tarifs et inscription"
+    tagline="Participation"
+    title="Une question de confiance"
     items={[
       {
         title: 'CHF 360.- suggéré par adulte',
-        description: 'Soit CHF 120.- par jour et par personne. Pension complète incluse.',
+        description: "Soit environ CHF 120.- par jour et par personne. L'accueil, les repas et l'hébergement sont compris.",
       },
       {
-        title: 'Accueil enfants',
-        description: 'Enfants de 4 à 12 ans : hébergement et animation inclus dans la participation du couple.',
+        title: 'Enfants accueillis',
+        description: "L'accueil des enfants de 4 à 12 ans est compris dans la participation du couple.",
       },
       {
-        title: 'Personne n\'est refusé',
-        description: 'Chacun évalue sa participation selon ses moyens. Personne n\'est refusé pour raisons financières.',
+        title: 'Aucun obstacle financier',
+        description: 'Chacun donne selon ses moyens. Aucune situation financière ne doit vous empêcher de vivre cette retraite.',
       },
       {
-        title: 'Inscription',
-        description: 'Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne. Précisez l\'âge des enfants.',
+        title: "S'inscrire",
+        description: "Par téléphone au +41 24 463 18 78 ou via le formulaire en ligne. Précisez l'âge des enfants.",
       },
     ]}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Une proposition accessible
+        Donner selon ses moyens
       </h3>
-      Le prix suggéré permet au Foyer de fonctionner. Si vos moyens sont limités, n'hésitez pas à nous en parler.
+      Le Foyer vit de la générosité de chacun. Si vos moyens sont limités, n'hésitez pas à nous en parler.
       L'essentiel est que vous puissiez vivre ce week-end en couple.
     </Fragment>
   </Content>
@@ -177,21 +177,21 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Nous inscrire en couple',
+        text: 'Nous inscrire',
         href: '/contact/inscription',
         icon: 'tabler:calendar-check',
       },
       {
-        text: 'Voir toutes les retraites',
+        text: 'Découvrir les autres retraites',
         href: '/retraites',
       },
     ]}
   >
     <Fragment slot="title">
-      Prêt à vivre <span class="text-accent-400">trois jours</span> en couple ?
+      Un week-end pour <span class="text-accent-400">se retrouver</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Inscrivez-vous dès maintenant ou contactez-nous pour toute question. N'oubliez pas de préciser l'âge de vos enfants.
+      Le Foyer vous accueille en couple. Inscrivez-vous ou contactez-nous. N'oubliez pas de préciser l'âge de vos enfants.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-primary-600"></div>

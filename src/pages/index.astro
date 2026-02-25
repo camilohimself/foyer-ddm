@@ -76,19 +76,19 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
         icon: 'tabler:arrow-right',
       },
       {
-        text: 'Voir le programme 2026',
+        text: 'Découvrir le programme',
         href: '/programme',
       },
     ]}
   >
     <Fragment slot="title">
-      Retraites spirituelles en Suisse<br />
+      Un lieu de silence et de prière<br />
       <span class="text-accent-400">face aux Alpes</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Depuis 1970, le Foyer de Charité Dents-du-Midi accueille ceux qui cherchent le silence et la prière.
-      Retraites de 1 à 6 jours dans un cadre exceptionnel à Bex, Suisse romande.
+      Depuis 1970, le Foyer de Charité Dents-du-Midi accueille ceux qui éprouvent le besoin de s'arrêter.
+      Retraites de 1 à 6 jours à Bex, au pied des montagnes.
     </Fragment>
 
     <Fragment slot="bg">
@@ -109,50 +109,50 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     stats={[
       { title: 'ans d\'accueil', amount: '55+' },
       { title: 'retraites en 2026', amount: '20' },
-      { title: 'par jour (suggéré)', amount: 'CHF 120' },
-      { title: 'Foyer en Suisse', amount: 'Seul' },
+      { title: 'Foyers dans le monde', amount: '75' },
+      { title: 'en Suisse', amount: 'Seul' },
     ]}
   />
 
   <!-- 6 Packages en cartes -->
   <Features2
-    title="Nos retraites spirituelles"
-    subtitle="Six formats adaptés à chaque besoin : de la journée découverte à la retraite de 6 jours"
-    tagline="Nos offres"
+    title="Plusieurs chemins, une même quête"
+    subtitle="De la journée de découverte à la retraite de six jours, chacun trouve son pas."
+    tagline="Nos retraites"
     items={[
       {
-        title: 'Retraites de 6 jours',
-        description: 'Six jours pour cheminer dans le mystère de la foi. Silence, enseignements et accompagnement spirituel. Dès CHF 720.-',
+        title: 'Six jours de silence',
+        description: 'Le format historique des Foyers de Charité. Six jours pour cheminer dans le mystère de la foi, portés par les enseignements et le silence.',
         icon: 'tabler:sunset-2',
         callToAction: { text: 'En savoir plus', href: '/retraites/6-jours' },
       },
       {
-        title: 'Week-ends 3 jours',
-        description: 'Une pause au coeur de votre quotidien. Idéal pour une première retraite ou un temps liturgique fort. Dès CHF 360.-',
+        title: 'Trois jours pour s\'arrêter',
+        description: 'Une halte au cœur de votre quotidien. Idéal pour une première retraite ou pour vivre un temps fort de l\'année liturgique.',
         icon: 'tabler:calendar-event',
         callToAction: { text: 'En savoir plus', href: '/retraites/week-end' },
       },
       {
-        title: 'Couples',
-        description: 'Donnez du souffle à votre couple. Accueil des enfants de 4 à 12 ans avec animation dédiée.',
+        title: 'En couple',
+        description: 'Un temps à deux pour se retrouver dans la prière et le dialogue. Vos enfants sont accueillis avec un programme adapté à leur âge.',
         icon: 'tabler:hearts',
         callToAction: { text: 'En savoir plus', href: '/retraites/couples' },
       },
       {
-        title: 'Familles',
-        description: 'La foi en famille, une aventure. Programme adapté petits et grands, thématiques actuelles.',
+        title: 'En famille',
+        description: 'Vivre la foi ensemble, petits et grands. Des moments de partage et de prière adaptés à chaque âge.',
         icon: 'tabler:home-heart',
         callToAction: { text: 'En savoir plus', href: '/retraites/familles' },
       },
       {
-        title: 'Journées',
-        description: 'Une halte de quelques heures : café, conférences, repas et Eucharistie. CHF 50.- tout compris.',
+        title: 'Une journée au Foyer',
+        description: 'Quelques heures pour se poser : enseignements, repas partagé et Eucharistie. Une porte d\'entrée toute simple.',
         icon: 'tabler:sun',
         callToAction: { text: 'En savoir plus', href: '/retraites/journees' },
       },
       {
         title: 'Préparation au mariage',
-        description: 'Préparez votre mariage dans un cadre exceptionnel. CHF 200.- par couple, hébergement possible.',
+        description: 'Deux jours pour préparer votre engagement, accompagnés par des couples expérimentés et un prêtre. En partenariat avec le Diocèse de Sion.',
         icon: 'tabler:rings',
         callToAction: { text: 'En savoir plus', href: '/retraites/preparation-mariage' },
       },
@@ -165,8 +165,8 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
 
   <!-- Prochaines dates (dynamique) -->
   <Steps
-    title="Prochaines retraites 2026"
-    subtitle="Inscrivez-vous dès maintenant pour réserver votre place"
+    title="Prochaines retraites"
+    subtitle="Les portes du Foyer sont ouvertes. Voici les prochaines dates."
     items={stepsItems}
     callToAction={{
       text: 'Programme complet 2026',
@@ -179,23 +179,23 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
   <Content
     isReversed
     tagline="Découvrir"
-    title="Une retraite, c'est quoi ?"
+    title="Qu'est-ce qu'une retraite ?"
     image={{
       src: fddmChapelleTournesols,
       alt: 'Tabernacle fleuri de tournesols dans la chapelle du Foyer de Charité',
     }}
     items={[
       {
-        title: 'Un temps de silence',
-        description: 'Se retirer du bruit du quotidien pour retrouver l\'essentiel, dans un cadre de paix face aux montagnes.',
+        title: 'Le silence',
+        description: 'Se retirer du bruit du monde pour écouter ce qui se dit au fond de soi, face aux montagnes.',
       },
       {
-        title: 'Des enseignements',
-        description: 'Deux conférences quotidiennes par des prédicateurs de qualité : prêtres, théologiens, couples animateurs.',
+        title: 'La Parole',
+        description: 'Deux enseignements par jour, donnés par des prédicateurs qui ouvrent les Écritures et nourrissent la réflexion.',
       },
       {
-        title: 'Un accompagnement',
-        description: 'Possibilité d\'accompagnement spirituel individuel. Eucharistie quotidienne. Temps de prière personnelle.',
+        title: 'L\'accompagnement',
+        description: 'Un entretien personnel si vous le souhaitez. L\'Eucharistie quotidienne. Un temps pour prier à votre rythme.',
       },
     ]}
     callToAction={{
@@ -228,15 +228,15 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     items={[
       {
         title: 'Fondé en 1970',
-        description: 'Plus de 55 ans d\'accueil et de retraites spirituelles dans le Chablais vaudois.',
+        description: 'Plus de 55 ans d\'accueil au pied des Dents-du-Midi. Le seul Foyer de Charité en Suisse.',
       },
       {
-        title: 'Un cadre exceptionnel',
-        description: 'Ancien hôtel face aux Dents-du-Midi, 7 hectares de prairie et forêt, chapelle avec vue sur les Alpes.',
+        title: 'Un lieu habité',
+        description: 'Sept hectares de prairie et de forêt, une chapelle face aux Alpes, et une communauté qui prie et qui accueille.',
       },
       {
-        title: 'Pension complète',
-        description: 'Hébergement en chambres, cuisine maison, accueil chaleureux par la communauté du Foyer.',
+        title: 'Tout est prévu',
+        description: 'Vous êtes reçus en pension : chambre, repas préparés par la communauté, et la liberté de ne penser à rien d\'autre qu\'à l\'essentiel.',
       },
     ]}
     callToAction={{
@@ -255,8 +255,8 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
 
   <!-- Témoignages (dynamique) -->
   <Testimonials
-    title="Ce qu'ils en disent"
-    subtitle="Paroles de retraitants"
+    title="Paroles de retraitants"
+    subtitle="Ce qui se vit ici ne s'explique pas toujours. Parfois, ce sont ceux qui l'ont vécu qui en parlent le mieux."
     tagline="Témoignages"
     testimonials={selectedTestimonials}
     callToAction={{
@@ -271,12 +271,12 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     actions={[
       {
         variant: 'primary',
-        text: 'Réserver ma retraite',
+        text: 'S\'inscrire à une retraite',
         href: '/contact/inscription',
         icon: 'tabler:arrow-right',
       },
       {
-        text: 'Voir le programme',
+        text: 'Découvrir le programme',
         href: '/programme',
       },
     ]}
@@ -286,8 +286,8 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     </Fragment>
 
     <Fragment slot="subtitle">
-      Retraites de 1 à 6 jours dans un cadre exceptionnel face aux Alpes.<br />
-      Personne n'est refusé pour des raisons financières.
+      Le Foyer vous accueille pour une retraite de 1 à 6 jours, au pied des Alpes.<br />
+      Aucune situation financière ne doit être un obstacle.
     </Fragment>
 
     <Fragment slot="bg">
