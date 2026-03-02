@@ -130,19 +130,24 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Découvrir les retraites',
-        href: '/retraites',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
       },
       {
-        text: 'Nous contacter',
-        href: '/contact',
+        text: 'Voir le programme',
+        href: '/programme',
       },
     ]}
   >
-    <Fragment slot="title">Venez découvrir le Foyer en personne</Fragment>
+    <Fragment slot="title">Vivre ces <span class="text-accent-400">moments</span></Fragment>
 
     <Fragment slot="subtitle">
-      La meilleure façon de découvrir le Foyer est de venir y vivre une retraite. Inscrivez-vous dès maintenant.
+      La meilleure façon de découvrir le Foyer est de venir y vivre une retraite. Inscrivez-vous dès maintenant.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
     </Fragment>
   </CallToAction>
 </Layout>

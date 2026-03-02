@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 import fddmFacadeEte from '~/assets/images/fddm-facade-ete.jpg';
 
 const metadata = {
@@ -190,4 +191,30 @@ const metadata = {
       </p>
     </div>
   </section>
+
+  <CallToAction
+    isDark
+    actions={[
+      {
+        variant: 'primary',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
+      },
+      {
+        text: 'Voir le programme',
+        href: '/programme',
+      },
+    ]}
+  >
+    <Fragment slot="title">Personne n'est <span class="text-accent-400">refusé</span></Fragment>
+
+    <Fragment slot="subtitle">
+      Le prix ne doit jamais être un obstacle. Inscrivez-vous et nous trouverons ensemble une solution.<br />
+      Les portes du Foyer sont ouvertes à tous.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
 </Layout>

@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 import fddmEquipe from '~/assets/images/fddm-equipe.jpg';
 import fddmMarcheGroupe from '~/assets/images/fddm-marche-groupe.jpg';
 
@@ -159,4 +160,30 @@ const metadata = {
       </div>
     </Fragment>
   </Content>
+
+  <CallToAction
+    isDark
+    actions={[
+      {
+        variant: 'primary',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
+      },
+      {
+        text: 'Voir le programme',
+        href: '/programme',
+      },
+    ]}
+  >
+    <Fragment slot="title">L'équipe vous <span class="text-accent-400">accueille</span></Fragment>
+
+    <Fragment slot="subtitle">
+      Venez vivre une retraite au Foyer de Charité Dents-du-Midi. Les portes sont ouvertes.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
 </Layout>

@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 import fddmChapelleEtoile from '~/assets/images/fddm-chapelle-etoile.jpg';
 import fddmDentsDuMidiPrintemps from '~/assets/images/fddm-dents-du-midi-printemps.jpg';
 
@@ -156,4 +157,30 @@ const metadata = {
       <cite class="text-muted">— François, retraitant</cite>
     </blockquote>
   </section>
+
+  <CallToAction
+    isDark
+    actions={[
+      {
+        variant: 'primary',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
+      },
+      {
+        text: 'Voir le programme',
+        href: '/programme',
+      },
+    ]}
+  >
+    <Fragment slot="title">Vivre cette <span class="text-accent-400">journée</span></Fragment>
+
+    <Fragment slot="subtitle">
+      Le silence, les enseignements, la prière, les repas partagés — venez vivre cette expérience unique.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
 </Layout>

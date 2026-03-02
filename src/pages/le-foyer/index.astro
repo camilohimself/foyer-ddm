@@ -189,23 +189,24 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'L\'équipe',
-        href: '/le-foyer/equipe',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
       },
       {
-        text: 'Notre histoire',
-        href: '/le-foyer/histoire',
-      },
-      {
-        text: 'Marthe Robin',
-        href: '/le-foyer/marthe-robin',
+        text: 'Découvrir les retraites',
+        href: '/retraites',
       },
     ]}
   >
-    <Fragment slot="title">Découvrez le Foyer de Charité</Fragment>
+    <Fragment slot="title">Venez vivre une <span class="text-accent-400">retraite</span></Fragment>
 
     <Fragment slot="subtitle">
-      Son équipe, son histoire, et l'héritage spirituel de Marthe Robin qui guide sa mission depuis 55 ans.
+      Les portes du Foyer sont ouvertes. Inscrivez-vous ou découvrez nos prochaines retraites.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
     </Fragment>
   </CallToAction>
 </Layout>

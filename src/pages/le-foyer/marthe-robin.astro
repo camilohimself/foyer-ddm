@@ -168,19 +168,24 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Vivre une retraite',
-        href: '/retraites',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
       },
       {
-        text: 'Notre histoire',
-        href: '/le-foyer/histoire',
+        text: 'Voir le programme',
+        href: '/programme',
       },
     ]}
   >
-    <Fragment slot="title">Découvrir l'héritage de Marthe Robin</Fragment>
+    <Fragment slot="title">Vivre l'<span class="text-accent-400">héritage</span></Fragment>
 
     <Fragment slot="subtitle">
-      Le Foyer de Charité Dents-du-Midi poursuit la mission inspirée par Marthe Robin. Les portes sont ouvertes.
+      Le Foyer de Charité Dents-du-Midi poursuit la mission inspirée par Marthe Robin. Les portes sont ouvertes.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
     </Fragment>
   </CallToAction>
 </Layout>

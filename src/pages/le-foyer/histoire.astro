@@ -120,19 +120,24 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Découvrir les retraites',
-        href: '/retraites',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
       },
       {
-        text: 'L\'équipe aujourd\'hui',
-        href: '/le-foyer/equipe',
+        text: 'Voir le programme',
+        href: '/programme',
       },
     ]}
   >
-    <Fragment slot="title">Une histoire qui continue</Fragment>
+    <Fragment slot="title">55 ans d'<span class="text-accent-400">accueil</span></Fragment>
 
     <Fragment slot="subtitle">
-      55 ans après sa fondation, le Foyer poursuit sa mission d'accueil et de prière. Les portes sont ouvertes.
+      55 ans après sa fondation, le Foyer poursuit sa mission d'accueil et de prière. Les portes sont ouvertes.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
     </Fragment>
   </CallToAction>
 </Layout>

@@ -222,19 +222,24 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
+      },
+      {
         text: 'Nous contacter',
         href: '/contact',
       },
-      {
-        text: 'Découvrir le Foyer',
-        href: '/le-foyer',
-      },
     ]}
   >
-    <Fragment slot="title">Merci de votre soutien</Fragment>
+    <Fragment slot="title">Merci de votre <span class="text-accent-400">soutien</span></Fragment>
 
     <Fragment slot="subtitle">
-      Chaque geste, chaque prière, chaque heure donnée contribue à la mission du Foyer. Merci d'être à nos côtés.
+      Chaque geste, chaque prière, chaque heure donnée contribue à la mission du Foyer. Merci d'être à nos côtés.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
     </Fragment>
   </CallToAction>
 </Layout>

@@ -71,6 +71,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     <form
       name="inscription"
       method="POST"
+      action="/contact/confirmation"
       data-netlify="true"
       netlify-honeypot="bot-field"
       id="wizard-form"
@@ -185,201 +186,216 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
         <h2 class="text-2xl font-bold text-primary-600 mb-2">Vos informations</h2>
         <p class="text-muted mb-8">Renseignez vos coordonnées et préférences pour votre retraite.</p>
 
-        <!-- Prénom / Nom -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <label for="prenom" class="block text-sm font-medium text-primary-600 mb-2">
-              Prénom <span class="text-accent-400">*</span>
-            </label>
-            <input
-              type="text"
-              id="prenom"
-              name="prenom"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-              placeholder="Votre prénom"
-            />
-          </div>
-          <div>
-            <label for="nom" class="block text-sm font-medium text-primary-600 mb-2">
-              Nom <span class="text-accent-400">*</span>
-            </label>
-            <input
-              type="text"
-              id="nom"
-              name="nom"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-              placeholder="Votre nom"
-            />
-          </div>
-        </div>
+        <!-- ── Vos coordonnées ── -->
+        <fieldset class="mb-8">
+          <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Vos coordonnées</legend>
 
-        <!-- Email / Téléphone -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <label for="email" class="block text-sm font-medium text-primary-600 mb-2">
-              Email <span class="text-accent-400">*</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-              placeholder="votre.email@exemple.ch"
-            />
-          </div>
-          <div>
-            <label for="telephone" class="block text-sm font-medium text-primary-600 mb-2">
-              Téléphone <span class="text-accent-400">*</span>
-            </label>
-            <input
-              type="tel"
-              id="telephone"
-              name="telephone"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-              placeholder="+41 XX XXX XX XX"
-            />
-          </div>
-        </div>
-
-        <!-- Adresse / NPA Ville -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <label for="adresse" class="block text-sm font-medium text-primary-600 mb-2">
-              Adresse
-            </label>
-            <input
-              type="text"
-              id="adresse"
-              name="adresse"
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-              placeholder="Rue et numéro"
-            />
-          </div>
-          <div>
-            <label for="npa-ville" class="block text-sm font-medium text-primary-600 mb-2">
-              NPA / Ville
-            </label>
-            <input
-              type="text"
-              id="npa-ville"
-              name="npa-ville"
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-              placeholder="1880 Bex"
-            />
-          </div>
-        </div>
-
-        <!-- Hébergement — radio cards -->
-        <div class="mb-6">
-          <label class="block text-sm font-medium text-primary-600 mb-3">
-            Hébergement <span class="text-accent-400">*</span>
-          </label>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="radio-card">
-              <input type="radio" id="chambre-individuelle" name="hebergement" value="Chambre individuelle" required class="sr-only" />
-              <label for="chambre-individuelle" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
-                <svg class="w-6 h-6 mx-auto mb-1 text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6"/><circle cx="7" cy="10" r="1"/></svg>
-                <span class="text-sm font-medium text-primary-600">Individuelle</span>
+          <!-- Prénom / Nom -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="prenom" class="block text-sm font-medium text-primary-600 mb-2">
+                Prénom <span class="text-accent-400">*</span>
               </label>
+              <input
+                type="text"
+                id="prenom"
+                name="prenom"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+                placeholder="Votre prénom"
+              />
             </div>
-            <div class="radio-card">
-              <input type="radio" id="chambre-double" name="hebergement" value="Chambre double" class="sr-only" />
-              <label for="chambre-double" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
-                <svg class="w-6 h-6 mx-auto mb-1 text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6"/><circle cx="7" cy="10" r="1"/><circle cx="11" cy="10" r="1"/></svg>
-                <span class="text-sm font-medium text-primary-600">Double</span>
+            <div>
+              <label for="nom" class="block text-sm font-medium text-primary-600 mb-2">
+                Nom <span class="text-accent-400">*</span>
               </label>
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+                placeholder="Votre nom"
+              />
             </div>
           </div>
-        </div>
 
-        <!-- Régime alimentaire -->
-        <div class="mb-6">
-          <label for="regime" class="block text-sm font-medium text-primary-600 mb-2">
-            Régime alimentaire
-          </label>
-          <select
-            id="regime"
-            name="regime"
-            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-          >
-            <option value="Aucun">Aucun régime particulier</option>
-            <option value="Sans gluten">Sans gluten</option>
-            <option value="Sans lactose">Sans lactose</option>
-            <option value="Végétarien">Végétarien</option>
-            <option value="Autre">Autre (précisez dans le message)</option>
-          </select>
-        </div>
-
-        <!-- Comment connu -->
-        <div class="mb-6">
-          <label for="comment-connu" class="block text-sm font-medium text-primary-600 mb-2">
-            Comment avez-vous connu le Foyer ?
-          </label>
-          <select
-            id="comment-connu"
-            name="comment-connu"
-            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-          >
-            <option value="">—</option>
-            <option value="Bouche à oreille">Bouche à oreille</option>
-            <option value="Paroisse">Paroisse</option>
-            <option value="Réseaux sociaux">Réseaux sociaux</option>
-            <option value="Internet">Internet / recherche</option>
-            <option value="Brochure">Brochure / flyer</option>
-            <option value="Autre">Autre</option>
-          </select>
-        </div>
-
-        <!-- Mode d'arrivée -->
-        <div class="mb-6">
-          <label for="mode-arrivee" class="block text-sm font-medium text-primary-600 mb-2">
-            Mode d'arrivée
-          </label>
-          <select
-            id="mode-arrivee"
-            name="mode-arrivee"
-            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-          >
-            <option value="Propres moyens">Propres moyens</option>
-            <option value="Transports publics">Transports publics</option>
-            <option value="Covoiturage">Covoiturage souhaité</option>
-          </select>
-        </div>
-
-        <!-- Autorisation photos -->
-        <div class="mb-6">
-          <label class="block text-sm font-medium text-primary-600 mb-3">
-            Autorisation photos / vidéos
-          </label>
-          <div class="flex gap-6">
-            <div class="flex items-center">
-              <input type="radio" id="photos-oui" name="autorisation-photos" value="Oui" class="w-4 h-4 text-accent-400 focus:ring-accent-400" />
-              <label for="photos-oui" class="ml-2 text-sm text-gray-700">Oui, j'autorise</label>
+          <!-- Email / Téléphone -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="email" class="block text-sm font-medium text-primary-600 mb-2">
+                Email <span class="text-accent-400">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+                placeholder="votre.email@exemple.ch"
+              />
             </div>
-            <div class="flex items-center">
-              <input type="radio" id="photos-non" name="autorisation-photos" value="Non" class="w-4 h-4 text-accent-400 focus:ring-accent-400" />
-              <label for="photos-non" class="ml-2 text-sm text-gray-700">Non</label>
+            <div>
+              <label for="telephone" class="block text-sm font-medium text-primary-600 mb-2">
+                Téléphone <span class="text-accent-400">*</span>
+              </label>
+              <input
+                type="tel"
+                id="telephone"
+                name="telephone"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+                placeholder="+41 XX XXX XX XX"
+              />
             </div>
           </div>
-        </div>
 
-        <!-- Message -->
-        <div>
-          <label for="message" class="block text-sm font-medium text-primary-600 mb-2">
-            Message libre
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows="4"
-            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-            placeholder="Questions, besoins spécifiques, précisions..."
-          ></textarea>
-        </div>
+          <!-- Adresse / NPA Ville -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="adresse" class="block text-sm font-medium text-primary-600 mb-2">
+                Adresse
+              </label>
+              <input
+                type="text"
+                id="adresse"
+                name="adresse"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+                placeholder="Rue et numéro"
+              />
+            </div>
+            <div>
+              <label for="npa-ville" class="block text-sm font-medium text-primary-600 mb-2">
+                NPA / Ville
+              </label>
+              <input
+                type="text"
+                id="npa-ville"
+                name="npa-ville"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+                placeholder="1880 Bex"
+              />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ── Préférences de séjour ── -->
+        <fieldset class="mb-8">
+          <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Préférences de séjour</legend>
+
+          <!-- Hébergement — radio cards -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-primary-600 mb-3">
+              Hébergement <span class="text-accent-400">*</span>
+            </label>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="radio-card">
+                <input type="radio" id="chambre-individuelle" name="hebergement" value="Chambre individuelle" required class="sr-only" />
+                <label for="chambre-individuelle" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
+                  <svg class="w-6 h-6 mx-auto mb-1 text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6"/><circle cx="7" cy="10" r="1"/></svg>
+                  <span class="text-sm font-medium text-primary-600">Individuelle</span>
+                </label>
+              </div>
+              <div class="radio-card">
+                <input type="radio" id="chambre-double" name="hebergement" value="Chambre double" class="sr-only" />
+                <label for="chambre-double" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
+                  <svg class="w-6 h-6 mx-auto mb-1 text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6"/><circle cx="7" cy="10" r="1"/><circle cx="11" cy="10" r="1"/></svg>
+                  <span class="text-sm font-medium text-primary-600">Double</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Régime alimentaire -->
+          <div class="mb-6">
+            <label for="regime" class="block text-sm font-medium text-primary-600 mb-2">
+              Régime alimentaire
+            </label>
+            <select
+              id="regime"
+              name="regime"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+            >
+              <option value="Aucun">Aucun régime particulier</option>
+              <option value="Sans gluten">Sans gluten</option>
+              <option value="Sans lactose">Sans lactose</option>
+              <option value="Végétarien">Végétarien</option>
+              <option value="Autre">Autre (précisez dans le message)</option>
+            </select>
+          </div>
+
+          <!-- Mode d'arrivée -->
+          <div>
+            <label for="mode-arrivee" class="block text-sm font-medium text-primary-600 mb-2">
+              Mode d'arrivée
+            </label>
+            <select
+              id="mode-arrivee"
+              name="mode-arrivee"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+            >
+              <option value="Propres moyens">Propres moyens</option>
+              <option value="Transports publics">Transports publics</option>
+              <option value="Covoiturage">Covoiturage souhaité</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- ── Informations complémentaires ── -->
+        <fieldset>
+          <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Informations complémentaires</legend>
+
+          <!-- Comment connu -->
+          <div class="mb-6">
+            <label for="comment-connu" class="block text-sm font-medium text-primary-600 mb-2">
+              Comment avez-vous connu le Foyer ?
+            </label>
+            <select
+              id="comment-connu"
+              name="comment-connu"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+            >
+              <option value="">—</option>
+              <option value="Bouche à oreille">Bouche à oreille</option>
+              <option value="Paroisse">Paroisse</option>
+              <option value="Réseaux sociaux">Réseaux sociaux</option>
+              <option value="Internet">Internet / recherche</option>
+              <option value="Brochure">Brochure / flyer</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+
+          <!-- Autorisation photos -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-primary-600 mb-3">
+              Autorisation photos / vidéos
+            </label>
+            <div class="flex gap-6">
+              <div class="flex items-center">
+                <input type="radio" id="photos-oui" name="autorisation-photos" value="Oui" class="w-4 h-4 text-accent-400 focus:ring-accent-400" />
+                <label for="photos-oui" class="ml-2 text-sm text-gray-700">Oui, j'autorise</label>
+              </div>
+              <div class="flex items-center">
+                <input type="radio" id="photos-non" name="autorisation-photos" value="Non" class="w-4 h-4 text-accent-400 focus:ring-accent-400" />
+                <label for="photos-non" class="ml-2 text-sm text-gray-700">Non</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-sm font-medium text-primary-600 mb-2">
+              Message libre
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
+              placeholder="Questions, besoins spécifiques, précisions..."
+            ></textarea>
+          </div>
+        </fieldset>
       </div>
 
       <!-- ============================================ -->
@@ -714,8 +730,98 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     // TODO:OASIS — Intercepter ici pour POST /api/inscriptions au lieu de Netlify Forms
   });
 
+  // --- Deep-linking : pré-sélection retraite via ?retraite=EVENT_ID ---
+  function handleDeepLink() {
+    var params = new URLSearchParams(window.location.search);
+    var retraiteId = params.get('retraite');
+    if (!retraiteId) return;
+
+    var select = document.getElementById('retraite');
+    for (var i = 0; i < select.options.length; i++) {
+      if (select.options[i].value === retraiteId) {
+        select.selectedIndex = i;
+        // Highlight visuel pour confirmer la pré-sélection
+        select.classList.add('ring-2', 'ring-accent-400', 'border-accent-400');
+        break;
+      }
+    }
+  }
+
+  // --- Persistance formulaire via sessionStorage ---
+  var STORAGE_KEY = 'fddm-inscription';
+
+  function saveFormState() {
+    var form = document.getElementById('wizard-form');
+    var data = {};
+    var elements = form.elements;
+    for (var i = 0; i < elements.length; i++) {
+      var el = elements[i];
+      if (!el.name || el.name === 'form-name' || el.name === 'bot-field') continue;
+      if (el.type === 'radio') {
+        if (el.checked) data[el.name] = el.value;
+      } else if (el.type === 'checkbox') {
+        data[el.name] = el.checked;
+      } else {
+        data[el.name] = el.value;
+      }
+    }
+    data['_step'] = state.currentStep;
+    try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+
+  function restoreFormState() {
+    var raw;
+    try { raw = sessionStorage.getItem(STORAGE_KEY); } catch(e) { return; }
+    if (!raw) return;
+
+    var data;
+    try { data = JSON.parse(raw); } catch(e) { return; }
+
+    var form = document.getElementById('wizard-form');
+    for (var key in data) {
+      if (key === '_step') continue;
+      var els = form.elements[key];
+      if (!els) continue;
+
+      // Radio group (NodeList)
+      if (els.length && els[0] && els[0].type === 'radio') {
+        for (var i = 0; i < els.length; i++) {
+          if (els[i].value === data[key]) {
+            els[i].checked = true;
+            els[i].dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        }
+      } else if (els.type === 'checkbox') {
+        els.checked = !!data[key];
+      } else {
+        els.value = data[key] || '';
+      }
+    }
+
+    // Restore step position (only if beyond step 1)
+    if (data['_step'] && data['_step'] > 1) {
+      goToStep(data['_step']);
+    }
+  }
+
+  function clearFormState() {
+    try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  }
+
+  // Listen for changes
+  var wizardForm = document.getElementById('wizard-form');
+  wizardForm.addEventListener('input', saveFormState);
+  wizardForm.addEventListener('change', saveFormState);
+
+  // Clear on successful submission
+  wizardForm.addEventListener('submit', function() {
+    clearFormState();
+  });
+
   // Init
   handleConditionalFields();
+  handleDeepLink();
+  restoreFormState();
   updateProgress(1);
 
   // View Transitions compat
