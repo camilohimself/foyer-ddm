@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import fddmAutomne2 from '~/assets/images/fddm-automne-2.jpg';
+import fddmVitrailChapelle from '~/assets/images/fddm-vitrail-chapelle.jpg';
 
 const metadata = {
   title: '55 ans d\'histoire du seul Foyer de Charité en Suisse',
@@ -111,8 +111,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: fddmAutomne2,
-      alt: 'Le Foyer de Charite dans son parc en automne',
+      src: fddmVitrailChapelle,
+      alt: 'Vitrail coloré de la chapelle du Foyer de Charité — lumière, rouge, bleu et or',
     }}
   />
 
@@ -149,7 +149,15 @@ const metadata = {
       Personne n'est refusé pour des raisons financières.
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-primary-600"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-mosaique-ange.jpg"
+          alt="Mosaïque byzantine d'un ange — Ravenne"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-primary-900/70"></div>
+      </div>
     </Fragment>
   </CallToAction>
 </Layout>
