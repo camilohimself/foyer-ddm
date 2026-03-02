@@ -9,4 +9,4 @@ variant: "Raquettes"
 registrationOpen: true
 ---
 
-Six jours pour cheminer dans le mystère de la foi. Variante raquettes en hiver.
+Six jours de retraite spirituelle dans la beauté de l'hiver alpin. Les enseignements du P. Guy Luisier et de Pascal Dorsaz ouvrent un chemin de foi autour de la question : Dieu se cache-t-il ou est-ce nous qui ne savons plus voir ? Chaque après-midi, une sortie en raquettes dans la neige face aux Dents-du-Midi prolonge la méditation en plein air. Le silence, le froid, la lumière : tout devient chemin.

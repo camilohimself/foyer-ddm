@@ -129,16 +129,19 @@ const metadata = {
         title: 'Diocèse de Sion',
         description: 'Information sur le sacrement du mariage dans le diocèse.',
         icon: 'tabler:external-link',
+        callToAction: { text: 'Consulter', href: 'https://diocese-sion.ch/recevoir-un-sacrement/mariage', target: '_blank' },
       },
       {
         title: 'Suisse Romande',
         description: 'Portail de la pastorale familiale en Suisse Romande.',
         icon: 'tabler:external-link',
+        callToAction: { text: 'Consulter', href: 'https://preparation-au-mariage.pastorale-familiale.ch/', target: '_blank' },
       },
       {
         title: 'Canton de Vaud',
         description: 'Informations pour les mariages dans le canton de Vaud.',
         icon: 'tabler:external-link',
+        callToAction: { text: 'Consulter', href: 'https://www.cath-vd.ch/etapes_de_la_vie/mariage/', target: '_blank' },
       },
     ]}
   >
@@ -193,6 +196,18 @@ const metadata = {
       Un temps précieux pour poser les fondations de votre vie ensemble.
     </Fragment>
   </Content>
+
+  <!-- Maillage interne : infos pratiques -->
+  <section class="py-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-sm text-muted">
+        Avant de vous inscrire, découvrez
+        <a href="/sejour/tarifs" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">les tarifs</a> et
+        <a href="/sejour/acces" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">comment venir</a>.
+        Vous pouvez aussi consulter le <a href="/programme" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">programme complet</a>.
+      </p>
+    </div>
+  </section>
 
   <CallToAction
     isDark

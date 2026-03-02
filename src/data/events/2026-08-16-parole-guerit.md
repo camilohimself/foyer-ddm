@@ -8,4 +8,4 @@ price: "~CHF 720.-"
 registrationOpen: true
 ---
 
-Retraite de six jours en août.
+Six jours en août avec Joël Pralong, auteur et accompagnateur spirituel, pour explorer le pouvoir des mots : ceux qui blessent et la Parole qui guérit. Entre blessures humaines et pardon divin, cette retraite touche au cœur de l'expérience intérieure. Enseignements, silence, Eucharistie quotidienne et accompagnement personnel.

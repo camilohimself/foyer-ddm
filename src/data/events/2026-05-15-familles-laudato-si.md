@@ -4,6 +4,7 @@ dateStart: "2026-05-15"
 dateEnd: "2026-05-17"
 type: "familles"
 preacher: "Christian et Marie-France Thurre"
+price: "Participation libre"
 registrationOpen: true
 ---
 

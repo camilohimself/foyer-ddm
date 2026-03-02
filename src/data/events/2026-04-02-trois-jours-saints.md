@@ -9,4 +9,4 @@ variant: "Trois Jours Saints"
 registrationOpen: true
 ---
 
-Trois Jours Saints au Foyer.
+Vivre le cœur de la foi chrétienne au Foyer : du Jeudi Saint au dimanche de Pâques. Corinne Gossauer et le P. Guy Luisier guident cette veille pascale sous le signe des « Guetteurs de l'Aube ». Liturgie solennelle, silence habité, nuit de prière : ces trois jours sont l'un des temps forts de l'année au Foyer de Charité.

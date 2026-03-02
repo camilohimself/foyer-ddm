@@ -8,4 +8,4 @@ price: "~CHF 720.-"
 registrationOpen: true
 ---
 
-Retraite de six jours en été.
+Six jours d'été guidés par le professeur Thierry Collaud autour du Psaume 45 : « Mon cœur a frémi de paroles bonnes. » Du silence habité à la Parole vivifiante, un itinéraire pour retrouver le goût des mots qui portent vie. Enseignements, adoration, promenades dans la lumière estivale face aux Dents-du-Midi.

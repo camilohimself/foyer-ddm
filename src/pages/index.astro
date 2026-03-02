@@ -5,7 +5,6 @@ import { getCollection } from 'astro:content';
 import Hero from '~/components/widgets/Hero.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
-import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Stats from '~/components/widgets/Stats.astro';
@@ -24,18 +23,15 @@ const metadata = {
 const upcomingEvents = (await getUpcomingEvents()).slice(0, 3);
 const eventCount = await getUpcomingEventCount();
 
-const stepsItems = [
-  ...upcomingEvents.map((event) => ({
-    title: `${formatDateRange(event.data.dateStart, event.data.dateEnd)} — <span class="font-medium">«${event.data.title}»</span>`,
-    description: `${event.data.preacher}${event.data.variant ? ` · ${event.data.variant}` : ''}${event.data.price ? ` · ${event.data.price}` : ''}`,
-    icon: 'tabler:calendar' as const,
-  })),
-  {
-    title: 'Voir tout le programme',
-    description: '',
-    icon: 'tabler:arrow-right' as const,
-  },
-];
+// --- Mapping type → badge + label + href ---
+const typeInfo: Record<string, { bg: string; label: string; href: string }> = {
+  '6-jours': { bg: 'bg-primary-600', label: '6 jours', href: '/retraites/6-jours' },
+  'week-end': { bg: 'bg-primary-600', label: '3 jours', href: '/retraites/week-end' },
+  couples: { bg: 'bg-rose-300', label: 'Couples', href: '/retraites/couples' },
+  familles: { bg: 'bg-teal-400/80', label: 'Familles', href: '/retraites/familles' },
+  journees: { bg: 'bg-accent-400', label: 'Journée', href: '/retraites/journees' },
+  mariage: { bg: 'bg-violet-300', label: 'Mariage', href: '/retraites/preparation-mariage' },
+};
 
 // --- Témoignages (dynamique depuis la collection testimonials) ---
 const allTestimonials = await getCollection('testimonial');
@@ -135,18 +131,80 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     </Fragment>
   </Features2>
 
-  <!-- Prochaines dates (dynamique) -->
-  <Steps
-    title="Prochaines retraites"
-    subtitle="Les portes du Foyer sont ouvertes. Voici les prochaines dates."
-    items={stepsItems}
-    classes={{ headline: { title: 'text-4xl lg:text-5xl font-playball' } }}
-    callToAction={{
-      text: `Programme complet ${currentYear}`,
-      href: '/programme',
-      icon: 'tabler:arrow-right',
-    }}
-  />
+  <!-- Prochaines dates — Spotlight 1+2 -->
+  <section class="py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl lg:text-5xl font-playball text-primary-600">Prochaines retraites</h2>
+        <p class="text-muted mt-3 max-w-2xl mx-auto">Les portes du Foyer sont ouvertes. Voici les prochaines dates.</p>
+      </div>
+
+      {/* --- Event principal (spotlight) --- */}
+      {upcomingEvents[0] && (() => {
+        const main = upcomingEvents[0];
+        const info = typeInfo[main.data.type] || { bg: 'bg-gray-500', label: main.data.type, href: '/retraites' };
+        return (
+          <a href={info.href} class="group block mb-5 p-6 md:p-8 rounded-2xl border-2 border-accent-200 bg-gradient-to-br from-white to-accent-50/30 hover:shadow-xl hover:border-accent-400 transition-all duration-300">
+            <div class="flex items-center gap-3 mb-3">
+              <span class={`text-xs font-semibold text-white px-3 py-1 rounded-full ${info.bg}`}>{info.label}</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent-500">Prochaine retraite</span>
+            </div>
+            <div class="md:flex md:items-start md:gap-8">
+              <div class="flex-1">
+                <p class="text-sm font-semibold text-primary-600 mb-1">{formatDateRange(main.data.dateStart, main.data.dateEnd)}</p>
+                <h3 class="text-xl md:text-2xl font-bold text-primary-600 group-hover:text-accent-500 transition-colors leading-snug mb-3">
+                  {main.data.title}
+                </h3>
+                <p class="text-muted text-sm md:text-base leading-relaxed mb-4">{main.body}</p>
+                <p class="text-sm text-muted">
+                  {main.data.preacher}
+                  {main.data.price && <span class="ml-1 text-gray-400">· {main.data.price}</span>}
+                </p>
+              </div>
+              <div class="mt-4 md:mt-0 md:self-center shrink-0">
+                <span class="inline-flex items-center gap-2 bg-accent-400 text-white font-semibold px-5 py-2.5 rounded-full group-hover:bg-accent-300 transition-colors text-sm">
+                  Découvrir
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        );
+      })()}
+
+      {/* --- Events secondaires (2 cartes) --- */}
+      <div class="grid gap-4 sm:grid-cols-2">
+        {upcomingEvents.slice(1).map((event) => {
+          const info = typeInfo[event.data.type] || { bg: 'bg-gray-500', label: event.data.type, href: '/retraites' };
+          return (
+            <a href={info.href} class="group block p-5 rounded-xl border border-gray-200 bg-white hover:shadow-lg hover:border-accent-300 transition-all duration-200">
+              <div class="flex items-center gap-2 mb-2">
+                <span class={`text-xs font-semibold text-white px-2.5 py-0.5 rounded-full ${info.bg}`}>{info.label}</span>
+                <span class="text-sm font-semibold text-primary-600">{formatDateRange(event.data.dateStart, event.data.dateEnd)}</span>
+              </div>
+              <h3 class="text-lg font-bold text-primary-600 group-hover:text-accent-500 transition-colors leading-snug mb-1">
+                {event.data.title}
+              </h3>
+              <p class="text-sm text-muted">
+                {event.data.preacher}
+                {event.data.price && <span class="ml-1 text-gray-400">· {event.data.price}</span>}
+              </p>
+              <span class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-accent-500 group-hover:text-accent-400 transition-colors">
+                Découvrir <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
+          );
+        })}
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/programme" class="inline-flex items-center gap-2 text-primary-600 hover:text-accent-500 font-semibold transition-colors">
+          Voir tout le programme {currentYear}
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Une retraite, c'est quoi ? -->
   <Content
