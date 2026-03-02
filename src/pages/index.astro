@@ -11,7 +11,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import { getUpcomingEvents, getUpcomingEventCount, formatDateRange, currentYear } from '~/utils/events';
 
-import fddmChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
+import fddmSculptureLumiere from '~/assets/images/fddm-sculpture-lumiere.jpg';
 import fddmTableeTerrasse from '~/assets/images/fddm-tablee-terrasse.jpg';
 
 const metadata = {
@@ -154,8 +154,10 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     tagline="Découvrir"
     title="Qu'est-ce qu'une retraite ?"
     image={{
-      src: fddmChapelleTournesols,
-      alt: 'Tabernacle fleuri de tournesols dans la chapelle du Foyer de Charité',
+      src: fddmSculptureLumiere,
+      alt: 'Sculpture en bois suspendue et son ombre projetée par la lumière de la fenêtre, chapelle du Foyer',
+      width: 800,
+      height: 450,
     }}
     items={[
       {
@@ -275,7 +277,15 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-primary-600"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-retraitants-alpage-sommet.jpg"
+          alt="Groupe de retraitants au sommet d'un alpage face aux Alpes"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
     </Fragment>
   </CallToAction>
 </Layout>
