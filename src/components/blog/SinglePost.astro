@@ -16,7 +16,25 @@ export interface Props {
 }
 
 const { post, url } = Astro.props;
+
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.excerpt || '',
+  datePublished: post.publishDate ? new Date(post.publishDate).toISOString() : undefined,
+  author: post.author ? { '@type': 'Person', name: post.author } : { '@type': 'Organization', name: 'Foyer de Charité Dents-du-Midi' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Foyer de Charité Dents-du-Midi',
+    url: 'https://foyer-dents-du-midi.ch',
+    logo: { '@type': 'ImageObject', url: 'https://foyer-dents-du-midi.ch/images/logo-bex-small.png' },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': String(url) },
+};
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
 
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
   <article>
@@ -77,7 +95,7 @@ const { post, url } = Astro.props;
             class="max-w-full lg:max-w-[900px] mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
             widths={[400, 900]}
             sizes="(max-width: 900px) 400px, 900px"
-            alt={post?.excerpt || ''}
+            alt={`Illustration — ${post.title}`}
             width={900}
             height={506}
             loading="eager"

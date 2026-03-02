@@ -1,0 +1,105 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Les chambres — Hébergement en retraite',
+  description: 'Chambres simples et confortables au Foyer de Charité à Bex. Hébergement en chambre individuelle ou double, dans un cadre de silence propice au ressourcement.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero>
+    <Fragment slot="title">
+      Un cadre <span class="text-accent-400">simple et bon</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Des chambres pensées pour le repos et le silence. Tout le nécessaire, rien de superflu.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-facade-ete.jpg"
+          alt="Le bâtiment du Foyer de Charité en été, chambres et hébergement"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <Content
+    tagline="Hébergement"
+    title="Des chambres pour le repos"
+    items={[
+      {
+        title: 'Chambres individuelles',
+        description: 'La plupart des chambres sont individuelles, avec lavabo. Douches et sanitaires partagés à l\'étage.',
+      },
+      {
+        title: 'Chambres doubles',
+        description: 'Quelques chambres doubles sont disponibles pour les couples. À préciser lors de l\'inscription.',
+      },
+      {
+        title: 'Linge de lit fourni',
+        description: 'Draps et serviettes sont fournis. Apportez vos affaires de toilette.',
+      },
+      {
+        title: 'Un cadre de silence',
+        description: 'Les chambres sont un lieu de silence. Pas de télévision, pas de radio. Un espace pour se retrouver.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        L'essentiel, sans le superflu
+      </h3>
+      Le Foyer n'est pas un hôtel. C'est un lieu de retraite. Les chambres sont simples, propres et silencieuses.
+      Tout est prévu pour que vous puissiez vous reposer et vivre pleinement votre retraite.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Maillage interne -->
+  <section class="py-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-sm text-muted">
+        Découvrez aussi
+        <a href="/sejour/journee-type" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">la journée type</a>,
+        <a href="/sejour/tarifs" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">les tarifs</a> et
+        <a href="/sejour/acces" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">comment venir</a>.
+      </p>
+    </div>
+  </section>
+
+  <CallToAction
+    isDark
+    actions={[
+      {
+        variant: 'primary',
+        text: 'S\'inscrire à une retraite',
+        href: '/contact/inscription',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        text: 'Voir le programme',
+        href: '/programme',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Venez <span class="text-accent-400">vous ressourcer</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Réservez votre place pour une retraite. Les chambres sont attribuées à l'arrivée.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

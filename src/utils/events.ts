@@ -67,6 +67,38 @@ export function eventsToStepsItems(events: Event[]) {
   ]);
 }
 
+// --- JSON-LD Event schema for structured data ---
+const heroImages: Record<string, string> = {
+  '6-jours': 'https://foyer-dents-du-midi.ch/images/fddm-croix-sommet-hiver.jpg',
+  'week-end': 'https://foyer-dents-du-midi.ch/images/fddm-chapelle-tournesols.jpg',
+  couples: 'https://foyer-dents-du-midi.ch/images/fddm-couple-marche.jpg',
+  familles: 'https://foyer-dents-du-midi.ch/images/fddm-sentier-groupe.jpeg',
+  journees: 'https://foyer-dents-du-midi.ch/images/fddm-feu-de-camp.jpg',
+  mariage: 'https://foyer-dents-du-midi.ch/images/fddm-couple-mains.jpg',
+};
+
+export function eventsToJsonLd(events: Event[]) {
+  return events.map((event) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.data.title,
+    startDate: event.data.dateStart,
+    endDate: event.data.dateEnd || event.data.dateStart,
+    description: `Retraite spirituelle au Foyer de Charité Dents-du-Midi, Bex, Suisse.`,
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    location: {
+      '@type': 'Place',
+      name: 'Foyer de Charité Dents-du-Midi',
+      address: { '@type': 'PostalAddress', streetAddress: 'Route de Gryon 22', addressLocality: 'Bex', postalCode: '1880', addressCountry: 'CH' },
+    },
+    organizer: { '@type': 'Organization', name: 'Foyer de Charité Dents-du-Midi', url: 'https://foyer-dents-du-midi.ch' },
+    ...(event.data.preacher ? { performer: event.data.preacher.split(',').map((p: string) => ({ '@type': 'Person', name: p.trim() })) } : {}),
+    ...(event.data.price ? { offers: { '@type': 'Offer', price: event.data.price.replace(/[^0-9.]/g, ''), priceCurrency: 'CHF', url: 'https://foyer-dents-du-midi.ch/contact/inscription', availability: 'https://schema.org/InStock' } } : {}),
+    image: heroImages[event.data.type] || 'https://foyer-dents-du-midi.ch/images/fddm-croix-sommet-hiver.jpg',
+  }));
+}
+
 // --- Format event label for forms ---
 export function formatEventLabel(event: Event): string {
   const start = formatDate(event.data.dateStart);

@@ -5,12 +5,13 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
+import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
 
 import imgEnfantsParachute from '~/assets/images/fddm-enfants-parachute.jpg';
 
 const upcomingFamilles = await getUpcomingEvents('familles');
 const stepsItems = eventsToStepsItems(upcomingFamilles);
+const jsonLdEvents = eventsToJsonLd(upcomingFamilles);
 const dateLabel = upcomingFamilles.length === 1 ? 'Prochaine date' : 'Prochaines dates';
 
 const metadata = {
@@ -20,9 +21,13 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  {jsonLdEvents.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
   <Hero>
     <Fragment slot="title">
-      La foi <span class="text-accent-400">en famille</span>
+      Retraite spirituelle <span class="text-accent-400">en famille</span>
     </Fragment>
     <Fragment slot="subtitle">
       Un week-end pour cheminer ensemble, petits et grands. Des moments de partage, de prière et de joie.

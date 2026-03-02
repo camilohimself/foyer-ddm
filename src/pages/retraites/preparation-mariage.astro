@@ -6,12 +6,13 @@ import Steps from '~/components/widgets/Steps.astro';
 import Features from '~/components/widgets/Features.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
+import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
 
 import imgChapelleCroix from '~/assets/images/fddm-chapelle-croix.jpg';
 
 const upcomingMariage = await getUpcomingEvents('mariage');
 const stepsItems = eventsToStepsItems(upcomingMariage);
+const jsonLdEvents = eventsToJsonLd(upcomingMariage);
 
 const metadata = {
   title: 'Préparation au mariage chrétien — Week-end en Suisse',
@@ -20,9 +21,13 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  {jsonLdEvents.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
   <Hero>
     <Fragment slot="title">
-      Préparation au <span class="text-accent-400">mariage</span>
+      Préparation au <span class="text-accent-400">mariage</span> chrétien
     </Fragment>
     <Fragment slot="subtitle">
       Deux jours pour poser les fondations de votre engagement, accompagnés par des couples expérimentés et un prêtre.

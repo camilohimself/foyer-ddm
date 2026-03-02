@@ -7,7 +7,7 @@ site:
 metadata:
   title:
     default: Retraites spirituelles en Suisse — Foyer de Charité Dents-du-Midi, Bex
-    template: '%s — Foyer de Charité Dents-du-Midi'
+    template: '%s — Foyer Dents-du-Midi'
   description: 'Retraites spirituelles en Suisse romande face aux Alpes. Séjours de 1 à 6 jours à Bex (VD). Silence, enseignements, accompagnement spirituel. Le seul Foyer de Charité en Suisse.'
   robots:
     index: true

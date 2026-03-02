@@ -5,12 +5,13 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
+import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
 
 import imgChapelleHiver from '~/assets/images/fddm-chapelle-hiver.jpg';
 
 const upcomingWeekend = await getUpcomingEvents('week-end');
 const stepsItems = eventsToStepsItems(upcomingWeekend);
+const jsonLdEvents = eventsToJsonLd(upcomingWeekend);
 
 const metadata = {
   title: 'Week-end spirituel en Suisse — 3 jours de retraite',
@@ -19,9 +20,13 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  {jsonLdEvents.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
   <Hero>
     <Fragment slot="title">
-      Trois jours <span class="text-accent-400">pour s'arrêter</span>
+      Week-end spirituel — trois jours <span class="text-accent-400">pour s'arrêter</span>
     </Fragment>
     <Fragment slot="subtitle">
       Une halte au cœur de votre quotidien. Trois jours pour vivre le silence, la prière, et peut-être oser une première retraite.

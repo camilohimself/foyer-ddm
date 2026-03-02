@@ -5,12 +5,14 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
+import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
 
 import imgCoupleMains from '~/assets/images/fddm-couple-mains.jpg';
+import imgSculptureAnnonciation from '~/assets/images/fddm-sculpture-annonciation.png';
 
 const upcomingCouples = await getUpcomingEvents('couples');
 const stepsItems = eventsToStepsItems(upcomingCouples);
+const jsonLdEvents = eventsToJsonLd(upcomingCouples);
 
 const metadata = {
   title: 'Retraite spirituelle pour couples — Week-end en Suisse',
@@ -19,9 +21,13 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  {jsonLdEvents.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
   <Hero>
     <Fragment slot="title">
-      Trois jours <span class="text-accent-400">à deux</span>
+      Retraite de couple — trois jours <span class="text-accent-400">à deux</span>
     </Fragment>
     <Fragment slot="subtitle">
       Un temps pour se retrouver dans la prière et le dialogue. Un week-end qui fait du bien au couple.
@@ -131,6 +137,10 @@ const metadata = {
   <Content
     tagline="Participation"
     title="Une question de confiance"
+    image={{
+      src: imgSculptureAnnonciation,
+      alt: 'Sculpture de l\'Annonciation — deux figures en bronze, un ange et Marie, sur une table en bois avec une fleur',
+    }}
     items={[
       {
         title: 'CHF 360.- suggéré par adulte',

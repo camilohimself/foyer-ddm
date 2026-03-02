@@ -5,12 +5,13 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
+import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
 
 import imgAutelHiver from '~/assets/images/fddm-autel-hiver.jpg';
 
 const upcoming6jours = await getUpcomingEvents('6-jours');
 const stepsItems = eventsToStepsItems(upcoming6jours);
+const jsonLdEvents = eventsToJsonLd(upcoming6jours);
 
 const metadata = {
   title: 'Retraite spirituelle de 6 jours en Suisse — Silence et enseignements',
@@ -19,9 +20,13 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  {jsonLdEvents.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
   <Hero>
     <Fragment slot="title">
-      Six jours de <span class="text-accent-400">silence</span>
+      Retraite de six jours en <span class="text-accent-400">silence</span>
     </Fragment>
     <Fragment slot="subtitle">
       Cheminer dans le mystère de la foi, portés par la Parole et le silence. Le cœur de la tradition des Foyers de Charité.

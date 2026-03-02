@@ -5,12 +5,13 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
+import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
 
 import imgChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
 
 const upcomingJournees = await getUpcomingEvents('journees');
 const stepsItems = eventsToStepsItems(upcomingJournees);
+const jsonLdEvents = eventsToJsonLd(upcomingJournees);
 
 const metadata = {
   title: 'Journée spirituelle en Suisse — Foyer de Charité, Bex',
@@ -19,9 +20,13 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  {jsonLdEvents.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
   <Hero>
     <Fragment slot="title">
-      Une journée au <span class="text-accent-400">Foyer</span>
+      Une journée spirituelle au <span class="text-accent-400">Foyer</span>
     </Fragment>
     <Fragment slot="subtitle">
       Quelques heures pour se poser, écouter, prier. Une porte d'entrée toute simple.

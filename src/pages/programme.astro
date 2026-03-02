@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getAllEvents, formatDateRange, today, currentYear } from '~/utils/events';
+import { getAllEvents, eventsToJsonLd, formatDateRange, today, currentYear } from '~/utils/events';
 
 const events = await getAllEvents();
 
@@ -21,40 +21,14 @@ const typeBadge: Record<string, { badge: string; label: string; href: string }> 
   mariage: { badge: 'bg-violet-300', label: 'Mariage', href: '/retraites/preparation-mariage' },
 };
 
-// --- JSON-LD events data ---
-const jsonLdEvents = events.map((event) => ({
-  name: event.data.title,
-  startDate: event.data.dateStart,
-  endDate: event.data.dateEnd,
-  description: `${typeBadge[event.data.type]?.label || event.data.type} — ${event.data.preacher}`,
-  price: event.data.price,
-  performer: event.data.preacher,
-}));
+// --- JSON-LD events data (centralized helper) ---
+const jsonLdEvents = eventsToJsonLd(events);
 
 ---
 
 <Layout metadata={metadata}>
-  <!-- JSON-LD Event schemas (Google lit le ld+json n'importe où dans la page) -->
-  {jsonLdEvents.map((event) => (
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Event',
-      name: event.name,
-      startDate: event.startDate,
-      endDate: event.endDate || event.startDate,
-      description: event.description || 'Retraite spirituelle au Foyer de Charité Dents-du-Midi, Bex, Suisse.',
-      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-      eventStatus: 'https://schema.org/EventScheduled',
-      location: {
-        '@type': 'Place',
-        name: 'Foyer de Charité Dents-du-Midi',
-        address: { '@type': 'PostalAddress', streetAddress: 'Route de Gryon 22', addressLocality: 'Bex', postalCode: '1880', addressCountry: 'CH' },
-      },
-      organizer: { '@type': 'Organization', name: 'Foyer de Charité Dents-du-Midi', url: 'https://foyer-dents-du-midi.ch' },
-      ...(event.performer ? { performer: { '@type': 'Person', name: event.performer } } : {}),
-      ...(event.price ? { offers: { '@type': 'Offer', price: event.price.replace(/[^0-9.]/g, ''), priceCurrency: 'CHF', url: 'https://foyer-dents-du-midi.ch/contact/inscription', availability: 'https://schema.org/InStock' } } : {}),
-      image: 'https://foyer-dents-du-midi.ch/images/hero-mountains.jpg',
-    })} />
+  {jsonLdEvents.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   ))}
 
   <Hero>
