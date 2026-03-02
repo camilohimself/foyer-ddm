@@ -7,7 +7,7 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
 
-import imgChapelleHiver from '~/assets/images/fddm-chapelle-hiver.jpg';
+import imgChagallProdigue from '~/assets/images/fddm-chagall-prodigue.jpg';
 
 const upcomingWeekend = await getUpcomingEvents('week-end');
 const stepsItems = eventsToStepsItems(upcomingWeekend);
@@ -48,8 +48,8 @@ const metadata = {
     tagline="Le format"
     title="Un premier pas"
     image={{
-      src: imgChapelleHiver,
-      alt: 'La chapelle du Foyer en hiver, un lieu de paix pour une première retraite',
+      src: imgChagallProdigue,
+      alt: 'Le Fils prodigue, peinture de Marc Chagall — deux figures enlacées dans une lumière mystique',
     }}
     items={[
       {
@@ -197,7 +197,15 @@ const metadata = {
       Le Foyer vous accueille. Inscrivez-vous ou contactez-nous pour toute question.
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-primary-600"></div>
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-rose-orange.jpg"
+          alt="Rose orange en gros plan, symbole de beauté et d'intériorité"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-primary-900/70"></div>
+      </div>
     </Fragment>
   </CallToAction>
 </Layout>

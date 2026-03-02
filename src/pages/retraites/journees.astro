@@ -7,7 +7,7 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
 
-import imgChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
+import imgCroixLysPaques from '~/assets/images/fddm-croix-lys-paques.jpg';
 
 const upcomingJournees = await getUpcomingEvents('journees');
 const stepsItems = eventsToStepsItems(upcomingJournees);
@@ -34,8 +34,8 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-0">
         <img
-          src="/images/fddm-feu-de-camp.jpg"
-          alt="Groupe de retraitants réunis autour d'un feu de camp, veillée au Foyer"
+          src="/images/fddm-automne-foyer.jpg"
+          alt="Le Foyer de Charité Dents-du-Midi en automne, bâtisse jaune entourée de forêt"
           class="w-full h-full object-cover"
           loading="eager"
         />
@@ -48,8 +48,8 @@ const metadata = {
     tagline="Le format"
     title="Une porte d'entrée"
     image={{
-      src: imgChapelleTournesols,
-      alt: 'Le tabernacle fleuri de tournesols dans la chapelle du Foyer',
+      src: imgCroixLysPaques,
+      alt: 'Croix en bois avec lys blancs et chatons de saule, chapelle du Foyer',
     }}
     items={[
       {
