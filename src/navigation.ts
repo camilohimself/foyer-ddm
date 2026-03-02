@@ -6,11 +6,11 @@ export const headerData = {
       text: 'Retraites',
       links: [
         { text: 'Nos retraites', href: getPermalink('/retraites') },
-        { text: 'Retraites de 6 jours', href: getPermalink('/retraites/6-jours') },
+        { text: 'Journées', href: getPermalink('/retraites/journees') },
         { text: 'Week-ends 3 jours', href: getPermalink('/retraites/week-end') },
+        { text: 'Retraites de 6 jours', href: getPermalink('/retraites/6-jours') },
         { text: 'Couples', href: getPermalink('/retraites/couples') },
         { text: 'Familles', href: getPermalink('/retraites/familles') },
-        { text: 'Journées', href: getPermalink('/retraites/journees') },
         { text: 'Préparation au mariage', href: getPermalink('/retraites/preparation-mariage') },
       ],
     },
@@ -64,11 +64,11 @@ export const footerData = {
     {
       title: 'Retraites',
       links: [
-        { text: 'Retraites de 6 jours', href: getPermalink('/retraites/6-jours') },
+        { text: 'Journées', href: getPermalink('/retraites/journees') },
         { text: 'Week-ends 3 jours', href: getPermalink('/retraites/week-end') },
+        { text: 'Retraites de 6 jours', href: getPermalink('/retraites/6-jours') },
         { text: 'Couples', href: getPermalink('/retraites/couples') },
         { text: 'Familles', href: getPermalink('/retraites/familles') },
-        { text: 'Journées', href: getPermalink('/retraites/journees') },
         { text: 'Préparation au mariage', href: getPermalink('/retraites/preparation-mariage') },
       ],
     },

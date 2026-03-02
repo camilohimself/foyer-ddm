@@ -85,33 +85,30 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     </Fragment>
   </Hero>
 
-  <!-- Stats : Chiffres clés -->
-  <Stats
-    stats={[
-      { title: 'ans d\'accueil', amount: '55+' },
-      { title: `retraites en ${currentYear}`, amount: `${eventCount}` },
-      { title: 'Foyers dans le monde', amount: '75' },
-      { title: 'en Suisse', amount: 'Seul' },
-    ]}
-  />
-
   <!-- 6 Packages en cartes -->
   <Features2
     title="Plusieurs chemins, une même quête"
     subtitle="De la journée de découverte à la retraite de six jours, chacun trouve son pas."
     tagline="Nos retraites"
+    classes={{ headline: { title: 'text-4xl md:text-5xl font-playball' } }}
     items={[
       {
-        title: 'Six jours de silence',
-        description: 'Le format historique des Foyers de Charité. Six jours pour cheminer dans le mystère de la foi, portés par les enseignements et le silence.',
-        icon: 'tabler:sunset-2',
-        callToAction: { text: 'En savoir plus', href: '/retraites/6-jours' },
+        title: 'Une journée au Foyer',
+        description: 'Quelques heures pour se poser : enseignements, repas partagé et Eucharistie. Une porte d\'entrée toute simple.',
+        icon: 'tabler:sun',
+        callToAction: { text: 'En savoir plus', href: '/retraites/journees' },
       },
       {
         title: 'Trois jours pour s\'arrêter',
         description: 'Une halte au cœur de votre quotidien. Idéal pour une première retraite ou pour vivre un temps fort de l\'année liturgique.',
         icon: 'tabler:calendar-event',
         callToAction: { text: 'En savoir plus', href: '/retraites/week-end' },
+      },
+      {
+        title: 'Six jours de silence',
+        description: 'Le format historique des Foyers de Charité. Six jours pour cheminer dans le mystère de la foi, portés par les enseignements et le silence.',
+        icon: 'tabler:sunset-2',
+        callToAction: { text: 'En savoir plus', href: '/retraites/6-jours' },
       },
       {
         title: 'En couple',
@@ -124,12 +121,6 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
         description: 'Vivre la foi ensemble, petits et grands. Des moments de partage et de prière adaptés à chaque âge.',
         icon: 'tabler:home-heart',
         callToAction: { text: 'En savoir plus', href: '/retraites/familles' },
-      },
-      {
-        title: 'Une journée au Foyer',
-        description: 'Quelques heures pour se poser : enseignements, repas partagé et Eucharistie. Une porte d\'entrée toute simple.',
-        icon: 'tabler:sun',
-        callToAction: { text: 'En savoir plus', href: '/retraites/journees' },
       },
       {
         title: 'Préparation au mariage',
@@ -149,6 +140,7 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     title="Prochaines retraites"
     subtitle="Les portes du Foyer sont ouvertes. Voici les prochaines dates."
     items={stepsItems}
+    classes={{ headline: { title: 'text-4xl lg:text-5xl font-playball' } }}
     callToAction={{
       text: `Programme complet ${currentYear}`,
       href: '/programme',
@@ -197,6 +189,16 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
       <div class="absolute inset-0 bg-surface-special"></div>
     </Fragment>
   </Content>
+
+  <!-- Stats : Chiffres clés -->
+  <Stats
+    stats={[
+      { title: 'ans d\'accueil', amount: '55+' },
+      { title: `retraites en ${currentYear}`, amount: `${eventCount}` },
+      { title: 'Foyers dans le monde', amount: '75' },
+      { title: 'en Suisse', amount: 'Seul' },
+    ]}
+  />
 
   <!-- Le Foyer en bref -->
   <Content
@@ -249,6 +251,7 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
   <!-- CTA bannière -->
   <CallToAction
     isDark
+    classes={{ headline: { title: 'text-4xl md:text-5xl font-playball tracking-tighter mb-4' } }}
     actions={[
       {
         variant: 'primary',
