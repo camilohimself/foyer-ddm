@@ -9,8 +9,12 @@ tags: ["spiritualité", "carême", "message"]
 
 Il y a un verbe anglais étonnant : *to saunter* qui au premier abord signifie flâner, se balader tranquillement, en appréciant la simplicité des pas les uns devant les autres…
 
-Le philosophe Henry David Thoreau (1817-1862) a exploré ce concept comme pionnier de la « sobriété heureuse ». Ses promenades l'aidaient à réfléchir sur le sens de la vie, loin des poursuites irréalistes de ses contemporains.
+Derrière ce verbe et cette activité se cache toute une sagesse de la vie que le philosophe américain Henry David Thoreau a décortiquée. Durant la « retraite raquettes » du Foyer au début février, nous avons apprivoisé ce grand penseur (1817-1862) qui est un des pionniers de l*a sobriété heureuse,* dont tout le monde parle aujourd'hui, dans la société comme dans notre Église.
 
-Thoreau a identifié une étymologie dans *saunter* : terre sainte. Les vrais marcheurs sont des pèlerins qui cherchent une terre sacrée — à la fois au loin et dans leur cœur.
+Thoreau marchait beaucoup et cela lui permettait de réfléchir au sens de sa vie, et au non-sens de la vie de nombreux de ses contemporains qui poursuivaient des objectifs économiques et relationnels inatteignables…
 
-Le Carême invite à un exode vers la terre promise. Nous devons marcher, peut-être errer, en lâchant nos objectifs irréalistes. Prendre soin de chaque pas, de chaque battement de cœur, de chaque mouvement de l'âme qui nous dirige vers la maison : *Sauntons !*
+Or derrière le verbe *to saunter*, il lit une étymologie tellement belle qu'elle doit être fausse : sainte-terre. Les vrais marcheurs sont des pèlerins, ce sont ceux qui ont une Terre sainte à atteindre, au fond de l'horizon comme au fond de leur cœur…
+
+Le Carême nous invite à un exode vers une Terre promise. Il nous faut marcher, peut-être souvent flâner. Il nous faut lâcher des objectifs irréalistes et vains, prendre soin de tous nos pas, de tous les battements de notre cœur, de tous les mouvements de notre âme qui nous dirigent vers notre Terre sainte. Alors « Sauntons » !
+
+*Guy Luisier*

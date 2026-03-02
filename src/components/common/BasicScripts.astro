@@ -119,9 +119,17 @@ import { UI } from 'astrowind:config';
       document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
     });
 
+    function pageHasHero() {
+      return !!document.querySelector('main img[loading="eager"][class*="object-cover"]');
+    }
+
     function applyHeaderStylesOnScroll() {
       const header = document.querySelector('#header[data-aw-sticky-header]');
       if (!header) return;
+      if (!pageHasHero()) {
+        header.classList.add('scroll');
+        return;
+      }
       if (lastKnownScrollPosition > 60 && !header.classList.contains('scroll')) {
         header.classList.add('scroll');
       } else if (lastKnownScrollPosition <= 60 && header.classList.contains('scroll')) {

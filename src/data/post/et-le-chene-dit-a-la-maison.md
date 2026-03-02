@@ -7,8 +7,30 @@ author: "P. Guy Luisier"
 tags: ["spiritualité", "anniversaire", "message", "poème"]
 ---
 
-*Pour les 55 ans du Foyer de Charité Dents-du-Midi (1970-2025)*
+*Le Foyer (1970-2025) fête ses 55 ans !*
 
-Un dialogue poétique entre le Chêne et la Maison, explorant ce que chacun fait quand les brises font vibrer le feuillage, quand le soleil d'été dore les feuilles, quand la sève fraîche irrigue les branches.
+Et le Chêne dit à la Maison
+\- Toi, que fais-tu
+Quand la brise légère
+Vibre dans mon feuillage ?
+Et la Maison répond au Chêne
+\- J'écoute palpiter en moi
+Le Souffle éternel...
 
-La Maison répond en écoutant le souffle éternel, les étoiles de feu silencieux, et les paroles de la Source.
+Et le Chêne dit à la Maison
+\- Toi, que fais-tu
+Quand le Soleil de l'été
+Dore déjà mes feuilles ?
+Et la Maison répond au Chêne
+\- Je laisse descendre en moi
+Un Silence de feu et d'étoiles...
+
+Et le Chêne dit à la Maison
+\- Toi, que fais-tu
+Quand les sèves fraîches
+Irriguent mes branches ?
+Et la Maison répond au Chêne
+\- J'écoute monter en moi
+Les Mots de la Source...
+
+*P. Guy Luisier*
