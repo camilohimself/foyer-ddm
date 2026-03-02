@@ -3,6 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import imgChambreIndividuelle from '~/assets/images/fddm-chambre-individuelle.jpg';
+import imgChambreDouble from '~/assets/images/fddm-chambre-double.jpg';
+import imgChambreFamille from '~/assets/images/fddm-chambre-famille.jpg';
 
 const metadata = {
   title: 'Les chambres — Hébergement en retraite',
@@ -31,34 +34,78 @@ const metadata = {
     </Fragment>
   </Hero>
 
+  <!-- Chambre individuelle -->
   <Content
     tagline="Hébergement"
-    title="Des chambres pour le repos"
+    title="L'essentiel, sans le superflu"
+    image={{ src: imgChambreIndividuelle, alt: 'Chambre individuelle du Foyer — lit, bureau, lavabo et balcon donnant sur la verdure' }}
     items={[
       {
-        title: 'Chambres individuelles',
-        description: 'La plupart des chambres sont individuelles, avec lavabo. Douches et sanitaires partagés à l\'étage.',
+        title: 'Chambre avec lavabo',
+        description: 'Chaque chambre individuelle dispose d\'un lavabo. Douches et sanitaires partagés à l\'étage.',
       },
       {
-        title: 'Chambres doubles',
-        description: 'Quelques chambres doubles sont disponibles pour les couples. À préciser lors de l\'inscription.',
-      },
-      {
-        title: 'Linge de lit fourni',
-        description: 'Draps et serviettes sont fournis. Apportez vos affaires de toilette.',
-      },
-      {
-        title: 'Un cadre de silence',
-        description: 'Les chambres sont un lieu de silence. Pas de télévision, pas de radio. Un espace pour se retrouver.',
+        title: 'Calme et lumière',
+        description: 'Balcon ou fenêtre ouvrant sur la verdure. Un espace de silence pour se retrouver.',
       },
     ]}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        L'essentiel, sans le superflu
+        Chambres individuelles
       </h3>
-      Le Foyer n'est pas un hôtel. C'est un lieu de retraite. Les chambres sont simples, propres et silencieuses.
-      Tout est prévu pour que vous puissiez vous reposer et vivre pleinement votre retraite.
+      Le Foyer n'est pas un hôtel. C'est un lieu de retraite. Les chambres sont simples, propres et silencieuses —
+      tout est prévu pour que vous puissiez vous reposer et vivre pleinement votre retraite.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Chambre double -->
+  <Content
+    isReversed
+    image={{ src: imgChambreDouble, alt: 'Chambre double du Foyer — deux lits, rideaux rouges, bureau et lumière naturelle' }}
+    items={[
+      {
+        title: 'Deux lits séparés',
+        description: 'Chambres spacieuses avec deux lits, bureau et chaise. Idéales pour les couples ou amis.',
+      },
+      {
+        title: 'À préciser à l\'inscription',
+        description: 'Le nombre de chambres doubles est limité. Indiquez votre préférence lors de l\'inscription.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Chambres doubles
+      </h3>
+      Quelques chambres doubles sont disponibles pour les couples ou les personnes souhaitant partager.
+      Lumineuses et spacieuses, elles offrent le même cadre de silence et de repos.
+    </Fragment>
+  </Content>
+
+  <!-- Chambre famille -->
+  <Content
+    image={{ src: imgChambreFamille, alt: 'Grande chambre familiale du Foyer — plusieurs lits, lavabo, deux fenêtres avec vue sur les arbres' }}
+    items={[
+      {
+        title: 'Plusieurs lits',
+        description: 'Chambres plus grandes avec plusieurs couchages, adaptées aux familles avec enfants.',
+      },
+      {
+        title: 'Linge de lit fourni',
+        description: 'Draps et serviettes sont fournis pour toutes les chambres. Apportez vos affaires de toilette.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Chambres familiales
+      </h3>
+      Pour les retraites en famille, des chambres plus spacieuses permettent d'accueillir parents et enfants
+      dans un même espace. Lavabo intégré et vue sur le jardin.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-surface-alt"></div>
