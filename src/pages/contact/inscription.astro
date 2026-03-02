@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import { getCollection } from 'astro:content';
+import { getUpcomingEvents, formatEventLabel } from '~/utils/events';
 
 const metadata = {
   title: "S'inscrire à une retraite",
@@ -9,23 +9,7 @@ const metadata = {
 };
 
 // TODO:OASIS — Remplacer par GET /api/events quand l'API sera disponible
-const allEvents = await getCollection('event');
-const events = allEvents
-  .filter((e) => e.data.registrationOpen)
-  .sort((a, b) => a.data.dateStart.localeCompare(b.data.dateStart));
-
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr + 'T00:00:00');
-  return d.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long' });
-}
-
-function formatEventLabel(event: (typeof events)[0]): string {
-  const start = formatDate(event.data.dateStart);
-  const end = event.data.dateEnd ? formatDate(event.data.dateEnd) : '';
-  const dateRange = end ? `${start} – ${end}` : start;
-  const variant = event.data.variant ? ` (${event.data.variant})` : '';
-  return `${dateRange} — «${event.data.title}»${variant}`;
-}
+const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen);
 ---
 
 <Layout metadata={metadata}>

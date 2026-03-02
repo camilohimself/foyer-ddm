@@ -4,8 +4,11 @@ import Hero from '~/components/widgets/Hero.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEventCount, currentYear } from '~/utils/events';
 
 import imgEnseignementAlpage from '~/assets/images/fddm-enseignement-alpage.jpg';
+
+const eventCount = await getUpcomingEventCount();
 
 const metadata = {
   title: 'Retraites spirituelles en Suisse — 6 formats',
@@ -122,7 +125,7 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Voir le programme 2026',
+        text: `Voir le programme ${currentYear}`,
         href: '/programme',
         icon: 'tabler:calendar',
       },
@@ -133,7 +136,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="title">
-      17 retraites en <span class="text-accent-400">2026</span>
+      {eventCount} retraites en <span class="text-accent-400">{currentYear}</span>
     </Fragment>
     <Fragment slot="subtitle">
       De février à septembre, retrouvez notre programme complet avec dates, thèmes et prédicateurs.

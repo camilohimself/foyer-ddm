@@ -2,13 +2,12 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getCollection } from 'astro:content';
+import { getAllEvents, formatDateRange, today, currentYear } from '~/utils/events';
 
-const allEvents = await getCollection('event');
-const events = allEvents.sort((a, b) => a.data.dateStart.localeCompare(b.data.dateStart));
+const events = await getAllEvents();
 
 const metadata = {
-  title: 'Programme des retraites spirituelles 2026',
+  title: `Programme des retraites spirituelles ${currentYear}`,
   description: `${events.length} retraites spirituelles en Suisse au Foyer de Charité Dents-du-Midi, Bex. Retraites de 6 jours, week-ends, journées, couples, familles. Calendrier complet.`,
 };
 
@@ -22,22 +21,6 @@ const typeBadge: Record<string, { badge: string; label: string }> = {
   mariage: { badge: 'bg-purple-500', label: 'Mariage' },
 };
 
-// --- Date formatting ---
-const formatDate = (dateStr: string) => {
-  const d = new Date(dateStr + 'T12:00:00');
-  return d.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long' });
-};
-
-const formatDateRange = (start: string, end?: string) => {
-  if (!end) return formatDate(start);
-  const s = new Date(start + 'T12:00:00');
-  const e = new Date(end + 'T12:00:00');
-  if (s.getMonth() === e.getMonth()) {
-    return `${s.getDate()}-${e.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long' })}`;
-  }
-  return `${formatDate(start)} - ${formatDate(end)}`;
-};
-
 // --- JSON-LD events data ---
 const jsonLdEvents = events.map((event) => ({
   name: event.data.title,
@@ -48,8 +31,6 @@ const jsonLdEvents = events.map((event) => ({
   performer: event.data.preacher,
 }));
 
-// --- Detect past events ---
-const today = new Date().toISOString().split('T')[0];
 ---
 
 <Layout metadata={metadata}>
@@ -78,7 +59,7 @@ const today = new Date().toISOString().split('T')[0];
 
   <Hero>
     <Fragment slot="title">
-      Retraites spirituelles <span class="text-accent-400">2026</span>
+      Retraites spirituelles <span class="text-accent-400">{currentYear}</span>
     </Fragment>
     <Fragment slot="subtitle">
       {events.length} retraites de février à septembre au Foyer de Charité Dents-du-Midi, Bex.

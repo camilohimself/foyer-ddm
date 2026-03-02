@@ -5,8 +5,13 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
 
 import imgEnfantsParachute from '~/assets/images/fddm-enfants-parachute.jpg';
+
+const upcomingFamilles = await getUpcomingEvents('familles');
+const stepsItems = eventsToStepsItems(upcomingFamilles);
+const dateLabel = upcomingFamilles.length === 1 ? 'Prochaine date' : 'Prochaines dates';
 
 const metadata = {
   title: 'Retraite spirituelle en famille — Week-end en Suisse',
@@ -69,17 +74,8 @@ const metadata = {
   </Content>
 
   <Steps
-    title="Prochaine date 2026"
-    items={[
-      {
-        title: '29 mai - 1 juin',
-        description: 'Week-end familles Ascension',
-        icon: 'tabler:home-heart',
-      },
-      {
-        description: 'Christian et Marie-France Thurre. Week-end prolongé.',
-      },
-    ]}
+    title={`${dateLabel} ${currentYear}`}
+    items={stepsItems}
   />
 
   <Content

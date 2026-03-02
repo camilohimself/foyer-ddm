@@ -79,7 +79,7 @@ export const footerData = {
         { text: 'Accès', href: getPermalink('/sejour/acces') },
         { text: 'Chambres', href: getPermalink('/sejour/chambres') },
         { text: 'Journée type', href: getPermalink('/sejour/journee-type') },
-        { text: 'Programme 2026', href: getPermalink('/programme') },
+        { text: `Programme ${new Date().getFullYear()}`, href: getPermalink('/programme') },
       ],
     },
     {
@@ -108,6 +108,6 @@ export const footerData = {
   ],
   socialLinks: [],
   footNote: `
-    &copy; 2026 Foyer de Charité Dents-du-Midi · Tous droits réservés
+    &copy; ${new Date().getFullYear()} Foyer de Charité Dents-du-Midi · Tous droits réservés
   `,
 };

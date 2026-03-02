@@ -5,8 +5,12 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
 
 import imgChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
+
+const upcomingJournees = await getUpcomingEvents('journees');
+const stepsItems = eventsToStepsItems(upcomingJournees);
 
 const metadata = {
   title: 'Journée spirituelle en Suisse — Foyer de Charité, Bex',
@@ -74,49 +78,8 @@ const metadata = {
   </Content>
 
   <Steps
-    title="Prochaines dates 2026"
-    items={[
-      {
-        title: '12 février',
-        description: '«Prier avec l\'icône de la Trinité»',
-        icon: 'tabler:palette',
-      },
-      {
-        description: 'Lionel et Eliane Bouquin.',
-      },
-      {
-        title: '10 mars',
-        description: '«Silence, libération, prière»',
-        icon: 'tabler:wind',
-      },
-      {
-        description: 'Jeff Roux.',
-      },
-      {
-        title: '23 avril',
-        description: '«Avec Maurice Zundel : ouvrir l\'oreille de notre cœur»',
-        icon: 'tabler:ear',
-      },
-      {
-        description: 'Isabelle Perrenoud, Marc Donzé.',
-      },
-      {
-        title: '12 mai',
-        description: '«Prier avec les fables de La Fontaine»',
-        icon: 'tabler:book',
-      },
-      {
-        description: 'Guy Luisier.',
-      },
-      {
-        title: '6 septembre',
-        description: 'JOURNÉE DU FOYER «Dieu est là ! Oui mais où ?»',
-        icon: 'tabler:star',
-      },
-      {
-        description: 'Guy Luisier et toute l\'équipe. Événement annuel.',
-      },
-    ]}
+    title={`Prochaines dates ${currentYear}`}
+    items={stepsItems}
   />
 
   <Content

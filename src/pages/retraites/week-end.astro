@@ -5,8 +5,12 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
 
 import imgChapelleHiver from '~/assets/images/fddm-chapelle-hiver.jpg';
+
+const upcomingWeekend = await getUpcomingEvents('week-end');
+const stepsItems = eventsToStepsItems(upcomingWeekend);
 
 const metadata = {
   title: 'Week-end spirituel en Suisse — 3 jours de retraite',
@@ -69,33 +73,8 @@ const metadata = {
   </Content>
 
   <Steps
-    title="Prochaines dates 2026"
-    items={[
-      {
-        title: '20-22 février',
-        description: '«Ayons des faces de ressuscités»',
-        icon: 'tabler:star',
-      },
-      {
-        description: 'François-Xavier Amherdt. Week-end de Carême.',
-      },
-      {
-        title: '2-5 avril',
-        description: '«Guetteurs de l\'Aube»',
-        icon: 'tabler:sunrise',
-      },
-      {
-        description: 'Corinne Gossauer, Guy Luisier. Trois Jours Saints.',
-      },
-      {
-        title: '1-3 mai',
-        description: '«Elisabeth et Marie, une rencontre et nos rencontres»',
-        icon: 'tabler:flower',
-      },
-      {
-        description: 'Corinne Gossauer.',
-      },
-    ]}
+    title={`Prochaines dates ${currentYear}`}
+    items={stepsItems}
   />
 
   <Content

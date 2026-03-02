@@ -5,8 +5,12 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
 
 import imgAutelHiver from '~/assets/images/fddm-autel-hiver.jpg';
+
+const upcoming6jours = await getUpcomingEvents('6-jours');
+const stepsItems = eventsToStepsItems(upcoming6jours);
 
 const metadata = {
   title: 'Retraite spirituelle de 6 jours en Suisse — Silence et enseignements',
@@ -74,57 +78,8 @@ const metadata = {
   </Content>
 
   <Steps
-    title="Prochaines dates 2026"
-    items={[
-      {
-        title: '1-7 février',
-        description: '«Dieu est-il si invisible que ça ?»',
-        icon: 'tabler:snowflake',
-      },
-      {
-        description: 'Guy Luisier, Pascal Dorsaz. Variante raquettes.',
-      },
-      {
-        title: '12-18 avril',
-        description: '«Vers quel Emmaüs allons-nous ?»',
-        icon: 'tabler:egg',
-      },
-      {
-        description: 'Guy Luisier. Retraite pascale «oasis».',
-      },
-      {
-        title: '5-11 juillet',
-        description: '«Mon cœur a frémi de paroles bonnes»',
-        icon: 'tabler:sun',
-      },
-      {
-        description: 'Thierry Collaud.',
-      },
-      {
-        title: '12-18 juillet',
-        description: '«Ce Samaritain est de ma famille !»',
-        icon: 'tabler:heart',
-      },
-      {
-        description: 'Guy Luisier.',
-      },
-      {
-        title: '9-15 août',
-        description: '«Cheminer avec Matthieu et quelques témoins»',
-        icon: 'tabler:mountain',
-      },
-      {
-        description: 'Barbara Francey, Guy Luisier. Variante randonnées.',
-      },
-      {
-        title: '16-22 août',
-        description: '«Les mots qui blessent, la Parole qui guérit»',
-        icon: 'tabler:leaf',
-      },
-      {
-        description: 'Joël Pralong.',
-      },
-    ]}
+    title={`Prochaines dates ${currentYear}`}
+    items={stepsItems}
   />
 
   <Content

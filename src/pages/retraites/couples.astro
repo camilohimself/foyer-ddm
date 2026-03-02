@@ -5,8 +5,12 @@ import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
 
 import imgCoupleMains from '~/assets/images/fddm-couple-mains.jpg';
+
+const upcomingCouples = await getUpcomingEvents('couples');
+const stepsItems = eventsToStepsItems(upcomingCouples);
 
 const metadata = {
   title: 'Retraite spirituelle pour couples — Week-end en Suisse',
@@ -70,25 +74,8 @@ const metadata = {
   </Content>
 
   <Steps
-    title="Prochaines dates 2026"
-    items={[
-      {
-        title: '13-15 mars',
-        description: '«En famille, vivre l\'hymne à l\'amour (1Co 13)»',
-        icon: 'tabler:hearts',
-      },
-      {
-        description: 'Elodie et Philibert Goulet, Guy Luisier. Accueil enfants.',
-      },
-      {
-        title: '24-26 avril',
-        description: '«Unis par l\'amour, fortifiés par la foi»',
-        icon: 'tabler:heart-handshake',
-      },
-      {
-        description: 'Bertrand et Françoise Georges. Accueil enfants.',
-      },
-    ]}
+    title={`Prochaines dates ${currentYear}`}
+    items={stepsItems}
   />
 
   <Content

@@ -9,6 +9,7 @@ import Steps from '~/components/widgets/Steps.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Stats from '~/components/widgets/Stats.astro';
+import { getUpcomingEvents, getUpcomingEventCount, formatDateRange, currentYear } from '~/utils/events';
 
 import fddmChapelleTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
 import fddmTableeTerrasse from '~/assets/images/fddm-tablee-terrasse.jpg';
@@ -20,27 +21,8 @@ const metadata = {
 };
 
 // --- Prochaines retraites (dynamique depuis la collection events) ---
-const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
-const allEvents = await getCollection('event');
-const upcomingEvents = allEvents
-  .filter((e) => e.data.dateStart >= today)
-  .sort((a, b) => a.data.dateStart.localeCompare(b.data.dateStart))
-  .slice(0, 3);
-
-const formatDate = (dateStr: string) => {
-  const d = new Date(dateStr + 'T12:00:00');
-  return d.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long' });
-};
-
-const formatDateRange = (start: string, end?: string) => {
-  if (!end) return formatDate(start);
-  const s = new Date(start + 'T12:00:00');
-  const e = new Date(end + 'T12:00:00');
-  if (s.getMonth() === e.getMonth()) {
-    return `${s.getDate()}-${e.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long' })}`;
-  }
-  return `${formatDate(start)} - ${formatDate(end)}`;
-};
+const upcomingEvents = (await getUpcomingEvents()).slice(0, 3);
+const eventCount = await getUpcomingEventCount();
 
 const stepsItems = [
   ...upcomingEvents.map((event) => ({
@@ -108,7 +90,7 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
   <Stats
     stats={[
       { title: 'ans d\'accueil', amount: '55+' },
-      { title: 'retraites en 2026', amount: '20' },
+      { title: `retraites en ${currentYear}`, amount: `${eventCount}` },
       { title: 'Foyers dans le monde', amount: '75' },
       { title: 'en Suisse', amount: 'Seul' },
     ]}
@@ -169,7 +151,7 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     subtitle="Les portes du Foyer sont ouvertes. Voici les prochaines dates."
     items={stepsItems}
     callToAction={{
-      text: 'Programme complet 2026',
+      text: `Programme complet ${currentYear}`,
       href: '/programme',
       icon: 'tabler:arrow-right',
     }}

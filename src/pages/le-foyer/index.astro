@@ -4,9 +4,12 @@ import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEventCount, currentYear } from '~/utils/events';
 import fddmFacadeEte from '~/assets/images/fddm-facade-ete.jpg';
 import fddmMessePleinAir from '~/assets/images/fddm-messe-plein-air.jpg';
 import fddmLavementPieds from '~/assets/images/fddm-lavement-pieds.jpg';
+
+const eventCount = await getUpcomingEventCount();
 
 const metadata = {
   title: 'Le Foyer de Charité — Dents-du-Midi',
@@ -100,8 +103,8 @@ const metadata = {
         icon: 'tabler:mountain',
       },
       {
-        title: '17 retraites',
-        description: 'Programmées en 2026',
+        title: `${eventCount} retraites`,
+        description: `Programmées en ${currentYear}`,
         icon: 'tabler:book',
       },
       {

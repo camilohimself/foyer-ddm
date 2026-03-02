@@ -6,8 +6,12 @@ import Steps from '~/components/widgets/Steps.astro';
 import Features from '~/components/widgets/Features.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEvents, eventsToStepsItems, currentYear } from '~/utils/events';
 
 import imgChapelleCroix from '~/assets/images/fddm-chapelle-croix.jpg';
+
+const upcomingMariage = await getUpcomingEvents('mariage');
+const stepsItems = eventsToStepsItems(upcomingMariage);
 
 const metadata = {
   title: 'Préparation au mariage chrétien — Week-end en Suisse',
@@ -71,25 +75,8 @@ const metadata = {
   </Content>
 
   <Steps
-    title="Prochaines dates 2026"
-    items={[
-      {
-        title: '21-22 mars 2026',
-        description: 'Première session 2026',
-        icon: 'tabler:rings',
-      },
-      {
-        description: 'Inscription ouverte.',
-      },
-      {
-        title: '26-27 septembre 2026',
-        description: 'Deuxième session 2026',
-        icon: 'tabler:rings',
-      },
-      {
-        description: 'Inscription ouverte.',
-      },
-    ]}
+    title={`Prochaines dates ${currentYear}`}
+    items={stepsItems}
   />
 
   <Content
