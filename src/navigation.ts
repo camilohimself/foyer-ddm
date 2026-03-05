@@ -104,7 +104,7 @@ export const footerData = {
     },
   ],
   secondaryLinks: [
-    { text: 'Réseau des Foyers de Charité', href: 'https://www.lesfoyersdecharite.com/' },
+    { text: 'Réseau des Foyers de Charité', href: 'https://www.lesfoyersdecharite.com/', target: '_blank' },
   ],
   socialLinks: [],
   footNote: `

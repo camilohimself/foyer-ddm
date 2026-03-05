@@ -86,12 +86,12 @@ image={{ src: imgName, alt: '...' }}
 
 ```
 src/
-├── pages/              # 32 pages statiques
+├── pages/              # 33 pages statiques
 │   ├── index.astro     # Homepage (3 events + 6 temoignages)
 │   ├── retraites/      # Hub + 6 types (6-jours, week-end, couples, familles, journees, mariage)
 │   ├── le-foyer/       # 4 pages (index, equipe, histoire, marthe-robin)
 │   ├── sejour/         # 5 pages (index, chambres, journee-type, tarifs, acces)
-│   ├── contact/        # Contact + inscription wizard 3 etapes
+│   ├── contact/        # Contact + inscription wizard 3 etapes + confirmation
 │   ├── programme.astro # Calendrier 2026 (19 events)
 │   ├── temoignages.astro
 │   ├── galerie.astro
@@ -109,7 +109,7 @@ src/
 │   └── widgets/        # Hero, Features, Content, Steps, Testimonials, CallToAction...
 ├── layouts/            # PageLayout, Layout, MarkdownLayout, LandingLayout
 ├── assets/
-│   ├── images/         # 32 photos fddm-* + 3 logos logo-ddm-*
+│   ├── images/         # 38 photos fddm-* + 3 logos logo-ddm-*
 │   └── styles/tailwind.css  # Custom utilities (.btn-*, .wizard-step, .radio-card, header states)
 ```
 
@@ -124,10 +124,20 @@ src/
 
 - `src/pages/contact/inscription.astro` — wizard 3 etapes (vanilla JS)
 - Step 1 : Choix retraite + profil participant
-- Step 2 : Infos personnelles + hebergement + regime
+- Step 2 : Infos personnelles (3 fieldsets : coordonnees, sejour, complementaires) + hebergement + regime
 - Step 3 : Recapitulatif + RGPD
+- **Deep-linking** : `?retraite=EVENT_ID` pre-selectionne le dropdown (liens depuis /programme)
+- **Persistance** : sessionStorage sauvegarde/restaure les champs (retour arriere navigateur)
+- **Confirmation** : `action="/contact/confirmation"` → page personnalisee post-soumission
 - Backend actuel : Netlify Forms (`data-netlify="true"`)
-- TODO : Basculer vers API OASIS si endpoints disponibles (ligne ~718)
+- TODO : Basculer vers API OASIS si endpoints disponibles
+
+## Funnel inscription (2 mars 2026)
+
+- **0 page cul-de-sac** : toutes les pages ont un CTA "S'inscrire" vers /contact/inscription
+- CTAs ajoutes sur 5 pages (equipe, sejour/index, journee-type, tarifs, acces)
+- CTAs existants mis a jour sur 6 pages (le-foyer/index, histoire, marthe-robin, soutenir, galerie, programme)
+- Programme : liens "S'inscrire" passent `?retraite=EVENT_ID` pour deep-linking
 
 ## Conventions
 

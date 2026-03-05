@@ -84,7 +84,7 @@ export function eventsToJsonLd(events: Event[]) {
     name: event.data.title,
     startDate: event.data.dateStart,
     endDate: event.data.dateEnd || event.data.dateStart,
-    description: `Retraite spirituelle au Foyer de Charité Dents-du-Midi, Bex, Suisse.`,
+    description: `${event.data.title} — ${event.data.preacher}. Retraite spirituelle au Foyer de Charité Dents-du-Midi, Bex, Suisse. Silence, enseignements et accompagnement au pied des Alpes.`,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
     location: {

@@ -1,4 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /contact/confirmation
 
 Sitemap: https://foyer-dents-du-midi.ch/sitemap-index.xml
