@@ -69,6 +69,7 @@ const eventCollection = defineCollection({
     image: z.string().optional(),
     price: z.string().optional(),
     variant: z.string().optional(),
+    externalUrl: z.string().url().optional(),
     registrationOpen: z.boolean().default(true),
   }),
 });

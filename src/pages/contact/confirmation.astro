@@ -4,8 +4,8 @@ import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'Inscription envoyée',
-  description: 'Votre inscription a bien été reçue. Vous recevrez une confirmation par email sous 48h.',
+  title: 'Demande envoyée',
+  description: 'Votre demande d\'inscription a bien été reçue. Un membre du Foyer vous contactera pour confirmer votre place.',
   robots: { index: false, follow: false },
 };
 ---
@@ -13,8 +13,8 @@ const metadata = {
 <Layout metadata={metadata}>
   <Hero
     tagline="Merci"
-    title="Inscription envoyée"
-    subtitle="Votre demande a bien été reçue. Nous vous confirmerons votre inscription par email."
+    title="Demande envoyée"
+    subtitle="Votre demande d'inscription a bien été reçue. Elle sera validée par un membre du Foyer."
   >
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -41,6 +41,14 @@ const metadata = {
         </div>
       </div>
 
+      <!-- Rappel important -->
+      <div class="mb-8 p-4 rounded-xl bg-amber-50 border border-amber-200">
+        <p class="text-sm text-amber-800">
+          <strong>Important :</strong> votre demande d'inscription n'est <strong>pas encore confirmée</strong>.
+          Un membre du Foyer vous contactera par email ou téléphone pour valider votre inscription.
+        </p>
+      </div>
+
       <h2 class="text-2xl font-bold text-primary-600 text-center mb-8">Et maintenant ?</h2>
 
       <!-- Steps -->
@@ -49,15 +57,15 @@ const metadata = {
           <div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-400 text-white flex items-center justify-center text-sm font-bold">1</div>
           <div>
             <h3 class="font-semibold text-primary-600">Examen de votre demande</h3>
-            <p class="text-sm text-muted mt-1">L'équipe du Foyer examine votre inscription et vérifie les disponibilités.</p>
+            <p class="text-sm text-muted mt-1">Un membre du Foyer examine votre demande et vérifie les disponibilités.</p>
           </div>
         </div>
 
         <div class="flex gap-4">
           <div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-400 text-white flex items-center justify-center text-sm font-bold">2</div>
           <div>
-            <h3 class="font-semibold text-primary-600">Confirmation sous 48h</h3>
-            <p class="text-sm text-muted mt-1">Vous recevrez un email de confirmation avec tous les détails pratiques pour votre séjour.</p>
+            <h3 class="font-semibold text-primary-600">Confirmation personnelle</h3>
+            <p class="text-sm text-muted mt-1">Vous serez contacté par email ou téléphone pour confirmer votre inscription et recevoir les détails pratiques.</p>
           </div>
         </div>
 

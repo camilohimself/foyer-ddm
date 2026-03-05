@@ -6,6 +6,7 @@ type: "6-jours"
 preacher: "Jean-Philippe Calame, Thierry Schelling, Catherine Deppierraz"
 variant: "Organisée par la Fraternité du Bon Samaritain"
 price: "~CHF 720.-"
+externalUrl: "https://fraternite-samaritain.com/retraites/"
 registrationOpen: true
 ---
 

@@ -5,18 +5,17 @@ import { getUpcomingEvents, formatEventLabel } from '~/utils/events';
 
 const metadata = {
   title: "S'inscrire à une retraite",
-  description: "Remplissez le formulaire d'inscription en 3 étapes. Vous recevrez une confirmation par email sous 48h.",
+  description: "Remplissez le formulaire d'inscription en 3 étapes. Votre demande sera confirmée par un membre du Foyer.",
 };
 
-// TODO:OASIS — Remplacer par GET /api/events quand l'API sera disponible
-const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen);
+const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen && !e.data.externalUrl);
 ---
 
 <Layout metadata={metadata}>
   <Hero
     tagline="Inscription"
     title="S'inscrire à une retraite"
-    subtitle="Complétez votre inscription en 3 étapes simples. Vous recevrez une confirmation par email sous 48h."
+    subtitle="Complétez votre inscription en 3 étapes simples."
   >
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -36,38 +35,23 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     <!-- Progress Bar -->
     <div class="mb-12" id="wizard-progress">
       <div class="flex items-center justify-center max-w-md mx-auto">
-        <!-- Step 1 -->
         <div class="flex flex-col items-center">
-          <div
-            id="progress-circle-1"
-            class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-accent-400 text-white shadow-md shadow-accent-400/30"
-          >1</div>
+          <div id="progress-circle-1" class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-accent-400 text-white shadow-md shadow-accent-400/30">1</div>
           <span class="text-xs mt-2 font-medium text-accent-400" id="progress-label-1">Retraite</span>
         </div>
-        <!-- Line 1-2 -->
         <div class="flex-1 h-0.5 mx-3 bg-gray-200 transition-all duration-300" id="progress-line-1"></div>
-        <!-- Step 2 -->
         <div class="flex flex-col items-center">
-          <div
-            id="progress-circle-2"
-            class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-gray-200 text-gray-500"
-          >2</div>
+          <div id="progress-circle-2" class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-gray-200 text-gray-500">2</div>
           <span class="text-xs mt-2 font-medium text-gray-400" id="progress-label-2">Vos infos</span>
         </div>
-        <!-- Line 2-3 -->
         <div class="flex-1 h-0.5 mx-3 bg-gray-200 transition-all duration-300" id="progress-line-2"></div>
-        <!-- Step 3 -->
         <div class="flex flex-col items-center">
-          <div
-            id="progress-circle-3"
-            class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-gray-200 text-gray-500"
-          >3</div>
+          <div id="progress-circle-3" class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-gray-200 text-gray-500">3</div>
           <span class="text-xs mt-2 font-medium text-gray-400" id="progress-label-3">Confirmation</span>
         </div>
       </div>
     </div>
 
-    <!-- Single form wrapping all steps (Netlify Forms compatibility) -->
     <form
       name="inscription"
       method="POST"
@@ -78,9 +62,18 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       class="bg-white shadow-xl rounded-2xl p-8 md:p-12"
     >
       <input type="hidden" name="form-name" value="inscription" />
-      <p class="hidden">
-        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-      </p>
+      <p class="hidden"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+
+      <!-- Avertissement demande non-validée -->
+      <div class="mb-8 p-4 rounded-xl bg-amber-50 border border-amber-200">
+        <div class="flex gap-3">
+          <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p class="text-sm text-amber-800">
+            <strong>Important :</strong> ce formulaire constitue une <strong>demande d'inscription</strong>.
+            Votre place sera confirmée uniquement après validation par un membre du Foyer, qui vous contactera par email ou téléphone.
+          </p>
+        </div>
+      </div>
 
       <!-- ============================================ -->
       <!-- STEP 1 — Retraite & Profil                  -->
@@ -94,12 +87,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
           <label for="retraite" class="block text-sm font-medium text-primary-600 mb-2">
             Retraite <span class="text-accent-400">*</span>
           </label>
-          <select
-            id="retraite"
-            name="retraite"
-            required
-            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-          >
+          <select id="retraite" name="retraite" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow">
             <option value="">Sélectionnez une retraite</option>
             {events.map((event) => (
               <option value={event.id}>{formatEventLabel(event)}</option>
@@ -107,12 +95,12 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
           </select>
         </div>
 
-        <!-- Type participant — radio cards -->
+        <!-- Type participant — 3 options -->
         <div class="mb-6">
           <label class="block text-sm font-medium text-primary-600 mb-3">
             Type de participant <span class="text-accent-400">*</span>
           </label>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="grid grid-cols-3 gap-3">
             <div class="radio-card">
               <input type="radio" id="type-individuel" name="type-participant" value="Individuel" required class="sr-only" />
               <label for="type-individuel" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
@@ -134,47 +122,27 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
                 <span class="text-sm font-medium text-primary-600">Famille</span>
               </label>
             </div>
-            <div class="radio-card">
-              <input type="radio" id="type-enfants" name="type-participant" value="Enfant(s) seul(s)" class="sr-only" />
-              <label for="type-enfants" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
-                <svg class="w-7 h-7 mx-auto mb-1 text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M10 22v-5l-1-1v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4l-1 1v5"/><path d="M7 10l2 -2"/><path d="M17 10l-2 -2"/></svg>
-                <span class="text-sm font-medium text-primary-600">Enfant(s)</span>
-              </label>
-            </div>
           </div>
         </div>
 
-        <!-- Nombre adultes -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <label for="nombre-adultes" class="block text-sm font-medium text-primary-600 mb-2">
-              Nombre d'adultes <span class="text-accent-400">*</span>
-            </label>
-            <input
-              type="number"
-              id="nombre-adultes"
-              name="nombre-adultes"
-              min="1"
-              max="10"
-              value="1"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-            />
-          </div>
-          <!-- Nombre enfants (conditionnel) -->
-          <div id="enfants-wrapper" class="hidden">
-            <label for="nombre-enfants" class="block text-sm font-medium text-primary-600 mb-2">
-              Nombre d'enfants
-            </label>
-            <input
-              type="number"
-              id="nombre-enfants"
-              name="nombre-enfants"
-              min="0"
-              max="10"
-              value="0"
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-            />
+        <!-- Nombre adultes + enfants (famille uniquement) -->
+        <div id="famille-options" class="hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="nombre-adultes" class="block text-sm font-medium text-primary-600 mb-2">
+                Nombre d'adultes <span class="text-accent-400">*</span>
+              </label>
+              <select id="nombre-adultes" name="nombre-adultes" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow">
+                <option value="2">2 adultes</option>
+                <option value="1">1 adulte (famille monoparentale)</option>
+              </select>
+            </div>
+            <div>
+              <label for="nombre-enfants" class="block text-sm font-medium text-primary-600 mb-2">
+                Nombre d'enfants <span class="text-accent-400">*</span>
+              </label>
+              <input type="number" id="nombre-enfants" name="nombre-enfants" min="1" max="8" value="1" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" />
+            </div>
           </div>
         </div>
       </div>
@@ -184,177 +152,113 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       <!-- ============================================ -->
       <div id="wizard-step-2" class="wizard-step" data-step="2">
         <h2 class="text-2xl font-bold text-primary-600 mb-2">Vos informations</h2>
-        <p class="text-muted mb-8">Renseignez vos coordonnées et préférences pour votre retraite.</p>
+        <p class="text-muted mb-8">Renseignez les coordonnées de chaque participant adulte.</p>
 
-        <!-- ── Vos coordonnées ── -->
-        <fieldset class="mb-8">
-          <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Vos coordonnées</legend>
+        <!-- ── Adulte 1 ── -->
+        <fieldset id="fieldset-adulte-1" class="mb-8">
+          <legend id="legend-adulte-1" class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Vos coordonnées</legend>
 
-          <!-- Prénom / Nom -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label for="prenom" class="block text-sm font-medium text-primary-600 mb-2">
-                Prénom <span class="text-accent-400">*</span>
-              </label>
-              <input
-                type="text"
-                id="prenom"
-                name="prenom"
-                required
-                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-                placeholder="Votre prénom"
-              />
+              <label for="adulte-1-prenom" class="block text-sm font-medium text-primary-600 mb-2">Prénom <span class="text-accent-400">*</span></label>
+              <input type="text" id="adulte-1-prenom" name="adulte-1-prenom" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Prénom" />
             </div>
             <div>
-              <label for="nom" class="block text-sm font-medium text-primary-600 mb-2">
-                Nom <span class="text-accent-400">*</span>
-              </label>
-              <input
-                type="text"
-                id="nom"
-                name="nom"
-                required
-                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-                placeholder="Votre nom"
-              />
+              <label for="adulte-1-nom" class="block text-sm font-medium text-primary-600 mb-2">Nom <span class="text-accent-400">*</span></label>
+              <input type="text" id="adulte-1-nom" name="adulte-1-nom" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Nom" />
             </div>
           </div>
 
-          <!-- Email / Téléphone -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label for="email" class="block text-sm font-medium text-primary-600 mb-2">
-                Email <span class="text-accent-400">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-                placeholder="votre.email@exemple.ch"
-              />
+              <label for="adulte-1-datenaissance" class="block text-sm font-medium text-primary-600 mb-2">Date de naissance <span class="text-accent-400">*</span></label>
+              <input type="date" id="adulte-1-datenaissance" name="adulte-1-datenaissance" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" />
             </div>
             <div>
-              <label for="telephone" class="block text-sm font-medium text-primary-600 mb-2">
-                Téléphone <span class="text-accent-400">*</span>
-              </label>
-              <input
-                type="tel"
-                id="telephone"
-                name="telephone"
-                required
-                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-                placeholder="+41 XX XXX XX XX"
-              />
+              <label for="adulte-1-profession" class="block text-sm font-medium text-primary-600 mb-2">Profession</label>
+              <input type="text" id="adulte-1-profession" name="adulte-1-profession" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Facultatif" />
             </div>
           </div>
 
-          <!-- Adresse / NPA Ville -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="adulte-1-email" class="block text-sm font-medium text-primary-600 mb-2">Email <span class="text-accent-400">*</span></label>
+              <input type="email" id="adulte-1-email" name="adulte-1-email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="votre.email@exemple.ch" />
+            </div>
+            <div>
+              <label for="adulte-1-telephone" class="block text-sm font-medium text-primary-600 mb-2">Téléphone <span class="text-accent-400">*</span></label>
+              <input type="tel" id="adulte-1-telephone" name="adulte-1-telephone" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="+41 79 123 45 67" />
+              <p class="text-xs text-gray-500 mt-1">Format : +41 XX XXX XX XX ou 07X XXX XX XX</p>
+            </div>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label for="adresse" class="block text-sm font-medium text-primary-600 mb-2">
-                Adresse
-              </label>
-              <input
-                type="text"
-                id="adresse"
-                name="adresse"
-                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-                placeholder="Rue et numéro"
-              />
+              <label for="adulte-1-adresse" class="block text-sm font-medium text-primary-600 mb-2">Adresse <span class="text-accent-400">*</span></label>
+              <input type="text" id="adulte-1-adresse" name="adulte-1-adresse" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Rue et numéro" />
             </div>
             <div>
-              <label for="npa-ville" class="block text-sm font-medium text-primary-600 mb-2">
-                NPA / Ville
-              </label>
-              <input
-                type="text"
-                id="npa-ville"
-                name="npa-ville"
-                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-                placeholder="1880 Bex"
-              />
+              <label for="adulte-1-npa-ville" class="block text-sm font-medium text-primary-600 mb-2">NPA / Ville <span class="text-accent-400">*</span></label>
+              <input type="text" id="adulte-1-npa-ville" name="adulte-1-npa-ville" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="1880 Bex" />
             </div>
           </div>
         </fieldset>
 
-        <!-- ── Préférences de séjour ── -->
-        <fieldset class="mb-8">
-          <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Préférences de séjour</legend>
+        <!-- ── Adulte 2 (couple ou famille 2 adultes) ── -->
+        <fieldset id="fieldset-adulte-2" class="mb-8 hidden">
+          <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Adulte 2</legend>
 
-          <!-- Hébergement — radio cards -->
-          <div class="mb-6">
-            <label class="block text-sm font-medium text-primary-600 mb-3">
-              Hébergement <span class="text-accent-400">*</span>
-            </label>
-            <div class="grid grid-cols-2 gap-3">
-              <div class="radio-card">
-                <input type="radio" id="chambre-individuelle" name="hebergement" value="Chambre individuelle" required class="sr-only" />
-                <label for="chambre-individuelle" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
-                  <svg class="w-6 h-6 mx-auto mb-1 text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6"/><circle cx="7" cy="10" r="1"/></svg>
-                  <span class="text-sm font-medium text-primary-600">Individuelle</span>
-                </label>
-              </div>
-              <div class="radio-card">
-                <input type="radio" id="chambre-double" name="hebergement" value="Chambre double" class="sr-only" />
-                <label for="chambre-double" class="block border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer hover:border-accent-300 transition-all">
-                  <svg class="w-6 h-6 mx-auto mb-1 text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6"/><circle cx="7" cy="10" r="1"/><circle cx="11" cy="10" r="1"/></svg>
-                  <span class="text-sm font-medium text-primary-600">Double</span>
-                </label>
-              </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="adulte-2-prenom" class="block text-sm font-medium text-primary-600 mb-2">Prénom <span class="text-accent-400">*</span></label>
+              <input type="text" id="adulte-2-prenom" name="adulte-2-prenom" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Prénom" />
+            </div>
+            <div>
+              <label for="adulte-2-nom" class="block text-sm font-medium text-primary-600 mb-2">Nom <span class="text-accent-400">*</span></label>
+              <input type="text" id="adulte-2-nom" name="adulte-2-nom" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Nom" />
             </div>
           </div>
 
-          <!-- Régime alimentaire -->
-          <div class="mb-6">
-            <label for="regime" class="block text-sm font-medium text-primary-600 mb-2">
-              Régime alimentaire
-            </label>
-            <select
-              id="regime"
-              name="regime"
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-            >
-              <option value="Aucun">Aucun régime particulier</option>
-              <option value="Sans gluten">Sans gluten</option>
-              <option value="Sans lactose">Sans lactose</option>
-              <option value="Végétarien">Végétarien</option>
-              <option value="Autre">Autre (précisez dans le message)</option>
-            </select>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="adulte-2-datenaissance" class="block text-sm font-medium text-primary-600 mb-2">Date de naissance <span class="text-accent-400">*</span></label>
+              <input type="date" id="adulte-2-datenaissance" name="adulte-2-datenaissance" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" />
+            </div>
+            <div>
+              <label for="adulte-2-profession" class="block text-sm font-medium text-primary-600 mb-2">Profession</label>
+              <input type="text" id="adulte-2-profession" name="adulte-2-profession" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Facultatif" />
+            </div>
           </div>
 
-          <!-- Mode d'arrivée -->
-          <div>
-            <label for="mode-arrivee" class="block text-sm font-medium text-primary-600 mb-2">
-              Mode d'arrivée
-            </label>
-            <select
-              id="mode-arrivee"
-              name="mode-arrivee"
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-            >
-              <option value="Propres moyens">Propres moyens</option>
-              <option value="Transports publics">Transports publics</option>
-              <option value="Covoiturage">Covoiturage souhaité</option>
-            </select>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="adulte-2-email" class="block text-sm font-medium text-primary-600 mb-2">Email</label>
+              <input type="email" id="adulte-2-email" name="adulte-2-email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Facultatif" />
+            </div>
+            <div>
+              <label for="adulte-2-telephone" class="block text-sm font-medium text-primary-600 mb-2">Téléphone <span class="text-accent-400">*</span></label>
+              <input type="tel" id="adulte-2-telephone" name="adulte-2-telephone" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="+41 79 123 45 67" />
+              <p class="text-xs text-gray-500 mt-1">Format : +41 XX XXX XX XX ou 07X XXX XX XX</p>
+            </div>
           </div>
+        </fieldset>
+
+        <!-- ── Enfants (famille uniquement) ── -->
+        <fieldset id="fieldset-enfants" class="mb-8 hidden">
+          <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Enfants</legend>
+          <p class="text-sm text-muted mb-4">Indiquez le prénom et l'âge de chaque enfant.</p>
+          <div id="enfants-rows" class="space-y-3"></div>
+          <!-- Champ caché pour Netlify Forms -->
+          <input type="hidden" id="enfants-details" name="enfants-details" />
         </fieldset>
 
         <!-- ── Informations complémentaires ── -->
         <fieldset>
           <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Informations complémentaires</legend>
 
-          <!-- Comment connu -->
           <div class="mb-6">
-            <label for="comment-connu" class="block text-sm font-medium text-primary-600 mb-2">
-              Comment avez-vous connu le Foyer ?
-            </label>
-            <select
-              id="comment-connu"
-              name="comment-connu"
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-            >
+            <label for="comment-connu" class="block text-sm font-medium text-primary-600 mb-2">Comment avez-vous connu le Foyer ?</label>
+            <select id="comment-connu" name="comment-connu" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow">
               <option value="">—</option>
               <option value="Bouche à oreille">Bouche à oreille</option>
               <option value="Paroisse">Paroisse</option>
@@ -365,11 +269,8 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
             </select>
           </div>
 
-          <!-- Autorisation photos -->
           <div class="mb-6">
-            <label class="block text-sm font-medium text-primary-600 mb-3">
-              Autorisation photos / vidéos
-            </label>
+            <label class="block text-sm font-medium text-primary-600 mb-3">Autorisation photos / vidéos</label>
             <div class="flex gap-6">
               <div class="flex items-center">
                 <input type="radio" id="photos-oui" name="autorisation-photos" value="Oui" class="w-4 h-4 text-accent-400 focus:ring-accent-400" />
@@ -382,18 +283,9 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
             </div>
           </div>
 
-          <!-- Message -->
           <div>
-            <label for="message" class="block text-sm font-medium text-primary-600 mb-2">
-              Message libre
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow"
-              placeholder="Questions, besoins spécifiques, précisions..."
-            ></textarea>
+            <label for="message" class="block text-sm font-medium text-primary-600 mb-2">Message</label>
+            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow" placeholder="Allergies, régime alimentaire, besoins particuliers, questions..."></textarea>
           </div>
         </fieldset>
       </div>
@@ -403,75 +295,92 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       <!-- ============================================ -->
       <div id="wizard-step-3" class="wizard-step" data-step="3">
         <h2 class="text-2xl font-bold text-primary-600 mb-2">Récapitulatif</h2>
-        <p class="text-muted mb-8">Vérifiez vos informations avant de confirmer votre inscription.</p>
+        <p class="text-muted mb-8">Vérifiez vos informations avant d'envoyer votre demande.</p>
 
-        <!-- Recap container (populated by JS via safe DOM methods) -->
-        <div id="recap-content" class="mb-8 rounded-xl border border-gray-200 overflow-hidden">
+        <div id="recap-content" class="mb-8 rounded-xl border border-gray-200 overflow-hidden"></div>
+
+        <!-- Rappel validation -->
+        <div class="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200">
+          <p class="text-sm text-amber-800">
+            <strong>Rappel :</strong> votre inscription sera validée uniquement après confirmation par un membre du Foyer. Vous serez contacté par email ou téléphone.
+          </p>
         </div>
 
-        <!-- RGPD -->
+        <!-- Conditions de séjour (dépliable) -->
+        <div class="mb-6">
+          <button type="button" id="toggle-conditions" class="flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-accent-500 transition-colors">
+            <svg id="conditions-chevron" class="w-4 h-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            Lire les conditions de séjour
+          </button>
+          <div id="conditions-panel" class="hidden mt-3 p-5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-gray-700 space-y-4 max-h-96 overflow-y-auto">
+            <p class="font-semibold text-primary-600">Conditions de séjour au Foyer de Charité Dents-du-Midi</p>
+
+            <div>
+              <p class="font-semibold">Engagement</p>
+              <p>En vous inscrivant, vous vous engagez à participer à la retraite dans son intégralité. Un séjour avant ou après les dates indiquées n'est pas possible.</p>
+            </div>
+
+            <div>
+              <p class="font-semibold">Désistement</p>
+              <p>En cas de désistement, merci de nous avertir aussitôt par téléphone ou par courriel, afin que quelqu'un d'autre puisse être accueilli.</p>
+            </div>
+
+            <div>
+              <p class="font-semibold">Le silence</p>
+              <p>La particularité des Foyers de Charité est de vous inviter à rechercher, dans le silence, une intimité personnelle avec Dieu. Le silence est demandé à tous car il favorise le repos et le cheminement intérieur dans le respect de chacun. Un dialogue avec le prédicateur est possible sur rendez-vous. Un moment d'amitié et d'échanges est proposé en fin de retraite.</p>
+            </div>
+
+            <div>
+              <p class="font-semibold">À prendre avec vous</p>
+              <p>Votre lit sera fait. Prenez simplement vos linges de toilette, chaussures d'intérieur et, lors de la belle saison, votre petit matériel de randonnée.</p>
+            </div>
+
+            <div>
+              <p class="font-semibold">Animaux</p>
+              <p>Les animaux ne peuvent pas être acceptés.</p>
+            </div>
+
+            <div>
+              <p class="font-semibold">Participation financière</p>
+              <p>Les Foyers de Charité désirent que chacun puisse participer à une retraite, quelles que soient ses ressources financières. Nous vous invitons à donner environ CHF 120.- par jour et par adulte pour couvrir les frais de séjour (pension et animation). Pour les enfants, les parents évaluent eux-mêmes ce qui leur semble juste. Si ces montants sont une charge trop lourde, merci d'aider le Foyer par des dons par la suite.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LPD + Conditions -->
         <div class="space-y-4 mb-8">
           <div class="flex items-start">
-            <input
-              type="checkbox"
-              id="rgpd"
-              name="rgpd"
-              required
-              class="mt-1 w-4 h-4 text-accent-400 focus:ring-accent-400 rounded"
-            />
-            <label for="rgpd" class="ml-3 text-sm text-gray-700">
-              J'accepte que mes données personnelles soient traitées dans le cadre de cette inscription, conformément au RGPD.
+            <input type="checkbox" id="lpd" name="lpd" required class="mt-1 w-4 h-4 text-accent-400 focus:ring-accent-400 rounded" />
+            <label for="lpd" class="ml-3 text-sm text-gray-700">
+              J'accepte que mes données personnelles soient traitées dans le cadre de cette demande d'inscription, conformément à la Loi fédérale sur la protection des données (LPD).
               Elles ne seront pas transmises à des tiers. <span class="text-accent-400">*</span>
             </label>
           </div>
-
           <div class="flex items-start">
-            <input
-              type="checkbox"
-              id="conditions"
-              name="conditions"
-              required
-              class="mt-1 w-4 h-4 text-accent-400 focus:ring-accent-400 rounded"
-            />
+            <input type="checkbox" id="conditions" name="conditions" required class="mt-1 w-4 h-4 text-accent-400 focus:ring-accent-400 rounded" />
             <label for="conditions" class="ml-3 text-sm text-gray-700">
-              J'accepte les conditions de la retraite et comprends que mon inscription sera confirmée par email sous 48h.
+              J'ai lu et j'accepte les <button type="button" class="text-primary-600 underline underline-offset-2 hover:text-accent-500" onclick="document.getElementById('toggle-conditions').click()">conditions de séjour</button> du Foyer de Charité Dents-du-Midi.
               <span class="text-accent-400">*</span>
             </label>
           </div>
         </div>
 
         <p class="text-xs text-gray-500 mb-6">
-          Vos données personnelles sont utilisées uniquement pour le traitement de votre inscription et la gestion de votre inscription au Foyer de Charité des Dents-du-Midi.
+          Vos données personnelles sont utilisées uniquement pour le traitement de votre demande d'inscription au Foyer de Charité Dents-du-Midi, conformément à la LPD.
         </p>
       </div>
 
-      <!-- ============================================ -->
-      <!-- Navigation buttons                           -->
-      <!-- ============================================ -->
+      <!-- Navigation -->
       <div class="flex justify-between items-center mt-10 pt-6 border-t border-gray-100">
-        <button
-          type="button"
-          id="btn-prev"
-          class="hidden px-6 py-3 rounded-xl border border-gray-300 text-primary-600 font-medium hover:bg-gray-50 transition-colors"
-        >
-          ← Précédent
+        <button type="button" id="btn-prev" class="hidden px-6 py-3 rounded-xl border border-gray-300 text-primary-600 font-medium hover:bg-gray-50 transition-colors">
+          &larr; Précédent
         </button>
-
         <div class="ml-auto">
-          <button
-            type="button"
-            id="btn-next"
-            class="px-8 py-3 rounded-xl bg-accent-400 text-white font-semibold shadow-lg shadow-accent-400/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent-400/40 transition-all duration-200"
-          >
-            Suivant →
+          <button type="button" id="btn-next" class="px-8 py-3 rounded-xl bg-accent-400 text-white font-semibold shadow-lg shadow-accent-400/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent-400/40 transition-all duration-200">
+            Suivant &rarr;
           </button>
-
-          <button
-            type="submit"
-            id="btn-submit"
-            class="hidden px-8 py-3 rounded-xl bg-accent-400 text-white font-semibold shadow-lg shadow-accent-400/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent-400/40 transition-all duration-200"
-          >
-            Confirmer mon inscription
+          <button type="submit" id="btn-submit" class="hidden px-8 py-3 rounded-xl bg-accent-400 text-white font-semibold shadow-lg shadow-accent-400/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent-400/40 transition-all duration-200">
+            Envoyer ma demande
           </button>
         </div>
       </div>
@@ -497,7 +406,25 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
   var btnNext = document.getElementById('btn-next');
   var btnSubmit = document.getElementById('btn-submit');
 
-  // --- Progress bar update ---
+  // --- DOM refs ---
+  var familleOptions = document.getElementById('famille-options');
+  var fieldsetAdulte2 = document.getElementById('fieldset-adulte-2');
+  var fieldsetEnfants = document.getElementById('fieldset-enfants');
+  var enfantsRows = document.getElementById('enfants-rows');
+  var enfantsDetails = document.getElementById('enfants-details');
+  var legendAdulte1 = document.getElementById('legend-adulte-1');
+  var nombreAdultes = document.getElementById('nombre-adultes');
+  var nombreEnfants = document.getElementById('nombre-enfants');
+
+  // --- Phone validation ---
+  function isValidSwissPhone(value) {
+    var digits = value.replace(/[\s\-\.\(\)]/g, '');
+    if (/^\+41\d{9}$/.test(digits)) return true;
+    if (/^0\d{9}$/.test(digits)) return true;
+    return false;
+  }
+
+  // --- Progress bar ---
   function updateProgress(step) {
     for (var i = 1; i <= TOTAL_STEPS; i++) {
       var circle = document.getElementById('progress-circle-' + i);
@@ -523,196 +450,342 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     }
   }
 
-  // --- Show step ---
+  // --- Navigation ---
   function goToStep(n) {
     if (n < 1 || n > TOTAL_STEPS) return;
-
-    var current = steps[state.currentStep];
-    current.classList.remove('active');
-
+    steps[state.currentStep].classList.remove('active');
     state.currentStep = n;
-    var target = steps[n];
-    target.classList.add('active');
-
+    steps[n].classList.add('active');
     btnPrev.classList.toggle('hidden', n === 1);
     btnNext.classList.toggle('hidden', n === TOTAL_STEPS);
     btnSubmit.classList.toggle('hidden', n !== TOTAL_STEPS);
-
     updateProgress(n);
-
     document.getElementById('wizard-progress').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
     if (n === TOTAL_STEPS) buildRecap();
+  }
+
+  // --- Error helpers ---
+  function clearErrors(container) {
+    container.querySelectorAll('.wizard-error').forEach(function(el) { el.remove(); });
+    container.querySelectorAll('.border-red-400').forEach(function(el) {
+      el.classList.remove('border-red-400', 'ring-2', 'ring-red-200');
+    });
+  }
+
+  function showError(field, msg) {
+    field.classList.add('border-red-400', 'ring-2', 'ring-red-200');
+    var err = document.createElement('p');
+    err.className = 'wizard-error text-red-500 text-sm mt-1';
+    err.textContent = msg;
+    field.parentNode.appendChild(err);
   }
 
   // --- Validation ---
   function validateStep(n) {
     var stepEl = steps[n];
-    var requiredFields = stepEl.querySelectorAll('[required]');
+    clearErrors(stepEl);
     var valid = true;
 
-    // Clear previous errors
-    stepEl.querySelectorAll('.wizard-error').forEach(function(el) { el.remove(); });
-    stepEl.querySelectorAll('.border-red-400').forEach(function(el) {
-      el.classList.remove('border-red-400', 'ring-2', 'ring-red-200');
-    });
+    if (n === 1) {
+      var retraite = document.getElementById('retraite');
+      if (!retraite.value) { showError(retraite, 'Veuillez sélectionner une retraite.'); valid = false; }
 
-    var checkedRadioGroups = {};
-
-    requiredFields.forEach(function(field) {
-      if (field.type === 'radio') {
-        if (checkedRadioGroups[field.name]) return;
-        checkedRadioGroups[field.name] = true;
-
-        var group = stepEl.querySelectorAll('input[name="' + field.name + '"]');
-        var anyChecked = false;
-        group.forEach(function(r) { if (r.checked) anyChecked = true; });
-        if (!anyChecked) {
-          valid = false;
-          var wrapper = field.closest('.mb-6');
-          if (wrapper && !wrapper.querySelector('.wizard-error')) {
-            var err = document.createElement('p');
-            err.className = 'wizard-error text-red-500 text-sm mt-2';
-            err.textContent = 'Veuillez faire un choix.';
-            wrapper.appendChild(err);
-          }
+      var typeRadios = stepEl.querySelectorAll('input[name="type-participant"]');
+      var typeChecked = false;
+      typeRadios.forEach(function(r) { if (r.checked) typeChecked = true; });
+      if (!typeChecked) {
+        valid = false;
+        var wrapper = typeRadios[0].closest('.mb-6');
+        if (wrapper && !wrapper.querySelector('.wizard-error')) {
+          var err = document.createElement('p');
+          err.className = 'wizard-error text-red-500 text-sm mt-2';
+          err.textContent = 'Veuillez choisir un type de participant.';
+          wrapper.appendChild(err);
         }
-      } else if (field.type === 'checkbox') {
-        if (!field.checked) {
-          valid = false;
-          field.classList.add('border-red-400', 'ring-2', 'ring-red-200');
-          var parent = field.closest('.flex');
+      }
+    }
+
+    if (n === 2) {
+      // Clear errors on both fieldsets + enfants
+      clearErrors(document.getElementById('fieldset-adulte-1'));
+      if (!fieldsetAdulte2.classList.contains('hidden')) clearErrors(fieldsetAdulte2);
+      if (!fieldsetEnfants.classList.contains('hidden')) clearErrors(fieldsetEnfants);
+
+      valid = validateAdulte(1) && valid;
+
+      if (!fieldsetAdulte2.classList.contains('hidden')) {
+        valid = validateAdulte(2) && valid;
+      }
+
+      if (!fieldsetEnfants.classList.contains('hidden')) {
+        var rows = enfantsRows.querySelectorAll('.enfant-row');
+        rows.forEach(function(row) {
+          var prenomInput = row.querySelector('input[data-field="prenom"]');
+          var ageInput = row.querySelector('input[data-field="age"]');
+          if (prenomInput && !prenomInput.value.trim()) {
+            showError(prenomInput, 'Prénom requis.');
+            valid = false;
+          }
+          if (ageInput && !ageInput.value) {
+            showError(ageInput, 'Âge requis.');
+            valid = false;
+          }
+        });
+      }
+
+      collectEnfantsDetails();
+    }
+
+    if (n === 3) {
+      var lpd = document.getElementById('lpd');
+      var conditions = document.getElementById('conditions');
+      [lpd, conditions].forEach(function(cb) {
+        if (!cb.checked) {
+          cb.classList.add('border-red-400', 'ring-2', 'ring-red-200');
+          var parent = cb.closest('.flex');
           if (parent && !parent.querySelector('.wizard-error')) {
             var err = document.createElement('p');
             err.className = 'wizard-error text-red-500 text-sm mt-1';
             err.textContent = 'Ce champ est obligatoire.';
             parent.appendChild(err);
           }
+          valid = false;
         }
-      } else if (!field.checkValidity()) {
-        valid = false;
-        field.classList.add('border-red-400', 'ring-2', 'ring-red-200');
-        var err = document.createElement('p');
-        err.className = 'wizard-error text-red-500 text-sm mt-1';
-        err.textContent = field.validationMessage || 'Ce champ est obligatoire.';
-        field.parentNode.appendChild(err);
-      }
-    });
+      });
+    }
 
     return valid;
   }
 
-  // --- Build recap with safe DOM methods ---
-  var fieldLabels = {
-    'retraite': 'Retraite',
-    'type-participant': 'Type de participant',
-    'nombre-adultes': "Nombre d'adultes",
-    'nombre-enfants': "Nombre d'enfants",
-    'prenom': 'Prénom',
-    'nom': 'Nom',
-    'email': 'Email',
-    'telephone': 'Téléphone',
-    'adresse': 'Adresse',
-    'npa-ville': 'NPA / Ville',
-    'hebergement': 'Hébergement',
-    'regime': 'Régime alimentaire',
-    'comment-connu': 'Comment connu',
-    'mode-arrivee': "Mode d'arrivée",
-    'autorisation-photos': 'Autorisation photos',
-    'message': 'Message'
-  };
+  function validateAdulte(num) {
+    var valid = true;
+    var prefix = 'adulte-' + num + '-';
 
-  var fieldOrder = [
-    'retraite', 'type-participant', 'nombre-adultes', 'nombre-enfants',
-    'prenom', 'nom', 'email', 'telephone', 'adresse', 'npa-ville',
-    'hebergement', 'regime', 'comment-connu', 'mode-arrivee', 'autorisation-photos', 'message'
-  ];
-
-  function getDisplayValue(name, value) {
-    if (name === 'retraite') {
-      var select = document.getElementById('retraite');
-      var opt = select.options[select.selectedIndex];
-      return opt ? opt.textContent : value;
+    var requiredFields = ['prenom', 'nom', 'datenaissance', 'telephone'];
+    if (num === 1) {
+      requiredFields.push('email', 'adresse', 'npa-ville');
     }
-    return value;
+
+    requiredFields.forEach(function(f) {
+      var el = document.getElementById(prefix + f);
+      if (!el) return;
+      if (!el.value.trim()) {
+        showError(el, 'Ce champ est obligatoire.');
+        valid = false;
+      }
+    });
+
+    // Email format check (adulte 2: optional but validate if filled)
+    var emailEl = document.getElementById(prefix + 'email');
+    if (emailEl && emailEl.value.trim() && !emailEl.checkValidity()) {
+      showError(emailEl, 'Veuillez entrer une adresse email valide.');
+      valid = false;
+    }
+
+    // Phone format
+    var telEl = document.getElementById(prefix + 'telephone');
+    if (telEl && telEl.value.trim()) {
+      if (!isValidSwissPhone(telEl.value)) {
+        showError(telEl, 'Numéro suisse invalide. Format : +41 XX XXX XX XX ou 07X XXX XX XX');
+        valid = false;
+      }
+    }
+
+    return valid;
   }
 
-  function buildRecap() {
-    var form = document.getElementById('wizard-form');
-    var container = document.getElementById('recap-content');
+  // --- Collect children info ---
+  function collectEnfantsDetails() {
+    var rows = enfantsRows.querySelectorAll('.enfant-row');
+    var details = [];
+    rows.forEach(function(row) {
+      var prenom = row.querySelector('input[data-field="prenom"]');
+      var age = row.querySelector('input[data-field="age"]');
+      if (prenom && prenom.value.trim()) {
+        details.push(prenom.value.trim() + ' (' + (age && age.value ? age.value : '?') + ' ans)');
+      }
+    });
+    enfantsDetails.value = details.join(', ');
+  }
 
-    // Clear previous content safely
-    while (container.firstChild) {
-      container.removeChild(container.firstChild);
+  // --- Build children input rows ---
+  function buildEnfantsRows(count) {
+    while (enfantsRows.firstChild) {
+      enfantsRows.removeChild(enfantsRows.firstChild);
     }
+    for (var i = 1; i <= count; i++) {
+      var row = document.createElement('div');
+      row.className = 'enfant-row grid grid-cols-3 gap-3 items-end';
+
+      var labelEl = document.createElement('span');
+      labelEl.className = 'text-xs font-medium text-primary-600 col-span-3';
+      labelEl.textContent = 'Enfant ' + i;
+      row.appendChild(labelEl);
+
+      var divPrenom = document.createElement('div');
+      divPrenom.className = 'col-span-2';
+      var inputPrenom = document.createElement('input');
+      inputPrenom.type = 'text';
+      inputPrenom.setAttribute('data-field', 'prenom');
+      inputPrenom.placeholder = 'Prénom';
+      inputPrenom.className = 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent transition-shadow';
+      divPrenom.appendChild(inputPrenom);
+      row.appendChild(divPrenom);
+
+      var divAge = document.createElement('div');
+      var inputAge = document.createElement('input');
+      inputAge.type = 'number';
+      inputAge.setAttribute('data-field', 'age');
+      inputAge.min = '0';
+      inputAge.max = '17';
+      inputAge.placeholder = 'Âge';
+      inputAge.className = 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent transition-shadow';
+      divAge.appendChild(inputAge);
+      row.appendChild(divAge);
+
+      enfantsRows.appendChild(row);
+    }
+  }
+
+  // --- Type logic ---
+  function getSelectedType() {
+    var radios = document.querySelectorAll('input[name="type-participant"]');
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) return radios[i].value;
+    }
+    return '';
+  }
+
+  function updateFormForType() {
+    var type = getSelectedType();
+    familleOptions.classList.add('hidden');
+    fieldsetAdulte2.classList.add('hidden');
+    fieldsetEnfants.classList.add('hidden');
+
+    if (type === 'Individuel') {
+      legendAdulte1.textContent = 'Vos coordonnées';
+    } else if (type === 'Couple') {
+      legendAdulte1.textContent = 'Adulte 1';
+      fieldsetAdulte2.classList.remove('hidden');
+    } else if (type === 'Famille') {
+      familleOptions.classList.remove('hidden');
+      fieldsetEnfants.classList.remove('hidden');
+      updateFamilleAdults();
+      updateFamilleEnfants();
+    }
+  }
+
+  function updateFamilleAdults() {
+    var nbAdultes = parseInt(nombreAdultes.value, 10) || 2;
+    if (nbAdultes >= 2) {
+      legendAdulte1.textContent = 'Adulte 1';
+      fieldsetAdulte2.classList.remove('hidden');
+    } else {
+      legendAdulte1.textContent = 'Vos coordonnées';
+      fieldsetAdulte2.classList.add('hidden');
+    }
+  }
+
+  function updateFamilleEnfants() {
+    var nbEnfants = parseInt(nombreEnfants.value, 10) || 1;
+    if (nbEnfants < 1) nbEnfants = 1;
+    if (nbEnfants > 8) nbEnfants = 8;
+    buildEnfantsRows(nbEnfants);
+  }
+
+  // --- Listeners ---
+  document.querySelectorAll('input[name="type-participant"]').forEach(function(radio) {
+    radio.addEventListener('change', updateFormForType);
+  });
+
+  nombreAdultes.addEventListener('change', function() {
+    if (getSelectedType() === 'Famille') updateFamilleAdults();
+  });
+
+  nombreEnfants.addEventListener('input', function() {
+    if (getSelectedType() === 'Famille') updateFamilleEnfants();
+  });
+
+  // --- Recap ---
+  function buildRecap() {
+    collectEnfantsDetails();
+    var container = document.getElementById('recap-content');
+    while (container.firstChild) container.removeChild(container.firstChild);
 
     var dl = document.createElement('dl');
     var even = false;
 
-    fieldOrder.forEach(function(name) {
-      var value = '';
-      var el = form.elements[name];
-      if (!el) return;
-
-      if (el.value !== undefined) {
-        value = el.value;
-      }
-
-      // Skip empty optional fields
-      if (!value || value === '') {
-        return;
-      }
-
-      // Skip nombre-enfants if hidden
-      if (name === 'nombre-enfants') {
-        var wrapper = document.getElementById('enfants-wrapper');
-        if (wrapper && wrapper.classList.contains('hidden')) return;
-        if (value === '0') return;
-      }
-
-      var displayValue = getDisplayValue(name, value);
-      var labelText = fieldLabels[name] || name;
-
+    function addRow(label, value) {
+      if (!value) return;
       var row = document.createElement('div');
       row.className = 'flex flex-col sm:flex-row sm:justify-between px-5 py-3 border-b border-gray-100' + (even ? ' bg-gray-50' : '');
-
       var dt = document.createElement('dt');
       dt.className = 'text-sm font-medium text-primary-600';
-      dt.textContent = labelText;
-
+      dt.textContent = label;
       var dd = document.createElement('dd');
       dd.className = 'text-sm text-gray-700 sm:text-right mt-1 sm:mt-0';
-      dd.textContent = displayValue;
-
+      dd.textContent = value;
       row.appendChild(dt);
       row.appendChild(dd);
       dl.appendChild(row);
-
       even = !even;
-    });
+    }
+
+    function addSectionHeader(text) {
+      var hRow = document.createElement('div');
+      hRow.className = 'px-5 py-2 bg-primary-50 border-b border-gray-100';
+      var h = document.createElement('strong');
+      h.className = 'text-sm text-primary-600';
+      h.textContent = text;
+      hRow.appendChild(h);
+      dl.appendChild(hRow);
+      even = false;
+    }
+
+    // Retraite
+    var select = document.getElementById('retraite');
+    addRow('Retraite', select.options[select.selectedIndex] ? select.options[select.selectedIndex].textContent : '');
+    addRow('Type', getSelectedType());
+
+    var type = getSelectedType();
+    var showAdulte2 = !fieldsetAdulte2.classList.contains('hidden');
+
+    function addAdulteRecap(num, heading) {
+      if (heading) addSectionHeader(heading);
+      var prefix = 'adulte-' + num + '-';
+      addRow('Prénom', document.getElementById(prefix + 'prenom').value);
+      addRow('Nom', document.getElementById(prefix + 'nom').value);
+      addRow('Date de naissance', document.getElementById(prefix + 'datenaissance').value);
+      var prof = document.getElementById(prefix + 'profession');
+      if (prof && prof.value) addRow('Profession', prof.value);
+      var email = document.getElementById(prefix + 'email');
+      if (email && email.value) addRow('Email', email.value);
+      addRow('Téléphone', document.getElementById(prefix + 'telephone').value);
+      var adresse = document.getElementById(prefix + 'adresse');
+      if (adresse && adresse.value) addRow('Adresse', adresse.value);
+      var npa = document.getElementById(prefix + 'npa-ville');
+      if (npa && npa.value) addRow('NPA / Ville', npa.value);
+    }
+
+    addAdulteRecap(1, showAdulte2 ? 'Adulte 1' : '');
+    if (showAdulte2) addAdulteRecap(2, 'Adulte 2');
+
+    if (enfantsDetails.value) {
+      addSectionHeader('Enfants');
+      addRow('Enfants', enfantsDetails.value);
+    }
+
+    var commentConnu = document.getElementById('comment-connu');
+    if (commentConnu && commentConnu.value) addRow('Comment connu', commentConnu.value);
+    var photos = document.querySelector('input[name="autorisation-photos"]:checked');
+    if (photos) addRow('Autorisation photos', photos.value);
+    var msg = document.getElementById('message');
+    if (msg && msg.value.trim()) addRow('Message', msg.value.trim());
 
     container.appendChild(dl);
   }
 
-  // --- Conditional fields (enfants) ---
-  function handleConditionalFields() {
-    var typeRadios = document.querySelectorAll('input[name="type-participant"]');
-    var enfantsWrapper = document.getElementById('enfants-wrapper');
-
-    typeRadios.forEach(function(radio) {
-      radio.addEventListener('change', function() {
-        var val = this.value;
-        if (val === 'Famille' || val === 'Enfant(s) seul(s)') {
-          enfantsWrapper.classList.remove('hidden');
-        } else {
-          enfantsWrapper.classList.add('hidden');
-          document.getElementById('nombre-enfants').value = '0';
-        }
-      });
-    });
-  }
-
-  // --- Event listeners ---
+  // --- Nav buttons ---
   btnNext.addEventListener('click', function() {
     if (validateStep(state.currentStep)) {
       goToStep(state.currentStep + 1);
@@ -724,31 +797,29 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
   });
 
   document.getElementById('wizard-form').addEventListener('submit', function(e) {
+    collectEnfantsDetails();
     if (!validateStep(3)) {
       e.preventDefault();
     }
-    // TODO:OASIS — Intercepter ici pour POST /api/inscriptions au lieu de Netlify Forms
   });
 
-  // --- Deep-linking : pré-sélection retraite via ?retraite=EVENT_ID ---
+  // --- Deep-linking ---
   function handleDeepLink() {
     var params = new URLSearchParams(window.location.search);
     var retraiteId = params.get('retraite');
     if (!retraiteId) return;
-
     var select = document.getElementById('retraite');
     for (var i = 0; i < select.options.length; i++) {
       if (select.options[i].value === retraiteId) {
         select.selectedIndex = i;
-        // Highlight visuel pour confirmer la pré-sélection
         select.classList.add('ring-2', 'ring-accent-400', 'border-accent-400');
         break;
       }
     }
   }
 
-  // --- Persistance formulaire via sessionStorage ---
-  var STORAGE_KEY = 'fddm-inscription';
+  // --- Session storage ---
+  var STORAGE_KEY = 'fddm-inscription-v2';
 
   function saveFormState() {
     var form = document.getElementById('wizard-form');
@@ -773,7 +844,6 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     var raw;
     try { raw = sessionStorage.getItem(STORAGE_KEY); } catch(e) { return; }
     if (!raw) return;
-
     var data;
     try { data = JSON.parse(raw); } catch(e) { return; }
 
@@ -782,8 +852,6 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       if (key === '_step') continue;
       var els = form.elements[key];
       if (!els) continue;
-
-      // Radio group (NodeList)
       if (els.length && els[0] && els[0].type === 'radio') {
         for (var i = 0; i < els.length; i++) {
           if (els[i].value === data[key]) {
@@ -798,7 +866,8 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       }
     }
 
-    // Restore step position (only if beyond step 1)
+    updateFormForType();
+
     if (data['_step'] && data['_step'] > 1) {
       goToStep(data['_step']);
     }
@@ -808,23 +877,28 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {}
   }
 
-  // Listen for changes
   var wizardForm = document.getElementById('wizard-form');
   wizardForm.addEventListener('input', saveFormState);
   wizardForm.addEventListener('change', saveFormState);
+  wizardForm.addEventListener('submit', function() { clearFormState(); });
 
-  // Clear on successful submission
-  wizardForm.addEventListener('submit', function() {
-    clearFormState();
-  });
+  // --- Toggle conditions panel ---
+  var toggleBtn = document.getElementById('toggle-conditions');
+  var conditionsPanel = document.getElementById('conditions-panel');
+  var chevron = document.getElementById('conditions-chevron');
+  if (toggleBtn && conditionsPanel) {
+    toggleBtn.addEventListener('click', function() {
+      var isHidden = conditionsPanel.classList.contains('hidden');
+      conditionsPanel.classList.toggle('hidden');
+      chevron.style.transform = isHidden ? 'rotate(90deg)' : '';
+    });
+  }
 
   // Init
-  handleConditionalFields();
   handleDeepLink();
   restoreFormState();
   updateProgress(1);
 
-  // View Transitions compat
   document.addEventListener('astro:after-swap', initWizard);
 })();
 </script>
