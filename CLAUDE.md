@@ -155,3 +155,11 @@ src/
 - Cache : `/_astro/*` → immutable (31536000s)
 - DNS : foyer-dents-du-midi.ch (migration vers Netlify en attente)
 - GA4 : ID a configurer dans `config.yaml` → `googleAnalyticsId`
+
+## Notes Audit (8 mars 2026)
+
+- [ ] **URGENT** — GA4 non configure. A faire avant le 15 mars (go-live)
+- [ ] Google Search Console pas encore mentionne — a configurer en meme temps que GA4
+- [ ] 3 photos stock restantes a remplacer (couple-marche, couple-mains, bougies-priere) — demander au Foyer
+- [ ] Aucune instruction de deploiement step-by-step (qui push ? qui valide ? rollback ?)
+- [ ] Decap CMS : acces /admin via Netlify Identity — pas encore configure
