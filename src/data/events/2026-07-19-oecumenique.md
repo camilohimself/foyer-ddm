@@ -1,13 +1,16 @@
 ---
-title: "Exercices spirituels, retraite œcuménique"
+title: "Exercices spirituels, retraite oecumenique"
 dateStart: "2026-07-19"
 dateEnd: "2026-07-26"
+dateDetails: "Du dimanche 19 au dimanche 26 juillet 2026"
 type: "6-jours"
-preacher: "Jean-Philippe Calame, Thierry Schelling, Catherine Deppierraz"
-variant: "Organisée par la Fraternité du Bon Samaritain"
+preacher: "Jean-Philippe Calame, Thierry Schelling et Catherine Deppierraz"
 price: "~CHF 720.-"
+variant: "Retraite organisee par la Fraternite du Bon Samaritain"
 externalUrl: "https://fraternite-samaritain.com/retraites/"
 registrationOpen: true
 ---
 
-Une semaine d'exercices spirituels dans la tradition ignatienne, ouverte à tous les chrétiens — catholiques, protestants, orthodoxes. Guidée par Jean-Philippe Calame, Thierry Schelling et Catherine Deppierraz, cette retraite organisée par la Fraternité du Bon Samaritain propose un chemin d'unité dans la prière, le silence et l'écoute de la Parole.
+Les animateurs sont membres de la Fraternite oecumenique internationale du Bon Samaritain.
+
+**Renseignements et inscription** disponibles aupres de la Fraternite du Bon Samaritain.

@@ -63,6 +63,7 @@ const eventCollection = defineCollection({
     title: z.string(),
     dateStart: z.string(),
     dateEnd: z.string().optional(),
+    dateDetails: z.string().optional(),
     type: z.enum(['6-jours', 'week-end', 'couples', 'familles', 'journees', 'mariage']),
     preacher: z.string(),
     description: z.string().optional(),

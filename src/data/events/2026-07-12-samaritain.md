@@ -2,10 +2,11 @@
 title: "Ce Samaritain est de ma famille !"
 dateStart: "2026-07-12"
 dateEnd: "2026-07-18"
+dateDetails: "Du dimanche 12 juillet 2026 (18h30) au samedi 18 juillet (10h)"
 type: "6-jours"
 preacher: "Guy Luisier"
 price: "~CHF 720.-"
 registrationOpen: true
 ---
 
-Six jours avec le P. Guy Luisier pour redécouvrir la parabole du Bon Samaritain comme une histoire de famille. Qui est mon prochain ? Comment la compassion devient-elle concrète ? Une retraite estivale nourrie par les Écritures, le silence et la beauté du paysage alpin.
+**Pour tous et en silence, avec un jour de marche pour ceux qui le desirent.**
