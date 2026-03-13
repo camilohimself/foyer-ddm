@@ -897,9 +897,14 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     });
   }
 
-  // Init — restore saved state, then deep-link overrides if present
-  restoreFormState();
-  handleDeepLink();
+  // Init — ?new = fresh form (menu CTA), otherwise restore + deep-link override
+  var isNewForm = new URLSearchParams(window.location.search).has('new');
+  if (isNewForm) {
+    clearFormState();
+  } else {
+    restoreFormState();
+    handleDeepLink();
+  }
   updateProgress(1);
 
   document.addEventListener('astro:after-swap', initWizard);

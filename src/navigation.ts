@@ -53,7 +53,7 @@ export const headerData = {
   actions: [
     {
       text: "S'inscrire",
-      href: getPermalink('/contact/inscription'),
+      href: getPermalink('/contact/inscription') + '?new',
       variant: 'primary',
     },
   ],
