@@ -803,7 +803,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     }
   });
 
-  // --- Deep-linking ---
+  // --- Deep-linking (overrides sessionStorage when ?retraite= is present) ---
   function handleDeepLink() {
     var params = new URLSearchParams(window.location.search);
     var retraiteId = params.get('retraite');
@@ -813,6 +813,9 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       if (select.options[i].value === retraiteId) {
         select.selectedIndex = i;
         select.classList.add('ring-2', 'ring-accent-400', 'border-accent-400');
+        // Reset to step 1 and persist the new choice
+        goToStep(1);
+        saveFormState();
         break;
       }
     }
@@ -894,9 +897,9 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     });
   }
 
-  // Init
-  handleDeepLink();
+  // Init — restore saved state, then deep-link overrides if present
   restoreFormState();
+  handleDeepLink();
   updateProgress(1);
 
   document.addEventListener('astro:after-swap', initWizard);
