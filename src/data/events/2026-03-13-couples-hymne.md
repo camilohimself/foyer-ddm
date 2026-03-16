@@ -4,7 +4,7 @@ dateStart: "2026-03-13"
 dateEnd: "2026-03-15"
 dateDetails: "Du vendredi 13 mars 2026 (18h30) au dimanche 15 mars (15h)"
 type: "couples"
-preacher: "Elodie et Philibert Goulet et Guy Luisier"
+preacher: "Élodie et Philibert Goulet et Guy Luisier"
 price: "~CHF 360.-/adulte"
 variant: "WE pour les couples - avec accueil des enfants"
 registrationOpen: true

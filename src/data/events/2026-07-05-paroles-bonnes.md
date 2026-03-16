@@ -1,5 +1,5 @@
 ---
-title: "Mon coeur a fremi de paroles bonnes (Ps 45,2) — Du silence habite a la Parole vivifiante"
+title: "Mon cœur a frémi de paroles bonnes (Ps 45,2) — Du silence habité à la Parole vivifiante"
 dateStart: "2026-07-05"
 dateEnd: "2026-07-11"
 dateDetails: "Du dimanche 5 juillet 2026 (18h30) au samedi 11 juillet (10h)"

@@ -1,10 +1,10 @@
 ---
-title: "Unis par l'amour, fortifies par la foi"
+title: "Unis par l'amour, fortifiés par la foi"
 dateStart: "2026-04-24"
 dateEnd: "2026-04-26"
 dateDetails: "Du vendredi 24 avril 2026 (18h30) au dimanche 26 avril (15h)"
 type: "couples"
-preacher: "Bertrand et Francoise Georges"
+preacher: "Bertrand et Françoise Georges"
 price: "~CHF 360.-/adulte"
 variant: "WE pour les couples - avec accueil des enfants"
 registrationOpen: true
