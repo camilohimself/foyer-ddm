@@ -220,34 +220,32 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
   </style>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const filters = document.querySelectorAll<HTMLButtonElement>('#event-filters .filter-btn');
-      const cards = document.querySelectorAll<HTMLDivElement>('.event-card');
+    const filters = document.querySelectorAll<HTMLButtonElement>('#event-filters .filter-btn');
+    const cards = document.querySelectorAll<HTMLDivElement>('.event-card');
 
-      filters.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const type = btn.dataset.filter;
+    filters.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const type = btn.dataset.filter;
 
-          // Toggle: if already active and not "all", deactivate → show all
-          if (btn.classList.contains('active') && type !== 'all') {
-            btn.classList.remove('active');
-            document.querySelector('[data-filter="all"]')?.classList.add('active');
-            cards.forEach((card) => card.classList.remove('hidden-by-filter'));
-            return;
+        // Toggle: if already active and not "all", deactivate → show all
+        if (btn.classList.contains('active') && type !== 'all') {
+          btn.classList.remove('active');
+          document.querySelector('[data-filter="all"]')?.classList.add('active');
+          cards.forEach((card) => card.classList.remove('hidden-by-filter'));
+          return;
+        }
+
+        // Update active state
+        filters.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter cards
+        cards.forEach((card) => {
+          if (type === 'all' || card.dataset.type === type) {
+            card.classList.remove('hidden-by-filter');
+          } else {
+            card.classList.add('hidden-by-filter');
           }
-
-          // Update active state
-          filters.forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          // Filter cards
-          cards.forEach((card) => {
-            if (type === 'all' || card.dataset.type === type) {
-              card.classList.remove('hidden-by-filter');
-            } else {
-              card.classList.add('hidden-by-filter');
-            }
-          });
         });
       });
     });
