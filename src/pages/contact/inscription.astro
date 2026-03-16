@@ -897,13 +897,15 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     });
   }
 
-  // Init — ?new = fresh form (menu CTA), otherwise restore + deep-link override
-  var isNewForm = new URLSearchParams(window.location.search).has('new');
-  if (isNewForm) {
+  // Init — ?new = fresh form (menu CTA), ?retraite= = fresh form with preselection, otherwise restore
+  var searchParams = new URLSearchParams(window.location.search);
+  var isNewForm = searchParams.has('new');
+  var hasRetraiteParam = searchParams.has('retraite');
+  if (isNewForm || hasRetraiteParam) {
     clearFormState();
+    if (hasRetraiteParam) handleDeepLink();
   } else {
     restoreFormState();
-    handleDeepLink();
   }
   updateProgress(1);
 

@@ -43,16 +43,16 @@ apps:
         index: true
 
     category:
-      isEnabled: false
+      isEnabled: true
       pathname: 'categorie'
       robots:
-        index: false
+        index: true
 
     tag:
-      isEnabled: false
+      isEnabled: true
       pathname: 'tag'
       robots:
-        index: false
+        index: true
 
     isRelatedPostsEnabled: false
     relatedPostsCount: 4

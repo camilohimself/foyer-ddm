@@ -46,18 +46,18 @@ const metadata = {
     subtitle="Chacun peut contribuer selon ses moyens et ses charismes à la mission du Foyer de Charité."
     items={[
       {
-        title: 'Prière',
+        title: '<a href="#soutien-priere" class="hover:text-accent-400 transition-colors">Prière</a>',
         description: 'Communier à la prière quotidienne du Foyer et porter dans votre cœur sa mission spirituelle',
         icon: 'tabler:heart',
       },
       {
-        title: 'Bénévolat',
+        title: '<a href="#soutien-benevolat" class="hover:text-accent-400 transition-colors">Bénévolat</a>',
         description:
           'Offrir une semaine de service (dès 15 ans, après une retraite) : service, lingerie, jardinage, peinture',
         icon: 'tabler:heart-handshake',
       },
       {
-        title: 'Dons financiers',
+        title: '<a href="#soutien-financier" class="hover:text-accent-400 transition-colors">Dons financiers</a>',
         description:
           'Soutenir les travaux d\'amélioration, le fonctionnement courant et les salaires du personnel',
         icon: 'tabler:coin',
@@ -67,6 +67,7 @@ const metadata = {
 
   <!-- Prière -->
   <Content
+    id="soutien-priere"
     isReversed
     image={{
       src: imgBougiesPriere,
@@ -96,6 +97,7 @@ const metadata = {
 
   <!-- Bénévolat -->
   <Content
+    id="soutien-benevolat"
     items={[
       {
         title: 'Semaine de service',
@@ -149,6 +151,7 @@ const metadata = {
 
   <!-- Dons financiers -->
   <Content
+    id="soutien-financier"
     isReversed
     image={{
       src: imgPaquesCroix,
