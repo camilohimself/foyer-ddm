@@ -10,7 +10,7 @@ const pastEvents = allEvents.filter((e) => (e.data.dateEnd || e.data.dateStart) 
 
 const metadata = {
   title: `Programme des retraites spirituelles ${currentYear}`,
-  description: `${upcomingEvents.length} retraites spirituelles à venir au Foyer de Charité Dents-du-Midi, Bex. Retraites de 6 jours, week-ends, journées, couples, familles. Calendrier complet ${currentYear}.`,
+  description: `${upcomingEvents.length} retraites spirituelles à venir au Foyer de Charité Dents-du-Midi, Bex. Journées, week-ends, retraites de 6 jours et préparation au mariage. Calendrier complet ${currentYear}.`,
 };
 
 // --- Mapping type → badge + label + href + card label ---
@@ -39,7 +39,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
     </Fragment>
     <Fragment slot="subtitle">
       {upcomingEvents.length} retraites à venir au Foyer de Charité Dents-du-Midi, Bex.
-      Retraites de 6 jours, week-ends, journées, couples, familles et préparation au mariage.
+      Journées, week-ends, retraites de 6 jours et préparation au mariage.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -65,7 +65,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
           <span class="w-3 h-3 rounded-full bg-accent-400 shrink-0"></span> Journée
         </button>
         <button data-filter="week-end" class="filter-btn inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 transition-all cursor-pointer">
-          <span class="w-3 h-3 rounded-full bg-primary-500 shrink-0"></span> 3 jours
+          <span class="w-3 h-3 rounded-full bg-primary-500 shrink-0"></span> Week-end
         </button>
         <button data-filter="6-jours" class="filter-btn inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 transition-all cursor-pointer">
           <span class="w-3 h-3 rounded-full bg-primary-800 shrink-0"></span> 6 jours
@@ -95,7 +95,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
                     {event.data.dateDetails || formatDateRange(event.data.dateStart, event.data.dateEnd)}
                   </p>
                   <p class="text-sm text-gray-600">
-                    Prédication: {event.data.preacher}
+                    Avec {event.data.preacher}
                   </p>
                   {event.data.variant && (
                     <p class="text-sm text-accent-500 font-medium mt-1">
