@@ -17,10 +17,10 @@ const { Content } = await render(event);
 
 const typeLabels: Record<string, string> = {
   '6-jours': '6 jours pour tous',
-  'week-end': '3 jours pour tous',
-  couples: '3 jours pour couples',
-  familles: 'Pour les familles',
-  journees: 'Journée pour tous',
+  'week-end': 'Week-end pour tous',
+  couples: 'Week-end en couple',
+  familles: 'Week-end en famille',
+  journees: 'Journée de ressourcement',
   mariage: 'Préparation au mariage',
 };
 
@@ -74,20 +74,13 @@ const metadata = {
 
       <!-- Preacher -->
       <p class="text-base font-semibold text-accent-500 mb-8">
-        Animation: {event.data.preacher}
+        Avec {event.data.preacher}
       </p>
 
       <!-- Content -->
       <div class="prose prose-lg max-w-none text-gray-700 mb-12">
         <Content />
       </div>
-
-      <!-- Price -->
-      {event.data.price && (
-        <p class="text-sm text-gray-500 mb-8">
-          Tarif indicatif : {event.data.price}
-        </p>
-      )}
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-4">

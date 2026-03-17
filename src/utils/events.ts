@@ -62,7 +62,7 @@ export function eventsToStepsItems(events: Event[]) {
     },
     {
       title: '',
-      description: `${event.data.preacher}${event.data.variant ? ` · ${event.data.variant}` : ''}`,
+      description: `${event.data.preacher}${event.data.variant ? ` · ${event.data.variant}` : ''} · <a href="/programme/${event.id}" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">Détails et inscription →</a>`,
     },
   ]);
 }
