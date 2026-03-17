@@ -95,7 +95,7 @@ export const footerData = {
         { text: 'Route de Gryon 22, 1880 Bex', href: getPermalink('/sejour/acces') },
         { text: '+41 24 463 22 22', href: 'tel:+41244632222' },
         { text: 'info@foyer-dents-du-midi.ch', href: 'mailto:info@foyer-dents-du-midi.ch' },
-        { text: 'Formulaire de contact', href: getPermalink('/contact') },
+        { text: 'S\'inscrire', href: getPermalink('/contact/inscription') },
       ],
     },
   ],

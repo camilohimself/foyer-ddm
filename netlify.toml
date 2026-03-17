@@ -21,3 +21,9 @@
   from = "/retraites/familles"
   to = "/retraites/week-ends#en-famille"
   status = 301
+
+# Redirect : page contact supprimée
+[[redirects]]
+  from = "/contact"
+  to = "/contact/inscription"
+  status = 301
