@@ -3,15 +3,19 @@ import Layout from '~/layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Stats from '~/components/widgets/Stats.astro';
+import Image from '~/components/common/Image.astro';
 import { getUpcomingEvents, getUpcomingEventCount, formatDateRange, currentYear } from '~/utils/events';
 
 import fddmSculptureLumiere from '~/assets/images/fddm-sculpture-lumiere.jpg';
 import fddmTableeTerrasse from '~/assets/images/fddm-tablee-terrasse.jpg';
+import fddmEnseignement from '~/assets/images/fddm-enseignement-alpage.jpg';
+import fddmTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
+import fddmCroix from '~/assets/images/fddm-croix-sommet.jpg';
+import fddmCouple from '~/assets/images/fddm-couple-mains.jpg';
 
 const metadata = {
   title: 'Retraites spirituelles en Suisse — Foyer de Charité Dents-du-Midi, Bex',
@@ -81,43 +85,75 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     </Fragment>
   </Hero>
 
-  <!-- 6 Packages en cartes -->
-  <Features2
-    title="Plusieurs chemins, un même accueil"
-    subtitle="De la journée de découverte à la retraite de six jours, chacun trouve son pas."
-    tagline="Nos retraites"
-    classes={{ headline: { title: 'text-4xl md:text-5xl font-playball' } }}
-    items={[
-      {
-        title: 'Journées de ressourcement',
-        description: 'Une journée pour prier, se laisser inspirer, respirer. À partir d\'un personnage de la Bible, d\'un témoin de la foi, d\'un écrivain ou d\'un poète — un temps pour souffler et reprendre des forces au milieu de la vie quotidienne.',
-        icon: 'tabler:sun',
-        callToAction: { text: 'En savoir plus', href: '/retraites/journees' },
-      },
-      {
-        title: 'Week-ends',
-        description: 'Une pause au cœur de votre quotidien ! Trois jours pour vivre une halte spirituelle — seul, en couple ou en famille. En lien avec le temps liturgique ou sur un thème proposé.',
-        icon: 'tabler:calendar-event',
-        callToAction: { text: 'En savoir plus', href: '/retraites/week-ends' },
-      },
-      {
-        title: 'Six jours de silence',
-        description: 'Le format historique des Foyers de Charité. Six jours pour avancer dans la foi, portés par les enseignements et le silence.',
-        icon: 'tabler:sunset-2',
-        callToAction: { text: 'En savoir plus', href: '/retraites/6-jours' },
-      },
-      {
-        title: 'Préparation au mariage',
-        description: 'Approfondir le sens de l\'engagement. Deux jours pour aborder les thèmes essentiels du mariage, accompagnés par des couples animateurs et un prêtre. Organisation : Diocèse de Sion.',
-        icon: 'tabler:rings',
-        callToAction: { text: 'En savoir plus', href: '/retraites/preparation-mariage' },
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-surface-alt"></div>
-    </Fragment>
-  </Features2>
+  <!-- Nos retraites — Cartes photo -->
+  <section class="py-16 md:py-24 relative">
+    <div class="absolute inset-0 bg-surface-alt"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <p class="text-sm uppercase tracking-widest text-accent-500 font-semibold mb-3">Nos retraites</p>
+        <h2 class="text-4xl md:text-5xl font-playball text-primary-600">Plusieurs chemins, un même accueil</h2>
+        <p class="text-muted mt-4 max-w-2xl mx-auto">De la journée de découverte à la retraite de six jours, chacun trouve son pas.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 md:gap-8">
+        <a href="/retraites/journees" class="group block rounded-2xl overflow-hidden border border-gray-200 bg-white hover:shadow-xl hover:border-accent-300 transition-all duration-300">
+          <div class="overflow-hidden">
+            <Image src={fddmEnseignement} alt="Enseignement en plein air sur un alpage" width={640} height={360} class="w-full h-52 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6 md:p-8">
+            <h3 class="text-xl md:text-2xl font-bold text-primary-600 group-hover:text-accent-500 transition-colors mb-3">Journées de ressourcement</h3>
+            <p class="text-muted text-sm md:text-base leading-relaxed mb-4">Une journée pour prier, se laisser inspirer, respirer. À partir d'un personnage de la Bible, d'un témoin de la foi, d'un écrivain ou d'un poète.</p>
+            <span class="inline-flex items-center gap-2 text-accent-500 font-semibold text-sm group-hover:text-accent-400 transition-colors">
+              En savoir plus
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="/retraites/week-ends" class="group block rounded-2xl overflow-hidden border border-gray-200 bg-white hover:shadow-xl hover:border-accent-300 transition-all duration-300">
+          <div class="overflow-hidden">
+            <Image src={fddmTournesols} alt="Chapelle fleurie de tournesols" width={640} height={360} class="w-full h-52 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6 md:p-8">
+            <h3 class="text-xl md:text-2xl font-bold text-primary-600 group-hover:text-accent-500 transition-colors mb-3">Week-ends</h3>
+            <p class="text-muted text-sm md:text-base leading-relaxed mb-4">Une pause au cœur de votre quotidien ! Trois jours pour vivre une halte spirituelle — seul, en couple ou en famille.</p>
+            <span class="inline-flex items-center gap-2 text-accent-500 font-semibold text-sm group-hover:text-accent-400 transition-colors">
+              En savoir plus
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="/retraites/6-jours" class="group block rounded-2xl overflow-hidden border border-gray-200 bg-white hover:shadow-xl hover:border-accent-300 transition-all duration-300">
+          <div class="overflow-hidden">
+            <Image src={fddmCroix} alt="Croix au sommet avec vue sur les Dents-du-Midi" width={640} height={360} class="w-full h-52 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6 md:p-8">
+            <h3 class="text-xl md:text-2xl font-bold text-primary-600 group-hover:text-accent-500 transition-colors mb-3">Six jours de silence</h3>
+            <p class="text-muted text-sm md:text-base leading-relaxed mb-4">Le format historique des Foyers de Charité. Six jours pour avancer dans la foi, portés par les enseignements et le silence.</p>
+            <span class="inline-flex items-center gap-2 text-accent-500 font-semibold text-sm group-hover:text-accent-400 transition-colors">
+              En savoir plus
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="/retraites/preparation-mariage" class="group block rounded-2xl overflow-hidden border border-gray-200 bg-white hover:shadow-xl hover:border-accent-300 transition-all duration-300">
+          <div class="overflow-hidden">
+            <Image src={fddmCouple} alt="Mains jointes d'un couple" width={640} height={360} class="w-full h-52 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6 md:p-8">
+            <h3 class="text-xl md:text-2xl font-bold text-primary-600 group-hover:text-accent-500 transition-colors mb-3">Préparation au mariage</h3>
+            <p class="text-muted text-sm md:text-base leading-relaxed mb-4">Approfondir le sens de l'engagement. Deux jours accompagnés par des couples animateurs et un prêtre. Organisation : Diocèse de Sion.</p>
+            <span class="inline-flex items-center gap-2 text-accent-500 font-semibold text-sm group-hover:text-accent-400 transition-colors">
+              En savoir plus
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Prochaines dates — Spotlight 1+2 -->
   <section class="py-12 md:py-20">
