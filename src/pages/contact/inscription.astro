@@ -257,6 +257,20 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
           <legend class="text-lg font-semibold text-primary-600 mb-4 pb-2 border-b border-gray-200 w-full">Informations complémentaires</legend>
 
           <div class="mb-6">
+            <label class="block text-sm font-medium text-primary-600 mb-3">Êtes-vous déjà venu(e) au Foyer ?</label>
+            <div class="flex gap-6">
+              <div class="flex items-center">
+                <input type="radio" id="deja-venu-oui" name="deja-venu" value="Oui" class="w-4 h-4 text-accent-400 border-gray-300 focus:ring-accent-400" />
+                <label for="deja-venu-oui" class="ml-2 text-sm text-gray-700">Oui</label>
+              </div>
+              <div class="flex items-center">
+                <input type="radio" id="deja-venu-non" name="deja-venu" value="Non" class="w-4 h-4 text-accent-400 border-gray-300 focus:ring-accent-400" />
+                <label for="deja-venu-non" class="ml-2 text-sm text-gray-700">Non</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="comment-connu-wrapper" class="mb-6 hidden">
             <label for="comment-connu" class="block text-sm font-medium text-primary-600 mb-2">Comment avez-vous connu le Foyer ?</label>
             <select id="comment-connu" name="comment-connu" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-400 focus:border-transparent focus:shadow-lg focus:shadow-accent-400/10 transition-shadow">
               <option value="">—</option>
@@ -896,6 +910,20 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       chevron.style.transform = isHidden ? 'rotate(90deg)' : '';
     });
   }
+
+  // --- Toggle "Comment avez-vous connu le Foyer ?" si première visite ---
+  var dejaVenuRadios = document.querySelectorAll('input[name="deja-venu"]');
+  var commentConnuWrapper = document.getElementById('comment-connu-wrapper');
+  dejaVenuRadios.forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      if (this.value === 'Non') {
+        commentConnuWrapper.classList.remove('hidden');
+      } else {
+        commentConnuWrapper.classList.add('hidden');
+        document.getElementById('comment-connu').value = '';
+      }
+    });
+  });
 
   // Init — ?new = fresh form (menu CTA), ?retraite= = fresh form with preselection, otherwise restore
   var searchParams = new URLSearchParams(window.location.search);
