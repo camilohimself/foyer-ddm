@@ -62,7 +62,7 @@ export function eventsToStepsItems(events: Event[]) {
     },
     {
       title: '',
-      description: `${event.data.preacher}${event.data.variant ? ` · ${event.data.variant}` : ''}${event.data.price ? ` · ${event.data.price}` : ''}`,
+      description: `${event.data.preacher}${event.data.variant ? ` · ${event.data.variant}` : ''}`,
     },
   ]);
 }
@@ -73,7 +73,7 @@ const heroImages: Record<string, string> = {
   'week-end': 'https://foyer-dents-du-midi.ch/images/fddm-chapelle-tournesols.jpg',
   couples: 'https://foyer-dents-du-midi.ch/images/fddm-couple-marche.jpg',
   familles: 'https://foyer-dents-du-midi.ch/images/fddm-sentier-groupe.jpeg',
-  journees: 'https://foyer-dents-du-midi.ch/images/fddm-feu-de-camp.jpg',
+  journees: 'https://foyer-dents-du-midi.ch/images/fddm-automne-foyer.jpg',
   mariage: 'https://foyer-dents-du-midi.ch/images/fddm-couple-mains.jpg',
 };
 

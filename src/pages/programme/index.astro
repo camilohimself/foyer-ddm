@@ -16,9 +16,9 @@ const metadata = {
 // --- Mapping type → badge + label + href + card label ---
 const typeBadge: Record<string, { badge: string; label: string; cardLabel: string; href: string }> = {
   '6-jours': { badge: 'bg-primary-800', label: '6 jours', cardLabel: 'Retraite de six jours', href: '/retraites/6-jours' },
-  'week-end': { badge: 'bg-primary-500', label: '3 jours', cardLabel: '3 jours pour tous', href: '/retraites/week-end' },
-  couples: { badge: 'bg-rose-300', label: 'Couples', cardLabel: '3 jours pour couples', href: '/retraites/couples' },
-  familles: { badge: 'bg-teal-400/80', label: 'Familles', cardLabel: 'Pour les familles', href: '/retraites/familles' },
+  'week-end': { badge: 'bg-primary-500', label: 'Week-end', cardLabel: 'Week-end pour tous', href: '/retraites/week-ends' },
+  couples: { badge: 'bg-rose-300', label: 'Couples', cardLabel: 'Week-end en couple', href: '/retraites/week-ends#en-couple' },
+  familles: { badge: 'bg-teal-400/80', label: 'Familles', cardLabel: 'Week-end en famille', href: '/retraites/week-ends#en-famille' },
   journees: { badge: 'bg-accent-400', label: 'Journée', cardLabel: 'Journées', href: '/retraites/journees' },
   mariage: { badge: 'bg-violet-300', label: 'Mariage', cardLabel: 'Préparation au mariage', href: '/retraites/preparation-mariage' },
 };

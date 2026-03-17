@@ -7,3 +7,17 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirects : anciennes pages fusionnées dans /retraites/week-ends
+[[redirects]]
+  from = "/retraites/week-end"
+  to = "/retraites/week-ends"
+  status = 301
+[[redirects]]
+  from = "/retraites/couples"
+  to = "/retraites/week-ends#en-couple"
+  status = 301
+[[redirects]]
+  from = "/retraites/familles"
+  to = "/retraites/week-ends#en-famille"
+  status = 301

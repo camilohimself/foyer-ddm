@@ -15,7 +15,7 @@ const jsonLdEvents = eventsToJsonLd(upcoming6jours);
 
 const metadata = {
   title: 'Retraite spirituelle de 6 jours en Suisse — Silence et enseignements',
-  description: 'Retraite spirituelle de 6 jours en Suisse romande. Silence, enseignements, accompagnement individuel face aux Alpes. Dès CHF 720.- au Foyer de Charité, Bex.',
+  description: 'Retraite spirituelle de 6 jours en Suisse romande. Silence, enseignements, accompagnement individuel face aux Alpes. Foyer de Charité Dents-du-Midi, Bex.',
 };
 ---
 
@@ -26,10 +26,10 @@ const metadata = {
 
   <Hero>
     <Fragment slot="title">
-      Retraite de six jours en <span class="text-accent-400">silence</span>
+      Un itinéraire <span class="text-accent-400">spirituel</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Cheminer dans le mystère de la foi, portés par la Parole et le silence. Le cœur de la tradition des Foyers de Charité.
+      Six jours pour avancer dans la foi en approfondissant un thème particulier. Le cœur de la tradition des Foyers de Charité.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -54,19 +54,19 @@ const metadata = {
     items={[
       {
         title: 'Du dimanche soir au samedi matin',
-        description: 'Six jours face aux Dents-du-Midi. L\'accueil, les repas et le cadre de silence sont assurés par la communauté du Foyer.',
+        description: 'L\'arrivée se fait le dimanche avec l\'Eucharistie dominicale à 18h, suivie du repas à 19h.',
       },
       {
-        title: 'Deux enseignements par jour',
-        description: 'Des prédicateurs — prêtres, théologiens, auteurs spirituels — qui ouvrent les Écritures et nourrissent la réflexion.',
+        title: 'Un thème pour chaque retraite',
+        description: 'Un témoin de la foi, des paroles bibliques, un temps de l\'année liturgique, une dimension essentielle de la vie de foi...',
       },
       {
-        title: 'L\'accompagnement',
-        description: 'Un entretien personnel si vous le souhaitez. L\'Eucharistie quotidienne. L\'adoration.',
+        title: 'En silence',
+        description: 'Le silence favorise le ressourcement de chacun par le repos, l\'intériorité et le respect du cheminement de chacun.',
       },
       {
-        title: 'Au fil des saisons',
-        description: 'Raquettes en hiver, randonnées en été, retraite pascale «oasis». Le paysage fait partie du chemin.',
+        title: 'Accompagnement personnel',
+        description: 'Possibilité d\'un entretien personnel avec un prêtre. L\'Eucharistie (messe) quotidienne. L\'adoration.',
       },
     ]}
   >
@@ -74,8 +74,9 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
         Un itinéraire spirituel
       </h3>
-      Chaque retraite de six jours s'appuie sur un thème : un témoin de la foi, une parole biblique, un temps de l'année liturgique.
-      Le prédicateur ouvre un chemin ; le silence fait le reste.
+      Six jours d'enseignements, de prière et de vie communautaire.
+      Un temps qui se vit en silence pour favoriser le calme, le recueillement
+      et le respect du cheminement de chacun.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-surface-alt"></div>
@@ -92,8 +93,8 @@ const metadata = {
     title="Le rythme d'une retraite de 6 jours"
     items={[
       {
-        title: '7h00 — Laudes',
-        description: 'Prière du matin en communauté.',
+        title: '7h00 — Laudes (prière du matin)',
+        description: 'Prière en communauté.',
       },
       {
         title: '8h00 — Petit déjeuner',
@@ -101,11 +102,11 @@ const metadata = {
       },
       {
         title: '9h30 — Premier enseignement',
-        description: 'Conférence du prédicateur.',
+        description: 'Enseignement.',
       },
       {
         title: '11h45 — Eucharistie',
-        description: 'Messe quotidienne.',
+        description: 'Eucharistie (messe).',
       },
       {
         title: '13h00 — Repas de midi',
@@ -117,15 +118,15 @@ const metadata = {
       },
       {
         title: '17h30 — Deuxième enseignement',
-        description: 'Conférence du prédicateur.',
+        description: 'Enseignement.',
       },
       {
         title: '19h00 — Repas du soir',
         description: 'Silence.',
       },
       {
-        title: '20h30 — Vêpres',
-        description: 'Prière du soir en communauté.',
+        title: '20h30 — Vêpres (prière du soir)',
+        description: 'Prière en communauté.',
       },
     ]}
   >
@@ -133,8 +134,9 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
         Le rythme d'une journée
       </h3>
-      Prière, enseignements, silence et temps personnel. Chaque journée suit un rythme qui laisse place
-      à l'intériorité et à la rencontre.
+      Chaque journée est ponctuée par des temps de prière et d'enseignements — généralement deux conférences quotidiennes.
+      Plusieurs temps libres permettent de se reposer, de se promener afin de profiter du magnifique parc aux alentours du Foyer,
+      prolonger sa méditation ou encore bénéficier d'un entretien personnel avec un prêtre.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-surface-special"></div>
@@ -165,33 +167,6 @@ const metadata = {
       <div class="absolute inset-0 bg-surface-alt"></div>
     </Fragment>
   </Testimonials>
-
-  <Content
-    tagline="Participation"
-    title="Une question de confiance"
-    items={[
-      {
-        title: 'CHF 720.- suggéré',
-        description: 'Soit environ CHF 120.- par jour. L\'accueil, les repas et l\'hébergement sont compris.',
-      },
-      {
-        title: 'Aucun obstacle financier',
-        description: 'Chacun donne selon ses moyens. Aucune situation financière ne doit vous empêcher de vivre cette retraite.',
-      },
-      {
-        title: 'S\'inscrire',
-        description: 'Par téléphone au +41 24 463 18 78 ou via le <a href="/contact/inscription" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">formulaire en ligne</a>.',
-      },
-    ]}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Donner selon ses moyens
-      </h3>
-      Le Foyer vit de la générosité de chacun. Le montant suggéré couvre les frais de fonctionnement.
-      Si vos moyens sont limités, n'hésitez pas à nous en parler. L'essentiel est que vous puissiez vivre cette retraite.
-    </Fragment>
-  </Content>
 
   <!-- Maillage interne : infos pratiques -->
   <section class="py-8">

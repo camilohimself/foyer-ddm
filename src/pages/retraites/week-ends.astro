@@ -1,0 +1,284 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getUpcomingEvents, eventsToStepsItems, eventsToJsonLd, currentYear } from '~/utils/events';
+
+import imgChagallProdigue from '~/assets/images/fddm-chagall-prodigue.jpg';
+import imgCoupleMains from '~/assets/images/fddm-couple-mains.jpg';
+import imgEnfantsParachute from '~/assets/images/fddm-enfants-parachute.jpg';
+
+const upcomingWeekend = await getUpcomingEvents('week-end');
+const upcomingCouples = await getUpcomingEvents('couples');
+const upcomingFamilles = await getUpcomingEvents('familles');
+const allUpcoming = [...upcomingWeekend, ...upcomingCouples, ...upcomingFamilles].sort(
+  (a, b) => a.data.dateStart.localeCompare(b.data.dateStart)
+);
+const stepsItems = eventsToStepsItems(allUpcoming);
+const jsonLdEvents = eventsToJsonLd(allUpcoming);
+
+const metadata = {
+  title: 'Week-ends spirituels en Suisse — Pour tous, en couple, en famille',
+  description: 'Week-ends spirituels en Suisse romande : pour tous, en couple ou en famille. Une pause au cœur de votre quotidien. Foyer de Charité Dents-du-Midi, Bex.',
+};
+---
+
+<Layout metadata={metadata}>
+  {jsonLdEvents.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
+  <Hero>
+    <Fragment slot="title">
+      Week-ends <span class="text-accent-400">pour tous</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Une pause au cœur de votre quotidien ! Trois jours pour vivre une halte spirituelle — seul, en couple ou en famille.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-chapelle-tournesols.jpg"
+          alt="Le tabernacle fleuri de tournesols, accueil lumineux pour un week-end de retraite"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 1 : WEEK-END POUR TOUS             -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <Content
+    id="pour-tous"
+    tagline="Week-end pour tous"
+    title="Faire une pause, se ressourcer"
+    image={{
+      src: imgChagallProdigue,
+      alt: 'Le Fils prodigue, peinture de Marc Chagall — deux figures enlacées dans une lumière mystique',
+    }}
+    items={[
+      {
+        title: 'Du vendredi soir au dimanche après-midi',
+        description: 'Une expérience de la vie chrétienne enseignée, célébrée et vécue, qui s\'adresse à chacun.',
+      },
+      {
+        title: 'En lien avec le temps liturgique',
+        description: 'Avent, Carême, Triduum pascal, Ascension — ou bien un thème proposé pour nourrir votre vie intérieure.',
+      },
+      {
+        title: 'En silence',
+        description: 'Le silence favorise le ressourcement de chacun par le repos, l\'intériorité et le respect du cheminement de chacun.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Un temps pour souffler
+      </h3>
+      Trois jours pour nourrir votre vie intérieure, faire une pause, se ressourcer, se reposer.
+      Chaque journée est ponctuée par des temps de prière et d'enseignements.
+      Plusieurs temps libres permettent de se reposer, de se promener afin de profiter des magnifiques alentours du Foyer,
+      prolonger sa méditation ou encore bénéficier d'un entretien personnel avec un prêtre.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    tagline="Une journée type"
+    title="Le rythme d'un week-end"
+    items={[
+      {
+        title: 'Vendredi soir',
+        description: 'Arrivée 18h30, accueil, repas du soir, premier enseignement, prière du soir.',
+      },
+      {
+        title: 'Samedi',
+        description: 'Laudes (prière du matin), petit déjeuner, enseignement, Eucharistie (messe), repas de midi, temps libre, enseignement, repas du soir, vêpres (prière du soir).',
+      },
+      {
+        title: 'Dimanche',
+        description: 'Laudes, petit déjeuner, enseignement final, Eucharistie, repas de midi, départ vers 15h.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Le rythme de trois jours
+      </h3>
+      Un temps de prière, d'écoute et de vie communautaire.
+      Un rythme qui laisse place à l'intériorité, au repos et à la rencontre.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 2 : WEEK-END EN COUPLE             -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <Content
+    id="en-couple"
+    isReversed
+    tagline="Week-end en couple"
+    title="Donner du souffle à votre couple"
+    image={{
+      src: imgCoupleMains,
+      alt: "Mains jointes d'un couple, symbole d'engagement et de tendresse",
+    }}
+    items={[
+      {
+        title: 'Dialogue et vie conjugale',
+        description: 'Un temps idéal pour approfondir en couple un dialogue, une réflexion spirituelle et pratique sur la vie conjugale et familiale.',
+      },
+      {
+        title: 'Accueil des enfants',
+        description: 'Nous sommes heureux de proposer l\'accueil des enfants avec encadrement et animation spirituelle, dès 4 ans à 12 ans. Pour les plus jeunes, se renseigner au Foyer.',
+      },
+      {
+        title: 'Les jeunes aussi',
+        description: 'Les jeunes dès 15 ans — s\'ils sont motivés — peuvent participer à l\'accueil des enfants plus petits.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Prendre de la hauteur
+      </h3>
+      Profitez de cette occasion pour donner du souffle à votre couple, refaire ses forces, faire une pause, se ressourcer.
+      Le week-end se vit en silence pour favoriser le calme, le recueillement et le respect du cheminement de chacun.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Content>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 3 : WEEK-END EN FAMILLE            -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <Content
+    id="en-famille"
+    tagline="Week-end en famille"
+    title="De vraies vacances, avec une belle démarche intérieure"
+    image={{
+      src: imgEnfantsParachute,
+      alt: 'Enfants jouant avec un parachute coloré devant le Foyer de Charité',
+    }}
+    items={[
+      {
+        title: 'Temps en famille, temps en couple, temps pour soi',
+        description: 'Comment allier vacances et ressourcement ? Voyage en terre inconnue et sauvegarde de la planète ?',
+      },
+      {
+        title: 'Pour petits et grands',
+        description: 'Venez vous relaxer et vous ressourcer, prier et méditer, échanger avec d\'autres couples, jouer avec les enfants, rigoler, adorer, chanter, célébrer...',
+      },
+      {
+        title: 'Sans bouchon sur les routes',
+        description: 'On vous promet de vraies vacances, sans bouchon sur les routes, mais avec une belle démarche intérieure qui vous donnera de l\'élan !',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
+        Ensemble, petits et grands
+      </h3>
+      Dans le magnifique cadre du Foyer, venez vivre un temps en famille qui allie ressourcement, joie et rencontre.
+      Chacun vit des temps adaptés à son âge, et des moments forts sont partagés ensemble.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-special"></div>
+    </Fragment>
+  </Content>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PROCHAINES DATES (tous types confondus)    -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <Steps
+    title={`Prochains week-ends ${currentYear}`}
+    items={stepsItems}
+  />
+
+  <Testimonials
+    title="Paroles de retraitants"
+    testimonials={[
+      {
+        testimonial: `Ses paroles nous ont touchés en profondeur.`,
+        name: 'Claire et Pierre',
+        job: 'Couple retraitant',
+      },
+      {
+        testimonial: `Merci de si bien nous accueillir, nous les assoiffés de l'Essentiel !`,
+        name: 'Jacques',
+        job: 'Retraitant',
+      },
+      {
+        testimonial: `La beauté simple de ce lieu sait si bien chanter Dieu !`,
+        name: 'P. et R.G.',
+        job: 'Couple participant',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-surface-alt"></div>
+    </Fragment>
+  </Testimonials>
+
+  <!-- Maillage interne : infos pratiques -->
+  <section class="py-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-sm text-muted">
+        Avant de vous inscrire, découvrez
+        <a href="/sejour/journee-type" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">la journée type</a>,
+        <a href="/sejour/acces" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">comment venir</a> et le
+        <a href="/programme" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">programme complet</a>.
+        Envie d'aller plus loin ? Découvrez les <a href="/retraites/6-jours" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">retraites de 6 jours</a>.
+      </p>
+    </div>
+  </section>
+
+  <CallToAction
+    isDark
+    actions={[
+      {
+        variant: 'primary',
+        text: 'S\'inscrire à un week-end',
+        href: '/contact/inscription',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        text: 'Découvrir les autres retraites',
+        href: '/retraites',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Un week-end pour <span class="text-accent-400">se ressourcer</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Le Foyer vous accueille — seul, en couple ou en famille. Inscrivez-vous ou contactez-nous pour toute question.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-rose-orange.jpg"
+          alt="Rose orange en gros plan, symbole de beauté et d'intériorité"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-primary-900/70"></div>
+      </div>
+    </Fragment>
+  </CallToAction>
+</Layout>

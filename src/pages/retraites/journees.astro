@@ -15,7 +15,7 @@ const jsonLdEvents = eventsToJsonLd(upcomingJournees);
 
 const metadata = {
   title: 'Journée spirituelle en Suisse — Foyer de Charité, Bex',
-  description: 'Journée spirituelle en Suisse romande. Enseignements, repas partagé et Eucharistie. Une porte d\'entrée pour découvrir le Foyer de Charité Dents-du-Midi, Bex.',
+  description: 'Journée de ressourcement et de silence en Suisse romande. Enseignements, repas partagé et Eucharistie. Une porte d\'entrée pour découvrir le Foyer de Charité Dents-du-Midi, Bex.',
 };
 ---
 
@@ -26,10 +26,10 @@ const metadata = {
 
   <Hero>
     <Fragment slot="title">
-      Une journée spirituelle au <span class="text-accent-400">Foyer</span>
+      Ressourcement et silence <span class="text-accent-400">pour tous</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Quelques heures pour se poser, écouter, prier. Une porte d'entrée toute simple.
+      Prier, se laisser inspirer, respirer. Une porte d'entrée toute simple au cœur du Foyer.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -54,28 +54,24 @@ const metadata = {
     items={[
       {
         title: 'De 9h30 à 16h30',
-        description: 'Café d\'accueil, deux enseignements, repas partagé et Eucharistie.',
+        description: 'Une journée complète : accueil autour d\'un café, deux conférences, repas servi par la communauté et Eucharistie.',
       },
       {
-        title: 'CHF 50.-',
-        description: 'L\'accueil, les enseignements et le repas sont compris.',
+        title: 'Des sources variées',
+        description: 'Un personnage de la Bible, un saint, un écrivain, un poète... Chaque journée ouvre une fenêtre différente sur le sens de la vie.',
       },
       {
-        title: 'Thèmes variés',
-        description: 'Art, culture, spiritualité. Icônes, Maurice Zundel, La Fontaine, témoins de la foi.',
-      },
-      {
-        title: 'Sans engagement',
-        description: 'Vous ne connaissez pas le Foyer ? Cette journée est faite pour vous.',
+        title: 'Soyez les bienvenus',
+        description: 'Vous ne connaissez pas le Foyer ? Venez comme vous êtes. Cette journée est faite pour vous.',
       },
     ]}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Quelques heures suffisent
+        Un temps pour souffler
       </h3>
-      Pas besoin de plusieurs jours. Une journée suffit pour découvrir le Foyer,
-      rencontrer d'autres chercheurs de sens, et repartir nourri.
+      Pas besoin de plusieurs jours. Quelques heures suffisent pour se laisser inspirer,
+      rencontrer d'autres personnes en quête d'un temps de pause, et reprendre des forces au milieu de la vie quotidienne.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-surface-alt"></div>
@@ -93,31 +89,31 @@ const metadata = {
     items={[
       {
         title: '9h30 — Accueil',
-        description: 'Café d\'accueil, présentation de la journée.',
+        description: 'Accueil autour d\'une boisson (café ou autre).',
       },
       {
-        title: '10h00 — Premier enseignement',
-        description: 'Conférence du prédicateur (60-75 minutes).',
+        title: '10h00 — Première conférence',
+        description: 'Enseignement.',
       },
       {
-        title: '11h30 — Temps libre',
-        description: 'Pause, promenade, silence.',
+        title: '11h15 — Silence et méditation',
+        description: 'Silence et méditation personnelle.',
       },
       {
         title: '12h15 — Eucharistie',
-        description: 'Messe.',
+        description: 'Eucharistie (messe).',
       },
       {
-        title: '13h00 — Repas de midi',
-        description: 'Repas en silence ou en échange libre selon la journée.',
+        title: '13h00 — Repas',
+        description: 'Repas servi par la communauté.',
       },
       {
-        title: '14h30 — Deuxième enseignement',
-        description: 'Seconde conférence (60-75 minutes).',
+        title: '14h30 — Deuxième conférence',
+        description: 'Enseignement.',
       },
       {
-        title: '16h00 — Conclusion',
-        description: 'Temps de partage ou questions, boisson, départ 16h30.',
+        title: '16h00 — Départ',
+        description: 'Une boisson proposée avant de quitter le Foyer. Départ vers 16h30.',
       },
     ]}
   >
@@ -158,39 +154,12 @@ const metadata = {
     </Fragment>
   </Testimonials>
 
-  <Content
-    tagline="Participation"
-    title="Un prix simple"
-    items={[
-      {
-        title: 'CHF 50.-',
-        description: 'Café d\'accueil, deux enseignements, repas de midi, Eucharistie, boisson au départ.',
-      },
-      {
-        title: 'Prix fixe',
-        description: 'Contrairement aux retraites de plusieurs jours, le prix des journées est fixe.',
-      },
-      {
-        title: 'S\'inscrire',
-        description: 'Par téléphone au +41 24 463 18 78 ou via le <a href="/contact/inscription" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">formulaire en ligne</a>.',
-      },
-    ]}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        CHF 50.- la journée
-      </h3>
-      L'accueil, les enseignements, le repas de midi et les boissons sont compris.
-      Pour l'organisation du repas, merci de vous inscrire à l'avance.
-    </Fragment>
-  </Content>
-
   <!-- Maillage interne : infos pratiques -->
   <section class="py-8">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
       <p class="text-sm text-muted">
         Envie d'aller plus loin ? Découvrez les
-        <a href="/retraites/week-end" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">week-ends de 3 jours</a> ou les
+        <a href="/retraites/week-ends" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">week-ends</a> ou les
         <a href="/retraites/6-jours" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">retraites de 6 jours</a>.
         Consultez aussi <a href="/sejour/acces" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">comment venir</a> et le <a href="/programme" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">programme complet</a>.
       </p>

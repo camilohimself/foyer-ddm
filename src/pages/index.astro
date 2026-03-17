@@ -26,9 +26,9 @@ const eventCount = await getUpcomingEventCount();
 // --- Mapping type → badge + label + href ---
 const typeInfo: Record<string, { bg: string; label: string; href: string }> = {
   '6-jours': { bg: 'bg-primary-600', label: '6 jours', href: '/retraites/6-jours' },
-  'week-end': { bg: 'bg-primary-600', label: '3 jours', href: '/retraites/week-end' },
-  couples: { bg: 'bg-rose-300', label: 'Couples', href: '/retraites/couples' },
-  familles: { bg: 'bg-teal-400/80', label: 'Familles', href: '/retraites/familles' },
+  'week-end': { bg: 'bg-primary-600', label: 'Week-end', href: '/retraites/week-ends' },
+  couples: { bg: 'bg-rose-300', label: 'Couples', href: '/retraites/week-ends#en-couple' },
+  familles: { bg: 'bg-teal-400/80', label: 'Familles', href: '/retraites/week-ends#en-famille' },
   journees: { bg: 'bg-accent-400', label: 'Journée', href: '/retraites/journees' },
   mariage: { bg: 'bg-violet-300', label: 'Mariage', href: '/retraites/preparation-mariage' },
 };
@@ -89,38 +89,26 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
     classes={{ headline: { title: 'text-4xl md:text-5xl font-playball' } }}
     items={[
       {
-        title: 'Une journée au Foyer',
-        description: 'Quelques heures pour se poser : enseignements, repas partagé et Eucharistie. Une porte d\'entrée toute simple.',
+        title: 'Ressourcement et silence pour tous',
+        description: 'Quelques heures pour prier, se laisser inspirer, respirer. À partir d\'un personnage de la Bible, d\'un témoin de la foi, d\'un écrivain ou d\'un poète — un temps pour souffler et reprendre des forces au milieu de la vie quotidienne.',
         icon: 'tabler:sun',
         callToAction: { text: 'En savoir plus', href: '/retraites/journees' },
       },
       {
-        title: 'Trois jours pour s\'arrêter',
-        description: 'Une halte au cœur de votre quotidien. Idéal pour une première retraite ou pour vivre un temps fort de l\'année liturgique.',
+        title: 'Week-ends',
+        description: 'Une pause au cœur de votre quotidien ! Trois jours pour vivre une halte spirituelle — seul, en couple ou en famille. En lien avec le temps liturgique ou sur un thème proposé.',
         icon: 'tabler:calendar-event',
-        callToAction: { text: 'En savoir plus', href: '/retraites/week-end' },
+        callToAction: { text: 'En savoir plus', href: '/retraites/week-ends' },
       },
       {
         title: 'Six jours de silence',
-        description: 'Le format historique des Foyers de Charité. Six jours pour cheminer dans le mystère de la foi, portés par les enseignements et le silence.',
+        description: 'Le format historique des Foyers de Charité. Six jours pour avancer dans la foi, portés par les enseignements et le silence.',
         icon: 'tabler:sunset-2',
         callToAction: { text: 'En savoir plus', href: '/retraites/6-jours' },
       },
       {
-        title: 'En couple',
-        description: 'Un temps à deux pour se retrouver dans la prière et le dialogue. Vos enfants sont accueillis avec un programme adapté à leur âge.',
-        icon: 'tabler:hearts',
-        callToAction: { text: 'En savoir plus', href: '/retraites/couples' },
-      },
-      {
-        title: 'En famille',
-        description: 'Vivre la foi ensemble, petits et grands. Des moments de partage et de prière adaptés à chaque âge.',
-        icon: 'tabler:home-heart',
-        callToAction: { text: 'En savoir plus', href: '/retraites/familles' },
-      },
-      {
         title: 'Préparation au mariage',
-        description: 'Deux jours pour préparer votre engagement, accompagnés par des couples expérimentés et un prêtre. En partenariat avec le Diocèse de Sion.',
+        description: 'Approfondir le sens de l\'engagement. Deux jours pour aborder les thèmes essentiels du mariage, accompagnés par des couples animateurs et un prêtre. Organisation : Diocèse de Sion.',
         icon: 'tabler:rings',
         callToAction: { text: 'En savoir plus', href: '/retraites/preparation-mariage' },
       },
@@ -158,7 +146,6 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
                 <p class="text-muted text-sm md:text-base leading-relaxed mb-4">{main.body}</p>
                 <p class="text-sm text-muted">
                   {main.data.preacher}
-                  {main.data.price && <span class="ml-1 text-gray-400">· {main.data.price}</span>}
                 </p>
                 <div class="mt-4">
                   <span class="inline-flex items-center gap-2 bg-accent-400 text-white font-semibold px-5 py-2.5 rounded-full group-hover:bg-accent-300 transition-colors text-sm">
@@ -206,7 +193,6 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
               </h3>
               <p class="text-sm text-muted">
                 {event.data.preacher}
-                {event.data.price && <span class="ml-1 text-gray-400">· {event.data.price}</span>}
               </p>
               <span class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-accent-500 group-hover:text-accent-400 transition-colors">
                 Découvrir <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>

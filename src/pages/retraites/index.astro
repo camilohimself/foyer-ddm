@@ -11,8 +11,8 @@ import imgEnseignementAlpage from '~/assets/images/fddm-enseignement-alpage.jpg'
 const eventCount = await getUpcomingEventCount();
 
 const metadata = {
-  title: 'Retraites spirituelles en Suisse romande — 6 formats',
-  description: 'Retraites spirituelles en Suisse romande : 6 jours, week-ends, couples, familles, journées et préparation au mariage. Foyer de Charité Dents-du-Midi, Bex.',
+  title: 'Retraites spirituelles en Suisse romande — Foyer de Charité, Bex',
+  description: 'Retraites spirituelles en Suisse romande : journées, week-ends, retraites de 6 jours et préparation au mariage. Foyer de Charité Dents-du-Midi, Bex.',
 };
 ---
 
@@ -23,7 +23,7 @@ const metadata = {
     </Fragment>
     <Fragment slot="subtitle">
       De la journée de découverte à la retraite de six jours, plusieurs chemins s'offrent à vous.
-      Il y a toujours une place pour qui cherche le silence.
+      Il y a toujours une place pour qui ressent le besoin de faire une pause.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -49,28 +49,16 @@ const metadata = {
         callToAction: { text: 'Découvrir', href: '/retraites/journees' },
       },
       {
-        title: 'Trois jours pour s\'arrêter',
-        description: 'Du vendredi soir au dimanche après-midi. Idéal pour une première retraite ou pour vivre un temps fort de l\'année liturgique.',
+        title: 'Week-ends',
+        description: 'Du vendredi soir au dimanche après-midi. Pour tous, en couple ou en famille. Une pause au cœur de votre quotidien pour se ressourcer.',
         icon: 'tabler:calendar-event',
-        callToAction: { text: 'Découvrir', href: '/retraites/week-end' },
+        callToAction: { text: 'Découvrir', href: '/retraites/week-ends' },
       },
       {
         title: 'Six jours de silence',
-        description: 'Du dimanche soir au samedi matin. Le format historique des Foyers : six jours pour cheminer dans le mystère de la foi, portés par les enseignements et le silence.',
+        description: 'Du dimanche soir au samedi matin. Le format historique des Foyers : six jours pour avancer dans la foi, portés par les enseignements et le silence.',
         icon: 'tabler:sunset-2',
         callToAction: { text: 'Découvrir', href: '/retraites/6-jours' },
-      },
-      {
-        title: 'En couple',
-        description: 'Du vendredi soir au dimanche après-midi. Un temps de dialogue, de réflexion conjugale et spirituelle. Vos enfants de 4 à 12 ans sont accueillis avec un programme adapté.',
-        icon: 'tabler:hearts',
-        callToAction: { text: 'Découvrir', href: '/retraites/couples' },
-      },
-      {
-        title: 'En famille',
-        description: 'Vivre la foi ensemble, petits et grands. Des thématiques actuelles, des moments de partage et de prière. Participation libre.',
-        icon: 'tabler:home-heart',
-        callToAction: { text: 'Découvrir', href: '/retraites/familles' },
       },
       {
         title: 'Préparation au mariage',
@@ -95,15 +83,15 @@ const metadata = {
     items={[
       {
         title: 'C\'est la première fois ?',
-        description: 'Une <a href="/retraites/journees" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">journée</a> ou un <a href="/retraites/week-end" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">week-end de trois jours</a> : un premier pas, sans engagement, pour découvrir ce que le silence peut offrir.',
+        description: 'Une <a href="/retraites/journees" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">journée</a> ou un <a href="/retraites/week-ends" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">week-end</a> : un premier pas, sans engagement, pour découvrir ce que le silence peut offrir.',
       },
       {
         title: 'Aller plus loin ?',
-        description: 'La <a href="/retraites/6-jours" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">retraite de six jours</a> est le cœur de la tradition des Foyers de Charité. Six jours de silence habité pour un vrai renouvellement intérieur.',
+        description: 'La <a href="/retraites/6-jours" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">retraite de six jours</a> est le cœur de la tradition des Foyers de Charité. Six jours de silence pour un nouveau souffle.',
       },
       {
         title: 'En couple ou en famille ?',
-        description: 'Des week-ends pensés pour cheminer ensemble : <a href="/retraites/couples" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">en couple</a> ou <a href="/retraites/familles" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">en famille</a>. Vos enfants sont accueillis avec un programme adapté à leur âge.',
+        description: 'Des <a href="/retraites/week-ends" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">week-ends</a> pensés pour cheminer ensemble : <a href="/retraites/week-ends#en-couple" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">en couple</a> ou <a href="/retraites/week-ends#en-famille" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">en famille</a>. Vos enfants sont accueillis avec un programme adapté à leur âge.',
       },
       {
         title: 'Préparer votre mariage ?',
@@ -115,7 +103,7 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
         Un pas à la fois
       </h3>
-      Que vous soyez curieux, en quête de sens ou pratiquant de longue date, il y a une retraite pour vous.
+      Que vous veniez pour la première fois ou que vous connaissiez déjà le Foyer, il y a une retraite pour vous.
       Aucune situation financière ne doit être un obstacle.
     </Fragment>
   </Content>
