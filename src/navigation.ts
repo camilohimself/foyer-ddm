@@ -31,7 +31,6 @@ export const headerData = {
         { text: 'Votre séjour', href: getPermalink('/sejour') },
         { text: 'Chambres', href: getPermalink('/sejour/chambres') },
         { text: 'Journée type', href: getPermalink('/sejour/journee-type') },
-        { text: 'Tarifs', href: getPermalink('/sejour/tarifs') },
         { text: 'Accès', href: getPermalink('/sejour/acces') },
       ],
     },
@@ -71,7 +70,6 @@ export const footerData = {
     {
       title: 'Infos pratiques',
       links: [
-        { text: 'Tarifs', href: getPermalink('/sejour/tarifs') },
         { text: 'Accès', href: getPermalink('/sejour/acces') },
         { text: 'Chambres', href: getPermalink('/sejour/chambres') },
         { text: 'Journée type', href: getPermalink('/sejour/journee-type') },

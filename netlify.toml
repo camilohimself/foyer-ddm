@@ -22,6 +22,12 @@
   to = "/retraites/week-ends#en-famille"
   status = 301
 
+# Redirect : page tarifs supprimée
+[[redirects]]
+  from = "/sejour/tarifs"
+  to = "/sejour"
+  status = 301
+
 # Redirect : page contact supprimée
 [[redirects]]
   from = "/contact"
