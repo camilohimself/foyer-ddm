@@ -23,9 +23,29 @@ const metadata = {
     follow: blogPostRobots?.follow,
   },
 };
+
+const siteUrl = 'https://foyer-dents-du-midi.ch';
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.excerpt,
+  url: `${siteUrl}${url.pathname}`,
+  datePublished: post.publishDate,
+  ...(post.updateDate && { dateModified: post.updateDate }),
+  author: {
+    '@type': 'Person',
+    name: 'Père Guy Luisier',
+    jobTitle: 'Prêtre du Foyer',
+  },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  inLanguage: 'fr',
+  ...(post.image && { image: post.image }),
+};
 ---
 
 <Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
   <SinglePost post={{ ...post }} url={url}>
     <post.Content />
   </SinglePost>

@@ -4,8 +4,8 @@ import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'Notre histoire — 55 ans du Foyer de Charité Dents-du-Midi à Bex',
-  description: 'De 1970 à 2025, l\'histoire du seul Foyer de Charité en Suisse. Fondé à Bex par le Père Renirkens, un lieu d\'accueil spirituel depuis plus de 55 ans au pied des Dents-du-Midi.',
+  title: 'Notre histoire — 55 ans du Foyer de Charité à Bex',
+  description: 'De 1970 à 2025, l\'histoire du seul Foyer de Charité en Suisse. Fondé à Bex par le Père Renirkens, un lieu d\'accueil spirituel au pied des Dents-du-Midi.',
 };
 
 const timeline = [
@@ -183,6 +183,15 @@ const timeline = [
 ---
 
 <Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'Notre histoire',
+    url: 'https://foyer-dents-du-midi.ch/le-foyer/histoire',
+    description: 'L\'histoire du Foyer de Charité Dents-du-Midi depuis 1970.',
+    about: { '@id': 'https://foyer-dents-du-midi.ch/#organization' },
+  })} />
+
   <!-- Hero -->
   <Hero tagline="Depuis 1970">
     <Fragment slot="title">

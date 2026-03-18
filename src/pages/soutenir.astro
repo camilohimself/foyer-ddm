@@ -16,6 +16,14 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'DonateAction',
+    name: 'Soutenir le Foyer de Charité Dents-du-Midi',
+    description: 'Soutenez le Foyer par la prière, le bénévolat ou un don financier.',
+    recipient: { '@id': 'https://foyer-dents-du-midi.ch/#organization' },
+  })} />
+
   <!-- Hero Section -->
   <Hero tagline="Engagement">
     <Fragment slot="title">

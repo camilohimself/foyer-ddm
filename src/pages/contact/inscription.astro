@@ -12,6 +12,14 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
 ---
 
 <Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: "S'inscrire à une retraite",
+    url: 'https://foyer-dents-du-midi.ch/contact/inscription',
+    mainEntity: { '@id': 'https://foyer-dents-du-midi.ch/#organization' },
+  })} />
+
   <Hero
     tagline="Inscription"
     title="S'inscrire à une retraite"

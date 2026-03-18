@@ -1,8 +1,8 @@
 ---
 /**
- * JSON-LD Structured Data — Organization + BreadcrumbList
+ * JSON-LD Structured Data — Organization + BreadcrumbList + WebSite
  * Injecté dans <head> via Layout.astro sur CHAQUE page.
- * Les Event schemas sont ajoutés directement dans les pages concernées.
+ * Les Event, BlogPosting et autres schemas sont ajoutés directement dans les pages concernées.
  */
 
 const siteUrl = 'https://foyer-dents-du-midi.ch';
@@ -11,6 +11,7 @@ const siteUrl = 'https://foyer-dents-du-midi.ch';
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'ReligiousOrganization',
+  '@id': `${siteUrl}/#organization`,
   name: 'Foyer de Charité Dents-du-Midi',
   alternateName: 'Foyer de Charité des Dents-du-Midi',
   url: siteUrl,
@@ -32,7 +33,9 @@ const organizationSchema = {
   },
   telephone: '+41244631878',
   email: 'info@foyer-dents-du-midi.ch',
-  sameAs: [],
+  sameAs: [
+    'https://www.lesfoyersdecharite.com',
+  ],
   areaServed: {
     '@type': 'GeoCircle',
     geoMidpoint: {
@@ -49,6 +52,20 @@ const organizationSchema = {
   },
 };
 
+// --- WebSite (homepage uniquement) ---
+const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const websiteSchema = isHomepage
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      url: siteUrl,
+      name: 'Foyer de Charité Dents-du-Midi',
+      description: 'Retraites spirituelles en Suisse romande face aux Alpes',
+      publisher: { '@id': `${siteUrl}/#organization` },
+      inLanguage: 'fr',
+    }
+  : null;
+
 // --- Breadcrumbs (auto-générés depuis l'URL) ---
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 const pathSegments = pathname.split('/').filter(Boolean);
@@ -64,7 +81,6 @@ const breadcrumbLabels: Record<string, string> = {
   programme: 'Programme 2026',
   'le-foyer': 'Le Foyer',
   histoire: 'Histoire',
-  equipe: 'Équipe',
   sejour: 'Séjour',
   chambres: 'Chambres',
   'journee-type': 'Journée type',
@@ -100,7 +116,7 @@ const breadcrumbSchema = breadcrumbItems.length > 1
   : null;
 
 // --- Assemble ---
-const schemas = [organizationSchema, breadcrumbSchema].filter(Boolean);
+const schemas = [organizationSchema, websiteSchema, breadcrumbSchema].filter(Boolean);
 ---
 
 {schemas.map((schema) => (
