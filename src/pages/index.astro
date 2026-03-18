@@ -12,7 +12,7 @@ import { getUpcomingEvents, getUpcomingEventCount, formatDateRange, currentYear 
 
 import fddmSculptureLumiere from '~/assets/images/fddm-sculpture-lumiere.jpg';
 import fddmTableeTerrasse from '~/assets/images/fddm-tablee-terrasse.jpg';
-import fddmEnseignement from '~/assets/images/fddm-enseignement-alpage.jpg';
+import fddmEnseignement from '~/assets/images/fddm-trinite-icone.jpg';
 import fddmTournesols from '~/assets/images/fddm-chapelle-tournesols.jpg';
 import fddmCroix from '~/assets/images/fddm-croix-sommet.jpg';
 import fddmCouple from '~/assets/images/fddm-couple-mains.jpg';
@@ -24,7 +24,7 @@ const metadata = {
 };
 
 // --- Prochaines retraites (dynamique depuis la collection events) ---
-const upcomingEvents = (await getUpcomingEvents()).slice(0, 3);
+const upcomingEvents = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen !== false).slice(0, 3);
 const eventCount = await getUpcomingEventCount();
 
 // --- Mapping type → badge + label + href ---
@@ -168,7 +168,7 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
         const main = upcomingEvents[0];
         const info = typeInfo[main.data.type] || { bg: 'bg-gray-500', label: main.data.type, href: '/retraites' };
         return (
-          <a href={info.href} class="group block mb-5 p-6 md:p-8 rounded-2xl border-2 border-accent-200 bg-gradient-to-br from-white to-accent-50/30 hover:shadow-xl hover:border-accent-400 transition-all duration-300">
+          <a href={`/programme/${main.id}`} class="group block mb-5 p-6 md:p-8 rounded-2xl border-2 border-accent-200 bg-gradient-to-br from-white to-accent-50/30 hover:shadow-xl hover:border-accent-400 transition-all duration-300">
             <div class="flex items-center gap-3 mb-3">
               <span class={`text-xs font-semibold text-white px-3 py-1 rounded-full ${info.bg}`}>{info.label}</span>
               <span class="text-xs font-semibold uppercase tracking-wider text-accent-500">Prochaine retraite</span>
@@ -219,7 +219,7 @@ const selectedTestimonials = shuffled.slice(0, 6).map((t) => ({
         {upcomingEvents.slice(1).map((event) => {
           const info = typeInfo[event.data.type] || { bg: 'bg-gray-500', label: event.data.type, href: '/retraites' };
           return (
-            <a href={info.href} class="group block p-5 rounded-xl border border-gray-200 bg-white hover:shadow-lg hover:border-accent-300 transition-all duration-200">
+            <a href={`/programme/${event.id}`} class="group block p-5 rounded-xl border border-gray-200 bg-white hover:shadow-lg hover:border-accent-300 transition-all duration-200">
               <div class="flex items-center gap-2 mb-2">
                 <span class={`text-xs font-semibold text-white px-2.5 py-0.5 rounded-full ${info.bg}`}>{info.label}</span>
                 <span class="text-sm font-semibold text-primary-600">{formatDateRange(event.data.dateStart, event.data.dateEnd)}</span>
