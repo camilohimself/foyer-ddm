@@ -97,53 +97,76 @@ const metadata = {
 
   <Content
     tagline="Une journée type"
-    title="Le rythme d'une retraite de 6 jours"
+    title="Le rythme d'une retraite"
     items={[
       {
-        title: '7h00 — Laudes (prière du matin)',
-        description: 'Prière en communauté.',
+        title: '8h00 — Lever',
+        description: 'Début de la journée en douceur.',
+        icon: 'tabler:sunrise',
       },
       {
-        title: '8h00 — Petit déjeuner',
-        description: 'Silence.',
+        title: '8h30 — Louange du matin',
+        description: 'Prière communautaire pour ouvrir la journée.',
+        icon: 'tabler:heart',
       },
       {
-        title: '9h30 — Premier enseignement',
-        description: 'Enseignement.',
+        title: '8h50 — Petit déjeuner',
+        description: 'Premier repas, dans le silence.',
+        icon: 'tabler:coffee',
       },
       {
-        title: '11h45 — Eucharistie',
-        description: 'Eucharistie (messe).',
+        title: '9h45 — Conférence',
+        description: 'Enseignement spirituel donné par l\'intervenant de la retraite.',
+        icon: 'tabler:book-2',
       },
       {
-        title: '13h00 — Repas de midi',
-        description: 'Silence.',
+        title: '11h00 — Adoration',
+        description: 'Temps de prière silencieuse devant le Saint-Sacrement.',
+        icon: 'tabler:candle',
       },
       {
-        title: '14h30-17h30 — Temps libre',
-        description: 'Promenade, lecture, accompagnement spirituel, adoration.',
+        title: '12h30 — Repas',
+        description: 'Repas de midi, en silence.',
+        icon: 'tabler:tools-kitchen-2',
       },
       {
-        title: '17h30 — Deuxième enseignement',
-        description: 'Enseignement.',
+        title: '15h00 — Thé',
+        description: 'Pause conviviale.',
+        icon: 'tabler:cup',
       },
       {
-        title: '19h00 — Repas du soir',
-        description: 'Silence.',
+        title: '15h30 — Conférence',
+        description: 'Deuxième enseignement de la journée.',
+        icon: 'tabler:book',
       },
       {
-        title: '20h30 — Vêpres (prière du soir)',
-        description: 'Prière en communauté.',
+        title: '17h30 — Eucharistie',
+        description: 'Célébration de la messe, sommet de la journée.',
+        icon: 'tabler:star',
+      },
+      {
+        title: '19h00 — Repas',
+        description: 'Souper en commun.',
+        icon: 'tabler:tools-kitchen',
+      },
+      {
+        title: '20h30 — Prière du soir',
+        description: 'Prière communautaire pour clôturer la journée.',
+        icon: 'tabler:moon',
       },
     ]}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Le rythme d'une journée
+        Le rythme d'une <span class="text-accent-400">journée</span>
       </h3>
-      Chaque journée est ponctuée par des temps de prière et d'enseignements — généralement deux conférences quotidiennes.
-      Plusieurs temps libres permettent de se reposer, de se promener afin de profiter du magnifique parc aux alentours du Foyer,
-      prolonger sa méditation ou encore bénéficier d'un entretien personnel avec un prêtre.
+      <p class="text-muted mb-4">
+        Le rythme des journées est ponctué par des temps de prière, d'enseignements, de repas et des temps libres
+        pour permettre un vrai repos et un réel ressourcement.
+      </p>
+      <p class="text-sm text-muted italic">
+        Horaire indicatif, pouvant varier selon les retraites.
+      </p>
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-surface-special"></div>
