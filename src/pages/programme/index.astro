@@ -5,8 +5,8 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import { getAllEvents, eventsToJsonLd, formatDateRange, today, currentYear } from '~/utils/events';
 
 const allEvents = await getAllEvents();
-const upcomingEvents = allEvents.filter((e) => (e.data.dateEnd || e.data.dateStart) >= today);
-const pastEvents = allEvents.filter((e) => (e.data.dateEnd || e.data.dateStart) < today);
+const upcomingEvents = allEvents.filter((e) => (e.data.dateEnd || e.data.dateStart) >= today && e.data.registrationOpen !== false);
+const pastEvents = allEvents.filter((e) => (e.data.dateEnd || e.data.dateStart) < today || e.data.registrationOpen === false);
 
 const metadata = {
   title: `Programme des retraites spirituelles ${currentYear}`,
@@ -19,7 +19,7 @@ const typeConfig: Record<string, { textColor: string; badge: string; label: stri
   'week-end': { textColor: 'text-primary-500', badge: 'bg-primary-500', label: 'Week-end', cardLabel: '3 jours pour tous', href: '/retraites/week-ends', defaultImage: '/images/fddm-chapelle-tournesols.jpg' },
   couples: { textColor: 'text-rose-400', badge: 'bg-rose-300', label: 'Couples', cardLabel: '3 jours pour couples', href: '/retraites/week-ends#en-couple', defaultImage: '/images/fddm-couple-marche.jpg' },
   familles: { textColor: 'text-teal-500', badge: 'bg-teal-400/80', label: 'Familles', cardLabel: 'Week-end en famille', href: '/retraites/week-ends#en-famille', defaultImage: '/images/fddm-sentier-groupe.jpeg' },
-  journees: { textColor: 'text-accent-500', badge: 'bg-accent-400', label: 'Journée', cardLabel: 'Journées', href: '/retraites/journees', defaultImage: '/images/fddm-dents-du-midi-printemps.jpg' },
+  journees: { textColor: 'text-accent-500', badge: 'bg-accent-400', label: 'Journée', cardLabel: 'Journées', href: '/retraites/journees', defaultImage: '/images/fddm-trinite-icone.jpg' },
   mariage: { textColor: 'text-violet-400', badge: 'bg-violet-300', label: 'Mariage', cardLabel: 'Préparation au mariage', href: '/retraites/preparation-mariage', defaultImage: '/images/fddm-couple-mains.jpg' },
 };
 
