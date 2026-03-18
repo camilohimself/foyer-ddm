@@ -4,8 +4,8 @@ import { blogListRobots, fetchPosts } from '~/utils/blog';
 import { BLOG_BASE } from '~/utils/permalinks';
 
 import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
 import BlogList from '~/components/blog/List.astro';
-import Headline from '~/components/blog/Headline.astro';
 
 export const getStaticPaths = (async () => {
   return [
@@ -18,8 +18,8 @@ export const getStaticPaths = (async () => {
 const posts = await fetchPosts();
 
 const metadata = {
-  title: 'Messages et actualités du Foyer de Charité',
-  description: 'Messages du Père Guy Luisier et actualités du Foyer de Charité Dents-du-Midi. Réflexions spirituelles, vie du Foyer et événements à Bex.',
+  title: 'Méditations — Réflexions spirituelles du Père Guy Luisier',
+  description: 'Méditations et réflexions spirituelles du Père Guy Luisier au Foyer de Charité Dents-du-Midi. Textes contemplatifs, vie du Foyer et événements à Bex.',
   robots: {
     index: blogListRobots?.index,
     follow: blogListRobots?.follow,
@@ -28,12 +28,29 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  <Hero tagline="Réflexions spirituelles">
+    <Fragment slot="title">
+      <span class="text-accent-400">Méditations</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Les réflexions et méditations du Père Guy Luisier, prêtre du Foyer de Charité Dents-du-Midi.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-arcabas-meditations.jpg"
+          alt="Peinture d'Arcabas — scène biblique aux tons d'or et d'ocre"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
+
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline
-      subtitle="Les messages du Père Guy Luisier et les actualités du Foyer de Charité Dents-du-Midi."
-    >
-      Messages et actualités
-    </Headline>
     <BlogList posts={posts} />
   </section>
 </Layout>

@@ -33,8 +33,8 @@ export const headerData = {
       ],
     },
     {
-      text: 'Actualités',
-      href: getPermalink('/actualites'),
+      text: 'Méditations',
+      href: getPermalink('/meditations'),
     },
     {
       text: 'Témoignages',
@@ -80,7 +80,7 @@ export const footerData = {
         { text: 'Le Foyer', href: getPermalink('/le-foyer') },
         { text: 'Notre histoire', href: getPermalink('/le-foyer/histoire') },
         { text: 'Témoignages', href: getPermalink('/temoignages') },
-        { text: 'Actualités', href: getPermalink('/actualites') },
+        { text: 'Méditations', href: getPermalink('/meditations') },
       ],
     },
     {
