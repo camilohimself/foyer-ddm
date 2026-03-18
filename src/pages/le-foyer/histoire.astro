@@ -1,24 +1,197 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import Steps from '~/components/widgets/Steps.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import fddmVitrailChapelle from '~/assets/images/fddm-vitrail-chapelle.jpg';
 
 const metadata = {
-  title: '55 ans d\'histoire du seul Foyer de Charité en Suisse',
-  description: 'De 1970 à aujourd\'hui, l\'histoire du seul Foyer de Charité en Suisse. Fondé à Bex au pied des Dents-du-Midi, un lieu d\'accueil et de prière depuis plus de 55 ans.',
+  title: 'Notre histoire — 55 ans du Foyer de Charité Dents-du-Midi à Bex',
+  description: 'De 1970 à 2025, l\'histoire du seul Foyer de Charité en Suisse. Fondé à Bex par le Père Renirkens, un lieu d\'accueil spirituel depuis plus de 55 ans au pied des Dents-du-Midi.',
 };
+
+const timeline = [
+  {
+    decade: 'Les origines',
+    events: [
+      {
+        date: '1969',
+        title: 'Avant le Foyer, les Retraites de Chrétienté',
+        text: 'Le Père Renirkens, lié au Foyer de Spa (Belgique), anime des Retraites de Chrétienté en Suisse. Les deux dernières retraites, avant la fondation du Foyer, ont été prêchées à la Tour-de-Peilz, en janvier, et à Montbarry en mars.',
+      },
+      {
+        date: 'Janvier 1970',
+        title: 'La prospection',
+        text: 'Le réseau des Foyers de Charité en France appelle le Père Renirkens à fonder un Foyer en Suisse. Avec le Père Ravanel et des amis, ils se mettent en recherche du lieu idéal. C\'est finalement l\'hôtel des Dents du Midi à Bex qui est retenu — une vue imprenable sur les Dents du Midi, sept hectares de prairie et de forêt dans un environnement propice au recueillement.',
+      },
+      {
+        date: '30 avril 1970',
+        title: 'La vente est signée',
+        text: 'Le Père Renirkens signe, avec le Père Chardonnens et des amis, l\'achat de l\'hôtel, futur Foyer de Charité pour la Suisse.',
+      },
+      {
+        date: '1er mai 1970',
+        title: 'La première Eucharistie',
+        text: 'La première Eucharistie est célébrée au Foyer. Le lieu est consacré à sa nouvelle mission d\'accueil spirituel.',
+      },
+      {
+        date: 'Juillet 1970',
+        title: 'La presse en parle',
+        text: 'Dans son édition du 20 juillet, La Feuille d\'Avis de Lausanne rapporte dans ses colonnes la création du « Foyer de Charité, de Lumière et d\'Amour » dont elle annonce l\'ouverture pour la fin septembre. Le Père Renirkens est le premier Père spirituel du Foyer.',
+      },
+      {
+        date: '21 septembre 1970',
+        title: 'Première retraite',
+        text: 'Le Foyer accueille sa toute première retraite spirituelle. Début d\'une longue tradition d\'accueil qui se poursuit aujourd\'hui.',
+        highlight: true,
+      },
+    ],
+  },
+  {
+    decade: 'Années 1970',
+    events: [
+      {
+        date: '21 octobre 1971',
+        title: 'Arrivée d\'Anne-Marie Gavray',
+        text: 'Anne-Marie Gavray vient rejoindre la petite équipe du Foyer. Elle y consacrera 51 ans de sa vie.',
+      },
+      {
+        date: 'Dès janvier 1972',
+        title: 'Transformations et aménagements',
+        text: 'Les travaux d\'aménagement permettent de transformer les garages en cuisine, et des anciens bains salins en chambrettes. Une salle à manger est construite et la salle de conférence est complètement ouverte. Point d\'orgue du chantier, la chapelle qui prolonge l\'ancienne salle à manger. Un chœur circulaire est bâti, ouvrant sa verrière sur la forêt et les montagnes.',
+      },
+      {
+        date: '27 avril 1975',
+        title: 'Les 5 ans du Foyer — et 35 ans de sacerdoce',
+        text: 'Quelques dizaines d\'« Amis » se retrouvent pour fêter les 5 ans du Foyer. L\'occasion de célébrer aussi les 35 ans de sacerdoce du Père Clément Renirkens, né en 1916 à Liège. Il a passé une partie de sa vie en Chine où il fut envoyé en 1947 au service d\'un des six premiers évêques chinois. Assigné à résidence en 1949, il édite son livre <em>« L\'amour aux yeux ouverts »</em>. Arrêté en 1953, il est libéré en 1954 au terme d\'une détention très dure.',
+        highlight: true,
+      },
+      {
+        date: '28 mai 1975',
+        title: 'Aménagement de la crypte',
+        text: 'Les travaux continuent au rythme des possibilités financières et des dons. Dans la crypte sous le chœur de la chapelle, l\'artiste suisse Anne-Marie Stemmle réalise une fresque illustrant le Christ émergeant de la mort. Elle fait écho à la parole de S. Jean (12,32) : <em>« Une fois élevé de terre, j\'attirerai tout à moi. »</em>',
+      },
+    ],
+  },
+  {
+    decade: 'Années 1980–1990',
+    events: [
+      {
+        date: '20 avril 1980',
+        title: 'Le Foyer fête ses 10 ans',
+        text: 'Mgr Henri Schwery, évêque du diocèse, préside la célébration d\'action de grâces. À cette occasion, il parle du Foyer comme du <em>« poumon spirituel du diocèse »</em>.',
+        highlight: true,
+      },
+      {
+        date: '10 septembre 1989',
+        title: 'Passage de témoin',
+        text: 'Il est temps de passer la main pour le Père Clément Renirkens qui a grandement contribué à l\'essor du Foyer. Le Père Jean-René Fracheboud est officiellement accueilli. Nommé l\'année précédente, il partage son emploi du temps entre la paroisse du Sacré-Cœur à Sion et le Foyer, où il s\'installera en 1992.',
+      },
+      {
+        date: '1992',
+        title: 'Le Foyer grandit',
+        text: 'Le Foyer poursuit sa mue avec l\'agrandissement de la chapelle et la création d\'une nouvelle salle de conférence. L\'espace ainsi ouvert permet d\'accueillir 400 personnes assises lors des grands rassemblements. Régulièrement, des messes sont retransmises sur les ondes de la RSR.',
+      },
+    ],
+  },
+  {
+    decade: 'Années 2000–2010',
+    events: [
+      {
+        date: '9 mars 2000',
+        title: 'Le cap des 30 ans',
+        text: 'Plusieurs centaines de personnes se retrouvent pour fêter les 30 ans du Foyer. Jo Akepsimas est venu partager la joie des participants.',
+      },
+      {
+        date: '29 août 2010',
+        title: '40 bougies pour le Foyer',
+        text: 'Dans une conférence qui a précédé la messe, le Cardinal Schwery se demande si <em>« connaître et reconnaître la thérapie spirituelle n\'est pas ce qui manque à notre société du XXI<sup>e</sup> siècle commençant »</em>.',
+      },
+      {
+        date: '6 septembre 2015',
+        title: 'Le Foyer fête ses 45 ans',
+        text: 'Journée festive, où convivialité, retrouvailles et conférences sont au programme. L\'Eucharistie est présidée par Mgr Jean-Marie Lovey, nouvellement nommé évêque du diocèse de Sion.',
+      },
+    ],
+  },
+  {
+    decade: 'Années 2020 — Renouveau',
+    events: [
+      {
+        date: '2020',
+        title: 'Année jubilaire — 50 ans !',
+        text: 'Covid obligeant, dès mars 2020, le Foyer a forcément vécu au rythme des mesures sanitaires en vigueur. Les festivités agendées pour le dimanche 20 septembre sont totalement annulées.',
+      },
+      {
+        date: '10 octobre 2021',
+        title: 'Fête intime du jubilé',
+        text: 'Avec Raoul Mutin et Jo Akepsimas, une façon de fêter en plus « intime » l\'événement des 50 ans — mesures sanitaires encore en vigueur.',
+      },
+      {
+        date: 'Printemps 2022',
+        title: 'Levée des mesures, temps d\'incertitudes',
+        text: 'Le Foyer reprend progressivement son rythme d\'accueil. Parallèlement, s\'y vit un temps d\'incertitudes avec le projet de départ d\'Anne-Marie Gavray et du père Jean-René Fracheboud. Une ouverture s\'annonce en la personne de Guy Luisier, chanoine de l\'Abbaye de Saint-Maurice.',
+      },
+      {
+        date: 'Juin 2022',
+        title: 'Anne-Marie Gavray annonce son départ',
+        text: 'Présente et active dès 1971, Anne-Marie a décidé de déposer sa charge de responsable dès l\'automne 2022. L\'heure pour elle d\'un repos mérité. Son départ après 51 ans d\'engagement laisse une béance : il n\'y a personne pour lui succéder et reprendre l\'intendance de la Maison.',
+      },
+      {
+        date: '11 septembre 2022',
+        title: 'Un virage s\'amorce, une nouvelle étape s\'ouvre',
+        text: 'Un grand rassemblement et une fête digne de ce nom pour exprimer la reconnaissance à Anne-Marie qui quitte sa charge de responsable. Accueil de Guy Luisier. Jean-René Fracheboud reste encore quelques mois pour accompagner la transition.',
+        highlight: true,
+      },
+      {
+        date: 'Automne–hiver 2022',
+        title: 'Saisons des multiples changements',
+        text: 'Bernard Mudry passe le témoin de la présidence du Conseil administratif à Georges Mariétan. En décembre, Jean-René quitte le Foyer définitivement. Guy Luisier reprend la charge de prêtre du Foyer dès janvier 2023.',
+      },
+      {
+        date: 'Hiver–printemps 2023',
+        title: 'Garder le cap malgré les incertitudes',
+        text: 'La transition se prolonge. Beaucoup de travail, beaucoup d\'incertitudes et de doutes aussi dans la constitution d\'une solide équipe du Foyer. Olivier Sudan et Guy Luisier œuvrent corps et âme et gardent le cap.',
+      },
+      {
+        date: 'Automne 2023',
+        title: 'Des raisons de fêter et d\'espérer',
+        text: 'En septembre, fête de reconnaissance pour Jean-René Fracheboud et au-revoir « officiel ». Mise en place d\'un conseil pastoral et d\'une équipe communautaire, en complément du Conseil administratif.',
+      },
+      {
+        date: 'Novembre 2023',
+        title: 'Forces vives !',
+        text: 'Arrivée de Giovanna Tassano, membre du Foyer de la Flatière. À la retraite, elle vient vivre au Foyer de Bex. Olivier Sudan devient officiellement « intendant du Foyer ». Engagement d\'une cuisinière à mi-temps et reprise de la patente permettant l\'exploitation du service d\'accueil.',
+      },
+      {
+        date: '2024',
+        title: 'Une avancée, pas à pas, en ligne de crête',
+        text: 'Soutenue par les bénévoles et les membres des trois « conseils », la petite équipe du Foyer avance, renforcée aussi par les innombrables retours positifs des retraitants. Se dessine un chemin souvent tortueux et caillouteux à la recherche de l\'équilibre… Le Foyer vit et continue de vivre. Des chercheurs de Dieu continuent d\'y venir, d\'y trouver de quoi s\'abreuver, de vivre le silence en ce lieu d\'Église en Suisse romande. La mission est belle, indispensable, et l\'équipe y croit.',
+      },
+      {
+        date: 'Décembre 2024',
+        title: 'L\'icône de « Marie Buisson ardent »',
+        text: 'Événement vécu au cours de la veillée du Nouvel An, avec une centaine de personnes, sous le signe de la convivialité, dans la joie et le partage.',
+      },
+      {
+        date: '7 septembre 2025',
+        title: '55 ans — Plantation du chêne !',
+        text: 'Dimanche de fête pour les 55 ans du Foyer ! Et aussi une nouveauté : le dépliant « Programme » est désormais calqué sur l\'année pastorale, de septembre à septembre.',
+        highlight: true,
+      },
+    ],
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Section -->
-  <Hero tagline="Histoire">
+  <!-- Hero -->
+  <Hero tagline="Depuis 1970">
     <Fragment slot="title">
       55 ans <span class="text-accent-400">d'histoire</span>
     </Fragment>
 
-    <Fragment slot="subtitle">De 1970 à aujourd'hui, l'histoire du seul Foyer de Charité en Suisse.</Fragment>
+    <Fragment slot="subtitle">
+      De 1970 à aujourd'hui, l'histoire du seul Foyer de Charité en Suisse.
+    </Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -33,88 +206,59 @@ const metadata = {
     </Fragment>
   </Hero>
 
-  <!-- Chronologie -->
-  <Steps
-    title="Une histoire de <span class='text-accent-400'>foi et d'accueil</span>"
-    items={[
-      {
-        title: '1969',
-        description:
-          'Le Père Renirkens anime des Retraites de Chrétienté en Suisse et cherche un lieu permanent pour accueillir.',
-        icon: 'tabler:search',
-      },
-      {
-        title: 'Janvier 1970',
-        description:
-          '<a href="/le-foyer/marthe-robin" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">Marthe Robin</a>, depuis son village de la Drôme, appelle à fonder un Foyer de Charité en Suisse. Elle ne quittera jamais son village, mais son rayonnement spirituel traverse les frontières.',
-        icon: 'tabler:phone-call',
-      },
-      {
-        title: '30 avril 1970',
-        description:
-          'Signature de l\'acte d\'achat de l\'hôtel "Les Dents-du-Midi" à Bex. Un ancien établissement hôtelier devient un lieu d\'accueil et de prière.',
-        icon: 'tabler:writing-sign',
-      },
-      {
-        title: '1er mai 1970',
-        description:
-          'Première Eucharistie célébrée au Foyer. Le lieu est consacré à sa nouvelle mission d\'accueil spirituel.',
-        icon: 'tabler:building',
-      },
-      {
-        title: '21 septembre 1970',
-        description:
-          'Première <a href="/retraites" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">retraite spirituelle</a> au Foyer. Début d\'une longue tradition d\'accueil qui se poursuit aujourd\'hui.',
-        icon: 'tabler:book-2',
-      },
-      {
-        title: '21 octobre 1971',
-        description:
-          'Anne-Marie Gavray rejoint l\'équipe du Foyer. Elle y consacrera 51 ans de sa vie, jusqu\'en 2022, incarnant la fidélité à la mission.',
-        icon: 'tabler:heart',
-      },
-      {
-        title: '1972',
-        description:
-          'Début des travaux d\'aménagement : modernisation de la cuisine et création de la chapelle avec vue sur les Alpes.',
-        icon: 'tabler:tools',
-      },
-      {
-        title: '1975',
-        description:
-          'Fête des 5 ans du Foyer. Aménagement de la crypte pour la prière et l\'adoration. Le lieu s\'enracine dans sa vocation.',
-        icon: 'tabler:cake',
-      },
-      {
-        title: '1980',
-        description:
-          'Fête des 10 ans. Mgr Henri Schwery, évêque de Sion, qualifie le Foyer de "poumon spirituel du diocèse".',
-        icon: 'tabler:brand-airbnb',
-      },
-      {
-        title: '1989',
-        description:
-          'L\'abbé Jean-René Fracheboud rejoint le Foyer. Il y servira jusqu\'en 2023, marquant profondément la vie spirituelle du lieu.',
-        icon: 'tabler:user-plus',
-      },
-      {
-        title: '2023',
-        description:
-          'Le Père Guy Luisier prend la direction du Foyer, succédant à l\'abbé Fracheboud. Une nouvelle étape s\'ouvre.',
-        icon: 'tabler:user-star',
-      },
-      {
-        title: '2025',
-        description:
-          '55 ans d\'existence. Le Foyer poursuit sa mission d\'accueil et de prière, fidèle à l\'inspiration de <a href="/le-foyer/marthe-robin" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">Marthe Robin</a>.',
-        icon: 'tabler:confetti',
-      },
-    ]}
-    image={{
-      src: fddmVitrailChapelle,
-      alt: 'Vitrail coloré de la chapelle du Foyer de Charité — lumière, rouge, bleu et or',
-    }}
-  />
+  <!-- Introduction -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <p class="text-lg text-muted text-center leading-relaxed">
+      Ce Foyer, comme tous les autres présents dans le monde, appartient à l'Œuvre internationale
+      des Foyers de Charité, reconnue par le Conseil Pontifical pour les laïcs comme
+      « Association privée de fidèles de caractère international ».
+      Voici les repères de notre histoire, de la fondation à nos jours.
+    </p>
+  </section>
+
+  <!-- Timeline -->
+  {timeline.map((section) => (
+    <section class="relative px-4 sm:px-6 mx-auto lg:px-8 max-w-6xl">
+      <!-- Decade marker -->
+      <div class="flex items-center gap-4 mb-12 mt-16 first:mt-0">
+        <div class="h-px flex-1 bg-gradient-to-r from-transparent to-accent-400/30"></div>
+        <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-accent-400 whitespace-nowrap">
+          {section.decade}
+        </h2>
+        <div class="h-px flex-1 bg-gradient-to-l from-transparent to-accent-400/30"></div>
+      </div>
+
+      <!-- Events -->
+      <div class="relative">
+        <!-- Vertical line -->
+        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary-600/20 via-primary-600/40 to-primary-600/20 md:-translate-x-px" aria-hidden="true"></div>
+
+        {section.events.map((event, i) => (
+          <div class={`timeline-entry relative flex flex-col md:flex-row md:items-start gap-4 md:gap-8 mb-12 last:mb-0 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+            <!-- Dot -->
+            <div class={`absolute left-4 md:left-1/2 w-3 h-3 rounded-full -translate-x-1/2 mt-2 z-10 ring-4 ring-white ${event.highlight ? 'bg-accent-400 w-4 h-4 ring-accent-400/20' : 'bg-primary-600'}`} aria-hidden="true"></div>
+
+            <!-- Spacer for centering -->
+            <div class="hidden md:block md:w-1/2" />
+
+            <!-- Card -->
+            <div class={`ml-10 md:ml-0 md:w-1/2 ${i % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
+              <time class={`inline-block text-sm font-bold uppercase tracking-wider mb-2 ${event.highlight ? 'text-accent-400' : 'text-primary-600/70'}`}>
+                {event.date}
+              </time>
+              <h3 class="text-xl font-bold text-primary-600 mb-2 leading-snug">
+                {event.title}
+              </h3>
+              <p class="text-muted leading-relaxed" set:html={event.text} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <!-- Bottom spacer -->
+  <div class="h-16"></div>
 
   <!-- Citation -->
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl bg-surface-special">
@@ -137,15 +281,15 @@ const metadata = {
         icon: 'tabler:arrow-right',
       },
       {
-        text: 'Voir le programme',
-        href: '/programme',
+        text: 'Découvrir le Foyer',
+        href: '/le-foyer',
       },
     ]}
   >
     <Fragment slot="title">55 ans d'<span class="text-accent-400">accueil</span></Fragment>
 
     <Fragment slot="subtitle">
-      55 ans après sa fondation, le Foyer poursuit sa mission d'accueil et de prière. Les portes sont ouvertes.<br />
+      Depuis 1970, le Foyer poursuit sa mission d'accueil et de prière. Les portes sont ouvertes.<br />
       Personne n'est refusé pour des raisons financières.
     </Fragment>
     <Fragment slot="bg">
@@ -161,3 +305,25 @@ const metadata = {
     </Fragment>
   </CallToAction>
 </Layout>
+
+<script>
+  const entries = document.querySelectorAll('.timeline-entry');
+  const observer = new IntersectionObserver(
+    (items) => {
+      items.forEach((item) => {
+        if (item.isIntersecting) {
+          (item.target as HTMLElement).style.opacity = '1';
+          (item.target as HTMLElement).style.transform = 'translateY(0)';
+          observer.unobserve(item.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+  );
+  entries.forEach((entry) => {
+    (entry as HTMLElement).style.opacity = '0';
+    (entry as HTMLElement).style.transform = 'translateY(24px)';
+    (entry as HTMLElement).style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(entry);
+  });
+</script>
