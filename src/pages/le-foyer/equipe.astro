@@ -4,7 +4,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import fddmEquipe from '~/assets/images/fddm-equipe.jpg';
+import fddmEquipe from '~/assets/images/fddm-equipe-2026.jpg';
 import fddmMarcheGroupe from '~/assets/images/fddm-marche-groupe.jpg';
 
 const metadata = {
@@ -18,7 +18,7 @@ const metadata = {
   <Hero
     tagline="Présentation"
     title="L'équipe du Foyer"
-    subtitle="Une communauté de prêtres, laïcs et bénévoles au service de l'accueil."
+    subtitle="Le Foyer Dents-du-Midi vous accueille pour votre retraite spirituelle comme dans une famille."
   />
 
   <!-- Équipe principale -->
@@ -30,35 +30,29 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2 text-primary-600">
-        Les membres de <span class="text-accent-400">la communauté</span>
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl mb-4 text-primary-600">
+        L'équipe du <span class="text-accent-400">Foyer</span>
       </h2>
-      <div class="space-y-4 text-muted">
-        <div>
-          <h3 class="text-lg font-semibold text-primary-600">P. Guy Luisier</h3>
-          <p class="text-sm">Prêtre du Foyer (depuis 2023)</p>
-        </div>
+      <p class="text-muted mb-6">
+        Actuellement, la petite équipe se compose du prêtre du Foyer <strong>Guy Luisier</strong>,
+        de l'intendant <strong>Olivier Sudan</strong>, de <strong>Giovanna Tassano</strong> venue du Foyer de la Flatière,
+        d'employées de maison et cuisinière <strong>Sandra</strong>, <strong>Cristina</strong> et <strong>Monika</strong>.
+        Et depuis ce 1<sup>er</sup> février 2026, <strong>David La Frambroise</strong>, en tant qu'intendant-adjoint.
+      </p>
 
-        <div>
-          <h3 class="text-lg font-semibold text-primary-600">Olivier Sudan</h3>
-          <p class="text-sm">Intendant</p>
-        </div>
+      <h3 class="text-xl font-bold text-primary-600 mb-2">Les « Amis du Foyer »</h3>
+      <p class="text-muted mb-6">
+        Le Foyer peut compter sur un solide réseau de bénévoles et d'instances bienveillantes œuvrant dans et pour le Foyer :
+        participation à l'accueil et au service des retraitants, entretien du parc et des bâtiments, travail en cuisine,
+        « services professionnels » offerts, dons de produits (légumes, fruits…), animations des célébrations…
+      </p>
 
-        <div>
-          <h3 class="text-lg font-semibold text-primary-600">Giovanna Tassano</h3>
-          <p class="text-sm">Membre de l'équipe (venue du Foyer de la Flatière)</p>
-        </div>
-
-        <div>
-          <h3 class="text-lg font-semibold text-primary-600">Sandra, Cristina, Monika</h3>
-          <p class="text-sm">Employées de maison et cuisinières</p>
-        </div>
-
-        <div>
-          <h3 class="text-lg font-semibold text-primary-600">Georges Mariétan</h3>
-          <p class="text-sm">Président de l'Association</p>
-        </div>
-      </div>
+      <h3 class="text-xl font-bold text-primary-600 mb-2">Les « Conseils »</h3>
+      <p class="text-muted">
+        La responsabilité de la Maison est assurée par le prêtre du Foyer, l'intendant et le président de l'Association
+        « Foyer Dents-du-Midi » <strong>Georges Mariétan</strong> ; trio de direction soutenu par le Comité de l'Association,
+        le Conseil pastoral et l'Équipe communautaire.
+      </p>
     </Fragment>
 
     <Fragment slot="bg">
