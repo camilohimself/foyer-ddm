@@ -7,18 +7,19 @@ type: "couples"
 preacher: "Bertrand et Françoise Georges"
 price: "~CHF 360.-/adulte"
 variant: "WE pour les couples - avec accueil des enfants"
+image: "/images/fddm-chagall-couple.jpg"
 registrationOpen: true
 ---
 
-**Presentation des animateurs :**
+**À propos des intervenants :**
 
-Bertrand et Francoise Georges sont maries depuis 34 ans. Ils sont les heureux parents de trois enfants et grands-parents de deux petites filles. Francoise anime un atelier d'iconographie. Bertrand est diacre permanent et theologien. Depuis de nombreuses annees ils sont engages ensemble dans divers services de l'Eglise fribourgeoise. Le cheminement des couples et des familles leurs tient particulierement a coeur.
+Bertrand et Françoise Georges sont mariés depuis 34 ans. Ils sont les heureux parents de trois enfants et grands-parents de deux petites filles. Françoise anime un atelier d'iconographie. Bertrand est diacre permanent et théologien. Depuis de nombreuses années ils sont engagés ensemble dans divers services de l'Église fribourgeoise. Le cheminement des couples et des familles leur tient particulièrement à cœur.
 
 **WEEK-END POUR COUPLES**
-**- Avec plages de silence et accueil des enfants - (\*)**
+**— Avec plages de silence et accueil des enfants — (\*)**
 
-Pour permettre aux parents de jeunes enfants de vivre un moment de ressourcement, **nous accueillons et offrons un encadrement avec une animation spirituelle aux enfants de 4 ans a 12 ans.**
+Pour permettre aux parents de jeunes enfants de vivre un moment de ressourcement, **nous accueillons et offrons un encadrement avec une animation spirituelle aux enfants de 4 ans à 12 ans.**
 
-Les jeunes des 15 ans - s'ils sont motives - peuvent participer a l'accueil des enfants plus petits.
+Les jeunes dès 15 ans — s'ils sont motivés — peuvent participer à l'accueil des enfants plus petits.
 
-(\*) IMPORTANT SI VOUS SOUHAITEZ VENIR AVEC DES ENFANTS : afin de faciliter l'organisation et la preparation de l'accueil des enfants, merci de vous inscrire suffisamment tot. Evitez le dernier moment, nous vous en sommes reconnaissants !
+(\*) IMPORTANT SI VOUS SOUHAITEZ VENIR AVEC DES ENFANTS : afin de faciliter l'organisation et la préparation de l'accueil des enfants, merci de vous inscrire suffisamment tôt. Évitez le dernier moment, nous vous en sommes reconnaissants !

@@ -8,6 +8,7 @@ preacher: "Jean-Philippe Calame, Thierry Schelling et Catherine Deppierraz"
 price: "~CHF 720.-"
 variant: "Retraite organisée par la Fraternité du Bon Samaritain"
 externalUrl: "https://fraternite-samaritain.com/retraites/"
+image: "/images/fddm-rosee-herbes.jpg"
 registrationOpen: true
 ---
 

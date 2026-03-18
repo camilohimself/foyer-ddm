@@ -7,9 +7,14 @@ type: "week-end"
 preacher: "Corinne Gossauer et Guy Luisier"
 price: "~CHF 360.-"
 variant: "Trois Jours Saints"
+image: "/images/fddm-croix-paques-chapelle.jpg"
 registrationOpen: true
 ---
 
-**Presentation de la predicatrice :**
+Retraite pour tous et en silence.
 
-Corinne Gossauer-Peroz est agente pastorale (Eglise Catholique Canton Vaud) et exerce son service comme aumoniere/accompagnante spirituelle dans plusieurs Etablissements medico-sociaux de La Broye. Auparavant, elle s'est engagee pendant 26 ans dans l'Armee du Salut en Suisse, en France et en Angleterre. Auteure de trois livres, Corinne aime partager a ce qui touche la vie spirituelle et interieure aux rythmes des evenements de nos vies.
+**À propos de l'intervenante :**
+
+Corinne Gossauer-Peroz est agente pastorale (Église Catholique Canton Vaud) et exerce son service comme aumônière et accompagnante spirituelle dans plusieurs Établissements médico-sociaux de La Broye. Auparavant, elle s'est engagée pendant 26 ans dans l'Armée du Salut en Suisse, en France et en Angleterre.
+
+Auteure de trois livres, Corinne aime partager ce qui touche la vie spirituelle et intérieure, aux rythmes des événements de nos vies.

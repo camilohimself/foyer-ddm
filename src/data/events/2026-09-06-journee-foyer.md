@@ -6,6 +6,7 @@ type: "journees"
 preacher: "Guy Luisier et l'équipe du Foyer"
 price: "Libre"
 variant: "Rencontre et convivialité"
+image: "/images/fddm-batiment-automne-parc.jpg"
 registrationOpen: true
 ---
 

@@ -13,19 +13,39 @@ const metadata = {
   description: `${upcomingEvents.length} retraites spirituelles à venir au Foyer de Charité Dents-du-Midi, Bex. Journées, week-ends, retraites de 6 jours et préparation au mariage. Calendrier complet ${currentYear}.`,
 };
 
-// --- Mapping type → badge + label + href + card label ---
-const typeBadge: Record<string, { badge: string; label: string; cardLabel: string; href: string }> = {
-  '6-jours': { badge: 'bg-primary-800', label: '6 jours', cardLabel: 'Retraite de six jours', href: '/retraites/6-jours' },
-  'week-end': { badge: 'bg-primary-500', label: 'Week-end', cardLabel: 'Week-end pour tous', href: '/retraites/week-ends' },
-  couples: { badge: 'bg-rose-300', label: 'Couples', cardLabel: 'Week-end en couple', href: '/retraites/week-ends#en-couple' },
-  familles: { badge: 'bg-teal-400/80', label: 'Familles', cardLabel: 'Week-end en famille', href: '/retraites/week-ends#en-famille' },
-  journees: { badge: 'bg-accent-400', label: 'Journée', cardLabel: 'Journées', href: '/retraites/journees' },
-  mariage: { badge: 'bg-violet-300', label: 'Mariage', cardLabel: 'Préparation au mariage', href: '/retraites/preparation-mariage' },
+// --- Mapping type → couleur texte + label + image par défaut ---
+const typeConfig: Record<string, { textColor: string; badge: string; label: string; cardLabel: string; href: string; defaultImage: string }> = {
+  '6-jours': { textColor: 'text-primary-800', badge: 'bg-primary-800', label: '6 jours', cardLabel: 'Retraite de six jours', href: '/retraites/6-jours', defaultImage: '/images/fddm-chapelle-etoile.jpg' },
+  'week-end': { textColor: 'text-primary-500', badge: 'bg-primary-500', label: 'Week-end', cardLabel: '3 jours pour tous', href: '/retraites/week-ends', defaultImage: '/images/fddm-chapelle-tournesols.jpg' },
+  couples: { textColor: 'text-rose-400', badge: 'bg-rose-300', label: 'Couples', cardLabel: '3 jours pour couples', href: '/retraites/week-ends#en-couple', defaultImage: '/images/fddm-couple-marche.jpg' },
+  familles: { textColor: 'text-teal-500', badge: 'bg-teal-400/80', label: 'Familles', cardLabel: 'Week-end en famille', href: '/retraites/week-ends#en-famille', defaultImage: '/images/fddm-sentier-groupe.jpeg' },
+  journees: { textColor: 'text-accent-500', badge: 'bg-accent-400', label: 'Journée', cardLabel: 'Journées', href: '/retraites/journees', defaultImage: '/images/fddm-dents-du-midi-printemps.jpg' },
+  mariage: { textColor: 'text-violet-400', badge: 'bg-violet-300', label: 'Mariage', cardLabel: 'Préparation au mariage', href: '/retraites/preparation-mariage', defaultImage: '/images/fddm-couple-mains.jpg' },
 };
+
+// --- Grouper les événements par mois ---
+const monthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+function groupByMonth(events: typeof upcomingEvents) {
+  const groups: { key: string; label: string; events: typeof upcomingEvents }[] = [];
+  for (const event of events) {
+    const d = new Date(event.data.dateStart + 'T12:00:00');
+    const key = `${d.getFullYear()}-${String(d.getMonth()).padStart(2, '0')}`;
+    const label = `${monthNames[d.getMonth()]} ${d.getFullYear()}`;
+    let group = groups.find((g) => g.key === key);
+    if (!group) {
+      group = { key, label, events: [] };
+      groups.push(group);
+    }
+    group.events.push(event);
+  }
+  return groups;
+}
+
+const upcomingByMonth = groupByMonth(upcomingEvents);
 
 // --- JSON-LD events data (all events for SEO) ---
 const jsonLdEvents = eventsToJsonLd(allEvents);
-
 ---
 
 <Layout metadata={metadata}>
@@ -57,7 +77,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
   <section class="py-12 md:py-20">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <!-- Filtres par type -->
-      <div id="event-filters" class="flex flex-wrap gap-2 mb-8 justify-center">
+      <div id="event-filters" class="flex flex-wrap gap-2 mb-12 justify-center">
         <button data-filter="all" class="filter-btn active inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border border-gray-200 bg-primary-800 text-white transition-all cursor-pointer">
           Tout
         </button>
@@ -81,57 +101,82 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
         </button>
       </div>
 
-      <!-- Retraites à venir -->
-      <div id="events-list" class="space-y-6">
-        {upcomingEvents.map((event) => {
-          const info = typeBadge[event.data.type] || { badge: 'bg-gray-500', label: event.data.type, cardLabel: event.data.type, href: '#' };
-          return (
-            <div class="event-card rounded-lg border border-gray-200 hover:shadow-md transition-shadow bg-white overflow-hidden" data-type={event.data.type}>
-              <div class="flex flex-col sm:flex-row gap-5 p-5">
-                <div class="flex-1">
-                  <p class="text-sm font-medium text-gray-500 mb-1">{info.cardLabel}</p>
-                  <h3 class="text-lg font-bold text-primary-800 mb-2">{event.data.title}</h3>
-                  <p class="text-sm text-gray-600 mb-1">
-                    {event.data.dateDetails || formatDateRange(event.data.dateStart, event.data.dateEnd)}
-                  </p>
-                  <p class="text-sm text-gray-600">
-                    Avec {event.data.preacher}
-                  </p>
-                  {event.data.variant && (
-                    <p class="text-sm text-accent-500 font-medium mt-1">
-                      - {event.data.variant} -
-                    </p>
+      <!-- Retraites à venir — groupées par mois -->
+      <div id="events-list">
+        {upcomingByMonth.map((month) => (
+          <div class="month-group mb-12" data-month={month.key}>
+            <h2 class="text-2xl md:text-3xl font-bold uppercase tracking-wide text-gray-800">{month.label}</h2>
+            <div class="h-0.5 bg-accent-400 mt-3 mb-8"></div>
+
+            {month.events.map((event, idx) => {
+              const info = typeConfig[event.data.type] || { textColor: 'text-gray-500', badge: 'bg-gray-500', label: event.data.type, cardLabel: event.data.type, href: '#', defaultImage: '/images/fddm-chapelle-etoile.jpg' };
+              const eventImage = event.data.image || info.defaultImage;
+              return (
+                <>
+                  <div class="event-card flex flex-col md:flex-row gap-6 py-6" data-type={event.data.type}>
+                    {/* Photo */}
+                    <div class="md:w-72 shrink-0">
+                      <img
+                        src={eventImage}
+                        alt={event.data.title}
+                        class="w-full h-44 md:h-40 object-cover rounded"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Contenu */}
+                    <div class="flex-1 min-w-0">
+                      <p class={`text-sm font-medium ${info.textColor} mb-1`}>{info.cardLabel}</p>
+                      <h3 class="text-xl md:text-2xl font-medium text-gray-800 mb-2">{event.data.title}</h3>
+                      <p class="text-sm text-gray-500 mb-0.5">
+                        {event.data.dateDetails || formatDateRange(event.data.dateStart, event.data.dateEnd)}
+                      </p>
+                      <p class="text-sm text-gray-500">
+                        Intervenant: {event.data.preacher}
+                      </p>
+                      {event.data.variant && (
+                        <p class="text-sm text-accent-500 font-medium mt-1">
+                          {event.data.variant}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Boutons */}
+                    <div class="flex md:flex-col lg:flex-row gap-2 md:self-center shrink-0">
+                      <a
+                        href={`/programme/${event.id}`}
+                        class="inline-flex items-center justify-center text-sm font-medium border border-gray-300 text-gray-600 px-6 py-2.5 rounded-full hover:bg-gray-50 transition"
+                      >
+                        Infos
+                      </a>
+                      {event.data.externalUrl ? (
+                        <a
+                          href={event.data.externalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center justify-center text-sm font-semibold bg-accent-400 text-white px-6 py-2.5 rounded-full hover:bg-accent-300 transition"
+                        >
+                          Inscription
+                        </a>
+                      ) : (
+                        <a
+                          href={`/contact/inscription?retraite=${event.id}`}
+                          class="inline-flex items-center justify-center text-sm font-semibold bg-accent-400 text-white px-6 py-2.5 rounded-full hover:bg-accent-300 transition"
+                        >
+                          Inscription
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                  {/* Séparateur orange entre les événements */}
+                  {idx < month.events.length - 1 && (
+                    <div class="border-b border-accent-400/30"></div>
                   )}
-                </div>
-                <div class="sm:self-center shrink-0 flex gap-2">
-                  <a
-                    href={`/programme/${event.id}`}
-                    class="inline-flex items-center justify-center text-sm font-medium border border-gray-300 text-primary-700 px-5 py-2 rounded-full hover:bg-gray-50 transition"
-                  >
-                    Infos
-                  </a>
-                  {event.data.externalUrl ? (
-                    <a
-                      href={event.data.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center justify-center text-sm font-semibold bg-accent-400 text-white px-5 py-2 rounded-full hover:bg-accent-300 transition"
-                    >
-                      Inscription ↗
-                    </a>
-                  ) : (
-                    <a
-                      href={`/contact/inscription?retraite=${event.id}`}
-                      class="inline-flex items-center justify-center text-sm font-semibold bg-accent-400 text-white px-5 py-2 rounded-full hover:bg-accent-300 transition"
-                    >
-                      Inscription
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+                </>
+              );
+            })}
+          </div>
+        ))}
       </div>
 
       <!-- Retraites passées (SEO preserved) -->
@@ -142,7 +187,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
           </summary>
           <div class="space-y-3 mt-4">
             {pastEvents.map((event) => {
-              const info = typeBadge[event.data.type] || { badge: 'bg-gray-500', label: event.data.type, href: '#' };
+              const info = typeConfig[event.data.type] || { textColor: 'text-gray-500', badge: 'bg-gray-500', label: event.data.type, href: '#', defaultImage: '' };
               return (
                 <div class="flex flex-col sm:flex-row gap-4 p-4 rounded-lg border border-gray-100 bg-gray-50/50 opacity-60">
                   <div class="sm:w-44 shrink-0">
@@ -176,7 +221,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
     isDark
     actions={[
       {
-        variant: 'primary',
+        variant: 'primary' as const,
         text: "S'inscrire à une retraite",
         href: '/contact/inscription',
         icon: 'tabler:arrow-right',
@@ -198,6 +243,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
       <div class="absolute inset-0 bg-primary-600"></div>
     </Fragment>
   </CallToAction>
+
   <style>
     .filter-btn {
       background-color: white;
@@ -217,11 +263,20 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
     .event-card.hidden-by-filter {
       display: none;
     }
+    /* Cacher le séparateur si l'event suivant est filtré */
+    .event-card.hidden-by-filter + .border-b {
+      display: none;
+    }
+    /* Cacher les groupes de mois vides */
+    .month-group.hidden-month {
+      display: none;
+    }
   </style>
 
   <script>
     const filters = document.querySelectorAll<HTMLButtonElement>('#event-filters .filter-btn');
     const cards = document.querySelectorAll<HTMLDivElement>('.event-card');
+    const monthGroups = document.querySelectorAll<HTMLDivElement>('.month-group');
 
     filters.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -232,6 +287,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
           btn.classList.remove('active');
           document.querySelector('[data-filter="all"]')?.classList.add('active');
           cards.forEach((card) => card.classList.remove('hidden-by-filter'));
+          monthGroups.forEach((g) => g.classList.remove('hidden-month'));
           return;
         }
 
@@ -245,6 +301,16 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
             card.classList.remove('hidden-by-filter');
           } else {
             card.classList.add('hidden-by-filter');
+          }
+        });
+
+        // Cacher les mois vides
+        monthGroups.forEach((group) => {
+          const visibleCards = group.querySelectorAll('.event-card:not(.hidden-by-filter)');
+          if (visibleCards.length === 0) {
+            group.classList.add('hidden-month');
+          } else {
+            group.classList.remove('hidden-month');
           }
         });
       });

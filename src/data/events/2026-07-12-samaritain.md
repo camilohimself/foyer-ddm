@@ -6,7 +6,8 @@ dateDetails: "Du dimanche 12 juillet 2026 (18h30) au samedi 18 juillet (10h)"
 type: "6-jours"
 preacher: "Guy Luisier"
 price: "~CHF 720.-"
+image: "/images/fddm-chagall-samaritain.jpg"
 registrationOpen: true
 ---
 
-**Pour tous et en silence, avec un jour de marche pour ceux qui le desirent.**
+**Pour tous et en silence, avec un jour de marche pour ceux qui le désirent.**
