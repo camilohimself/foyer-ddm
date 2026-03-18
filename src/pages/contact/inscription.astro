@@ -761,7 +761,6 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     addRow('Retraite', select.options[select.selectedIndex] ? select.options[select.selectedIndex].textContent : '');
     addRow('Type', getSelectedType());
 
-    var type = getSelectedType();
     var showAdulte2 = !fieldsetAdulte2.classList.contains('hidden');
 
     function addAdulteRecap(num, heading) {

@@ -15,15 +15,6 @@ export async function getStaticPaths() {
 const { event } = Astro.props;
 const { Content } = await render(event);
 
-const typeLabels: Record<string, string> = {
-  '6-jours': '6 jours pour tous',
-  'week-end': 'Week-end pour tous',
-  couples: 'Week-end en couple',
-  familles: 'Week-end en famille',
-  journees: 'Journée de ressourcement',
-  mariage: 'Préparation au mariage',
-};
-
 const metadata = {
   title: `${event.data.title} — Retraite au Foyer de Charité`,
   description: `${event.data.title} — ${event.data.preacher}. ${event.data.dateDetails || formatDateRange(event.data.dateStart, event.data.dateEnd)}. Retraite spirituelle au Foyer de Charité Dents-du-Midi, Bex.`,

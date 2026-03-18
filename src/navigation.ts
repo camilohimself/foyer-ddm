@@ -1,4 +1,4 @@
-import { getPermalink, getAsset } from './utils/permalinks';
+import { getPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
@@ -51,7 +51,7 @@ export const headerData = {
     {
       text: "S'inscrire",
       href: getPermalink('/contact/inscription') + '?new',
-      variant: 'primary',
+      variant: 'primary' as const,
     },
   ],
 };

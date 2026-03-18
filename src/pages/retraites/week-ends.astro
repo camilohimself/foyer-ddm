@@ -28,7 +28,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   {jsonLdEvents.map((schema) => (
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   ))}
 
   <Hero>

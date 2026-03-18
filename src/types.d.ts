@@ -1,4 +1,3 @@
-import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import type { HTMLAttributes, ImageMetadata } from 'astro/types';
 
 export interface Post {
@@ -37,7 +36,7 @@ export interface Post {
   draft?: boolean;
 
   /**  */
-  Content?: AstroComponentFactory;
+  Content?: any;
   content?: string;
 
   /**  */
@@ -89,7 +88,7 @@ export interface MetaDataTwitter {
 }
 
 export interface Image {
-  src: string;
+  src: string | ImageMetadata;
   alt?: string;
 }
 
