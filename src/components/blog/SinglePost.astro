@@ -7,6 +7,7 @@ import SocialShare from '~/components/common/SocialShare.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
+import { APP_BLOG } from 'astrowind:config';
 
 import type { Post } from '~/types';
 
@@ -61,9 +62,13 @@ const blogPostingSchema = {
               <>
                 {' '}
                 ·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category.slug, 'category')}>
-                  {post.category.title}
-                </a>
+                {APP_BLOG?.category?.isEnabled ? (
+                  <a class="hover:underline inline-block" href={getPermalink(post.category.slug, 'category')}>
+                    {post.category.title}
+                  </a>
+                ) : (
+                  <span class="inline-block">{post.category.title}</span>
+                )}
               </>
             )
           }
