@@ -97,6 +97,34 @@
   padding: 0 5px;
 }
 
+/* Mobile menu full height — dvh respects mobile browser chrome */
+.h-mobile-menu {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Mobile landscape: compact header + adapted nav positioning */
+@media (max-width: 767px) and (orientation: landscape) {
+  #header img {
+    height: 2.75rem; /* 44px instead of 80px */
+  }
+
+  #header [data-aw-toggle-menu] {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  #header > div:last-child {
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
+  }
+
+  #header.expanded nav {
+    top: 52px;
+    bottom: 50px !important;
+  }
+}
+
 .dropdown:focus .dropdown-menu,
 .dropdown:focus-within .dropdown-menu,
 .dropdown:hover .dropdown-menu {

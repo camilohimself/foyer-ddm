@@ -47,7 +47,7 @@ import { UI } from 'astrowind:config';
     attachEvent('#header nav', 'click', function () {
       document.querySelector('[data-aw-toggle-menu]')?.classList.remove('expanded');
       document.body.classList.remove('overflow-hidden');
-      document.getElementById('header')?.classList.remove('h-screen');
+      document.getElementById('header')?.classList.remove('h-mobile-menu');
       document.getElementById('header')?.classList.remove('expanded');
       document.getElementById('header')?.classList.remove('bg-page');
       document.querySelector('#header nav')?.classList.add('hidden');
@@ -57,7 +57,7 @@ import { UI } from 'astrowind:config';
     attachEvent('[data-aw-toggle-menu]', 'click', function (_, elem) {
       elem.classList.toggle('expanded');
       document.body.classList.toggle('overflow-hidden');
-      document.getElementById('header')?.classList.toggle('h-screen');
+      document.getElementById('header')?.classList.toggle('h-mobile-menu');
       document.getElementById('header')?.classList.toggle('expanded');
       document.getElementById('header')?.classList.toggle('bg-page');
       document.querySelector('#header nav')?.classList.toggle('hidden');
@@ -108,15 +108,27 @@ import { UI } from 'astrowind:config';
       newlink.click();
     });
 
-    const screenSize = window.matchMedia('(max-width: 767px)');
-    screenSize.addEventListener('change', function () {
+    function closeMobileMenu() {
       document.querySelector('[data-aw-toggle-menu]')?.classList.remove('expanded');
       document.body.classList.remove('overflow-hidden');
-      document.getElementById('header')?.classList.remove('h-screen');
+      document.getElementById('header')?.classList.remove('h-mobile-menu');
       document.getElementById('header')?.classList.remove('expanded');
       document.getElementById('header')?.classList.remove('bg-page');
       document.querySelector('#header nav')?.classList.add('hidden');
       document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
+    }
+
+    const screenSize = window.matchMedia('(max-width: 767px)');
+    screenSize.addEventListener('change', closeMobileMenu);
+
+    // Close mobile menu on orientation change (most phones stay under 767px in landscape)
+    let lastOrientation = screen.orientation?.type;
+    window.addEventListener('resize', function () {
+      const currentOrientation = screen.orientation?.type;
+      if (currentOrientation !== lastOrientation) {
+        lastOrientation = currentOrientation;
+        closeMobileMenu();
+      }
     });
 
     function pageHasHero() {
@@ -157,7 +169,7 @@ import { UI } from 'astrowind:config';
       elem.classList.remove('expanded');
     }
     document.body.classList.remove('overflow-hidden');
-    document.getElementById('header')?.classList.remove('h-screen');
+    document.getElementById('header')?.classList.remove('h-mobile-menu');
     document.getElementById('header')?.classList.remove('expanded');
     document.querySelector('#header nav')?.classList.add('hidden');
   };
