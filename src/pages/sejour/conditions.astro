@@ -1,0 +1,108 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Conditions de séjour — Foyer de Charité Dents-du-Midi',
+  description: 'Conditions de séjour au Foyer de Charité à Bex : participation financière, engagement, silence, informations pratiques pour votre retraite.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero>
+    <Fragment slot="title">
+      Conditions de <span class="text-accent-400">séjour</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Tout ce qu'il faut savoir avant de venir en retraite au Foyer de Charité Dents-du-Midi.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-facade-ete.jpg"
+          alt="Le bâtiment du Foyer de Charité en été"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 max-w-3xl">
+    <div class="space-y-8 text-gray-700">
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Engagement</h2>
+        <p>En vous inscrivant, vous vous engagez à participer à la retraite dans son intégralité. Un séjour avant ou après les dates indiquées n'est pas possible.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Désistement</h2>
+        <p>En cas de désistement, merci de nous avertir aussitôt par téléphone ou par courriel, afin que quelqu'un d'autre puisse être accueilli.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Le silence</h2>
+        <p>La particularité des Foyers de Charité est de vous inviter à rechercher, dans le silence, une intimité personnelle avec Dieu. Le silence est demandé à tous car il favorise le repos et le cheminement intérieur dans le respect de chacun. Un dialogue avec l'intervenant est possible sur rendez-vous. Un moment d'amitié et d'échanges est proposé en fin de retraite.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">À prendre avec vous</h2>
+        <p>Votre lit sera fait. Prenez simplement vos linges de toilette, chaussures d'intérieur et, lors de la belle saison, votre petit matériel de randonnée.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Animaux</h2>
+        <p>Les animaux ne peuvent pas être acceptés.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Participation financière</h2>
+        <p>Les Foyers de Charité désirent que chacun puisse participer à une retraite, quelles que soient ses ressources financières. Nous vous invitons à donner environ CHF 120.- par jour et par adulte pour couvrir les frais de séjour (pension complète et animation). Pour les enfants, les parents évaluent eux-mêmes ce qui leur semble juste. Si ces montants sont une charge trop lourde, merci d'aider le Foyer par des dons par la suite.</p>
+        <p class="mt-3">Il est possible de payer en euros (nous ne pouvons pas accepter les chèques).</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Maillage interne -->
+  <section class="py-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-sm text-muted">
+        Consultez aussi
+        <a href="/sejour/chambres" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">les chambres</a>,
+        <a href="/sejour/journee-type" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">la journée type</a> et
+        <a href="/sejour/acces" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">comment venir</a>.
+      </p>
+    </div>
+  </section>
+
+  <CallToAction
+    isDark
+    actions={[
+      {
+        variant: 'primary',
+        text: "S'inscrire à une retraite",
+        href: '/contact/inscription',
+        icon: 'tabler:arrow-right',
+      },
+      {
+        text: 'Voir le programme',
+        href: '/programme',
+      },
+    ]}
+  >
+    <Fragment slot="title">Prêt à <span class="text-accent-400">venir</span> ?</Fragment>
+
+    <Fragment slot="subtitle">
+      Vous n'avez qu'à venir — le Foyer s'occupe du reste. Inscrivez-vous dès maintenant.<br />
+      Personne n'est refusé pour des raisons financières.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

@@ -72,21 +72,21 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       <input type="hidden" name="form-name" value="inscription" />
       <p class="hidden"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
 
-      <!-- Avertissement demande non-validée -->
-      <div class="mb-8 p-4 rounded-xl bg-amber-50 border border-amber-200">
-        <div class="flex gap-3">
-          <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <p class="text-sm text-amber-800">
-            <strong>Important :</strong> ce formulaire constitue une <strong>demande d'inscription</strong>.
-            Votre place sera confirmée uniquement après validation par un membre du Foyer, qui vous contactera par email ou téléphone.
-          </p>
-        </div>
-      </div>
-
       <!-- ============================================ -->
       <!-- STEP 1 — Retraite & Profil                  -->
       <!-- ============================================ -->
       <div id="wizard-step-1" class="wizard-step active" data-step="1">
+        <!-- Avertissement demande non-validée (étape 1 uniquement) -->
+        <div class="mb-8 p-4 rounded-xl bg-amber-50 border border-amber-200">
+          <div class="flex gap-3">
+            <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p class="text-sm text-amber-800">
+              <strong>Important :</strong> ce formulaire constitue une <strong>demande d'inscription</strong>.
+              Celle-ci sera confirmée uniquement par validation par un membre du Foyer. Vous recevrez la confirmation entre 48 et 72h.
+            </p>
+          </div>
+        </div>
+
         <h2 class="text-2xl font-bold text-primary-600 mb-2">Choisissez votre retraite</h2>
         <p class="text-muted mb-8">Sélectionnez la retraite et indiquez votre profil de participant.</p>
 
@@ -349,7 +349,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
 
             <div>
               <p class="font-semibold">Le silence</p>
-              <p>La particularité des Foyers de Charité est de vous inviter à rechercher, dans le silence, une intimité personnelle avec Dieu. Le silence est demandé à tous car il favorise le repos et le cheminement intérieur dans le respect de chacun. Un dialogue avec le prédicateur est possible sur rendez-vous. Un moment d'amitié et d'échanges est proposé en fin de retraite.</p>
+              <p>La particularité des Foyers de Charité est de vous inviter à rechercher, dans le silence, une intimité personnelle avec Dieu. Le silence est demandé à tous car il favorise le repos et le cheminement intérieur dans le respect de chacun. Un dialogue avec l'intervenant est possible sur rendez-vous. Un moment d'amitié et d'échanges est proposé en fin de retraite.</p>
             </div>
 
             <div>
@@ -364,7 +364,8 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
 
             <div>
               <p class="font-semibold">Participation financière</p>
-              <p>Les Foyers de Charité désirent que chacun puisse participer à une retraite, quelles que soient ses ressources financières. Nous vous invitons à donner environ CHF 120.- par jour et par adulte pour couvrir les frais de séjour (pension et animation). Pour les enfants, les parents évaluent eux-mêmes ce qui leur semble juste. Si ces montants sont une charge trop lourde, merci d'aider le Foyer par des dons par la suite.</p>
+              <p>Les Foyers de Charité désirent que chacun puisse participer à une retraite, quelles que soient ses ressources financières. Nous vous invitons à donner environ CHF 120.- par jour et par adulte pour couvrir les frais de séjour (pension complète et animation). Pour les enfants, les parents évaluent eux-mêmes ce qui leur semble juste. Si ces montants sont une charge trop lourde, merci d'aider le Foyer par des dons par la suite.</p>
+              <p>Il est possible de payer en euros (nous ne pouvons pas accepter les chèques).</p>
             </div>
           </div>
         </div>

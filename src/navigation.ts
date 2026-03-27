@@ -26,7 +26,7 @@ export const headerData = {
     {
       text: 'Séjour',
       links: [
-        { text: 'Votre séjour', href: getPermalink('/sejour') },
+        { text: 'Conditions de séjour', href: getPermalink('/sejour/conditions') },
         { text: 'Chambres', href: getPermalink('/sejour/chambres') },
         { text: 'Journée type', href: getPermalink('/sejour/journee-type') },
         { text: 'Accès', href: getPermalink('/sejour/acces') },
@@ -68,9 +68,9 @@ export const footerData = {
     {
       title: 'Infos pratiques',
       links: [
+        { text: 'Conditions de séjour', href: getPermalink('/sejour/conditions') },
         { text: 'Accès', href: getPermalink('/sejour/acces') },
         { text: 'Chambres', href: getPermalink('/sejour/chambres') },
-        { text: 'Journée type', href: getPermalink('/sejour/journee-type') },
         { text: `Programme ${new Date().getFullYear()}`, href: getPermalink('/programme') },
       ],
     },
