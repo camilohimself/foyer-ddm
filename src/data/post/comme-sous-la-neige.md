@@ -19,6 +19,6 @@ Souffle l'Esprit.
 
 En ce 21 janvier, fête de Sainte Agnès, la liturgie nous offre une magnifique hymne dont la première strophe m'a immédiatement fait penser à la photo prise récemment dans la chapelle de notre Foyer. Au petit matin, la nature blanchie de neige faisait un écrin à la croix devenue Arbre de vie, après la Veillée de Nouvel An.
 
-C'est tout un « état d'Esprit » que manifestent à la fois ce texte et cette photo : l'hiver dure (guerres vraies et fausses paix, arrogances politiques et économiques, Crans-Montana…) ; nous attendons un renouveau, un printemps pour notre monde ; sur la neige de nos terres mortes, l'Esprit et l'Eglise font mûrir les couleurs de l'éternité de Dieu. Sachons les voir afin qu'elles fassent vibrer notre espérance.
+C'est tout un « état d'Esprit » que manifestent à la fois ce texte et cette photo : l'hiver dure (guerres vraies et fausses paix, arrogances politiques et économiques, Crans-Montana…) ; nous attendons un renouveau, un printemps pour notre monde ; sur la neige de nos terres mortes, l'Esprit et l'Église font mûrir les couleurs de l'éternité de Dieu. Sachons les voir afin qu'elles fassent vibrer notre espérance.
 
 *Père Guy*

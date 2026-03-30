@@ -17,6 +17,6 @@ Parmi les très beaux moments de la journée du Foyer, le 7 septembre, il y en a
 
 *- Comment t'appelles-tu ?*
 *- Je suis Anaïte.*
-*- Anaïte, c'est toi que j'ai choisie pour mon fils. Toutes les graines que j'ai distribuées étaient des graines mortes, que j'avais grillées avant la distribution. Toi seule a eu le courage de venir avec ton pot vide. Ton honnêteté est la plus belle des fleurs et c'est ce que je voulais pour mon fils.*
+*- Anaïte, c'est toi que j'ai choisie pour mon fils. Toutes les graines que j'ai distribuées étaient des graines mortes, que j'avais grillées avant la distribution. Toi seule as eu le courage de venir avec ton pot vide. Ton honnêteté est la plus belle des fleurs et c'est ce que je voulais pour mon fils.*
 
 La leçon est plus profonde qu'il n'y paraît. Sous les apparents déboires, les pénibles déroutes et les stériles échecs de nos vies, se cachent peut-être, tout au fond, des réussites plus fécondes que l'on croit. Ne désespérons de rien !

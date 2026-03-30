@@ -9,7 +9,7 @@ tags: ["spiritualité", "carême", "message"]
 
 Il y a un verbe anglais étonnant : *to saunter* qui au premier abord signifie flâner, se balader tranquillement, en appréciant la simplicité des pas les uns devant les autres…
 
-Derrière ce verbe et cette activité se cache toute une sagesse de la vie que le philosophe américain Henry David Thoreau a décortiquée. Durant la « retraite raquettes » du Foyer au début février, nous avons apprivoisé ce grand penseur (1817-1862) qui est un des pionniers de l*a sobriété heureuse,* dont tout le monde parle aujourd'hui, dans la société comme dans notre Église.
+Derrière ce verbe et cette activité se cache toute une sagesse de la vie que le philosophe américain Henry David Thoreau a décortiquée. Durant la « retraite raquettes » du Foyer au début février, nous avons apprivoisé ce grand penseur (1817-1862) qui est un des pionniers de *la sobriété heureuse,* dont tout le monde parle aujourd'hui, dans la société comme dans notre Église.
 
 Thoreau marchait beaucoup et cela lui permettait de réfléchir au sens de sa vie, et au non-sens de la vie de nombreux de ses contemporains qui poursuivaient des objectifs économiques et relationnels inatteignables…
 
