@@ -1,5 +1,5 @@
 ---
-title: "LA JOURNÉE DU FOYER : Dieu est là ! Oui mais où ?"
+title: "LA JOURNÉE ANNUELLE DU FOYER : « Dieu est là ! Oui mais où ? »"
 dateStart: "2026-09-06"
 dateDetails: "Dimanche 6 septembre 2026 (9h45 à 16h)"
 type: "journees"
