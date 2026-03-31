@@ -16,8 +16,8 @@ const metadata = {
 // --- Mapping type → couleur texte + label + image par défaut ---
 const typeConfig: Record<string, { textColor: string; badge: string; label: string; cardLabel: string; href: string; defaultImage: string }> = {
   '6-jours': { textColor: 'text-primary-800', badge: 'bg-primary-800', label: '6 jours', cardLabel: 'Retraite de six jours', href: '/retraites/6-jours', defaultImage: '/images/fddm-chapelle-etoile.jpg' },
-  'week-end': { textColor: 'text-primary-500', badge: 'bg-primary-500', label: 'Week-end', cardLabel: '3 jours pour tous', href: '/retraites/week-ends', defaultImage: '/images/fddm-chapelle-tournesols.jpg' },
-  couples: { textColor: 'text-rose-400', badge: 'bg-rose-300', label: 'Couples', cardLabel: '3 jours pour couples', href: '/retraites/week-ends#en-couple', defaultImage: '/images/fddm-couple-marche.jpg' },
+  'week-end': { textColor: 'text-primary-500', badge: 'bg-primary-500', label: 'Week-end', cardLabel: 'Week-end pour tous', href: '/retraites/week-ends', defaultImage: '/images/fddm-chapelle-tournesols.jpg' },
+  couples: { textColor: 'text-rose-400', badge: 'bg-rose-300', label: 'Couples', cardLabel: 'Week-end pour couples', href: '/retraites/week-ends#en-couple', defaultImage: '/images/fddm-couple-marche.jpg' },
   familles: { textColor: 'text-teal-500', badge: 'bg-teal-400/80', label: 'Familles', cardLabel: 'Week-end en famille', href: '/retraites/week-ends#en-famille', defaultImage: '/images/fddm-sentier-groupe.jpeg' },
   journees: { textColor: 'text-accent-500', badge: 'bg-accent-400', label: 'Journée', cardLabel: 'Journées', href: '/retraites/journees', defaultImage: '/images/fddm-trinite-icone.jpg' },
   mariage: { textColor: 'text-violet-400', badge: 'bg-violet-300', label: 'Mariage', cardLabel: 'Préparation au mariage', href: '/retraites/preparation-mariage', defaultImage: '/images/fddm-couple-mains.jpg' },
