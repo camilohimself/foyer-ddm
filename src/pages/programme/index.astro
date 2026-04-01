@@ -6,7 +6,7 @@ import { getAllEvents, eventsToJsonLd, formatDateRange, today, currentYear } fro
 
 const allEvents = await getAllEvents();
 const upcomingEvents = allEvents.filter((e) => (e.data.dateEnd || e.data.dateStart) >= today && e.data.registrationOpen !== false);
-const pastEvents = allEvents.filter((e) => (e.data.dateEnd || e.data.dateStart) < today || e.data.registrationOpen === false);
+const pastEvents = allEvents.filter((e) => (e.data.dateEnd || e.data.dateStart) < today || e.data.registrationOpen === false).reverse();
 
 const metadata = {
   title: `Programme des retraites spirituelles ${currentYear}`,
