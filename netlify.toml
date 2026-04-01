@@ -8,7 +8,10 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Redirects : anciennes pages fusionnées dans /retraites/week-ends
+# ============================================================================
+# REDIRECTS INTERNES (pages restructurées dans le nouveau site)
+# ============================================================================
+
 [[redirects]]
   from = "/retraites/week-end"
   to = "/retraites/week-ends"
@@ -21,15 +24,293 @@
   from = "/retraites/familles"
   to = "/retraites/week-ends#en-famille"
   status = 301
-
-# Redirect : page tarifs supprimée
 [[redirects]]
   from = "/sejour/tarifs"
   to = "/sejour"
   status = 301
-
-# Redirect : page contact supprimée
 [[redirects]]
   from = "/contact"
   to = "/contact/inscription"
+  status = 301
+
+# ============================================================================
+# ANCIEN SITE JOOMLA → NOUVEAU SITE ASTRO (301 permanents)
+# ============================================================================
+
+# --- Pages principales ---
+[[redirects]]
+  from = "/contact-acces"
+  to = "/sejour/acces"
+  status = 301
+
+# --- Section /foyer → /le-foyer ---
+[[redirects]]
+  from = "/foyer"
+  to = "/le-foyer"
+  status = 301
+[[redirects]]
+  from = "/foyer/la-famille-du-foyer"
+  to = "/le-foyer"
+  status = 301
+[[redirects]]
+  from = "/foyer/marthe-robin-et-les-foyers-de-charite"
+  to = "/le-foyer"
+  status = 301
+[[redirects]]
+  from = "/foyer/marthe-robin-et-les-foyers-de-charité"
+  to = "/le-foyer"
+  status = 301
+[[redirects]]
+  from = "/foyer/2025-55-ans-du-foyer"
+  to = "/le-foyer/histoire"
+  status = 301
+[[redirects]]
+  from = "/foyer/temoignage"
+  to = "/temoignages"
+  status = 301
+[[redirects]]
+  from = "/foyer/soutenir-aider-le-foyer"
+  to = "/soutenir"
+  status = 301
+[[redirects]]
+  from = "/foyer/autres-foyers-liens"
+  to = "/le-foyer"
+  status = 301
+
+# --- Section /nos-propositions → /retraites ---
+[[redirects]]
+  from = "/nos-propositions/retraite-de-6-jours"
+  to = "/retraites/6-jours"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/3-jours-pour-tous"
+  to = "/retraites/week-ends"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/3-jour-pour-couples"
+  to = "/retraites/week-ends#en-couple"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/3-jours-pour-couples"
+  to = "/retraites/week-ends#en-couple"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/week-end-familles"
+  to = "/retraites/week-ends#en-famille"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/journees"
+  to = "/retraites/journees"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/preparation-mariage"
+  to = "/retraites/preparation-mariage"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/complet"
+  to = "/programme"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/formulaire-dinscription"
+  to = "/contact/inscription"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/formulaire-d-inscription"
+  to = "/contact/inscription"
+  status = 301
+[[redirects]]
+  from = "/nos-propositions/inscription"
+  to = "/contact/inscription"
+  status = 301
+
+# --- Section /informations-pratiques → /sejour ---
+[[redirects]]
+  from = "/informations-pratiques/une-journee-au-foyer"
+  to = "/sejour/journee-type"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/sejour"
+  to = "/sejour"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/frais-de-sejour"
+  to = "/sejour"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/frais-de-séjour"
+  to = "/sejour"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/comment-inscrire"
+  to = "/contact/inscription"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/comment-s-inscrire"
+  to = "/contact/inscription"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/accompagnement"
+  to = "/le-foyer"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/conditions"
+  to = "/sejour/conditions"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/groupe"
+  to = "/contact/inscription"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/liens"
+  to = "/le-foyer"
+  status = 301
+
+# --- Section /actu → /meditations + /programme ---
+[[redirects]]
+  from = "/actu/message-du-foyer"
+  to = "/meditations"
+  status = 301
+[[redirects]]
+  from = "/actu/recemment"
+  to = "/programme"
+  status = 301
+[[redirects]]
+  from = "/actu/messes"
+  to = "/le-foyer"
+  status = 301
+[[redirects]]
+  from = "/actu/journee-7septembre2025"
+  to = "/programme/2026-09-06-journee-foyer"
+  status = 301
+
+# --- Ancien événements /e/ → /programme/EVENT_ID ---
+[[redirects]]
+  from = "/e/silence-liberation-priere"
+  to = "/programme/2026-03-10-silence"
+  status = 301
+[[redirects]]
+  from = "/e/silence-libération-prière"
+  to = "/programme/2026-03-10-silence"
+  status = 301
+[[redirects]]
+  from = "/e/en-famille-vivre-lhymne-a-lamour"
+  to = "/programme/2026-03-13-couples-hymne"
+  status = 301
+[[redirects]]
+  from = "/e/en-famille-vivre-l-hymne-a-l-amour"
+  to = "/programme/2026-03-13-couples-hymne"
+  status = 301
+[[redirects]]
+  from = "/e/guetteurs-de-laube"
+  to = "/programme/2026-04-02-trois-jours-saints"
+  status = 301
+[[redirects]]
+  from = "/e/vers-quel-emmaus-allons-nous"
+  to = "/programme/2026-04-12-emmaus"
+  status = 301
+[[redirects]]
+  from = "/e/vers-quel-emmaüs-allons-nous"
+  to = "/programme/2026-04-12-emmaus"
+  status = 301
+[[redirects]]
+  from = "/e/ayons-des-faces-de-ressuscite"
+  to = "/programme/2026-02-20-careme"
+  status = 301
+[[redirects]]
+  from = "/e/ayons-des-faces-de-ressuscité"
+  to = "/programme/2026-02-20-careme"
+  status = 301
+[[redirects]]
+  from = "/e/elisabeth-et-marie-une-rencontre-et-nos-rencontres"
+  to = "/programme/2026-05-01-elisabeth-marie"
+  status = 301
+[[redirects]]
+  from = "/e/unis-par-lamour-fortifies-par-la-foi"
+  to = "/programme/2026-04-24-couples-foi"
+  status = 301
+[[redirects]]
+  from = "/e/unis-par-lamour-fortifiés-par-la-foi"
+  to = "/programme/2026-04-24-couples-foi"
+  status = 301
+[[redirects]]
+  from = "/e/avec-maurice-zundel-ouvrir-loreille-de-notre-coeur"
+  to = "/programme/2026-04-23-zundel"
+  status = 301
+[[redirects]]
+  from = "/e/prier-avec-les-fables-de-la-fontaine"
+  to = "/programme/2026-05-12-fables"
+  status = 301
+[[redirects]]
+  from = "/e/laudato-si-une-boussole-pour-prendre-soin-de-notre-maison-commune"
+  to = "/programme/2026-05-15-familles-laudato-si"
+  status = 301
+[[redirects]]
+  from = "/e/la-journee-du-foyer-dieu-est-la-oui-mais-ou"
+  to = "/programme/2026-09-06-journee-foyer"
+  status = 301
+[[redirects]]
+  from = "/e/la-journée-du-foyer-dieu-est-là-oui-mais-où"
+  to = "/programme/2026-09-06-journee-foyer"
+  status = 301
+[[redirects]]
+  from = "/e/mon-coeur-a-fremi-de-bonnes-paroles-du-silence-habite-a-la-parole-vivifiante"
+  to = "/programme/2026-07-05-paroles-bonnes"
+  status = 301
+[[redirects]]
+  from = "/e/mon-coeur-a-frémi-de-bonnes-paroles-du-silence-habité-a-la-parole-vivifiante"
+  to = "/programme/2026-07-05-paroles-bonnes"
+  status = 301
+[[redirects]]
+  from = "/e/les-mots-qui-blessent-la-parole-qui-guerit"
+  to = "/programme/2026-08-16-parole-guerit"
+  status = 301
+[[redirects]]
+  from = "/e/les-mots-qui-blessent-la-parole-qui-guérit"
+  to = "/programme/2026-08-16-parole-guerit"
+  status = 301
+[[redirects]]
+  from = "/e/cheminer-avec-matthieu-et-quelques-temoins"
+  to = "/programme/2026-08-09-matthieu"
+  status = 301
+[[redirects]]
+  from = "/e/cheminer-avec-matthieu-et-quelques-témoins"
+  to = "/programme/2026-08-09-matthieu"
+  status = 301
+[[redirects]]
+  from = "/e/ce-samaritain-est-de-ma-famille"
+  to = "/programme/2026-07-12-samaritain"
+  status = 301
+[[redirects]]
+  from = "/e/exercices-spirituels-retraite-oecumenique"
+  to = "/programme/2026-07-19-oecumenique"
+  status = 301
+[[redirects]]
+  from = "/e/prier-avec-l-icone-de-la-trinite"
+  to = "/programme/2026-02-12-icone-trinite"
+  status = 301
+[[redirects]]
+  from = "/e/prier-avec-l-icône-de-la-trinité"
+  to = "/programme/2026-02-12-icone-trinite"
+  status = 301
+
+# --- Fallback sections (anciens répertoires) ---
+[[redirects]]
+  from = "/nos-propositions/*"
+  to = "/retraites"
+  status = 301
+[[redirects]]
+  from = "/informations-pratiques/*"
+  to = "/sejour"
+  status = 301
+[[redirects]]
+  from = "/foyer/*"
+  to = "/le-foyer"
+  status = 301
+[[redirects]]
+  from = "/actu/*"
+  to = "/programme"
+  status = 301
+[[redirects]]
+  from = "/e/*"
+  to = "/programme"
   status = 301
