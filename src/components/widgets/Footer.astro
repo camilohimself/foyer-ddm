@@ -44,14 +44,10 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         <div id="footer-newsletter" class="mb-4">
           <p class="text-sm font-semibold text-gray-800 mb-2">Restez informés</p>
           <form
-            name="newsletter"
             method="POST"
-            action="/newsletter/confirmation"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
+            action="/.netlify/functions/newsletter"
             class="flex gap-2"
           >
-            <input type="hidden" name="form-name" value="newsletter" />
             <p class="hidden"><label>Ne pas remplir : <input name="bot-field" /></label></p>
             <input
               type="email"
