@@ -8,30 +8,50 @@
 const BREVO_LIST_ID = 3;
 const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
 
-export default async (req) => {
+export default async (req, context) => {
   if (req.method !== 'POST') {
     return new Response('Method not allowed', { status: 405 });
   }
 
-  const body = await req.text();
-  const params = new URLSearchParams(body);
+  let email = '';
+  let prenom = '';
+  let botField = '';
 
-  const email = params.get('email')?.trim();
-  const prenom = params.get('prenom')?.trim() || '';
+  // Parser le body — formData() pour les formulaires HTML standard
+  try {
+    const formData = await req.formData();
+    email = formData.get('email')?.trim() || '';
+    prenom = formData.get('prenom')?.trim() || '';
+    botField = formData.get('bot-field') || '';
+  } catch {
+    // Fallback: parser comme texte URL-encoded
+    try {
+      const body = await req.text();
+      const params = new URLSearchParams(body);
+      email = params.get('email')?.trim() || '';
+      prenom = params.get('prenom')?.trim() || '';
+      botField = params.get('bot-field') || '';
+    } catch (e) {
+      console.error('[newsletter] Impossible de parser le body:', e.message);
+    }
+  }
+
+  console.log(`[newsletter] email=${email}, prenom=${prenom}`);
 
   // Honeypot anti-spam
-  if (params.get('bot-field')) {
-    return Response.redirect(new URL('/newsletter/confirmation', req.url));
+  if (botField) {
+    return new Response(null, { status: 302, headers: { Location: '/newsletter/confirmation' } });
   }
 
   if (!email) {
-    return Response.redirect(new URL('/?newsletter=error', req.url));
+    console.error('[newsletter] Email vide — body non parsé');
+    return new Response(null, { status: 302, headers: { Location: '/?newsletter=error' } });
   }
 
   const apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
     console.error('[newsletter] BREVO_API_KEY manquante');
-    return Response.redirect(new URL('/newsletter/confirmation', req.url));
+    return new Response(null, { status: 302, headers: { Location: '/newsletter/confirmation' } });
   }
 
   try {
@@ -50,14 +70,11 @@ export default async (req) => {
       }),
     });
 
-    if (!res.ok && res.status !== 204) {
-      const err = await res.text();
-      console.error(`[newsletter] Brevo ${res.status}: ${err}`);
-    }
+    const responseText = await res.text();
+    console.log(`[newsletter] Brevo ${res.status}: ${responseText}`);
   } catch (err) {
-    console.error('[newsletter] Erreur:', err.message);
+    console.error('[newsletter] Erreur Brevo:', err.message);
   }
 
-  // Toujours rediriger — même en cas d'erreur Brevo, l'UX reste propre
-  return Response.redirect(new URL('/newsletter/confirmation', req.url));
+  return new Response(null, { status: 302, headers: { Location: '/newsletter/confirmation' } });
 };
