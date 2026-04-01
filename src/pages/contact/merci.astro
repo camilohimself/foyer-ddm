@@ -1,0 +1,81 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Message envoyé',
+  description: 'Votre message a bien été envoyé. Nous vous répondons dans les plus brefs délais.',
+  robots: { index: false, follow: false },
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="Merci"
+    title="Message envoyé"
+    subtitle="Nous avons bien reçu votre message et vous répondrons dans les meilleurs délais."
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-facade-ete.jpg"
+          alt="Le Foyer de Charité Dents-du-Midi en été"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-3xl">
+    <div class="bg-white shadow-xl rounded-2xl p-8 md:p-12 text-center">
+
+      <!-- Check icon -->
+      <div class="flex justify-center mb-6">
+        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+          <svg class="w-8 h-8 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold text-primary-600 mb-4">Merci pour votre message</h2>
+      <p class="text-muted mb-8 leading-relaxed">
+        Un membre du Foyer prendra connaissance de votre message et vous répondra par email ou téléphone.
+      </p>
+
+      <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-left">
+        <p class="text-sm text-amber-800">
+          <strong>Délai de réponse :</strong> nous nous efforçons de répondre sous 48 à 72 heures ouvrées.
+          Pour une question urgente, n'hésitez pas à nous appeler au
+          <a href="tel:+41244632222" class="font-medium underline underline-offset-2">+41 24 463 22 22</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    isDark
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Retour à l\'accueil',
+        href: '/',
+      },
+      {
+        text: 'Voir le programme',
+        href: '/programme',
+      },
+    ]}
+  >
+    <Fragment slot="title">Merci de votre <span class="text-accent-400">confiance</span></Fragment>
+    <Fragment slot="subtitle">
+      Le Foyer de Charité Dents-du-Midi se réjouit de vous accueillir.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-primary-600"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

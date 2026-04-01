@@ -44,6 +44,10 @@ export const headerData = {
       text: 'Soutenir',
       href: getPermalink('/soutenir'),
     },
+    {
+      text: 'Contact',
+      href: getPermalink('/contact'),
+    },
   ],
   actions: [
     {

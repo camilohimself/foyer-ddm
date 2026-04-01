@@ -28,10 +28,7 @@
   from = "/sejour/tarifs"
   to = "/sejour"
   status = 301
-[[redirects]]
-  from = "/contact"
-  to = "/contact/inscription"
-  status = 301
+# /contact a maintenant sa propre page (formulaire de contact général)
 
 # ============================================================================
 # ANCIEN SITE JOOMLA → NOUVEAU SITE ASTRO (301 permanents)
@@ -291,6 +288,102 @@
 [[redirects]]
   from = "/e/prier-avec-l-icône-de-la-trinité"
   to = "/programme/2026-02-12-icone-trinite"
+  status = 301
+
+# --- Ancien /programme/* (GA4 top pages — 37'165 vues non couvertes) ---
+[[redirects]]
+  from = "/programme/complet"
+  to = "/programme"
+  status = 301
+[[redirects]]
+  from = "/programme/retraite-de-6-jours"
+  to = "/retraites/6-jours"
+  status = 301
+[[redirects]]
+  from = "/programme/formulaire-inscription-retraites"
+  to = "/contact/inscription"
+  status = 301
+[[redirects]]
+  from = "/programme/formulaire-dinscription"
+  to = "/contact/inscription"
+  status = 301
+[[redirects]]
+  from = "/programme/formulaire-d-inscription"
+  to = "/contact/inscription"
+  status = 301
+[[redirects]]
+  from = "/programme/3-jours-pour-tous"
+  to = "/retraites/week-ends"
+  status = 301
+[[redirects]]
+  from = "/programme/3-jour-pour-couples"
+  to = "/retraites/week-ends#en-couple"
+  status = 301
+[[redirects]]
+  from = "/programme/3-jours-pour-couples"
+  to = "/retraites/week-ends#en-couple"
+  status = 301
+[[redirects]]
+  from = "/programme/journées"
+  to = "/retraites/journees"
+  status = 301
+[[redirects]]
+  from = "/programme/journees"
+  to = "/retraites/journees"
+  status = 301
+[[redirects]]
+  from = "/programme/preparation-mariage"
+  to = "/retraites/preparation-mariage"
+  status = 301
+[[redirects]]
+  from = "/programme/week-end-familles"
+  to = "/retraites/week-ends#en-famille"
+  status = 301
+
+# --- Ancien /renseignements/* (GA4 — 5'537 vues non couvertes) ---
+[[redirects]]
+  from = "/renseignements/une-journee-au-foyer"
+  to = "/sejour/journee-type"
+  status = 301
+[[redirects]]
+  from = "/renseignements/frais-de-sejour"
+  to = "/sejour"
+  status = 301
+[[redirects]]
+  from = "/renseignements/frais-de-séjour"
+  to = "/sejour"
+  status = 301
+[[redirects]]
+  from = "/renseignements/conditions"
+  to = "/sejour/conditions"
+  status = 301
+[[redirects]]
+  from = "/renseignements/sejour"
+  to = "/sejour"
+  status = 301
+[[redirects]]
+  from = "/renseignements/accompagnement"
+  to = "/le-foyer"
+  status = 301
+[[redirects]]
+  from = "/renseignements/liens"
+  to = "/le-foyer"
+  status = 301
+
+# --- Autres URLs GA4 manquantes ---
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/foyer/changements-au-foyer"
+  to = "/le-foyer"
+  status = 301
+
+# --- Fallback wildcards ---
+[[redirects]]
+  from = "/renseignements/*"
+  to = "/sejour"
   status = 301
 
 # --- Fallback sections (anciens répertoires) ---
