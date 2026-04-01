@@ -182,11 +182,18 @@
 
 .wizard-step.active {
   display: block;
-  animation: slideIn 400ms ease both;
+  animation: wizardIn 350ms ease both;
 }
 
-.wizard-step.exiting {
-  animation: slideOut 300ms ease both;
+@keyframes wizardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Radio card styles */

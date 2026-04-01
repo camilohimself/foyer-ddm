@@ -56,6 +56,7 @@ import { UI } from 'astrowind:config';
 
     attachEvent('[data-aw-toggle-menu]', 'click', function (_, elem) {
       elem.classList.toggle('expanded');
+      elem.setAttribute('aria-expanded', elem.classList.contains('expanded'));
       document.body.classList.toggle('overflow-hidden');
       document.getElementById('header')?.classList.toggle('h-mobile-menu');
       document.getElementById('header')?.classList.toggle('expanded');
@@ -110,6 +111,7 @@ import { UI } from 'astrowind:config';
 
     function closeMobileMenu() {
       document.querySelector('[data-aw-toggle-menu]')?.classList.remove('expanded');
+      document.querySelector('[data-aw-toggle-menu]')?.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('overflow-hidden');
       document.getElementById('header')?.classList.remove('h-mobile-menu');
       document.getElementById('header')?.classList.remove('expanded');
