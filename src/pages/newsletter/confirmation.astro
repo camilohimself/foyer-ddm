@@ -1,7 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
   title: 'Inscription confirmée — Newsletter du Foyer',
@@ -11,12 +10,20 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <Hero>
+  <Hero
+    actions={[
+      {
+        text: 'Retour à l\'accueil',
+        href: '/',
+        icon: 'tabler:arrow-left',
+      },
+    ]}
+  >
     <Fragment slot="title">
-      <span class="text-accent-400">Merci</span> pour votre inscription
+      <span class="text-accent-400">Merci</span>, c'est noté
     </Fragment>
     <Fragment slot="subtitle">
-      Vous recevrez bientôt des nouvelles du Foyer dans votre boîte mail.
+      Vous recevrez les nouvelles du Foyer directement dans votre boîte mail.
     </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0">
@@ -30,46 +37,4 @@ const metadata = {
       </div>
     </Fragment>
   </Hero>
-
-  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 max-w-2xl text-center">
-    <div class="space-y-6">
-      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent-100 text-accent-500 mb-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8" />
-          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-          <path d="m16 19 2 2 4-4" />
-        </svg>
-      </div>
-      <p class="text-gray-600 leading-relaxed">
-        Programme des retraites, méditations et nouvelles de la communauté — nous vous tiendrons informés avec soin et discrétion.
-      </p>
-      <p class="text-sm text-muted">
-        Vous pouvez vous désabonner à tout moment depuis chaque e-mail reçu.
-      </p>
-    </div>
-  </section>
-
-  <CallToAction
-    isDark
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Voir le programme',
-        href: '/programme',
-        icon: 'tabler:arrow-right',
-      },
-      {
-        text: 'Retour à l\'accueil',
-        href: '/',
-      },
-    ]}
-  >
-    <Fragment slot="title">En attendant, <span class="text-accent-400">explorez</span></Fragment>
-    <Fragment slot="subtitle">
-      Découvrez les prochaines retraites ou lisez les méditations du Père Guy.
-    </Fragment>
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-primary-600"></div>
-    </Fragment>
-  </CallToAction>
 </Layout>
