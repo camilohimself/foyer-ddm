@@ -197,6 +197,65 @@
 }
 
 /* Radio card styles */
+/* ============================================================
+   View Transitions — "Les portes du Foyer"
+   L'ancienne page s'ouvre en deux, la nouvelle apparaît derrière.
+   Respecte prefers-reduced-motion.
+   ============================================================ */
+
+/* Désactiver le crossfade par défaut d'Astro */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Ancienne page : les portes s'ouvrent depuis le centre */
+::view-transition-old(root) {
+  animation: doorOpen 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  z-index: 2;
+}
+
+/* Nouvelle page : apparaît doucement derrière */
+::view-transition-new(root) {
+  animation: doorReveal 500ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  z-index: 1;
+}
+
+@keyframes doorOpen {
+  0% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 50% 0 50%);
+    opacity: 0;
+  }
+}
+
+@keyframes doorReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Radio card styles */
 .radio-card input[type='radio']:checked + label {
   border-color: #F09A0A;
   background-color: #FFF8E8;
