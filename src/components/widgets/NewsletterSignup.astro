@@ -1,101 +1,42 @@
 ---
 /**
- * Section newsletter — Formulaire d'inscription compact.
- * Backend : Netlify Forms (sera migré vers Brevo API quand le compte sera prêt).
+ * Section newsletter — Bandeau discret d'inscription.
+ * Backend : Netlify Forms (migration Brevo prévue).
  */
-export interface Props {
-  /** Afficher en version compacte (footer) ou en section complète (page) */
-  compact?: boolean;
-}
-
-const { compact = false } = Astro.props;
 ---
 
-{compact ? (
-  <!-- Version compacte pour le footer -->
-  <div class="mt-4">
-    <p class="text-sm font-semibold text-primary-600 mb-2">Restez informés</p>
-    <form
-      name="newsletter"
-      method="POST"
-      action="/newsletter/confirmation"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      class="flex gap-2"
-    >
-      <input type="hidden" name="form-name" value="newsletter" />
-      <p class="hidden"><label>Ne pas remplir : <input name="bot-field" /></label></p>
-      <input
-        type="email"
-        name="email"
-        required
-        placeholder="Votre e-mail"
-        class="flex-1 min-w-0 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-      />
-      <button
-        type="submit"
-        class="shrink-0 px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors"
-        style="background-color: #F09A0A;"
-        onmouseenter="this.style.backgroundColor='#d98a09'"
-        onmouseleave="this.style.backgroundColor='#F09A0A'"
-      >
-        OK
-      </button>
-    </form>
-    <p class="text-xs text-muted mt-1.5">Programme, méditations et nouvelles du Foyer.</p>
-  </div>
-) : (
-  <!-- Version complète pour les pages -->
-  <section class="relative py-16 md:py-20 not-prose">
-    <div class="absolute inset-0 bg-primary-600"></div>
-    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
-      <p class="text-sm uppercase tracking-widest text-accent-300 font-semibold mb-3">Newsletter</p>
-      <h2 class="text-3xl md:text-4xl font-playball text-white mb-3">
-        Recevez des nouvelles du <span class="text-accent-300">Foyer</span>
-      </h2>
-      <p class="text-primary-100 mb-8 max-w-xl mx-auto leading-relaxed">
-        Programme des retraites, méditations du Père Guy et nouvelles de la communauté — directement dans votre boîte mail.
-      </p>
-
+<section class="relative py-8 md:py-10 not-prose border-t border-primary-500/10">
+  <div class="absolute inset-0 bg-primary-600"></div>
+  <div class="relative max-w-2xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:gap-8">
+      <div class="mb-4 sm:mb-0 sm:flex-1 min-w-0">
+        <p class="text-sm font-semibold text-white">Restez informés</p>
+        <p class="text-xs text-primary-200 mt-0.5">Programme, méditations et nouvelles du Foyer.</p>
+      </div>
       <form
         name="newsletter"
         method="POST"
         action="/newsletter/confirmation"
         data-netlify="true"
         netlify-honeypot="bot-field"
-        class="max-w-lg mx-auto"
+        class="flex gap-2 shrink-0"
       >
         <input type="hidden" name="form-name" value="newsletter" />
         <p class="hidden"><label>Ne pas remplir : <input name="bot-field" /></label></p>
-
-        <div class="flex flex-col sm:flex-row gap-3">
-          <input
-            type="text"
-            name="prenom"
-            placeholder="Prénom"
-            class="sm:w-36 px-4 py-3 text-sm bg-white/10 border border-white/20 rounded-lg text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-          />
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="Votre adresse e-mail"
-            class="flex-1 min-w-0 px-4 py-3 text-sm bg-white/10 border border-white/20 rounded-lg text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-          />
-          <button
-            type="submit"
-            class="shrink-0 px-6 py-3 text-sm font-semibold text-primary-900 bg-accent-400 hover:bg-accent-300 rounded-lg transition-colors"
-          >
-            S'inscrire
-          </button>
-        </div>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="Votre e-mail"
+          class="w-48 sm:w-56 px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-lg text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent"
+        />
+        <button
+          type="submit"
+          class="shrink-0 px-4 py-2 text-sm font-semibold text-primary-900 bg-accent-400 hover:bg-accent-300 rounded-lg transition-colors"
+        >
+          OK
+        </button>
       </form>
-
-      <p class="text-xs text-primary-200 mt-4">
-        En vous inscrivant, vous acceptez de recevoir nos communications par e-mail.
-        Désabonnement possible à tout moment.
-        <a href="/politique-de-confidentialite" class="underline underline-offset-2 hover:text-white">Politique de confidentialité</a>
-      </p>
     </div>
-  </section>
-)}
+  </div>
+</section>
