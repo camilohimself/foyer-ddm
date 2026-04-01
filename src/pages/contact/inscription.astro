@@ -82,7 +82,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
         </p>
 
         <h2 class="text-2xl font-bold text-primary-600 mb-2">Choisissez votre retraite</h2>
-        <p class="text-muted mb-8">Sélectionnez la retraite et indiquez votre profil de participant.</p>
+        <p class="text-muted mb-6">Sélectionnez la retraite et indiquez votre profil de participant.</p>
 
         <!-- Retraite -->
         <div class="mb-6">
@@ -388,23 +388,20 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       </div>
 
       <!-- Navigation -->
-      <div class="flex justify-between items-center mt-10 pt-6 border-t border-gray-100">
-        <button type="button" id="btn-prev" class="hidden px-6 py-3 rounded-xl border border-gray-300 text-primary-600 font-medium hover:bg-gray-50 transition-colors">
-          &larr; Précédent
+      <div class="mt-8 pt-5 border-t border-gray-100 space-y-3">
+        <button type="button" id="btn-next" class="w-full py-3.5 rounded-xl bg-accent-400 text-white font-semibold shadow-md shadow-accent-400/20 hover:bg-accent-300 transition-all duration-200 text-center">
+          Suivant &rarr;
         </button>
-        <div class="ml-auto">
-          <button type="button" id="btn-next" class="px-8 py-3 rounded-xl bg-accent-400 text-white font-semibold shadow-lg shadow-accent-400/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent-400/40 transition-all duration-200">
-            Suivant &rarr;
-          </button>
-          <button type="submit" id="btn-submit" class="hidden px-8 py-3 rounded-xl bg-accent-400 text-white font-semibold shadow-lg shadow-accent-400/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent-400/40 transition-all duration-200">
-            Envoyer ma demande
-          </button>
-        </div>
+        <button type="submit" id="btn-submit" class="hidden w-full py-3.5 rounded-xl bg-accent-400 text-white font-semibold shadow-md shadow-accent-400/20 hover:bg-accent-300 transition-all duration-200 text-center">
+          Envoyer ma demande
+        </button>
+        <button type="button" id="btn-prev" class="hidden w-full py-2.5 rounded-xl text-sm text-gray-400 hover:text-primary-600 transition-colors text-center">
+          &larr; Retour
+        </button>
+        <p class="text-xs text-gray-400 text-center">
+          <span class="text-accent-400">*</span> Champs obligatoires
+        </p>
       </div>
-
-      <p class="text-xs text-gray-500 text-center mt-6">
-        <span class="text-accent-400">*</span> Champs obligatoires
-      </p>
     </form>
   </section>
 </Layout>
