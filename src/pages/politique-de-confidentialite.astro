@@ -1,0 +1,155 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+
+const metadata = {
+  title: 'Politique de confidentialité — Foyer de Charité Dents-du-Midi',
+  description: 'Politique de confidentialité et gestion des cookies du site du Foyer de Charité Dents-du-Midi à Bex.',
+  robots: { index: false, follow: true },
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero>
+    <Fragment slot="title">
+      Politique de <span class="text-accent-400">confidentialité</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Comment nous protégeons vos données personnelles.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0">
+        <img
+          src="/images/fddm-facade-ete.jpg"
+          alt="Le bâtiment du Foyer de Charité en été"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/60"></div>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 max-w-3xl">
+    <div class="space-y-10 text-gray-700 text-sm leading-relaxed">
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Responsable du traitement</h2>
+        <p>
+          Foyer de Charité Dents-du-Midi<br />
+          Route de Gryon 22, 1880 Bex, Suisse<br />
+          <a href="mailto:info@foyer-dents-du-midi.ch" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">info@foyer-dents-du-midi.ch</a><br />
+          +41 24 463 22 22
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Cadre juridique</h2>
+        <p>
+          Le traitement de vos données personnelles est soumis à la Loi fédérale sur la protection des données (LPD, en vigueur depuis le 1<sup>er</sup> septembre 2023) ainsi qu'au Règlement général sur la protection des données (RGPD) de l'Union européenne, dans la mesure où il est applicable.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Données collectées</h2>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">Formulaire d'inscription aux retraites</h3>
+        <p>Lorsque vous remplissez le formulaire d'inscription, nous collectons :</p>
+        <ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">
+          <li>Nom, prénom, date de naissance</li>
+          <li>Adresse postale, e-mail, téléphone</li>
+          <li>Retraite choisie et type d'hébergement souhaité</li>
+          <li>Régime alimentaire (le cas échéant)</li>
+          <li>Informations complémentaires que vous choisissez de transmettre</li>
+        </ul>
+        <p class="mt-2">Ces données sont utilisées exclusivement pour traiter votre demande d'inscription et organiser votre séjour. Elles sont transmises via <strong>Netlify Forms</strong> (serveurs en Europe/USA) et conservées pour la durée nécessaire au traitement de votre demande.</p>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">Cookies analytiques (Google Analytics)</h3>
+        <p>
+          Avec votre consentement, nous utilisons Google Analytics 4 (identifiant : G-Z5H1WG7XB0) pour comprendre comment les visiteurs utilisent notre site. Ces cookies collectent des informations anonymisées : pages consultées, durée de visite, provenance géographique approximative, type d'appareil.
+        </p>
+        <p class="mt-2">
+          <strong>Aucun cookie analytique n'est déposé sans votre accord explicite.</strong> Vous pouvez modifier votre choix à tout moment en cliquant sur le bouton ci-dessous.
+        </p>
+        <div class="mt-3">
+          <button
+            id="cookie-reset"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary-600 border border-primary-300 rounded-lg hover:bg-primary-50 transition-colors"
+          >
+            Modifier mes préférences de cookies
+          </button>
+        </div>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">Cookies techniques</h3>
+        <p>
+          Le site utilise un cookie technique (<code class="text-xs bg-gray-100 px-1 py-0.5 rounded">fddm-cookie-consent</code>) stocké dans votre navigateur (localStorage) pour mémoriser votre choix concernant les cookies analytiques. Ce cookie est strictement nécessaire et ne requiert pas de consentement.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Finalités du traitement</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-600">
+          <li>Traiter vos demandes d'inscription aux retraites et journées</li>
+          <li>Améliorer le site et son contenu grâce aux statistiques de visite (avec consentement)</li>
+          <li>Répondre à vos demandes de contact</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Partage des données</h2>
+        <p>Vos données ne sont ni vendues ni cédées à des tiers à des fins commerciales. Elles peuvent être partagées avec :</p>
+        <ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">
+          <li><strong>Netlify Inc.</strong> — hébergement du site et traitement des formulaires</li>
+          <li><strong>Google LLC</strong> — analyse statistique anonymisée (uniquement avec votre consentement)</li>
+        </ul>
+        <p class="mt-2">Ces prestataires s'engagent à respecter les normes de protection des données applicables.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Durée de conservation</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-600">
+          <li>Données d'inscription : durée nécessaire au traitement de la demande, puis 2 ans maximum</li>
+          <li>Cookies analytiques : 14 mois (durée standard Google Analytics)</li>
+          <li>Préférence cookies : jusqu'à suppression manuelle par l'utilisateur</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Vos droits</h2>
+        <p>Conformément à la LPD et au RGPD, vous disposez des droits suivants :</p>
+        <ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">
+          <li><strong>Accès</strong> — obtenir une copie de vos données personnelles</li>
+          <li><strong>Rectification</strong> — corriger des données inexactes</li>
+          <li><strong>Suppression</strong> — demander l'effacement de vos données</li>
+          <li><strong>Opposition</strong> — vous opposer au traitement de vos données</li>
+          <li><strong>Portabilité</strong> — recevoir vos données dans un format structuré</li>
+        </ul>
+        <p class="mt-2">
+          Pour exercer ces droits, contactez-nous à
+          <a href="mailto:info@foyer-dents-du-midi.ch" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">info@foyer-dents-du-midi.ch</a>.
+        </p>
+        <p class="mt-2">
+          En cas de litige, vous pouvez vous adresser au Préposé fédéral à la protection des données et à la transparence (PFPDT).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-primary-600 mb-3">Modifications</h2>
+        <p>
+          Cette politique peut être mise à jour. La date de dernière modification est indiquée ci-dessous.
+        </p>
+        <p class="mt-2 text-xs text-gray-400">Dernière mise à jour : 1<sup>er</sup> avril 2026</p>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script is:inline>
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'cookie-reset') {
+      try { localStorage.removeItem('fddm-cookie-consent'); } catch(e) {}
+      window.location.reload();
+    }
+  });
+</script>

@@ -90,11 +90,13 @@ export const footerData = {
         { text: '+41 24 463 22 22', href: 'tel:+41244632222' },
         { text: 'info@foyer-dents-du-midi.ch', href: 'mailto:info@foyer-dents-du-midi.ch' },
         { text: 'S\'inscrire', href: getPermalink('/contact/inscription') },
+        { text: 'Newsletter', href: '#footer-newsletter' },
       ],
     },
   ],
   secondaryLinks: [
     { text: 'Réseau des Foyers de Charité', href: 'https://www.lesfoyersdecharite.com/', target: '_blank' },
+    { text: 'Politique de confidentialité', href: getPermalink('/politique-de-confidentialite') },
   ],
   socialLinks: [],
   footNote: `

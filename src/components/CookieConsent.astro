@@ -1,0 +1,117 @@
+---
+/**
+ * Bandeau de consentement cookies + chargement conditionnel GA4.
+ * - Aucun cookie analytique sans consentement explicite (nLPD / RGPD)
+ * - Choix stocké dans localStorage (pas de cookie supplémentaire)
+ * - Compatible Astro View Transitions (astro:after-swap)
+ * - GA4 ID : G-Z5H1WG7XB0
+ */
+const GA_ID = 'G-Z5H1WG7XB0';
+---
+
+<div
+  id="cookie-consent"
+  class="fixed bottom-0 inset-x-0 z-50 pointer-events-none translate-y-full transition-transform duration-500 ease-out"
+  role="dialog"
+  aria-label="Paramètres de confidentialité"
+>
+  <div class="max-w-3xl mx-auto px-4 pb-4 pointer-events-auto">
+    <div class="bg-white border border-gray-200 rounded-xl shadow-2xl p-5 sm:p-6">
+      <div class="sm:flex sm:items-start sm:gap-5">
+        <div class="flex-1 mb-4 sm:mb-0">
+          <p class="text-sm font-bold text-primary-600 mb-1">Votre vie privée</p>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Nous utilisons des cookies analytiques pour améliorer votre expérience.
+            <a href="/politique-de-confidentialite" class="text-primary-600 hover:text-accent-500 underline underline-offset-2">En&nbsp;savoir&nbsp;plus</a>
+          </p>
+        </div>
+        <div class="flex gap-2 sm:items-center shrink-0">
+          <button
+            id="cookie-reject"
+            class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            Refuser
+          </button>
+          <button
+            id="cookie-accept"
+            class="px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors"
+            style="background-color: #F09A0A;"
+            onmouseenter="this.style.backgroundColor='#d98a09'"
+            onmouseleave="this.style.backgroundColor='#F09A0A'"
+          >
+            Accepter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ GA_ID }}>
+  (function () {
+    var CONSENT_KEY = 'fddm-cookie-consent';
+
+    function getConsent() {
+      try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+    }
+
+    function setConsent(value) {
+      try { localStorage.setItem(CONSENT_KEY, value); } catch (e) { /* noop */ }
+    }
+
+    function loadGA() {
+      if (document.querySelector('script[data-ga="fddm"]')) return;
+      var s = document.createElement('script');
+      s.async = true;
+      s.setAttribute('data-ga', 'fddm');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA_ID, { anonymize_ip: true });
+    }
+
+    function showBanner() {
+      var el = document.getElementById('cookie-consent');
+      if (!el) return;
+      requestAnimationFrame(function () {
+        el.classList.remove('translate-y-full');
+        el.classList.add('translate-y-0');
+      });
+    }
+
+    function hideBanner() {
+      var el = document.getElementById('cookie-consent');
+      if (!el) return;
+      el.classList.remove('translate-y-0');
+      el.classList.add('translate-y-full');
+    }
+
+    function init() {
+      var consent = getConsent();
+      if (consent === 'accepted') {
+        loadGA();
+        return;
+      }
+      if (consent === 'rejected') return;
+      setTimeout(showBanner, 800);
+    }
+
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t) return;
+      if (t.id === 'cookie-accept') {
+        setConsent('accepted');
+        hideBanner();
+        loadGA();
+      } else if (t.id === 'cookie-reject') {
+        setConsent('rejected');
+        hideBanner();
+      }
+    });
+
+    init();
+    document.addEventListener('astro:after-swap', init);
+  })();
+</script>

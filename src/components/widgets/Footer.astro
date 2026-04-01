@@ -39,6 +39,37 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
           </a>
         </div>
         <p class="text-sm font-playball text-primary-400 mb-3 italic">Une halte pour le coeur et l'esprit</p>
+
+        <!-- Newsletter compact -->
+        <div id="footer-newsletter" class="mb-4">
+          <p class="text-sm font-semibold text-gray-800 mb-2">Restez informés</p>
+          <form
+            name="newsletter"
+            method="POST"
+            action="/newsletter/confirmation"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            class="flex gap-2"
+          >
+            <input type="hidden" name="form-name" value="newsletter" />
+            <p class="hidden"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Votre e-mail"
+              class="flex-1 min-w-0 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent bg-white"
+            />
+            <button
+              type="submit"
+              class="shrink-0 px-4 py-2 text-sm font-medium text-white bg-accent-500 hover:bg-accent-600 rounded-lg transition-colors"
+            >
+              OK
+            </button>
+          </form>
+          <p class="text-xs text-muted mt-1.5">Programme, méditations et nouvelles du Foyer.</p>
+        </div>
+
         <div class="text-sm text-muted flex gap-1">
           {
             secondaryLinks.map(({ text, href, target }, index) => (
