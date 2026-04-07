@@ -23,15 +23,16 @@ export const headerData = {
         { text: 'Notre histoire', href: getPermalink('/le-foyer/histoire') },
       ],
     },
-    {
-      text: 'Séjour',
-      links: [
-        { text: 'Conditions de séjour', href: getPermalink('/sejour/conditions') },
-        { text: 'Chambres', href: getPermalink('/sejour/chambres') },
-        { text: 'Journée type', href: getPermalink('/sejour/journee-type') },
-        { text: 'Accès', href: getPermalink('/sejour/acces') },
-      ],
-    },
+    // Séjour masqué du menu — pages pas finalisées
+    // {
+    //   text: 'Séjour',
+    //   links: [
+    //     { text: 'Conditions de séjour', href: getPermalink('/sejour/conditions') },
+    //     { text: 'Chambres', href: getPermalink('/sejour/chambres') },
+    //     { text: 'Journée type', href: getPermalink('/sejour/journee-type') },
+    //     { text: 'Accès', href: getPermalink('/sejour/acces') },
+    //   ],
+    // },
     {
       text: 'Méditations',
       href: getPermalink('/meditations'),
@@ -72,9 +73,6 @@ export const footerData = {
     {
       title: 'Infos pratiques',
       links: [
-        { text: 'Conditions de séjour', href: getPermalink('/sejour/conditions') },
-        { text: 'Accès', href: getPermalink('/sejour/acces') },
-        { text: 'Chambres', href: getPermalink('/sejour/chambres') },
         { text: `Programme ${new Date().getFullYear()}`, href: getPermalink('/programme') },
       ],
     },
