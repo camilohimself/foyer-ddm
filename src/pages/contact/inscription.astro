@@ -410,6 +410,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
 (function initWizard() {
   var TOTAL_STEPS = 3;
   var state = { currentStep: 1 };
+  var isRestoring = false;
 
   var steps = [];
   for (var i = 1; i <= TOTAL_STEPS; i++) {
@@ -605,6 +606,16 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       }
     }
 
+    // NPA + Ville (must contain both postal code and city name)
+    var npaEl = document.getElementById(prefix + 'npa-ville');
+    if (npaEl && npaEl.value.trim()) {
+      var npaVal = npaEl.value.trim();
+      if (!/\d/.test(npaVal) || !/[a-zA-ZÀ-ÿ]/.test(npaVal)) {
+        showError(npaEl, 'Veuillez indiquer le NPA et la ville (ex : 1880 Bex).');
+        valid = false;
+      }
+    }
+
     return valid;
   }
 
@@ -661,6 +672,25 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     }
   }
 
+  // --- Toggle helper: disable + clear hidden fields so they are not submitted ---
+  function toggleFieldset(container, show) {
+    var wasHidden = container.classList.contains('hidden');
+    container.classList.toggle('hidden', !show);
+    var fields = container.querySelectorAll('input, select, textarea');
+    for (var i = 0; i < fields.length; i++) {
+      fields[i].disabled = !show;
+      if (!show && !wasHidden) {
+        if (fields[i].type === 'radio' || fields[i].type === 'checkbox') {
+          fields[i].checked = false;
+        } else if (fields[i].tagName === 'SELECT') {
+          fields[i].selectedIndex = 0;
+        } else {
+          fields[i].value = '';
+        }
+      }
+    }
+  }
+
   // --- Type logic ---
   function getSelectedType() {
     var radios = document.querySelectorAll('input[name="type-participant"]');
@@ -671,19 +701,22 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
   }
 
   function updateFormForType() {
+    if (isRestoring) return;
     var type = getSelectedType();
-    familleOptions.classList.add('hidden');
-    fieldsetAdulte2.classList.add('hidden');
-    fieldsetEnfants.classList.add('hidden');
+
+    toggleFieldset(familleOptions, false);
+    toggleFieldset(fieldsetAdulte2, false);
+    toggleFieldset(fieldsetEnfants, false);
 
     if (type === 'Individuel') {
       legendAdulte1.textContent = 'Vos coordonnées';
     } else if (type === 'Couple') {
       legendAdulte1.textContent = 'Adulte 1';
-      fieldsetAdulte2.classList.remove('hidden');
+      toggleFieldset(fieldsetAdulte2, true);
     } else if (type === 'Famille') {
-      familleOptions.classList.remove('hidden');
-      fieldsetEnfants.classList.remove('hidden');
+      toggleFieldset(familleOptions, true);
+      if (!nombreEnfants.value) nombreEnfants.value = '1';
+      toggleFieldset(fieldsetEnfants, true);
       updateFamilleAdults();
       updateFamilleEnfants();
     }
@@ -693,10 +726,10 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     var nbAdultes = parseInt(nombreAdultes.value, 10) || 2;
     if (nbAdultes >= 2) {
       legendAdulte1.textContent = 'Adulte 1';
-      fieldsetAdulte2.classList.remove('hidden');
+      toggleFieldset(fieldsetAdulte2, true);
     } else {
       legendAdulte1.textContent = 'Vos coordonnées';
-      fieldsetAdulte2.classList.add('hidden');
+      toggleFieldset(fieldsetAdulte2, false);
     }
   }
 
@@ -811,8 +844,12 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
 
   document.getElementById('wizard-form').addEventListener('submit', function(e) {
     collectEnfantsDetails();
-    if (!validateStep(3)) {
-      e.preventDefault();
+    for (var s = 1; s <= TOTAL_STEPS; s++) {
+      if (!validateStep(s)) {
+        e.preventDefault();
+        goToStep(s);
+        return;
+      }
     }
   });
 
@@ -858,10 +895,12 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
 
   function restoreFormState() {
     var raw;
-    try { raw = sessionStorage.getItem(STORAGE_KEY); } catch(e) { return; }
-    if (!raw) return;
+    try { raw = sessionStorage.getItem(STORAGE_KEY); } catch(e) {}
+    if (!raw) { updateFormForType(); return; }
     var data;
-    try { data = JSON.parse(raw); } catch(e) { return; }
+    try { data = JSON.parse(raw); } catch(e) { updateFormForType(); return; }
+
+    isRestoring = true;
 
     var form = document.getElementById('wizard-form');
     for (var key in data) {
@@ -882,6 +921,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       }
     }
 
+    isRestoring = false;
     updateFormForType();
 
     if (data['_step'] && data['_step'] > 1) {
@@ -931,9 +971,21 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
   if (isNewForm || hasRetraiteParam) {
     clearFormState();
     if (hasRetraiteParam) handleDeepLink();
+    updateFormForType();
   } else {
     restoreFormState();
   }
+
+  // Filter past events client-side (build-time filter may be stale after deploy)
+  var todayStr = new Date().toISOString().split('T')[0];
+  var retraiteEl = document.getElementById('retraite');
+  for (var ri = retraiteEl.options.length - 1; ri >= 0; ri--) {
+    var optVal = retraiteEl.options[ri].value;
+    if (optVal && optVal.length >= 10 && optVal.substring(0, 10) < todayStr) {
+      retraiteEl.remove(ri);
+    }
+  }
+
   updateProgress(1);
 
   document.addEventListener('astro:after-swap', initWizard);
