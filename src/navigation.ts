@@ -102,7 +102,9 @@ export const footerData = {
     { text: 'Réseau des Foyers de Charité', href: 'https://www.lesfoyersdecharite.com/', target: '_blank' },
     { text: 'Politique de confidentialité', href: getPermalink('/politique-de-confidentialite') },
   ],
-  socialLinks: [],
+  socialLinks: [
+    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/foyerdentsdumidi', target: '_blank' },
+  ],
   footNote: `
     &copy; ${new Date().getFullYear()} Foyer de Charité Dents-du-Midi · Tous droits réservés
   `,

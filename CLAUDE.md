@@ -129,8 +129,8 @@ src/
 - **Deep-linking** : `?retraite=EVENT_ID` pre-selectionne le dropdown (liens depuis /programme)
 - **Persistance** : sessionStorage sauvegarde/restaure les champs (retour arriere navigateur)
 - **Confirmation** : `action="/contact/confirmation"` → page personnalisee post-soumission
-- Backend actuel : Netlify Forms (`data-netlify="true"`)
-- TODO : Basculer vers API OASIS si endpoints disponibles
+- Backend : Netlify Forms (`data-netlify="true"`) + Brevo SMTP/CRM via Netlify Functions
+- **OASIS = NON** — Decision finale, Sophie informee 4 avril
 
 ## Funnel inscription (2 mars 2026)
 
@@ -153,13 +153,25 @@ src/
 
 - `netlify.toml` : build `npm run build`, publish `dist/`
 - Cache : `/_astro/*` → immutable (31536000s)
-- DNS : foyer-dents-du-midi.ch (migration vers Netlify en attente)
-- GA4 : ID a configurer dans `config.yaml` → `googleAnalyticsId`
+- **LIVE** depuis 1er avril 2026 — foyer-dents-du-midi.ch
+- DNS : zone Kreavit (Plesk), A record → Netlify 75.2.60.5, www CNAME → foyer-ddm.netlify.app
+- GA4 : ✅ configure
+- Google Search Console : ✅ propriete verifiee, sitemap soumis
 
-## Notes Audit (8 mars 2026)
+## Netlify Functions (email)
 
-- [ ] **URGENT** — GA4 non configure. A faire avant le 15 mars (go-live)
-- [ ] Google Search Console pas encore mentionne — a configurer en meme temps que GA4
+- `netlify/functions/submission-created.mjs` — Declenchee a chaque soumission Netlify Forms
+  - Contact → notification email info@ + upsert Brevo CRM
+  - Inscription → notification info@ + confirmation inscrit + upsert Brevo CRM
+  - Sender : `noreply@foyer-dents-du-midi.ch` / Destinataire : `info@foyer-dents-du-midi.ch`
+  - Brevo lists : contacts (ID 5), newsletter (ID 3)
+- `netlify/functions/newsletter.mjs` — Inscription newsletter via Brevo API
+- **BREVO_API_KEY** : ✅ configuree dans Netlify env vars
+- **Domaine Brevo** : ⏳ DNS records ajoutes 7 avril, validation en attente
+
+## TODO
+
+- [ ] Valider domaine Brevo + ajouter sender `noreply@foyer-dents-du-midi.ch`
+- [ ] Tester formulaire contact + inscription bout en bout
 - [ ] 3 photos stock restantes a remplacer (couple-marche, couple-mains, bougies-priere) — demander au Foyer
-- [ ] Aucune instruction de deploiement step-by-step (qui push ? qui valide ? rollback ?)
-- [ ] Decap CMS : acces /admin via Netlify Identity — pas encore configure
+- [ ] Decap CMS : activer Netlify Identity pour Eliane
