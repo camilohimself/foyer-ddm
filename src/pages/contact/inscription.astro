@@ -71,6 +71,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       class="bg-white shadow-xl rounded-2xl p-8 md:p-12"
     >
       <input type="hidden" name="form-name" value="inscription" />
+      <input type="hidden" name="retraite-label" id="retraite-label" />
       <p class="hidden"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
 
       <!-- ============================================ -->
@@ -845,6 +846,8 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
 
   document.getElementById('wizard-form').addEventListener('submit', function(e) {
     collectEnfantsDetails();
+    var rSel = document.getElementById('retraite');
+    document.getElementById('retraite-label').value = rSel.selectedIndex > 0 ? rSel.options[rSel.selectedIndex].text : '';
     for (var s = 1; s <= TOTAL_STEPS; s++) {
       if (!validateStep(s)) {
         e.preventDefault();
