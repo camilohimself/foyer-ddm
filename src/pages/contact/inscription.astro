@@ -66,6 +66,7 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
       action="/contact/confirmation"
       data-netlify="true"
       netlify-honeypot="bot-field"
+      novalidate
       id="wizard-form"
       class="bg-white shadow-xl rounded-2xl p-8 md:p-12"
     >
@@ -964,6 +965,16 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     });
   });
 
+  // Filter past events client-side FIRST (build-time filter may be stale after deploy)
+  var todayStr = new Date().toISOString().split('T')[0];
+  var retraiteEl = document.getElementById('retraite');
+  for (var ri = retraiteEl.options.length - 1; ri >= 0; ri--) {
+    var optVal = retraiteEl.options[ri].value;
+    if (optVal && optVal.length >= 10 && optVal.substring(0, 10) < todayStr) {
+      retraiteEl.remove(ri);
+    }
+  }
+
   // Init — ?new = fresh form (menu CTA), ?retraite= = fresh form with preselection, otherwise restore
   var searchParams = new URLSearchParams(window.location.search);
   var isNewForm = searchParams.has('new');
@@ -974,16 +985,6 @@ const events = (await getUpcomingEvents()).filter((e) => e.data.registrationOpen
     updateFormForType();
   } else {
     restoreFormState();
-  }
-
-  // Filter past events client-side (build-time filter may be stale after deploy)
-  var todayStr = new Date().toISOString().split('T')[0];
-  var retraiteEl = document.getElementById('retraite');
-  for (var ri = retraiteEl.options.length - 1; ri >= 0; ri--) {
-    var optVal = retraiteEl.options[ri].value;
-    if (optVal && optVal.length >= 10 && optVal.substring(0, 10) < todayStr) {
-      retraiteEl.remove(ri);
-    }
   }
 
   updateProgress(1);

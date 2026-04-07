@@ -1,0 +1,33 @@
+# Rebuild quotidien — Met a jour les retraites passees, compteurs, programme
+# Le site Astro est SSG : les filtres de dates sont calcules au build time.
+# Ce cron declenche un rebuild Netlify chaque nuit pour garder le site a jour.
+#
+# Setup requis (une seule fois) :
+#   1. Netlify > Site > Build & deploy > Build hooks > Add build hook
+#      Nom: "Daily rebuild" / Branch: main
+#   2. Copier l'URL du hook
+#   3. GitHub > Settings > Secrets > Actions > New secret
+#      Name: NETLIFY_BUILD_HOOK / Value: l'URL copiee
+
+name: Daily Rebuild
+
+on:
+  schedule:
+    # Chaque jour a 00:15 UTC (02:15 heure suisse en ete, 01:15 en hiver)
+    - cron: '15 0 * * *'
+  workflow_dispatch: # Permet un declenchement manuel depuis GitHub Actions
+
+jobs:
+  trigger-netlify-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify build hook
+        env:
+          HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK_URL" ]; then
+            echo "::warning::NETLIFY_BUILD_HOOK secret not configured. Skipping."
+            exit 0
+          fi
+          curl -X POST -d '{}' "$HOOK_URL"
+          echo "Netlify build triggered at $(date -u)"
