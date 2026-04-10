@@ -132,7 +132,7 @@ const jsonLdEvents = eventsToJsonLd(allEvents);
                         {event.data.dateDetails || formatDateRange(event.data.dateStart, event.data.dateEnd)}
                       </p>
                       <p class="text-sm text-gray-500">
-                        Intervenant: {event.data.preacher}
+                        {/(,| et )/.test(event.data.preacher) ? 'Intervenants' : 'Intervenant'}: {event.data.preacher}
                       </p>
                       {event.data.variant && (
                         <p class="text-sm text-accent-500 font-medium mt-1">
